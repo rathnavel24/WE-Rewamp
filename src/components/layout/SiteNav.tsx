@@ -33,6 +33,18 @@ export function SiteNav() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Escape closes whichever menu is open.
+  useEffect(() => {
+    if (!mobileOpen && !openMenu) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpenMenu(null);
+      setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileOpen, openMenu]);
+
   const active = activeId(pathname);
   const scrolled = y > 24;
 
@@ -110,6 +122,7 @@ export function SiteNav() {
         </div>
       </nav>
 
+      {!desktop && mobileOpen && <div className={s.scrim} aria-hidden="true" onClick={() => setMobileOpen(false)} />}
       {!desktop && mobileOpen && (
         <div className={s.sheet}>
           {NAV_LINKS.map((l) => (

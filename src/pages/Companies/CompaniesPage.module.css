@@ -83,6 +83,11 @@
 .sub:hover { background: rgba(255, 255, 255, .12); transform: translateY(-3px); color: #fff; }
 .subName { font: 500 14.5px/1.3 var(--font-sans); }
 .subCountry { font: 500 11px/1 var(--font-mono); letter-spacing: .1em; color: rgba(255, 255, 255, .55); }
+/* Phones: two columns instead of six full-width cards stacked. */
+@media (max-width: 600px) {
+  .subs { grid-template-columns: 1fr 1fr; }
+  .sub { padding: 14px; gap: 10px; }
+}
 
 /* Directory */
 .dirSection { padding: 20px 24px 120px; }

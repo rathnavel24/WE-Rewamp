@@ -46,6 +46,12 @@
   font-size: 15px;
 }
 .link:hover { color: var(--c-orange); }
+/* Touch screens: same visual rhythm, but taller tap targets. */
+@media (pointer: coarse) {
+  .col { gap: 2px; }
+  .heading { margin-bottom: 4px; }
+  .link { padding: 6px 0; }
+}
 .address { font-size: 15px; line-height: 1.5; }
 
 .bottom {

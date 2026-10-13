@@ -10,7 +10,7 @@ page-transition curtain, mega-menu and responsive behaviour.
 
 ```bash
 npm install
-cp .env.example .env      # optional — leave VITE_API_BASE_URL empty to use mocks
+cp .env.example .env      # optional in dev — leave VITE_API_BASE_URL empty to use mocks (dev server only)
 npm run dev               # http://localhost:5173
 npm run build             # type-check + production build to dist/
 npm run preview           # serve the production build

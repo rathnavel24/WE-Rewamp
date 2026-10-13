@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Icon } from '@/components/ui/Icon';
 import { Tile } from '@/components/ui/Tile';
-import { ENQUIRY_TOPICS } from '@/data/site';
+import { CONTACT_EMAIL, ENQUIRY_TOPICS } from '@/data/site';
 import { submitEnquiry } from '@/services/enquiries';
 import type { VentureId } from '@/types';
 import s from './ContactPage.module.css';
@@ -48,7 +48,7 @@ export function EnquiryForm({ initialTopics = [], venture }: EnquiryFormProps) {
 
   const reset = () => {
     setStatus('idle');
-    setPicked([]);
+    setPicked(initialTopics);
     setName('');
   };
 
@@ -94,7 +94,7 @@ export function EnquiryForm({ initialTopics = [], venture }: EnquiryFormProps) {
 
       {status === 'error' && (
         <p className={s.error} role="alert">
-          {error}
+          {error} You can also email us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
       )}
 

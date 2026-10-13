@@ -29,7 +29,7 @@
   position: relative;
 }
 .scrolled .nav {
-  background: rgba(255, 255, 255, .78);
+  background: rgba(255, 255, 255, .92);
   border-color: rgba(14, 31, 23, .07);
   box-shadow: 0 12px 40px -18px rgba(14, 31, 23, .25);
 }
@@ -159,6 +159,12 @@
 }
 
 /* Mobile sheet */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(14, 31, 23, .28);
+}
 .sheet {
   position: fixed;
   top: 88px;

@@ -1,7 +1,7 @@
 # WalletEdge Global — Backend API contract
 
 The frontend is fully functional without a backend: all page content ships as typed data in
-`src/data/`, and the contact form uses a mock when `VITE_API_BASE_URL` is empty.
+`src/data/`, and the contact form uses a mock when `VITE_API_BASE_URL` is empty — in the dev server only; a production build without it shows an error instead.
 
 This document lists the endpoints the frontend expects once a backend is linked, in priority order.
 

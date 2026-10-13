@@ -20,7 +20,7 @@
   gap: 56px;
   align-items: center;
 }
-.copy { display: flex; flex-direction: column; gap: 30px; }
+.copy { display: flex; flex-direction: column; gap: 30px; min-width: 0; container-type: inline-size; }
 
 .badge {
   display: inline-flex;
@@ -45,14 +45,17 @@
   letter-spacing: -.045em;
   text-wrap: balance;
 }
+/* Each word must stay on one line (the roller steps by fixed slot heights), so the roller
+   shrinks to fit the longest word — "Financial services." is ~9.4em wide. */
 .roller {
   display: block;
+  font-size: min(1em, 10.4cqi);
   height: 1.08em;
   overflow: hidden;
   color: var(--c-orange);
 }
 .rollerTrack { display: flex; flex-direction: column; }
-.rollerWord { height: 1.08em; display: block; }
+.rollerWord { height: 1.08em; display: block; white-space: nowrap; }
 .green { color: var(--c-green); }
 
 .lead {
@@ -150,3 +153,10 @@
   box-shadow: 0 40px 80px -30px rgba(14, 31, 23, .35), 0 0 0 1px rgba(14, 31, 23, .05);
 }
 .coreLogo { width: 100%; height: auto; display: block; }
+
+/* Phones: pull the orbit in so the side chips (centred on the ring's edge) stay on screen. */
+@media (max-width: 600px) {
+  .visual { width: calc(100% - 80px); }
+  .chip { gap: 6px; padding: 7px 10px 7px 7px; font-size: 12.5px; }
+  .core { width: 46%; margin-left: -23%; margin-top: -16%; padding: 6% 5%; border-radius: 20px; }
+}

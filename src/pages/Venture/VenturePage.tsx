@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { AppLink } from '@/components/ui/AppLink';
 import { Icon } from '@/components/ui/Icon';
 import { Tile } from '@/components/ui/Tile';
@@ -7,6 +7,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ROUTES } from '@/data/routes';
 import { isVentureId, VENTURE_LIST, VENTURES } from '@/data/ventures';
 import type { Venture } from '@/types';
+import { NotFoundPage } from '@/pages/NotFound/NotFoundPage';
 import s from './VenturePage.module.css';
 
 const CASE_POINTS = [
@@ -26,7 +27,7 @@ const CASE_POINTS = [
 
 export function VenturePage() {
   const { id } = useParams();
-  if (!isVentureId(id)) return <Navigate to={ROUTES.venture('insureliv')} replace />;
+  if (!isVentureId(id)) return <NotFoundPage />;
   // Keyed so switching ventures remounts and replays the motion.
   return <VentureView key={id} v={VENTURES[id]} />;
 }

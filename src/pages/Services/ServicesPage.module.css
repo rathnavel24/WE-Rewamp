@@ -159,7 +159,8 @@
 }
 .consultCard:hover { transform: translateY(-4px); }
 .consultText { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
-.consultTitle { font: 600 19px/1.2 var(--font-sans); letter-spacing: -.015em; }
+/* Reserve two lines so one- and two-line titles (and their descriptions) line up across the row. */
+.consultTitle { font: 600 19px/1.2 var(--font-sans); letter-spacing: -.015em; min-height: 2.4em; display: flex; align-items: flex-end; }
 .consultDesc { font-size: 14.5px; line-height: 1.5; color: var(--c-muted); }
 
 /* 05 Healthcare */
