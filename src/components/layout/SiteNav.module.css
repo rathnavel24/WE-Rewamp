@@ -1,0 +1,190 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 18px 16px;
+  transition: padding .5s var(--ease);
+}
+.scrolled { padding: 10px 16px; }
+
+.nav {
+  width: 100%;
+  max-width: var(--container);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 12px 10px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  transition: all .5s var(--ease);
+  position: relative;
+}
+.scrolled .nav {
+  background: rgba(255, 255, 255, .78);
+  border-color: rgba(14, 31, 23, .07);
+  box-shadow: 0 12px 40px -18px rgba(14, 31, 23, .25);
+}
+
+.brand { display: flex; align-items: center; flex: none; }
+.logo {
+  height: 58px;
+  width: auto;
+  display: block;
+  transition: height .5s var(--ease);
+}
+.scrolled .logo { height: 46px; }
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 500 15px/1 var(--font-sans);
+}
+.item { position: relative; }
+.link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: var(--c-ink);
+  background: transparent;
+  text-decoration: none;
+  transition: background .25s, color .25s;
+}
+.link:hover { background: rgba(3, 100, 59, .07); color: var(--c-green); }
+.active { color: var(--c-green); background: rgba(3, 100, 59, .08); }
+
+/* Companies mega-menu */
+.menuWrap {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 12px;
+  width: 560px;
+}
+.menu {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -20px rgba(14, 31, 23, .25);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.menuItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--c-ink);
+  transition: background .2s;
+}
+.menuItem:hover { background: var(--c-bg); color: var(--c-ink); }
+.menuText { display: flex; flex-direction: column; gap: 4px; }
+.menuName { font: 600 14px/1.2 var(--font-sans); }
+.menuLine { font: 400 12.5px/1.4 var(--font-sans); color: var(--c-muted); }
+.menuAll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--c-forest);
+  color: #fff;
+  text-decoration: none;
+  font: 500 13.5px/1.2 var(--font-sans);
+}
+.menuAll:hover { color: #fff; }
+
+.actions { display: flex; align-items: center; gap: 8px; }
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 18px 13px 20px;
+  border-radius: 14px;
+  background: var(--c-ink);
+  color: #fff;
+  text-decoration: none;
+  font: 500 14.5px/1 var(--font-sans);
+  white-space: nowrap;
+  transition: background .25s, transform .25s;
+}
+.cta:hover { background: var(--c-green); color: #fff; transform: translateY(-1px); }
+
+.burger {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-family: var(--font-icon);
+  font-size: 22px;
+  color: var(--c-ink);
+  padding: 0;
+}
+
+.progressTrack {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+}
+.scrolled .progressTrack { opacity: 1; }
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #CF5512, #E07A2E);
+  border-radius: 2px;
+}
+
+/* Mobile sheet */
+.sheet {
+  position: fixed;
+  top: 88px;
+  left: 12px;
+  right: 12px;
+  background: #fff;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -20px rgba(14, 31, 23, .3);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sheetLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 14px;
+  color: var(--c-ink);
+  text-decoration: none;
+  font: 500 17px/1 var(--font-sans);
+}
+.sheetLink:hover { background: var(--c-bg); color: var(--c-ink); }
+
+@media (max-width: 420px) {
+  .cta { padding: 13px 14px; font-size: 13.5px; }
+}

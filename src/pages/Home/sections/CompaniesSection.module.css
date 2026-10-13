@@ -1,0 +1,100 @@
+.section {
+  padding: 110px 0 120px;
+  background: var(--c-forest);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.glow {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  right: -200px;
+  top: -260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(207, 85, 18, .28), transparent 65%);
+  pointer-events: none;
+}
+.inner {
+  position: relative;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 32px;
+  align-items: end;
+}
+.headCopy { display: flex; flex-direction: column; gap: 16px; }
+.eyebrow { color: var(--c-orange-light); }
+.intro {
+  margin: 0;
+  font: 400 17px/1.6 var(--font-sans);
+  color: rgba(255, 255, 255, .72);
+  max-width: 500px;
+  text-wrap: pretty;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+.row {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  text-decoration: none;
+  color: #fff;
+  transition: padding .45s var(--ease), background .45s;
+}
+.row:hover { padding-left: 22px; background: rgba(255, 255, 255, .04); color: #fff; }
+.no { font: 500 13px/1 var(--font-mono); color: rgba(255, 255, 255, .45); }
+.text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.name { font: 500 clamp(20px, 2.4vw, 30px)/1.15 var(--font-sans); letter-spacing: -.02em; }
+.line { font-size: 14.5px; color: rgba(255, 255, 255, .6); }
+.meta { display: flex; align-items: center; gap: 10px; }
+.country {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: .08em;
+}
+.arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-icon);
+  font-size: 20px;
+}
+
+.marquee { margin-top: 80px; display: flex; width: max-content; }
+.rollName {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+  font: 600 clamp(48px, 7vw, 104px)/1 var(--font-sans);
+  letter-spacing: -.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, .35);
+  white-space: nowrap;
+}
+.square {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: var(--c-orange);
+  -webkit-text-stroke: 0;
+}

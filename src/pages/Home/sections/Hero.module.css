@@ -1,0 +1,152 @@
+.hero {
+  position: relative;
+  padding: 150px 24px 90px;
+  overflow: hidden;
+  background: radial-gradient(600px circle at var(--mx, 70%) var(--my, 40%), rgba(207, 85, 18, .10), transparent 60%), var(--c-bg);
+}
+.gridBg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(14, 31, 23, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 31, 23, .05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+.layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+  gap: 56px;
+  align-items: center;
+}
+.copy { display: flex; flex-direction: column; gap: 30px; }
+
+.badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font: 500 12.5px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--c-green); }
+.ping { position: absolute; inset: 0; border-radius: 50%; background: var(--c-green); }
+
+.title {
+  margin: 0;
+  font: 600 clamp(42px, 6.4vw, 84px)/1.0 var(--font-sans);
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.roller {
+  display: block;
+  height: 1.08em;
+  overflow: hidden;
+  color: var(--c-orange);
+}
+.rollerTrack { display: flex; flex-direction: column; }
+.rollerWord { height: 1.08em; display: block; }
+.green { color: var(--c-green); }
+
+.lead {
+  margin: 0;
+  max-width: 540px;
+  font: 400 clamp(17px, 1.5vw, 19.5px)/1.6 var(--font-sans);
+  color: var(--c-body);
+  text-wrap: pretty;
+}
+
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  font: 500 16px/1 var(--font-sans);
+}
+.primary {
+  background: var(--c-ink);
+  color: #fff;
+  transition: transform .3s, background .3s;
+}
+.primary:hover { background: var(--c-green); transform: translateY(-2px); color: #fff; }
+.secondary {
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  color: var(--c-ink);
+  transition: transform .3s, border-color .3s;
+}
+.secondary:hover { border-color: var(--c-orange); transform: translateY(-2px); color: var(--c-ink); }
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.stat { display: flex; flex-direction: column; gap: 6px; }
+.statValue { font: 600 34px/1 var(--font-sans); letter-spacing: -.03em; }
+.statLabel { font-size: 14px; color: var(--c-muted); }
+
+/* Orbit visual */
+.visual {
+  position: relative;
+  width: min(540px, 100%);
+  aspect-ratio: 1;
+  justify-self: center;
+}
+.ringOuter {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(14, 31, 23, .16);
+}
+.ringInner {
+  position: absolute;
+  inset: 17%;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 70%);
+}
+.orbit { position: absolute; inset: 0; }
+.planet {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 10px 10px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 14px 30px -14px rgba(14, 31, 23, .35);
+  border: 1px solid rgba(14, 31, 23, .06);
+  font: 500 13.5px/1 var(--font-sans);
+  white-space: nowrap;
+}
+.core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58%;
+  margin-left: -29%;
+  margin-top: -20%;
+  padding: 7% 6%;
+  box-sizing: border-box;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 40px 80px -30px rgba(14, 31, 23, .35), 0 0 0 1px rgba(14, 31, 23, .05);
+}
+.coreLogo { width: 100%; height: auto; display: block; }

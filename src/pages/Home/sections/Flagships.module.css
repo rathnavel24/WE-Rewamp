@@ -1,0 +1,82 @@
+.section { padding: 120px 24px; }
+.inner { display: flex; flex-direction: column; gap: 48px; }
+.head { display: flex; flex-direction: column; gap: 16px; max-width: 720px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: clamp(28px, 4vw, 48px);
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid var(--line-soft);
+}
+.cardWarm { background: var(--c-peach); border-color: rgba(176, 69, 8, .1); }
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 22px/1 var(--font-sans);
+  letter-spacing: -.02em;
+}
+.pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--c-mint);
+  color: var(--c-green);
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.pillWarm { background: #fff; color: var(--c-orange-deep); }
+
+.statement {
+  margin: 0;
+  font: 500 clamp(20px, 2vw, 25px)/1.35 var(--font-sans);
+  letter-spacing: -.015em;
+  text-wrap: pretty;
+}
+
+.stats2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.stats3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+.statBig { font-size: 40px; }
+.statWarm { background: #fff; }
+.statWarm .statValueWarm { color: var(--c-orange-deep); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(14, 31, 23, .1);
+  font: 500 13.5px/1 var(--font-sans);
+}
+
+.more {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-ink);
+  text-decoration: none;
+  font: 500 15.5px/1 var(--font-sans);
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid currentColor;
+}
+.more:hover { color: var(--c-orange); }

@@ -1,0 +1,17 @@
+// Global styles first so component CSS modules can override them.
+import './styles/global.css';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { PageTransitionProvider } from '@/context/PageTransitionContext';
+import { App } from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <PageTransitionProvider>
+        <App />
+      </PageTransitionProvider>
+    </BrowserRouter>
+  </StrictMode>
+);

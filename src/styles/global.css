@@ -1,0 +1,144 @@
+@import './tokens.css';
+
+/* No global box-sizing reset: the design is laid out with the browser default (content-box). */
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Links styled by a component keep their own colours; only bare links get the brand hover. */
+a { color: var(--c-green); }
+a:not([class]):hover { color: var(--c-orange); }
+
+::selection { background: var(--c-orange); color: #fff; }
+
+input, textarea, button { font: inherit; }
+input::placeholder, textarea::placeholder { color: var(--c-faint); }
+
+img { max-width: 100%; }
+
+section[id] { scroll-margin-top: 110px; }
+
+/* ---------- Shared primitives ---------- */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.icon {
+  font-family: var(--font-icon);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mono uppercase kicker used above section titles ("01 — Our services"). */
+.eyebrow {
+  font: 500 12.5px/1 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-orange);
+}
+
+/* Page-level hero headline. */
+.display-1 {
+  margin: 0;
+  font: 600 clamp(42px, 6.4vw, 84px)/1.0 var(--font-sans);
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+/* Section headline. */
+.display-2 {
+  margin: 0;
+  font: 600 clamp(34px, 4.4vw, 58px)/1.04 var(--font-sans);
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+
+/* Two-column hero layout used by Companies / Team. */
+.page-hero {
+  padding: 160px 24px 60px;
+}
+.page-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 40px;
+  align-items: end;
+}
+.page-hero__lead {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.page-hero__copy {
+  margin: 0;
+  font: 400 18px/1.6 var(--font-sans);
+  color: var(--c-body);
+  max-width: 520px;
+  text-wrap: pretty;
+}
+
+/* Small numbered label with a rule ("01 —— IT & BPO"). */
+.section-index {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 500 13px/1 var(--font-mono);
+  letter-spacing: .1em;
+  color: var(--c-subtle);
+}
+.section-index__rule {
+  width: 40px;
+  height: 1px;
+  background: var(--c-rule);
+}
+
+/* Square icon tile; colour comes from inline --tile-bg / --tile-ink. */
+.tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-icon);
+  background: var(--tile-bg);
+  color: var(--tile-ink);
+}
+
+/* Stat box ("90% Faster processing times"). */
+.stat {
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--c-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stat__value {
+  font: 600 36px/1 var(--font-sans);
+  letter-spacing: -.04em;
+  color: var(--c-green);
+}
+.stat__label {
+  font-size: 14px;
+  color: var(--c-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
