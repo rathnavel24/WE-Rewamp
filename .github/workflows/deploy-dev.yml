@@ -3,7 +3,7 @@ name: Deploy to dev
 # Builds the site and publishes it to https://dev.walletedgeglobal.com
 on:
   push:
-    branches: [feat/react-frontend]
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
