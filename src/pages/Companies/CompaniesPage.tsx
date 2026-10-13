@@ -71,7 +71,7 @@ export function CompaniesPage() {
 
         <Grid min={340} max={3} mode="fill">
           {shown.map((c) => (
-            <Card key={c.name} to={c.href} spotlight glow={c.tone.glow} className={s.card}>
+            <Card key={c.name} to={c.href} className={s.card}>
               <div className={s.cardTop}>
                 <Tile icon={c.icon} size="lg" tone={c.tone} />
                 <Chip mono icon="location_on" size="md">

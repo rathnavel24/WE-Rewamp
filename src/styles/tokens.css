@@ -87,7 +87,7 @@
   --fill-on-dark-hover: rgba(255, 255, 255, .12);
   --fill-primary-hover: rgba(3, 100, 59, .07);
 
-  /* Glows (spotlight + ambient blobs) */
+  /* Glows (ambient blobs) */
   --glow-primary: rgba(3, 100, 59, .10);
   --glow-accent: rgba(207, 85, 18, .12);
   --glow-accent-strong: rgba(207, 85, 18, .35);

@@ -11,7 +11,6 @@
  *   data-float="8"                                            gentle bobbing
  *   data-pulse="0"                                            radar ping
  *   data-flow="3600" [data-delay]                             light streak along a line
- *   data-spot                                                 pointer-tracking spotlight (--mx / --my)
  */
 
 export const EASE = 'cubic-bezier(.16,1,.3,1)';
@@ -187,14 +186,6 @@ function flow(el: HTMLElement) {
   });
 }
 
-function spot(el: HTMLElement) {
-  el.addEventListener('pointermove', (e) => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
-    el.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
-  });
-}
-
 const BEHAVIOURS: Array<[key: string, fn: (el: HTMLElement) => void]> = [
   ['count', count],
   ['marquee', marquee],
@@ -202,8 +193,7 @@ const BEHAVIOURS: Array<[key: string, fn: (el: HTMLElement) => void]> = [
   ['orbit', orbit],
   ['float', float],
   ['pulse', pulse],
-  ['flow', flow],
-  ['spot', spot]
+  ['flow', flow]
 ];
 
 /** Wire up every not-yet-wired motion element under `root`. Safe to call repeatedly. */

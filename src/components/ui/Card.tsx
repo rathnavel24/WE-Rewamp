@@ -1,4 +1,4 @@
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { cx } from '@/utils/cx';
 import { AppLink } from './AppLink';
 import s from './Card.module.css';
@@ -20,9 +20,6 @@ interface CardProps extends HTMLAttributes<HTMLElement> {
   padding?: CardPadding;
   /** Hover lift (+ shadow on light surfaces). Links are always interactive. */
   interactive?: boolean;
-  /** Pointer-tracking glow; colour from `glow` (defaults to the primary glow). */
-  spotlight?: boolean;
-  glow?: string;
   /** Render as a link. */
   to?: string;
   as?: 'div' | 'article' | 'li' | 'section';
@@ -38,8 +35,6 @@ export function Card({
   variant = 'surface',
   padding = 'md',
   interactive,
-  spotlight,
-  glow,
   to,
   as: Tag = 'div',
   className,
@@ -52,21 +47,17 @@ export function Card({
     s[variant],
     s[`pad-${padding}`],
     (interactive || to) && s.interactive,
-    spotlight && s.spotlight,
     className
   );
-  const vars = glow ? ({ '--card-glow': glow, ...style } as CSSProperties) : style;
-  const spot = spotlight ? { 'data-spot': '1' } : {};
-
   if (to) {
     return (
-      <AppLink to={to} className={classes} style={vars} {...spot} {...rest}>
+      <AppLink to={to} className={classes} style={style} {...rest}>
         {children}
       </AppLink>
     );
   }
   return (
-    <Tag className={classes} style={vars} {...spot} {...rest}>
+    <Tag className={classes} style={style} {...rest}>
       {children}
     </Tag>
   );

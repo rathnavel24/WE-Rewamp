@@ -19,7 +19,7 @@ export function ServicesSection() {
 
       <Grid min={300} max={3} data-stagger="90">
         {SERVICE_CARDS.map((c) => (
-          <Card key={c.no} to={c.href} spotlight glow={c.tone.glow} className={s.card}>
+          <Card key={c.no} to={c.href} className={s.card}>
             <div className={s.cardTop}>
               <Tile icon={c.icon} size="lg" tone={c.tone} />
               <span className={`t-mono ${s.no}`}>{c.no}</span>

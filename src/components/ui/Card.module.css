@@ -6,7 +6,6 @@
 }
 
 .card {
-  --card-glow: var(--glow-primary);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -46,8 +45,3 @@
 .sunken.interactive:hover { background: var(--color-surface-hover); }
 .glass.interactive:hover { background: var(--fill-on-dark-hover); }
 
-.spotlight.surface {
-  background:
-    radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), var(--card-glow), transparent 60%),
-    var(--color-surface);
-}

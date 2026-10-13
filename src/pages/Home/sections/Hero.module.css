@@ -1,7 +1,7 @@
 .hero {
   overflow: hidden;
   background:
-    radial-gradient(600px circle at var(--mx, 70%) var(--my, 40%), var(--glow-accent), transparent 60%),
+    radial-gradient(600px circle at 70% 40%, var(--glow-accent), transparent 60%),
     var(--color-canvas);
 }
 .gridBg {

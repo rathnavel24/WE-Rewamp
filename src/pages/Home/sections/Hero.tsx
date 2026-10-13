@@ -32,7 +32,7 @@ const STATS = [
 
 export function Hero() {
   return (
-    <Section data-screen-label="Hero" data-spot="1" pt="hero" pb="sm" className={s.hero} innerClassName={s.layout} gap="none">
+    <Section data-screen-label="Hero" pt="hero" pb="sm" className={s.hero} innerClassName={s.layout} gap="none">
       <div className={s.gridBg} aria-hidden="true" />
       <div className={s.copy}>
         <div data-reveal="blur" className={s.badge}>

@@ -110,7 +110,7 @@ export function ServicesPage() {
         />
         <Grid min={220} gap="sm" data-stagger="70">
           {CONSULTING_SERVICES.map((c) => (
-            <Card key={c.title} spotlight glow="var(--glow-accent)" className={s.consultCard}>
+            <Card key={c.title} className={s.consultCard}>
               <Tile icon={c.icon} neutral />
               <span className={s.consultText}>
                 <span className={`t-h4 ${s.consultTitle}`}>{c.title}</span>

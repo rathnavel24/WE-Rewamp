@@ -6,8 +6,6 @@ export interface Tone {
   ink: string;
   /** Soft background tint. */
   soft: string;
-  /** Spotlight hover glow colour. */
-  glow: string;
 }
 
 export type Country = 'UAE' | 'INDIA';

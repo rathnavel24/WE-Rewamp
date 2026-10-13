@@ -47,7 +47,7 @@ Every page is built from one set of **tokens** (`src/styles/tokens.css`) and a s
 | `Section` | Page band; owns vertical rhythm + container | `pt`/`pb`: `none · sm · md · hero`, `tone="inverse"`, `gap` |
 | `SectionHeader` | Kicker + title + lead + action | `size`, `layout="stack \| split"`, `as`, `kicker`, `action` |
 | `Grid` | Responsive auto-column grid | `min` (px), `max` (column cap), `gap`, `mode="fit \| fill"` |
-| `Card` | All boxed content | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive`, `spotlight`, `glow` |
+| `Card` | All boxed content | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive` |
 | `Button` | Every CTA | `variant` (primary, accent, secondary, inverse, outline-dark, link), `size`, `icon`, `block`, `to` |
 | `Chip` | Tags, badges, filters, toggles | `variant` (7), `size`, `mono`, `icon`, `leading`, `to`, `onToggle`/`selected` |
 | `Tile` | Icon in a rounded square | `size="xs…xl"`, `tone`, `solid`, `neutral`, `round` |
@@ -82,7 +82,7 @@ Override the inner gap with `--card-gap` (registered with `inherits: false`, so 
   <SectionHeader kicker="01 — Practices" title="…" />
   <Grid min={300} max={3}>
     {items.map((i) => (
-      <Card key={i.id} to={i.href} spotlight glow={i.tone.glow}>
+      <Card key={i.id} to={i.href}>
         <Tile icon={i.icon} tone={i.tone} size="lg" />
         <h3 className="t-h3">{i.title}</h3>
         <p className="t-body">{i.desc}</p>
