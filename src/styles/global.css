@@ -37,7 +37,7 @@ input::placeholder, textarea::placeholder { color: var(--text-faint); }
   border-radius: var(--radius-xs);
 }
 
-section[id], [id].anchor { scroll-margin-top: 110px; }
+section[id], [id].anchor { scroll-margin-top: 124px; }
 
 /* ---------- Layout ---------- */
 

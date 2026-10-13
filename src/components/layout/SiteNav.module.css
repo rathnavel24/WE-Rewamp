@@ -36,12 +36,12 @@
 
 .brand { display: flex; align-items: center; flex: none; }
 .logo {
-  height: 58px;
+  height: 72px;
   width: auto;
   display: block;
   transition: height .5s var(--ease);
 }
-.scrolled .logo { height: 46px; }
+.scrolled .logo { height: 56px; }
 
 .links {
   display: flex;
@@ -197,10 +197,10 @@
   .scrolled { padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: 8px; }
   .nav { gap: 12px; padding: 8px 8px 8px 14px; border-radius: 18px; }
   .logo,
-  .scrolled .logo { height: 40px; }
+  .scrolled .logo { height: 48px; }
   .cta { padding: 12px 14px; font-size: 14px; border-radius: 12px; }
   .burger { width: 44px; height: 44px; }
-  .sheet { top: calc(max(10px, env(safe-area-inset-top)) + 74px); }
+  .sheet { top: calc(max(10px, env(safe-area-inset-top)) + 82px); }
   .sheetLink { padding: 18px 16px; }
   .sheetLink:active { background: var(--color-canvas); }
 }
