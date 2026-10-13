@@ -1,7 +1,18 @@
 import type { Tone } from '@/types';
 
-export const GREEN: Tone = { accent: '#03643B', ink: '#03643B', soft: '#E7F0EB', glow: 'rgba(3,100,59,.10)' };
-export const ORANGE: Tone = { accent: '#CF5512', ink: '#B04508', soft: '#FBEBDD', glow: 'rgba(207,85,18,.12)' };
+/* Tones reference design tokens (src/styles/tokens.css) so colour lives in one place. */
+export const GREEN: Tone = {
+  accent: 'var(--color-primary)',
+  ink: 'var(--color-primary)',
+  soft: 'var(--color-primary-soft)',
+  glow: 'var(--glow-primary)'
+};
+export const ORANGE: Tone = {
+  accent: 'var(--color-accent)',
+  ink: 'var(--color-accent-strong)',
+  soft: 'var(--color-accent-soft)',
+  glow: 'var(--glow-accent)'
+};
 
 /** Alternates green / orange by index, the rhythm used throughout the design. */
 export const alternate = (i: number): Tone => (i % 2 ? ORANGE : GREEN);

@@ -26,6 +26,7 @@ npm run preview           # serve the production build
 | `/team` | Our Team |
 | `/contact` (`?venture=<id>` pre-selects a topic) | Contact + enquiry form |
 | `/ventures/:id` — `insureliv`, `arogyaplus`, `carehub`, `globalcure`, `recovery` | Venture detail |
+| `/design-system` (not linked in the nav) | Living style guide — every token and component |
 
 It's a client-side router, so the host must serve `index.html` for unknown paths
 (`public/_redirects` covers Netlify; on Vercel add a rewrite to `/index.html`).
@@ -36,10 +37,11 @@ It's a client-side router, so the host must serve `index.html` for unknown paths
 src/
   main.tsx, App.tsx          entry + routes
   assets/                    logo
-  styles/                    tokens.css (design colours/type), global.css (shared primitives)
+  styles/                    tokens.css (design tokens), global.css (reset, layout, type utilities)
   components/
     layout/                  SiteNav, SiteFooter, Layout
-    ui/                      AppLink, Icon, Tile, SectionIndex, CtaBanner
+    ui/                      design-system kit: Section, SectionHeader, Grid, Card, Button, Chip,
+                             Tile, Avatar, Stat, SectionIndex, CtaBanner, Icon, AppLink (barrel: index.ts)
   context/                   PageTransitionContext (curtain + intro animation)
   hooks/                     useMotion, useScrollProgress, useViewport, useDocumentTitle
   lib/motion.ts              typed port of the design's we-motion.js
@@ -49,6 +51,7 @@ src/
   utils/                     helpers
   pages/<Page>/              one folder per page, each with its own CSS module
 docs/API.md                  backend endpoints the frontend expects
+docs/DESIGN_SYSTEM.md        tokens, components and layout rules (live reference at /design-system)
 ```
 
 ### Motion

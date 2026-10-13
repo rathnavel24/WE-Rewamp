@@ -1,37 +1,100 @@
 @import './tokens.css';
 
-/* No global box-sizing reset: the design is laid out with the browser default (content-box). */
+/* ---------- Reset ---------- */
 
-html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
-  background: var(--c-bg);
-  color: var(--c-ink);
-  font-family: var(--font-sans);
+  background: var(--color-canvas);
+  color: var(--text-strong);
+  font: var(--fw-regular) var(--fs-body)/var(--lh-normal) var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6, p, figure, blockquote { margin: 0; }
+img, svg { display: block; max-width: 100%; }
+input, textarea, button, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
 /* Links styled by a component keep their own colours; only bare links get the brand hover. */
-a { color: var(--c-green); }
-a:not([class]):hover { color: var(--c-orange); }
+a { color: var(--color-primary); }
+a:not([class]):hover { color: var(--color-accent); }
 
-::selection { background: var(--c-orange); color: #fff; }
+::selection { background: var(--color-accent); color: var(--white); }
+input::placeholder, textarea::placeholder { color: var(--text-faint); }
 
-input, textarea, button { font: inherit; }
-input::placeholder, textarea::placeholder { color: var(--c-faint); }
-
-img { max-width: 100%; }
-
-section[id] { scroll-margin-top: 110px; }
-
-/* ---------- Shared primitives ---------- */
-
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
 }
+
+section[id], [id].anchor { scroll-margin-top: 110px; }
+
+/* ---------- Layout ---------- */
+
+/* Centred content column with responsive side gutters. */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Typography ---------- */
+
+.t-display-1,
+.t-display-2,
+.t-h1 {
+  font-weight: var(--fw-semibold);
+  text-wrap: balance;
+}
+.t-display-1 { font-size: var(--fs-display-1); line-height: 1; letter-spacing: var(--ls-display); }
+.t-display-2 { font-size: var(--fs-display-2); line-height: var(--lh-tight); letter-spacing: -.04em; }
+.t-h1 { font-size: var(--fs-h1); line-height: 1.06; letter-spacing: -.04em; }
+.t-h2 { font: var(--fw-semibold) var(--fs-h2)/1.15 var(--font-sans); letter-spacing: var(--ls-heading); text-wrap: balance; }
+.t-h3 { font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans); letter-spacing: var(--ls-title); }
+.t-h4 { font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans); letter-spacing: -.01em; }
+
+.t-lead { font-size: var(--fs-lead); line-height: var(--lh-relaxed); color: var(--text-body); text-wrap: pretty; }
+.t-body-lg { font-size: var(--fs-body-lg); line-height: var(--lh-relaxed); color: var(--text-muted); text-wrap: pretty; }
+.t-body { font-size: var(--fs-body); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
+.t-small { font-size: var(--fs-small); line-height: 1.45; color: var(--text-muted); }
+
+/* Mono uppercase label — section kickers, meta, legends. */
+.t-label {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.t-mono { font-family: var(--font-mono); }
+
+/* Accent kicker above section titles ("01 — Our services"). */
+.eyebrow {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Inverse context: anything inside a dark band/panel. */
+.on-dark { color: var(--text-on-dark); }
+.on-dark .t-lead,
+.on-dark .t-body-lg,
+.on-dark .t-body,
+.on-dark .t-small { color: var(--text-on-dark-muted); }
+.on-dark .t-label { color: var(--text-on-dark-subtle); }
+.on-dark .eyebrow { color: var(--color-accent-on-dark); }
+
+/* ---------- Icons ---------- */
 
 .icon {
   font-family: var(--font-icon);
@@ -43,102 +106,24 @@ section[id] { scroll-margin-top: 110px; }
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
+  flex: none;
   -webkit-font-feature-settings: 'liga';
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
 
-/* Mono uppercase kicker used above section titles ("01 — Our services"). */
-.eyebrow {
-  font: 500 12.5px/1 var(--font-mono);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--c-orange);
-}
+/* ---------- Utilities ---------- */
 
-/* Page-level hero headline. */
-.display-1 {
-  margin: 0;
-  font: 600 clamp(42px, 6.4vw, 84px)/1.0 var(--font-sans);
-  letter-spacing: -.045em;
-  text-wrap: balance;
-}
-
-/* Section headline. */
-.display-2 {
-  margin: 0;
-  font: 600 clamp(34px, 4.4vw, 58px)/1.04 var(--font-sans);
-  letter-spacing: -.04em;
-  text-wrap: balance;
-}
-
-/* Two-column hero layout used by Companies / Team. */
-.page-hero {
-  padding: 160px 24px 60px;
-}
-.page-hero__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-  gap: 40px;
-  align-items: end;
-}
-.page-hero__lead {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.page-hero__copy {
-  margin: 0;
-  font: 400 18px/1.6 var(--font-sans);
-  color: var(--c-body);
-  max-width: 520px;
-  text-wrap: pretty;
-}
-
-/* Small numbered label with a rule ("01 —— IT & BPO"). */
-.section-index {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font: 500 13px/1 var(--font-mono);
-  letter-spacing: .1em;
-  color: var(--c-subtle);
-}
-.section-index__rule {
-  width: 40px;
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
   height: 1px;
-  background: var(--c-rule);
-}
-
-/* Square icon tile; colour comes from inline --tile-bg / --tile-ink. */
-.tile {
-  flex: none;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-icon);
-  background: var(--tile-bg);
-  color: var(--tile-ink);
-}
-
-/* Stat box ("90% Faster processing times"). */
-.stat {
-  padding: 20px;
-  border-radius: 18px;
-  background: var(--c-bg);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.stat__value {
-  font: 600 36px/1 var(--font-sans);
-  letter-spacing: -.04em;
-  color: var(--c-green);
-}
-.stat__label {
-  font-size: 14px;
-  color: var(--c-muted);
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }

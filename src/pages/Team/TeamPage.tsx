@@ -1,10 +1,9 @@
-import { CtaBanner } from '@/components/ui/CtaBanner';
+import { Avatar, Card, Chip, CtaBanner, Grid, Section, SectionHeader } from '@/components/ui';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ROUTES } from '@/data/routes';
 import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/data/team';
 import { alternate } from '@/data/tones';
 import type { Person } from '@/types';
-import { initials } from '@/utils/initials';
 import s from './TeamPage.module.css';
 
 /** Colours alternate across both groups continuously, as in the design. */
@@ -21,80 +20,68 @@ export function TeamPage() {
   useDocumentTitle('Our Team — WalletEdge Global');
   return (
     <>
-      <section data-screen-label="Team hero" className="page-hero">
-        <div className="container page-hero__grid">
-          <div className="page-hero__lead">
-            <span data-reveal="fade" className="eyebrow">
-              Our team
-            </span>
-            <h1 data-reveal="up" className="display-1">
-              The people behind the group.
-            </h1>
-          </div>
-          <p data-reveal="up" data-delay="100" className="page-hero__copy">
-            Founders and a board who set direction, with dedicated leaders running healthcare, recovery, real estate and technology every
-            day.
-          </p>
-        </div>
-      </section>
+      <Section data-screen-label="Team hero" pt="hero" pb="sm">
+        <SectionHeader
+          as="h1"
+          size="display-1"
+          layout="split"
+          kicker="Our team"
+          title="The people behind the group."
+          lead="Founders and a board who set direction, with dedicated leaders running healthcare, recovery, real estate and technology every day."
+        />
+      </Section>
 
-      <section data-screen-label="Founders" className={s.foundersSection}>
-        <div data-stagger="120" className={`container ${s.founders}`}>
+      <Section data-screen-label="Founders" pt="none" pb="sm">
+        <Grid min={460} data-stagger="120">
           {FOUNDERS.map((p) => (
-            <div key={p.name} className={s.founder} style={{ background: p.background }}>
-              <div className={s.founderGlow} />
+            <div key={p.name} className={`on-dark ${s.founder}`} style={{ background: p.background }}>
+              <div className={s.founderGlow} aria-hidden="true" />
               <div className={s.founderTop}>
-                <span className={s.founderAvatar}>{p.initials}</span>
-                <span className={s.founderBadge}>Founder</span>
+                <Avatar name={p.name} initials={p.initials} size="xl" />
+                <Chip variant="glass" mono>
+                  Founder
+                </Chip>
               </div>
               <div className={s.founderText}>
                 <span className={s.founderName}>{p.name}</span>
-                <span className={s.founderRole}>{p.role}</span>
+                <span className="t-body-lg">{p.role}</span>
               </div>
             </div>
           ))}
-        </div>
-      </section>
+        </Grid>
+      </Section>
 
       {GROUPS.map((g) => (
-        <section key={g.title} className={s.groupSection}>
-          <div className={`container ${s.groupInner}`}>
-            <div data-reveal="fade" className={s.groupHead}>
-              <span className={s.groupTitle}>{g.title}</span>
-              <span className={s.groupRule} />
-              <span className={s.groupCount}>{String(g.people.length).padStart(2, '0')}</span>
-            </div>
-            <div data-stagger="60" className={s.people}>
-              {g.people.map((p) => {
-                const tone = alternate(p.index);
-                return (
-                  <div key={p.name} className={s.person}>
-                    <span className={s.avatar} style={{ background: tone.soft, color: tone.ink }}>
-                      {initials(p.name)}
-                    </span>
-                    <span className={s.personText}>
-                      <span className={s.personName}>{p.name}</span>
-                      <span className={s.personRole}>{p.role}</span>
-                      {p.unit && (
-                        <span className={s.unit} style={{ color: tone.ink }}>
-                          {p.unit}
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+        <Section key={g.title} pt="sm" pb="none" gap="md">
+          <div data-reveal="fade" className={s.groupHead}>
+            <h2 className="t-label">{g.title}</h2>
+            <span className={s.groupRule} />
+            <span className="t-label">{String(g.people.length).padStart(2, '0')}</span>
           </div>
-        </section>
+          {/* Three per row keeps both groups (3 and 9 people) as complete rows. */}
+          <Grid min={280} max={3} gap="sm" data-stagger="60">
+            {g.people.map((p) => {
+              const tone = alternate(p.index);
+              return (
+                <Card key={p.name} padding="sm" interactive className={s.person}>
+                  <Avatar name={p.name} tone={tone} />
+                  <span className={s.personText}>
+                    <span className="t-h4">{p.name}</span>
+                    <span className="t-small">{p.role}</span>
+                    {p.unit && (
+                      <Chip size="sm" mono style={{ color: tone.ink }}>
+                        {p.unit}
+                      </Chip>
+                    )}
+                  </span>
+                </Card>
+              );
+            })}
+          </Grid>
+        </Section>
       ))}
 
-      <CtaBanner
-        title="Want to speak with someone on the leadership team?"
-        cta="Book a meeting"
-        to={ROUTES.contact}
-        sectionStyle={{ padding: '60px 24px 110px' }}
-      />
+      <CtaBanner title="Want to speak with someone on the leadership team?" cta="Book a meeting" to={ROUTES.contact} pt="md" />
     </>
   );
 }

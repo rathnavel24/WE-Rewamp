@@ -80,7 +80,7 @@ export function SiteNav() {
                     <div className={s.menu}>
                       {VENTURE_LIST.map((v) => (
                         <AppLink key={v.id} to={ROUTES.venture(v.id)} className={s.menuItem}>
-                          <Tile icon={v.icon} size={38} radius={11} iconSize={20} bg={v.tone.soft} ink={v.tone.ink} />
+                          <Tile icon={v.icon} size="sm" tone={v.tone} />
                           <span className={s.menuText}>
                             <span className={s.menuName}>{v.name}</span>
                             <span className={s.menuLine}>{v.menuLine}</span>
@@ -128,7 +128,7 @@ export function SiteNav() {
           {NAV_LINKS.map((l) => (
             <AppLink key={l.id} to={l.href} className={s.sheetLink}>
               {l.label}
-              <Icon name="arrow_forward" size={20} color="#03643B" />
+              <Icon name="arrow_forward" size={20} color="var(--color-primary)" />
             </AppLink>
           ))}
         </div>

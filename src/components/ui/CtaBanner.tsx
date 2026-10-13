@@ -1,26 +1,24 @@
-import type { CSSProperties } from 'react';
-import { AppLink } from './AppLink';
-import { Icon } from './Icon';
+import { Button } from './Button';
+import { Section, type SectionSpace } from './Section';
 import s from './CtaBanner.module.css';
 
 interface CtaBannerProps {
   title: string;
   cta: string;
   to: string;
-  sectionStyle?: CSSProperties;
+  pt?: SectionSpace;
 }
 
-/** Dark full-width call-to-action strip used at the bottom of Services and Team. */
-export function CtaBanner({ title, cta, to, sectionStyle }: CtaBannerProps) {
+/** Dark call-to-action strip that closes the Services and Team pages. */
+export function CtaBanner({ title, cta, to, pt = 'none' }: CtaBannerProps) {
   return (
-    <section className={s.section} style={sectionStyle}>
-      <div data-reveal="up" className={s.banner}>
-        <span className={s.title}>{title}</span>
-        <AppLink to={to} className={s.button}>
+    <Section pt={pt}>
+      <div data-reveal="up" className={`on-dark ${s.banner}`}>
+        <p className={`t-h2 ${s.title}`}>{title}</p>
+        <Button to={to} variant="accent" size="lg" icon="arrow_forward">
           {cta}
-          <Icon name="arrow_forward" size={20} />
-        </AppLink>
+        </Button>
       </div>
-    </section>
+    </Section>
   );
 }

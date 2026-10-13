@@ -1,48 +1,36 @@
-import { AppLink } from '@/components/ui/AppLink';
-import { Icon } from '@/components/ui/Icon';
+import { Avatar, Button, Card, Grid, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/data/routes';
 import { HOME_LEADERS, LEADER_COUNT } from '@/data/team';
 import { alternate } from '@/data/tones';
-import { initials } from '@/utils/initials';
 import s from './TeamPreview.module.css';
 
 export function TeamPreview() {
   return (
-    <section data-screen-label="Team" className={s.section}>
-      <div className={`container ${s.layout}`}>
-        <div className={s.copy}>
-          <span data-reveal="fade" className="eyebrow">
-            04 — Our team
-          </span>
-          <h2 data-reveal="up" className="display-2">
-            Founder-led, with operators in every business.
-          </h2>
-          <p data-reveal="up" className={s.lead}>
-            A board that sets direction for the group, and dedicated leaders running each company day to day.
-          </p>
-          <AppLink data-reveal="up" to={ROUTES.team} className={s.cta}>
-            Meet all {LEADER_COUNT} leaders
-            <Icon name="arrow_forward" size={19} />
-          </AppLink>
-        </div>
-
-        <div data-stagger="80" className={s.grid}>
-          {HOME_LEADERS.map((p, i) => {
-            const tone = alternate(i);
-            return (
-              <div key={p.name} className={s.card}>
-                <span className={s.avatar} style={{ background: tone.soft, color: tone.ink }}>
-                  {initials(p.name)}
-                </span>
-                <span className={s.text}>
-                  <span className={s.name}>{p.name}</span>
-                  <span className={s.role}>{p.role}</span>
-                </span>
-              </div>
-            );
-          })}
-        </div>
+    <Section data-screen-label="Team" pt="none" innerClassName={s.layout}>
+      <div className={s.copy}>
+        <SectionHeader
+          kicker="04 — Our team"
+          title="Founder-led, with operators in every business."
+          lead="A board that sets direction for the group, and dedicated leaders running each company day to day."
+          action={
+            <Button to={ROUTES.team} icon="arrow_forward">
+              Meet all {LEADER_COUNT} leaders
+            </Button>
+          }
+        />
       </div>
-    </section>
+
+      <Grid min={220} gap="sm" data-stagger="80">
+        {HOME_LEADERS.map((p, i) => (
+          <Card key={p.name} padding="sm" interactive className={s.card}>
+            <Avatar name={p.name} tone={alternate(i)} />
+            <span className={s.text}>
+              <span className="t-h4">{p.name}</span>
+              <span className="t-small">{p.role}</span>
+            </span>
+          </Card>
+        ))}
+      </Grid>
+    </Section>
   );
 }

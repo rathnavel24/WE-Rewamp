@@ -54,7 +54,7 @@ export function SiteFooter() {
         <div className={s.bottom}>
           <span>© 2026 Wallet Edge Global FZC LLC. All rights reserved.</span>
           <a href={`mailto:${CONTACT_EMAIL}`} className={s.mail}>
-            <Icon name="mail" size={18} color="#03643B" />
+            <Icon name="mail" size={18} color="var(--color-primary)" />
             {CONTACT_EMAIL}
           </a>
         </div>

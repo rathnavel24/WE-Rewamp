@@ -1,4 +1,4 @@
-import { AppLink } from '@/components/ui/AppLink';
+import { AppLink, Chip, Icon, Section, SectionHeader } from '@/components/ui';
 import { COMPANIES, ROLL_NAMES } from '@/data/companies';
 import s from './CompaniesSection.module.css';
 
@@ -6,36 +6,30 @@ const ROLL = [...ROLL_NAMES, ...ROLL_NAMES];
 
 export function CompaniesSection() {
   return (
-    <section data-screen-label="Companies" className={s.section}>
-      <div className={s.glow} />
+    <Section data-screen-label="Companies" tone="inverse" contained={false}>
+      <div className={s.glow} aria-hidden="true" />
       <div className={`container ${s.inner}`}>
-        <div className={s.head}>
-          <div className={s.headCopy}>
-            <span data-reveal="fade" className={`eyebrow ${s.eyebrow}`}>
-              02 — Our companies
-            </span>
-            <h2 data-reveal="up" className="display-2">
-              Seven companies. One parent.
-            </h2>
-          </div>
-          <p data-reveal="up" data-delay="100" className={s.intro}>
-            Each subsidiary runs its own brand and website. WalletEdge Global holds the major stake — bringing shared capital, governance
-            and technology to every one of them.
-          </p>
-        </div>
+        <SectionHeader
+          kicker="02 — Our companies"
+          title="Seven companies. One parent."
+          layout="split"
+          lead="Each subsidiary runs its own brand and website. WalletEdge Global holds the major stake — bringing shared capital, governance and technology to every one of them."
+        />
 
         <div data-stagger="70" data-type="left" className={s.list}>
           {COMPANIES.map((c, i) => (
             <AppLink key={c.name} to={c.groupHref} className={s.row}>
-              <span className={s.no}>{String(i + 1).padStart(2, '0')}</span>
+              <span className={`t-mono ${s.no}`}>{String(i + 1).padStart(2, '0')}</span>
               <span className={s.text}>
                 <span className={s.name}>{c.name}</span>
-                <span className={s.line}>{c.groupLine}</span>
+                <span className="t-small">{c.groupLine}</span>
               </span>
               <span className={s.meta}>
-                <span className={s.country}>{c.country}</span>
-                <span className={s.arrow} aria-hidden="true">
-                  arrow_outward
+                <Chip variant="outline-dark" mono>
+                  {c.country}
+                </Chip>
+                <span className={s.arrow}>
+                  <Icon name="arrow_outward" size={20} />
                 </span>
               </span>
             </AppLink>
@@ -51,6 +45,6 @@ export function CompaniesSection() {
           </span>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Icon } from '@/components/ui/Icon';
-import { Tile } from '@/components/ui/Tile';
+import { Button, Chip, Tile } from '@/components/ui';
 import { CONTACT_EMAIL, ENQUIRY_TOPICS } from '@/data/site';
+import { GREEN } from '@/data/tones';
 import { submitEnquiry } from '@/services/enquiries';
 import type { VentureId } from '@/types';
 import s from './ContactPage.module.css';
@@ -55,42 +55,44 @@ export function EnquiryForm({ initialTopics = [], venture }: EnquiryFormProps) {
   if (status === 'sent') {
     return (
       <div className={s.sent} role="status">
-        <Tile icon="check" size={64} radius={20} iconSize={34} bg="#03643B" ink="#fff" />
-        <span className={s.sentTitle}>Thank you, {name.trim().split(' ')[0] || 'there'}.</span>
-        <span className={s.sentText}>Your message is with the WalletEdge Global team. We’ll reply within one business day.</span>
-        <button type="button" className={s.again} onClick={reset}>
+        <Tile icon="check" size="xl" tone={GREEN} solid />
+        <span className="t-h1">Thank you, {name.trim().split(' ')[0] || 'there'}.</span>
+        <p className={`t-body-lg ${s.sentText}`}>Your message is with the WalletEdge Global team. We’ll reply within one business day.</p>
+        <Button variant="outline-dark" onClick={reset}>
           Send another message
-        </button>
+        </Button>
       </div>
     );
   }
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
-      <span className={s.formTitle}>Send an enquiry</span>
+      <h2 className="t-h2">Send an enquiry</h2>
 
       <fieldset className={s.fieldset}>
-        <legend className={s.legend}>I’m interested in</legend>
+        <legend className={`t-label ${s.legend}`}>I’m interested in</legend>
         <div className={s.topics}>
           {ENQUIRY_TOPICS.map((t) => {
             const on = picked.includes(t.label);
             return (
-              <button key={t.label} type="button" aria-pressed={on} className={`${s.topic} ${on ? s.topicOn : ''}`} onClick={() => toggle(t.label)}>
-                <Icon name={on ? 'check' : t.icon} size={16} />
+              <Chip key={t.label} variant="outline-dark" size="lg" icon={on ? 'check' : t.icon} selected={on} onToggle={() => toggle(t.label)} className={s.topic}>
                 {t.label}
-              </button>
+              </Chip>
             );
           })}
         </div>
       </fieldset>
 
       <div className={s.fields}>
-        <input className={s.input} name="name" required placeholder="Full name" aria-label="Full name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input className={s.input} name="company" placeholder="Company" aria-label="Company" autoComplete="organization" />
-        <input className={s.input} name="email" type="email" required placeholder="Work email" aria-label="Work email" autoComplete="email" />
-        <input className={s.input} name="phone" type="tel" placeholder="Phone" aria-label="Phone" autoComplete="tel" />
+        <Field name="name" label="Full name" required autoComplete="name" value={name} onChange={setName} />
+        <Field name="company" label="Company" autoComplete="organization" />
+        <Field name="email" type="email" label="Work email" required autoComplete="email" />
+        <Field name="phone" type="tel" label="Phone" autoComplete="tel" />
       </div>
-      <textarea className={`${s.input} ${s.textarea}`} name="message" rows={4} placeholder="How can we help?" aria-label="Message" />
+      <label className={s.field}>
+        <span className="visually-hidden">Message</span>
+        <textarea className={`${s.input} ${s.textarea}`} name="message" rows={4} placeholder="How can we help?" />
+      </label>
 
       {status === 'error' && (
         <p className={s.error} role="alert">
@@ -98,10 +100,37 @@ export function EnquiryForm({ initialTopics = [], venture }: EnquiryFormProps) {
         </p>
       )}
 
-      <button type="submit" className={s.submit} disabled={status === 'sending'}>
+      <Button type="submit" variant="accent" size="lg" icon="arrow_forward" block disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send message'}
-        <Icon name="arrow_forward" size={21} />
-      </button>
+      </Button>
     </form>
+  );
+}
+
+interface FieldProps {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel';
+  required?: boolean;
+  autoComplete?: string;
+  value?: string;
+  onChange?: (v: string) => void;
+}
+
+/** Labelled text input; the label is visually hidden and the placeholder carries the hint. */
+function Field({ name, label, type = 'text', required, autoComplete, value, onChange }: FieldProps) {
+  return (
+    <label className={s.field}>
+      <span className="visually-hidden">{label}</span>
+      <input
+        className={s.input}
+        name={name}
+        type={type}
+        required={required}
+        placeholder={required ? `${label} *` : label}
+        autoComplete={autoComplete}
+        {...(onChange ? { value, onChange: (e) => onChange(e.target.value) } : {})}
+      />
+    </label>
   );
 }

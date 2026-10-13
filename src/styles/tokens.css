@@ -1,41 +1,190 @@
-/* Design tokens — every value is taken verbatim from the Claude Design source. */
+/* =============================================================================
+   WalletEdge design tokens
+   -----------------------------------------------------------------------------
+   Three layers:
+     1. Primitives  — raw palette / scales. Never referenced directly by components.
+     2. Semantic    — roles (surface, text, border, brand…). Components use these.
+     3. Component   — a few shared recipes (section rhythm, control sizes).
+   See docs/DESIGN_SYSTEM.md and the live reference at /design-system.
+   ========================================================================== */
+
 :root {
+  /* ---------------------------------------------------------------------------
+     1. Primitives
+     ------------------------------------------------------------------------ */
+
+  /* Neutrals (warm paper → deep forest) */
+  --sand-50: #FBFAF6;
+  --sand-100: #F6F4EE;
+  --sand-200: #EEF3EF;
+  --stone-300: #C9CFCB;
+  --stone-400: #9AA49E;
+  --stone-500: #7A867F;
+  --stone-600: #56645C;
+  --stone-700: #3E4C44;
+  --stone-800: #26352D;
+  --stone-900: #0E1F17;
+  --forest-900: #0B2A1E;
+  --white: #fff;
+
+  /* Green */
+  --green-50: #E7F0EB;
+  --green-300: #A9C4B5;
+  --green-500: #3E6B55;
+  --green-700: #03643B;
+
+  /* Orange */
+  --orange-50: #FBEBDD;
+  --orange-100: #FFD9C2;
+  --orange-300: #F0A06A;
+  --orange-400: #E07A2E;
+  --orange-500: #E06A26;
+  --orange-600: #CF5512;
+  --orange-700: #B04508;
+  --orange-900: #8A3208;
+
+  /* ---------------------------------------------------------------------------
+     2. Semantic
+     ------------------------------------------------------------------------ */
+
   /* Surfaces */
-  --c-bg: #F6F4EE;
-  --c-white: #fff;
-  --c-forest: #0B2A1E;
-  --c-ink: #0E1F17;
+  --color-canvas: var(--sand-100);          /* page background */
+  --color-surface: var(--white);            /* cards, panels */
+  --color-surface-sunken: var(--sand-100);  /* insets inside a white card */
+  --color-surface-hover: var(--sand-200);
+  --color-inverse: var(--forest-900);       /* dark bands & panels */
+  --color-inverse-2: var(--stone-900);      /* darkest — buttons, CTA panels */
 
   /* Brand */
-  --c-green: #03643B;
-  --c-orange: #CF5512;
-  --c-orange-hover: #E06A26;
-  --c-orange-deep: #B04508;
-  --c-orange-light: #F0A06A;
-  --c-mint: #E7F0EB;
-  --c-peach: #FBEBDD;
+  --color-primary: var(--green-700);
+  --color-primary-soft: var(--green-50);
+  --color-accent: var(--orange-600);
+  --color-accent-hover: var(--orange-500);
+  --color-accent-strong: var(--orange-700);
+  --color-accent-soft: var(--orange-50);
+  --color-accent-on-dark: var(--orange-300);
 
-  /* Text */
-  --c-ink-2: #26352D;
-  --c-body: #3E4C44;
-  --c-muted: #56645C;
-  --c-subtle: #7A867F;
-  --c-faint: #9AA49E;
-  --c-rule: #C9CFCB;
+  /* Text on light */
+  --text-strong: var(--stone-900);
+  --text-default: var(--stone-800);
+  --text-body: var(--stone-700);
+  --text-muted: var(--stone-600);
+  --text-subtle: var(--stone-500);
+  --text-faint: var(--stone-400);
 
-  /* Lines */
-  --line: rgba(14, 31, 23, .08);
-  --line-soft: rgba(14, 31, 23, .07);
-  --line-strong: rgba(14, 31, 23, .12);
+  /* Text on dark */
+  --text-on-dark: var(--white);
+  --text-on-dark-muted: rgba(255, 255, 255, .72);
+  --text-on-dark-subtle: rgba(255, 255, 255, .55);
 
-  /* Type */
-  --font-sans: 'Geist', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  /* Borders & fills */
+  --border-subtle: rgba(14, 31, 23, .07);
+  --border-default: rgba(14, 31, 23, .1);
+  --border-strong: rgba(14, 31, 23, .14);
+  --border-on-dark: rgba(255, 255, 255, .12);
+  --border-on-dark-strong: rgba(255, 255, 255, .22);
+  --fill-on-dark: rgba(255, 255, 255, .06);
+  --fill-on-dark-hover: rgba(255, 255, 255, .12);
+  --fill-primary-hover: rgba(3, 100, 59, .07);
+
+  /* Glows (spotlight + ambient blobs) */
+  --glow-primary: rgba(3, 100, 59, .10);
+  --glow-accent: rgba(207, 85, 18, .12);
+  --glow-accent-strong: rgba(207, 85, 18, .35);
+
+  /* ---------------------------------------------------------------------------
+     Typography
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
   --font-icon: 'Material Symbols Rounded';
 
-  /* Motion */
-  --ease: cubic-bezier(.16, 1, .3, 1);
+  /* Type scale — every heading/text style in the product maps to one of these. */
+  --fs-display-1: clamp(42px, 6.4vw, 84px);  /* page hero h1 */
+  --fs-display-2: clamp(34px, 4.4vw, 58px);  /* section h2 */
+  --fs-h1: clamp(28px, 3.6vw, 46px);         /* panel h2 */
+  --fs-h2: clamp(24px, 2.6vw, 30px);         /* large card title / statement */
+  --fs-h3: 22px;                             /* card title */
+  --fs-h4: 18px;                             /* small card title */
+  --fs-lead: clamp(17px, 1.5vw, 19px);       /* intro paragraph */
+  --fs-body-lg: 17px;
+  --fs-body: 15.5px;
+  --fs-small: 14px;
+  --fs-caption: 13px;
+  --fs-label: 12px;                          /* mono uppercase */
 
-  /* Layout */
+  --lh-tight: 1.04;
+  --lh-snug: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.6;
+
+  --ls-display: -.045em;
+  --ls-heading: -.03em;
+  --ls-title: -.02em;
+  --ls-label: .12em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* ---------------------------------------------------------------------------
+     Spacing — 4px base
+     ------------------------------------------------------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* ---------------------------------------------------------------------------
+     Radii
+     ------------------------------------------------------------------------ */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------------------
+     Elevation
+     ------------------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px rgba(14, 31, 23, .05);
+  --shadow-sm: 0 14px 30px -14px rgba(14, 31, 23, .35);
+  --shadow-md: 0 24px 50px -28px rgba(14, 31, 23, .35);
+  --shadow-lg: 0 30px 60px -20px rgba(14, 31, 23, .25);
+  --shadow-xl: 0 40px 80px -30px rgba(14, 31, 23, .35), 0 0 0 1px rgba(14, 31, 23, .05);
+
+  /* ---------------------------------------------------------------------------
+     Motion
+     ------------------------------------------------------------------------ */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --dur-fast: .25s;
+  --dur-base: .45s;
+  --lift-sm: translateY(-2px);
+  --lift-md: translateY(-4px);
+
+  /* ---------------------------------------------------------------------------
+     3. Layout recipes
+     ------------------------------------------------------------------------ */
   --container: 1240px;
+  --gutter: clamp(16px, 4vw, 24px);
+  --nav-clearance: clamp(128px, 14vw, 160px);  /* top padding for page heroes */
+  --section-y: clamp(72px, 9vw, 112px);        /* default section rhythm */
+  --section-y-sm: clamp(40px, 5vw, 56px);      /* tight sections that follow each other */
+  --stack-section: clamp(32px, 4vw, 48px);     /* header → content gap */
+
+  --z-nav: 100;
+  --z-overlay: 200;
 }

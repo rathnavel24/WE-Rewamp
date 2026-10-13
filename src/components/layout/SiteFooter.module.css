@@ -1,9 +1,9 @@
 .footer {
-  background: #fff;
-  border-top: 1px solid var(--line);
-  padding: 80px 24px 32px;
+  background: var(--white);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-20) 0 var(--space-8);
   font-family: var(--font-sans);
-  color: var(--c-ink);
+  color: var(--text-strong);
 }
 .inner {
   display: flex;
@@ -25,7 +25,7 @@
 .blurb {
   margin: 0;
   font: 400 14.5px/1.6 var(--font-sans);
-  color: var(--c-muted);
+  color: var(--text-muted);
   max-width: 300px;
   text-wrap: pretty;
 }
@@ -38,14 +38,14 @@
   font: 500 11.5px/1 var(--font-mono);
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--c-subtle);
+  color: var(--text-subtle);
 }
 .link {
-  color: var(--c-ink);
+  color: var(--text-strong);
   text-decoration: none;
   font-size: 15px;
 }
-.link:hover { color: var(--c-orange); }
+.link:hover { color: var(--color-accent); }
 /* Touch screens: same visual rhythm, but taller tap targets. */
 @media (pointer: coarse) {
   .col { gap: 2px; }
@@ -61,15 +61,15 @@
   align-items: center;
   gap: 16px;
   padding-top: 28px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-subtle);
   font-size: 13.5px;
-  color: var(--c-muted);
+  color: var(--text-muted);
 }
 .mail {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--c-ink);
+  color: var(--text-strong);
   text-decoration: none;
 }
-.mail:hover { color: var(--c-orange); }
+.mail:hover { color: var(--color-accent); }

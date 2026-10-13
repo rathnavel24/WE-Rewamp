@@ -1,31 +1,28 @@
-import { AppLink } from '@/components/ui/AppLink';
-import { Icon } from '@/components/ui/Icon';
+import { Button, Section } from '@/components/ui';
 import { ROUTES } from '@/data/routes';
 import { CONTACT_EMAIL } from '@/data/site';
 import s from './ContactCta.module.css';
 
 export function ContactCta() {
   return (
-    <section data-screen-label="Contact CTA" className={s.section}>
-      <div data-reveal="scale" className={s.panel}>
-        <div className={s.glow} />
+    <Section data-screen-label="Contact CTA" pt="none">
+      <div data-reveal="scale" className={`on-dark ${s.panel}`}>
+        <div className={s.glow} aria-hidden="true" />
         <div className={s.layout}>
           <div className={s.copy}>
-            <h2 className={s.title}>Let’s build your next edge together.</h2>
-            <p className={s.lead}>Offices in Sharjah and Coimbatore. One conversation reaches the whole group.</p>
+            <h2 className="t-display-2">Let’s build your next edge together.</h2>
+            <p className="t-lead">Offices in Sharjah and Coimbatore. One conversation reaches the whole group.</p>
           </div>
           <div className={s.actions}>
-            <AppLink to={ROUTES.contact} className={s.primary}>
+            <Button to={ROUTES.contact} variant="inverse" size="lg" icon="arrow_forward" block>
               Start a conversation
-              <Icon name="arrow_forward" size={22} color="#CF5512" />
-            </AppLink>
-            <a href={`mailto:${CONTACT_EMAIL}`} className={s.secondary}>
+            </Button>
+            <Button to={`mailto:${CONTACT_EMAIL}`} variant="outline-dark" size="lg" icon="mail" block className={s.mail}>
               {CONTACT_EMAIL}
-              <Icon name="mail" size={20} />
-            </a>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

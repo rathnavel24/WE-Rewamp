@@ -105,7 +105,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       <div
         ref={curtainRef}
         aria-hidden="true"
-        style={{ position: 'fixed', inset: 0, background: '#F6F4EE', zIndex: 9999, pointerEvents: 'none', display: 'grid', placeItems: 'center' }}
+        style={{ position: 'fixed', inset: 0, background: 'var(--color-canvas)', zIndex: 9999, pointerEvents: 'none', display: 'grid', placeItems: 'center' }}
       >
         <img ref={markRef} src={logo} alt="" style={{ width: 'min(280px,60vw)', height: 'auto', display: 'block' }} />
       </div>

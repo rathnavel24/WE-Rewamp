@@ -1,8 +1,8 @@
 import type { Founder, Person } from '@/types';
 
 export const FOUNDERS: Founder[] = [
-  { name: 'SaiPranav', role: 'Founder & Chief Executive Officer', initials: 'SP', background: 'linear-gradient(150deg,#03643B,#0B2A1E)' },
-  { name: 'Gopi Senthil Raja', role: 'Founder & Chief Operating Officer', initials: 'GS', background: 'linear-gradient(150deg,#CF5512,#8A3208)' }
+  { name: 'SaiPranav', role: 'Founder & Chief Executive Officer', initials: 'SP', background: 'linear-gradient(150deg, var(--green-700), var(--forest-900))' },
+  { name: 'Gopi Senthil Raja', role: 'Founder & Chief Operating Officer', initials: 'GS', background: 'linear-gradient(150deg, var(--orange-600), var(--orange-900))' }
 ];
 
 export const BOARD: Person[] = [

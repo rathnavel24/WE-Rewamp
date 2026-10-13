@@ -1,4 +1,4 @@
-import { Icon } from '@/components/ui/Icon';
+import { Icon } from '@/components/ui';
 import { CLIENTS } from '@/data/clients';
 import s from './TrustedBy.module.css';
 
@@ -9,7 +9,7 @@ const toRow = (names: string[]) => {
   const items = names.map((name, i) => ({
     name,
     icon: name.startsWith('Emaar') ? 'apartment' : ICONS[i % ICONS.length],
-    ink: i % 2 ? '#CF5512' : '#03643B'
+    ink: i % 2 ? 'var(--color-accent)' : 'var(--color-primary)'
   }));
   return [...items, ...items];
 };
@@ -23,9 +23,9 @@ const ROWS = [
 export function TrustedBy() {
   return (
     <section data-screen-label="Trusted by" className={s.section}>
-      <div data-reveal="fade" className={s.label}>
+      <p data-reveal="fade" className={`t-label ${s.label}`}>
         Trusted by leading insurers &amp; enterprises in the region
-      </div>
+      </p>
       <div className={s.mask}>
         {ROWS.map((row) => (
           <div key={row.dir} className={s.row} data-marquee={row.dir} data-speed={row.speed}>

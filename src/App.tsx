@@ -7,6 +7,7 @@ import { TeamPage } from '@/pages/Team/TeamPage';
 import { ContactPage } from '@/pages/Contact/ContactPage';
 import { VenturePage } from '@/pages/Venture/VenturePage';
 import { NotFoundPage } from '@/pages/NotFound/NotFoundPage';
+import { DesignSystemPage } from '@/pages/DesignSystem/DesignSystemPage';
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
         <Route path="team" element={<TeamPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="ventures/:id" element={<VenturePage />} />
+        <Route path="design-system" element={<DesignSystemPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

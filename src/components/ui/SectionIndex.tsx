@@ -1,18 +1,21 @@
 import type { HTMLAttributes } from 'react';
+import { cx } from '@/utils/cx';
+import s from './SectionIndex.module.css';
 
 interface SectionIndexProps extends HTMLAttributes<HTMLSpanElement> {
   no: string;
   label: string;
-  ruleClassName?: string;
+  /** `health` = muted green used on the mint panel. Light text is inherited from `.on-dark`. */
+  tone?: 'default' | 'health';
   [dataAttr: `data-${string}`]: string | undefined;
 }
 
 /** Numbered label with a short rule: "01 —— IT & BPO". */
-export function SectionIndex({ no, label, className, ruleClassName, ...rest }: SectionIndexProps) {
+export function SectionIndex({ no, label, tone = 'default', className, ...rest }: SectionIndexProps) {
   return (
-    <span className={className ? `section-index ${className}` : 'section-index'} {...rest}>
+    <span className={cx(s.index, tone === 'health' && s.health, className)} {...rest}>
       {no}
-      <span className={ruleClassName ? `section-index__rule ${ruleClassName}` : 'section-index__rule'} />
+      <span className={s.rule} />
       {label}
     </span>
   );
