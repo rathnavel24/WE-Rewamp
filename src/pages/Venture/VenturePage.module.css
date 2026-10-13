@@ -60,3 +60,23 @@
 .other { flex-direction: row; justify-content: space-between; align-items: center; --card-gap: var(--space-3); }
 .other:hover { border-color: var(--color-accent); }
 .otherName { display: flex; align-items: center; gap: var(--space-3); font: var(--fw-semibold) 16px/1.2 var(--font-sans); }
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .heroGrid { gap: var(--space-6); }
+  .heroLead { gap: var(--space-5); }
+  .identity > :first-child { width: 56px; height: 56px; font-size: 28px; border-radius: 18px; }
+  .tagline { font-size: 19px; }
+  .actions { flex-direction: column; }
+  .actions > * { width: 100%; }
+
+  /* Capabilities, process steps: icon beside the text. */
+  .feature { flex-direction: row; align-items: flex-start; --card-gap: var(--space-4); }
+  .feature :global(.t-h3) { font-size: 18px; }
+  .panel { --card-gap: var(--space-6); }
+  .step { flex-direction: row; align-items: flex-start; --card-gap: var(--space-4); }
+  .stepTop { flex-direction: column-reverse; gap: var(--space-2); }
+
+  .case { gap: var(--space-6); }
+  .casePoint { align-items: flex-start; }
+}

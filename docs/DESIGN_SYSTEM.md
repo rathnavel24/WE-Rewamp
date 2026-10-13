@@ -71,6 +71,20 @@ Override the inner gap with `--card-gap` (registered with `inherits: false`, so 
 - Runs of panels that belong together: `pt="sm" pb="sm"`.
 - A section that continues the previous one: `pt="none"`.
 
+## Mobile-first rules (≤600px)
+
+Phones are the primary audience; every component has a phone layout behind `@media (max-width: 600px)`.
+
+- **Cards don't stack vertically on phones.** An icon-led card uses a row header — icon beside the title, text and
+  tags full width below — instead of a tall tile. Do it in the page module with a grid and `display: contents` on the
+  wrapper divs (see `ServicesSection.module.css`, `CompaniesPage.module.css`). No `min-height` on phones.
+- **Card padding shrinks** automatically (`sm 16 · md 20 · lg 22 · xl 22/18`), so nested cards keep their width.
+- **Short items pair up:** `<Grid pair>` gives two columns on phones; with an odd count the first item spans the row
+  (3 stats → 1 + 2). Use it for stats, never for text-heavy cards.
+- **Primary actions go full width** on phones (hero, venture, CTA banner).
+- **Hover is for pointers only.** Lifts sit inside `@media (hover: hover)`; touch gets a press-in on `:active`.
+- **Form fields are ≥16px** so iOS Safari doesn't zoom on focus.
+
 ## Adding a page
 
 ```tsx

@@ -23,7 +23,7 @@
 .pad-xl { padding: clamp(24px, 5vw, 64px); border-radius: var(--radius-2xl); }
 
 /* Variants */
-.surface { background: var(--color-surface); border-color: var(--border-subtle); color: var(--text-strong); }
+.surface { background: var(--color-surface); border-color: var(--border-subtle); box-shadow: var(--shadow-card); color: var(--text-strong); }
 .sunken { background: var(--color-surface-sunken); color: var(--text-strong); }
 .primary-soft { background: var(--color-primary-soft); color: var(--text-strong); }
 .accent-soft { background: var(--color-accent-soft); border-color: rgba(176, 69, 8, .1); color: var(--text-strong); }
@@ -40,8 +40,22 @@
     background var(--dur-base),
     border-color var(--dur-base);
 }
-.interactive:hover { transform: var(--lift-md); color: inherit; }
-.surface.interactive:hover { box-shadow: var(--shadow-md); }
-.sunken.interactive:hover { background: var(--color-surface-hover); }
-.glass.interactive:hover { background: var(--fill-on-dark-hover); }
+.interactive:hover { color: inherit; }
+/* Lift only where a real pointer hovers — on touch, :hover sticks after a tap. */
+@media (hover: hover) {
+  .interactive:hover { transform: var(--lift-md); }
+  .surface.interactive:hover { box-shadow: var(--shadow-md); }
+  .sunken.interactive:hover { background: var(--color-surface-hover); }
+  .glass.interactive:hover { background: var(--fill-on-dark-hover); }
+}
+/* Touch feedback: a quick press-in. */
+.interactive:active { transform: scale(.985); transition-duration: .1s; }
+
+/* Phones: tighter padding so content keeps its width (nested cards especially). */
+@media (max-width: 600px) {
+  .pad-sm { padding: var(--space-4); border-radius: 14px; }
+  .pad-md { padding: var(--space-5); border-radius: 18px; }
+  .pad-lg { padding: 22px; border-radius: 22px; }
+  .pad-xl { padding: 22px 18px; border-radius: var(--radius-xl); }
+}
 

@@ -11,15 +11,17 @@ interface GridProps extends HTMLAttributes<HTMLDivElement> {
   /** `fill` keeps empty tracks (cards don't stretch when few). Default `fit`. */
   mode?: 'fit' | 'fill';
   align?: 'stretch' | 'start' | 'end' | 'center';
+  /** Phones: two columns instead of one (odd count → first item spans). For short items like stats. */
+  pair?: boolean;
   children: ReactNode;
   [dataAttr: `data-${string}`]: string | undefined;
 }
 
 /** Responsive auto-column grid. Collapses to one column below `min`. */
-export function Grid({ min, max, gap = 'md', mode = 'fit', align, className, style, children, ...rest }: GridProps) {
+export function Grid({ min, max, gap = 'md', mode = 'fit', align, pair, className, style, children, ...rest }: GridProps) {
   const vars = { '--grid-min': `${min}px`, ...(max && { '--grid-max': max }), ...(align && { alignItems: align }), ...style } as CSSProperties;
   return (
-    <div className={cx(s.grid, s[gap], mode === 'fill' && s.fill, !!max && s.capped, className)} style={vars} {...rest}>
+    <div className={cx(s.grid, s[gap], mode === 'fill' && s.fill, !!max && s.capped, pair && s.pair, className)} style={vars} {...rest}>
       {children}
     </div>
   );

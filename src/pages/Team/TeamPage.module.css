@@ -37,3 +37,10 @@
 .person { flex-direction: row; align-items: center; --card-gap: var(--space-4); }
 .personText { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .personText > :last-child:not(:nth-child(2)) { margin-top: 2px; white-space: normal; }
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .founder { min-height: 0; gap: var(--space-10); padding: var(--space-6); border-radius: 24px; }
+  .founderName { font-size: 28px; }
+  .groupHead { gap: var(--space-3); }
+}

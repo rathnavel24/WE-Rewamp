@@ -24,3 +24,14 @@
 
 .label { font-size: var(--fs-small); line-height: 1.4; color: var(--text-muted); }
 .lg .label { font-size: var(--fs-body); color: var(--text-body); }
+
+@media (max-width: 600px) {
+  .sunken,
+  .surface { padding: var(--space-4); border-radius: 14px; }
+  .soft { padding: 18px; border-radius: 18px; gap: var(--space-2); }
+  .sm .value { font-size: 28px; }
+  .md .value { font-size: 30px; }
+  .lg .value { font-size: 34px; }
+  .label,
+  .lg .label { font-size: var(--fs-caption); }
+}

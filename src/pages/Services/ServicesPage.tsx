@@ -33,7 +33,7 @@ export function ServicesPage() {
             lead="Our technology companies build and operate digital platforms that remove manual work from regulated industries."
           />
           <Grid min={420}>
-            <Card to={ROUTES.venture('insureliv')} variant="sunken" padding="lg">
+            <Card to={ROUTES.venture('insureliv')} variant="sunken" padding="lg" className={s.platform}>
               <div className={s.cardTop}>
                 <Tile icon="shield_with_heart" size="lg" tone={GREEN} solid />
                 <Icon name="arrow_outward" size={24} />
@@ -45,7 +45,7 @@ export function ServicesPage() {
                 and cost.
               </p>
             </Card>
-            <Card to={ROUTES.venture('arogyaplus')} variant="accent-soft" padding="lg">
+            <Card to={ROUTES.venture('arogyaplus')} variant="accent-soft" padding="lg" className={s.platform}>
               <div className={s.cardTop}>
                 <Tile icon="biotech" size="lg" tone={ORANGE} solid />
                 <Icon name="arrow_outward" size={24} />
@@ -91,7 +91,7 @@ export function ServicesPage() {
               Jointly developing an apartment project in partnership with Seyyone Ventures — experienced in the real estate sector for more
               than two decades in Coimbatore.
             </p>
-            <Grid min={160} gap="sm" className={s.reStats}>
+            <Grid min={160} gap="sm" pair className={s.reStats}>
               <Stat count={20} suffix="+" value="20+" label="Years of partner experience" />
               <Stat value={<Icon name="location_city" size={38} />} label="Apartment project, Coimbatore" />
             </Grid>

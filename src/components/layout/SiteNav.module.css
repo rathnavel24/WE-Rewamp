@@ -191,6 +191,19 @@
 }
 .sheetLink:hover { background: var(--color-canvas); color: var(--text-strong); }
 
-@media (max-width: 420px) {
-  .cta { padding: 13px 14px; font-size: 13.5px; }
+/* Phones: a slimmer bar so it covers less of the screen; safe-area aware for notched devices. */
+@media (max-width: 600px) {
+  .header { padding: max(10px, env(safe-area-inset-top)) 12px 10px; }
+  .scrolled { padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: 8px; }
+  .nav { gap: 12px; padding: 8px 8px 8px 14px; border-radius: 18px; }
+  .logo,
+  .scrolled .logo { height: 40px; }
+  .cta { padding: 12px 14px; font-size: 14px; border-radius: 12px; }
+  .burger { width: 44px; height: 44px; }
+  .sheet { top: calc(max(10px, env(safe-area-inset-top)) + 74px); }
+  .sheetLink { padding: 18px 16px; }
+  .sheetLink:active { background: var(--color-canvas); }
+}
+@media (max-width: 360px) {
+  .cta :global(.icon) { display: none; }
 }

@@ -94,3 +94,32 @@
 .cardTop > :last-child { align-self: center; }
 .cardBody { display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .cta { display: inline-flex; align-items: center; gap: var(--space-2); font: var(--fw-medium) var(--fs-small)/1 var(--font-sans); }
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .parent { width: min(220px, 70%); padding: 18px 22px; }
+  .stem { height: var(--space-8); }
+  .subs { padding-top: var(--space-5); gap: var(--space-2); }
+
+  .dirHead { gap: var(--space-4); }
+  .filters { width: 100%; }
+  .filter { flex: 1; padding: 12px 10px; }
+
+  /* Directory cards: icon + sector/title header row, no fixed height. */
+  .card {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px var(--space-4);
+  }
+  .cardTop,
+  .cardBody { display: contents; }
+  .cardTop > :first-child { grid-area: 1 / 1 / 3 / 2; width: 48px; height: 48px; font-size: 24px; border-radius: 14px; }
+  .cardTop > :last-child { grid-area: 1 / 3; padding: 5px 9px; }
+  .cardBody > :nth-child(1) { grid-area: 1 / 2; }
+  .cardBody > :nth-child(2) { grid-area: 2 / 2 / 3 / 4; align-self: start; }
+  .cardBody > :nth-child(3),
+  .cta { grid-column: 1 / -1; }
+  .cta { padding-top: var(--space-1); }
+}

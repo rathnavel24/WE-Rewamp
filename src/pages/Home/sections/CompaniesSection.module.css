@@ -47,9 +47,14 @@
 }
 .row:hover .arrow { background: var(--color-accent); }
 
-@media (max-width: 560px) {
-  .row { grid-template-columns: 32px minmax(0, 1fr) auto; gap: var(--space-3); }
-  .meta :first-child { display: none; }
+@media (max-width: 600px) {
+  .row { grid-template-columns: 28px minmax(0, 1fr) auto; gap: var(--space-3); padding: 18px var(--space-1); }
+  .row:active { background: rgba(255, 255, 255, .06); }
+  /* Hide the country chip only — a descendant selector here used to blank the arrow icon too. */
+  .meta > :first-child { display: none; }
+  .name { font-size: 19px; }
+  .arrow { width: 36px; height: 36px; }
+  .marquee { margin-top: var(--space-12); }
 }
 
 .marquee { margin-top: var(--space-20); display: flex; width: max-content; }

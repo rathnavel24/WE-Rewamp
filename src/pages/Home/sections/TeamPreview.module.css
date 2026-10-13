@@ -7,5 +7,8 @@
 .copy { position: sticky; top: 120px; }
 @media (max-width: 880px) { .copy { position: static; } }
 
-.card { --card-gap: var(--space-5); }
+.card { flex-direction: row; align-items: center; --card-gap: var(--space-4); }
 .text { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 600px) {
+  .layout { gap: var(--space-8); }
+}

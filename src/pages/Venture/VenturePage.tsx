@@ -87,7 +87,7 @@ function VentureView({ v }: { v: Venture }) {
       {/* Stats */}
       {v.stats && (
         <Section pt="none" pb="none">
-          <Grid min={220} gap="sm" data-stagger="90">
+          <Grid min={220} gap="sm" pair data-stagger="90">
             {v.stats.map((st) => (
               <Stat key={st.label} variant="soft" size="lg" soft={v.tone.soft} ink={v.tone.ink} count={st.n} suffix={st.suffix} value={`${st.n}${st.suffix}`} label={st.label} />
             ))}

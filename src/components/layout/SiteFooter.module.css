@@ -73,3 +73,14 @@
   text-decoration: none;
 }
 .mail:hover { color: var(--color-accent); }
+
+/* Phones: brand on top, link columns paired up rather than one long stack. */
+@media (max-width: 600px) {
+  .footer { padding: var(--space-14) 0 calc(var(--space-6) + env(safe-area-inset-bottom)); }
+  .inner { gap: var(--space-10); }
+  .grid { grid-template-columns: 1fr 1fr; gap: var(--space-8) var(--space-5); }
+  .brandCol { grid-column: 1 / -1; min-width: 0; gap: var(--space-4); }
+  .logo { width: 160px; }
+  .address { font-size: var(--fs-small); }
+  .bottom { flex-direction: column-reverse; align-items: flex-start; font-size: var(--fs-caption); }
+}

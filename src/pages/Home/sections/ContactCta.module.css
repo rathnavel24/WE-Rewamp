@@ -24,3 +24,7 @@
 .copy p { max-width: 480px; }
 .actions { display: flex; flex-direction: column; gap: var(--space-3); }
 .mail { overflow-wrap: anywhere; font-size: var(--fs-body); }
+@media (max-width: 600px) {
+  .panel { padding: var(--space-8) var(--space-5) var(--space-5); border-radius: var(--radius-xl); }
+  .layout { gap: var(--space-8); }
+}

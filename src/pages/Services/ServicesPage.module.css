@@ -37,3 +37,39 @@
   font-weight: var(--fw-medium);
   color: var(--color-primary);
 }
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .pillars { gap: var(--space-2); }
+  .pillars > * { padding: 8px 14px 8px 8px; font-size: var(--fs-small); }
+  .panel { --card-gap: var(--space-6); }
+
+  /* Platform + healthcare cards: icon beside the title, text full width below. */
+  .platform,
+  .healthCard {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+  }
+  .platform .cardTop,
+  .healthCard .cardTop { display: contents; }
+  .cardTop > :first-child { grid-area: 1 / 1; width: 48px; height: 48px; font-size: 24px; border-radius: 14px; }
+  .platform .cardTop > :last-child { grid-area: 1 / 3; }
+  .platform :global(.t-h2),
+  .healthCard :global(.t-h2) { grid-area: 1 / 2; font-size: 20px; }
+  .platform > p,
+  .healthCard > p,
+  .healthMore { grid-column: 1 / -1; }
+  /* Healthcare: meta (site / phone) becomes a caption under the title. */
+  .healthCard .cardTop > :first-child { grid-area: 1 / 1 / 3 / 2; }
+  .healthCard :global(.t-h2) { align-self: end; }
+  .healthCard .cardTop > :last-child { grid-area: 2 / 2 / 3 / 4; align-self: start; }
+
+  .split :global(.t-h1) { font-size: 26px; }
+  .finChips > :last-child { width: 100%; margin-top: var(--space-2); }
+
+  /* Consulting: compact rows, not 200px tiles. */
+  .consultCard { min-height: 0; flex-direction: row; align-items: flex-start; --card-gap: var(--space-4); }
+  .consultTitle { min-height: 0; }
+}

@@ -30,7 +30,7 @@ export function Flagships() {
           <p className={s.statement}>
             An AI-powered insurance operating system that unifies broker, insurer and TPA workflows into one secure pipeline.
           </p>
-          <Grid min={140} gap="sm">
+          <Grid min={140} gap="sm" pair>
             <Stat count={90} suffix="%" value="90%" label="Faster processing times" />
             <Stat value="1" label="Unified pipeline — lead to renewal" />
           </Grid>
@@ -60,7 +60,7 @@ export function Flagships() {
           <p className={s.statement}>
             Home diagnostics and preventive health packages, delivered by DHA-licensed professionals and CAP-accredited labs.
           </p>
-          <Grid min={120} gap="sm">
+          <Grid min={120} gap="sm" pair>
             {AROGYA_STATS.map((st) => (
               <Stat key={st.label} variant="surface" ink={ORANGE.ink} count={st.count} suffix={st.suffix} value={st.display} label={st.label} />
             ))}

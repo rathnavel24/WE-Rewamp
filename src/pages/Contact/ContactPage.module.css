@@ -75,3 +75,13 @@
   justify-content: center;
 }
 .sentText { max-width: 380px; }
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .layout { gap: var(--space-8); }
+  .intro { gap: var(--space-6); }
+  /* 16px+ stops iOS Safari zooming the page when a field is focused. */
+  .input { font-size: 16px; padding: 15px 16px; }
+  .form { gap: var(--space-5); }
+  .sent { min-height: 320px; }
+}
