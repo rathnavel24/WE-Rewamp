@@ -1,0 +1,45 @@
+name: Deploy to dev
+
+# Builds the site and publishes it to https://dev.walletedgeglobal.com
+on:
+  push:
+    branches: [feat/react-frontend]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+
+      - name: Upload to dev.walletedgeglobal.com
+        env:
+          SSH_KEY: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          # Host keys of premium194.web-hosting.com, so the upload can't be redirected to another server
+          cat > ~/.ssh/known_hosts <<'KEYS'
+          [premium194.web-hosting.com]:21098 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMob70miGkTyL15wnZMQdhhrIvb9ZABIUXGwNZ2Xwrb
+          [premium194.web-hosting.com]:21098 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOr4yuLWeb487Uu1w0pdXbfNQDSyLvi3amg8eBK6mVVwlgARg40X2AoYsK/AJoi0KpUNKneyGBGP88ONNqS66L0=
+          KEYS
+          sed -i 's/^ *//' ~/.ssh/known_hosts
+          # .htaccess (SPA routing, noindex) and .well-known (SSL renewal) live only on the server
+          rsync -az --delete --exclude .htaccess --exclude .well-known \
+            -e "ssh -i ~/.ssh/deploy_key -p 21098 -o StrictHostKeyChecking=yes" \
+            dist/ wallcirp@premium194.web-hosting.com:dev.walletedgeglobal.com/
