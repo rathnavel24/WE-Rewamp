@@ -1,20 +1,47 @@
-import { Button, Card, Chip, CtaBanner, Grid, Icon, Section, SectionHeader, SectionIndex, Stat, Tile } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { ROUTES } from '@/data/routes';
-import { CONSULTING_SERVICES, SERVICE_PILLARS } from '@/data/services';
-import { GREEN, ORANGE } from '@/data/tones';
+import {
+  Button,
+  Card,
+  Chip,
+  CtaBanner,
+  Grid,
+  Icon,
+  Section,
+  SectionHeader,
+  SectionIndex,
+  Stat,
+  Tile
+} from '@/components/ui';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { ROUTES } from '@/config/routes';
+import { CONSULTING_SERVICES, SERVICE_PILLARS } from '@/content/services';
+import { GREEN, ORANGE } from '@/content/tones';
 import s from './ServicesPage.module.css';
 
 export function ServicesPage() {
-  useDocumentTitle('Services — WalletEdge Global');
+  usePageMeta({
+    title: 'Services',
+    description:
+      'Five practices backed by one group: IT & BPO, financial services, real estate, consulting and healthcare.'
+  });
   return (
     <>
       {/* Hero */}
       <Section data-screen-label="Services hero" pt="hero" pb="sm" gap="md">
-        <SectionHeader as="h1" size="display-1" kicker="Our services" title="Five practices, run by specialists, backed by one group." />
+        <SectionHeader
+          as="h1"
+          size="display-1"
+          kicker="Our services"
+          title="Five practices, run by specialists, backed by one group."
+        />
         <nav aria-label="Practices" data-stagger="60" className={s.pillars}>
           {SERVICE_PILLARS.map((p) => (
-            <Chip key={p.anchor} to={p.anchor} variant="surface" size="lg" leading={<Tile icon={p.icon} size="xs" tone={p.tone} round />}>
+            <Chip
+              key={p.anchor}
+              to={p.anchor}
+              variant="surface"
+              size="lg"
+              leading={<Tile icon={p.icon} size="xs" tone={p.tone} round />}
+            >
               {p.title}
             </Chip>
           ))}
@@ -40,9 +67,9 @@ export function ServicesPage() {
               </div>
               <h3 className="t-h2">InsureLiv</h3>
               <p className="t-body">
-                An AI-powered insurance operating system built by WhiteBlue FinTech for brokerages. It automates the entire broker workflow
-                — lead capture, multi-insurer quoting, document verification and renewals — boosting productivity while cutting turnaround
-                and cost.
+                An AI-powered insurance operating system built by WhiteBlue FinTech for brokerages. It automates the
+                entire broker workflow — lead capture, multi-insurer quoting, document verification and renewals —
+                boosting productivity while cutting turnaround and cost.
               </p>
             </Card>
             <Card to={ROUTES.venture('arogyaplus')} variant="accent-soft" padding="lg" className={s.platform}>
@@ -52,8 +79,9 @@ export function ServicesPage() {
               </div>
               <h3 className="t-h2">ArogyaPlus</h3>
               <p className="t-body">
-                A Dubai-based health technology platform powered by Wallet Edge Technologies — at-home and in-clinic medical services,
-                health packages, lab test bookings with home sample collection, and professional nursing care.
+                A Dubai-based health technology platform powered by Wallet Edge Technologies — at-home and in-clinic
+                medical services, health packages, lab test bookings with home sample collection, and professional
+                nursing care.
               </p>
             </Card>
           </Grid>
@@ -68,8 +96,8 @@ export function ServicesPage() {
             <SectionIndex no="02" label="Financial services" />
             <h2 className="t-h1">Insurance recovery agent services.</h2>
             <p className="t-body-lg">
-              Professional financial recovery and asset retrieval — faster turnaround through data-driven processes and transparent
-              communication with every stakeholder.
+              Professional financial recovery and asset retrieval — faster turnaround through data-driven processes and
+              transparent communication with every stakeholder.
             </p>
             <div className={s.finChips}>
               <Chip variant="glass" size="lg" icon="apartment" className={s.finChip}>
@@ -88,8 +116,8 @@ export function ServicesPage() {
             <SectionIndex no="03" label="Real estate" />
             <h2 className="t-h1">Building homes in Coimbatore.</h2>
             <p className="t-body-lg">
-              Jointly developing an apartment project in partnership with Seyyone Ventures — experienced in the real estate sector for more
-              than two decades in Coimbatore.
+              Jointly developing an apartment project in partnership with Seyyone Ventures — experienced in the real
+              estate sector for more than two decades in Coimbatore.
             </p>
             <Grid min={160} gap="sm" pair className={s.reStats}>
               <Stat count={20} suffix="+" value="20+" label="Years of partner experience" />
@@ -153,7 +181,11 @@ export function ServicesPage() {
         </Card>
       </Section>
 
-      <CtaBanner title="Not sure which practice fits? We’ll route you to the right team." cta="Contact us" to={ROUTES.contact} />
+      <CtaBanner
+        title="Not sure which practice fits? We’ll route you to the right team."
+        cta="Contact us"
+        to={ROUTES.contact}
+      />
     </>
   );
 }

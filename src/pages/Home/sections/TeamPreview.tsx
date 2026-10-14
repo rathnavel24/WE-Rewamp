@@ -1,7 +1,8 @@
-import { Avatar, Button, Card, Grid, Section, SectionHeader } from '@/components/ui';
-import { ROUTES } from '@/data/routes';
-import { HOME_LEADERS, LEADER_COUNT } from '@/data/team';
-import { alternate } from '@/data/tones';
+import { Button, Card, Grid, Portrait, Section, SectionHeader } from '@/components/ui';
+import { ROUTES } from '@/config/routes';
+import { HOME_LEADERS, LEADER_COUNT } from '@/content/team';
+import { alternate } from '@/content/tones';
+import { teamPhoto } from '@/content/assets';
 import s from './TeamPreview.module.css';
 
 export function TeamPreview() {
@@ -23,7 +24,7 @@ export function TeamPreview() {
       <Grid min={220} gap="sm" data-stagger="80">
         {HOME_LEADERS.map((p, i) => (
           <Card key={p.name} padding="sm" interactive className={s.card}>
-            <Avatar name={p.name} tone={alternate(i)} />
+            <Portrait name={p.name} photo={teamPhoto(p.name)} tone={alternate(i)} className={s.photo} />
             <span className={s.text}>
               <span className="t-h4">{p.name}</span>
               <span className="t-small">{p.role}</span>

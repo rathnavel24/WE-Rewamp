@@ -4,11 +4,35 @@
   gap: var(--space-12);
   align-items: start;
 }
-.copy { position: sticky; top: 120px; }
-@media (max-width: 880px) { .copy { position: static; } }
+.copy {
+  position: sticky;
+  top: 120px;
+}
+@media (max-width: 880px) {
+  .copy {
+    position: static;
+  }
+}
 
-.card { flex-direction: row; align-items: center; --card-gap: var(--space-4); }
-.text { display: flex; flex-direction: column; gap: 6px; }
+.card {
+  flex-direction: row;
+  align-items: center;
+  --card-gap: var(--space-4);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 @media (max-width: 600px) {
-  .layout { gap: var(--space-8); }
+  .layout {
+    gap: var(--space-8);
+  }
+}
+
+.photo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
 }

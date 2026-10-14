@@ -5,26 +5,51 @@
   gap: var(--space-6);
   overflow: hidden;
 }
-.label { text-align: center; padding-inline: var(--gutter); letter-spacing: .14em; }
+.label {
+  text-align: center;
+  padding-inline: var(--gutter);
+}
 .mask {
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-block: 1px solid var(--border-subtle);
 }
-.row { display: flex; width: max-content; }
+.row {
+  display: flex;
+  width: max-content;
+}
 .client {
   flex: none;
-  margin-right: var(--space-3);
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: var(--space-4) 22px;
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  border: 1px solid var(--border-subtle);
-  font: var(--fw-medium) 16px/1 var(--font-sans);
+  justify-content: center;
+  height: 56px;
+  padding-inline: clamp(28px, 4vw, 48px);
+  border-right: 1px solid var(--border-subtle);
+}
+.logo {
+  display: block;
+  height: 32px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition:
+    filter var(--dur-fast),
+    opacity var(--dur-fast);
+}
+@media (hover: hover) {
+  .client:hover .logo {
+    filter: none;
+    opacity: 1;
+  }
+}
+/* Stand-in until a logo file exists in src/assets/clients/ */
+.wordmark {
+  font: var(--fw-semibold) 15px/1 var(--font-sans);
+  letter-spacing: -0.01em;
   white-space: nowrap;
-  color: var(--text-default);
+  color: var(--text-subtle);
 }

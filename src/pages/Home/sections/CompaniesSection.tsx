@@ -1,5 +1,5 @@
 import { AppLink, Chip, Icon, Section, SectionHeader } from '@/components/ui';
-import { COMPANIES, ROLL_NAMES } from '@/data/companies';
+import { COMPANIES, ROLL_NAMES } from '@/content/companies';
 import s from './CompaniesSection.module.css';
 
 const ROLL = [...ROLL_NAMES, ...ROLL_NAMES];

@@ -14,46 +14,46 @@
      ------------------------------------------------------------------------ */
 
   /* Neutrals (warm paper → deep forest) */
-  --sand-50: #FBFAF6;
-  --sand-100: #F6F4EE;
-  --sand-200: #EEF3EF;
-  --stone-300: #C9CFCB;
-  --stone-400: #9AA49E;
-  --stone-500: #7A867F;
-  --stone-600: #56645C;
-  --stone-700: #3E4C44;
-  --stone-800: #26352D;
-  --stone-900: #0E1F17;
-  --forest-900: #0B2A1E;
+  --sand-50: #fbfaf6;
+  --sand-100: #f6f4ee;
+  --sand-200: #eef3ef;
+  --stone-300: #c9cfcb;
+  --stone-400: #9aa49e;
+  --stone-500: #7a867f;
+  --stone-600: #56645c;
+  --stone-700: #3e4c44;
+  --stone-800: #26352d;
+  --stone-900: #0e1f17;
+  --forest-900: #0b2a1e;
   --white: #fff;
 
   /* Green */
-  --green-50: #E7F0EB;
-  --green-300: #A9C4B5;
-  --green-500: #3E6B55;
-  --green-700: #03643B;
+  --green-50: #e7f0eb;
+  --green-300: #a9c4b5;
+  --green-500: #3e6b55;
+  --green-700: #03643b;
 
   /* Orange */
-  --orange-50: #FBEBDD;
-  --orange-100: #FFD9C2;
-  --orange-300: #F0A06A;
-  --orange-400: #E07A2E;
-  --orange-500: #E06A26;
-  --orange-600: #CF5512;
-  --orange-700: #B04508;
-  --orange-900: #8A3208;
+  --orange-50: #fbebdd;
+  --orange-100: #ffd9c2;
+  --orange-300: #f0a06a;
+  --orange-400: #e07a2e;
+  --orange-500: #e06a26;
+  --orange-600: #cf5512;
+  --orange-700: #b04508;
+  --orange-900: #8a3208;
 
   /* ---------------------------------------------------------------------------
      2. Semantic
      ------------------------------------------------------------------------ */
 
   /* Surfaces */
-  --color-canvas: var(--sand-100);          /* page background */
-  --color-surface: var(--white);            /* cards, panels */
-  --color-surface-sunken: var(--sand-100);  /* insets inside a white card */
+  --color-canvas: var(--sand-100); /* page background */
+  --color-surface: var(--white); /* cards, panels */
+  --color-surface-sunken: var(--sand-100); /* insets inside a white card */
   --color-surface-hover: var(--sand-200);
-  --color-inverse: var(--forest-900);       /* dark bands & panels */
-  --color-inverse-2: var(--stone-900);      /* darkest — buttons, CTA panels */
+  --color-inverse: var(--forest-900); /* dark bands & panels */
+  --color-inverse-2: var(--stone-900); /* darkest — buttons, CTA panels */
 
   /* Brand */
   --color-primary: var(--green-700);
@@ -74,23 +74,48 @@
 
   /* Text on dark */
   --text-on-dark: var(--white);
-  --text-on-dark-muted: rgba(255, 255, 255, .72);
-  --text-on-dark-subtle: rgba(255, 255, 255, .55);
+  --text-on-dark-muted: rgba(255, 255, 255, 0.72);
+  --text-on-dark-soft: rgba(255, 255, 255, 0.8);
+  --text-on-dark-subtle: rgba(255, 255, 255, 0.55);
+  --text-on-dark-faint: rgba(255, 255, 255, 0.45);
 
   /* Borders & fills */
-  --border-subtle: rgba(14, 31, 23, .07);
-  --border-default: rgba(14, 31, 23, .1);
-  --border-strong: rgba(14, 31, 23, .14);
-  --border-on-dark: rgba(255, 255, 255, .12);
-  --border-on-dark-strong: rgba(255, 255, 255, .22);
-  --fill-on-dark: rgba(255, 255, 255, .06);
-  --fill-on-dark-hover: rgba(255, 255, 255, .12);
-  --fill-primary-hover: rgba(3, 100, 59, .07);
+  --border-subtle: rgba(14, 31, 23, 0.07);
+  --border-default: rgba(14, 31, 23, 0.1);
+  --border-strong: rgba(14, 31, 23, 0.14);
+  --border-on-dark: rgba(255, 255, 255, 0.12);
+  --border-on-dark-strong: rgba(255, 255, 255, 0.22);
+  --border-on-dark-medium: rgba(255, 255, 255, 0.14);
+  --fill-on-dark-subtle: rgba(255, 255, 255, 0.05);
+  --fill-on-dark: rgba(255, 255, 255, 0.06);
+  --fill-on-dark-focus: rgba(255, 255, 255, 0.08);
+  --fill-on-dark-hover: rgba(255, 255, 255, 0.12);
+  --fill-on-dark-strong: rgba(255, 255, 255, 0.14);
+  --stroke-on-dark: rgba(255, 255, 255, 0.35);
+  --fill-primary-hover: rgba(3, 100, 59, 0.07);
+  --fill-error-on-dark: rgba(207, 85, 18, 0.18);
+  --border-accent-soft: rgba(176, 69, 8, 0.1);
+  --accent-on-dark-fade: rgba(240, 160, 106, 0.2);
+  --grid-line: rgba(14, 31, 23, 0.05);
+  --scrim: rgba(14, 31, 23, 0.28);
 
-  /* Glows (ambient blobs) */
-  --glow-primary: rgba(3, 100, 59, .10);
-  --glow-accent: rgba(207, 85, 18, .12);
-  --glow-accent-strong: rgba(207, 85, 18, .35);
+  /* Glass surfaces (sticky nav) */
+  --glass: rgba(255, 255, 255, 0.92);
+  --glass-clear: rgba(255, 255, 255, 0);
+
+  /* Glows (ambient blobs).
+     Light surfaces may take the orange accent glow. Dark surfaces must only use the
+     green/sage glows below — orange over forest/ink mixes to a muddy brown. */
+  --glow-primary: rgba(3, 100, 59, 0.06);
+  --glow-accent: rgba(207, 85, 18, 0.06);
+  --glow-primary-strong: rgba(3, 100, 59, 0.16); /* light-surface halos (hero orbit) */
+  --glow-accent-strong: rgba(207, 85, 18, 0.18);
+  --glow-on-dark: rgba(169, 196, 181, 0.14); /* sage highlight on forest/ink */
+  --glow-on-dark-fade: rgba(169, 196, 181, 0.04);
+  --glow-primary-on-dark: rgba(3, 100, 59, 0.5); /* deep brand-green pool on ink */
+  --glow-primary-on-dark-fade: rgba(3, 100, 59, 0.15);
+  --glow-on-colour: rgba(255, 255, 255, 0.18); /* highlight on solid green/orange cards */
+  --glow-white: rgba(255, 255, 255, 0.9);
 
   /* ---------------------------------------------------------------------------
      Typography
@@ -100,28 +125,28 @@
   --font-icon: 'Material Symbols Rounded';
 
   /* Type scale — every heading/text style in the product maps to one of these. */
-  --fs-display-1: clamp(42px, 6.4vw, 84px);  /* page hero h1 */
-  --fs-display-2: clamp(34px, 4.4vw, 58px);  /* section h2 */
-  --fs-h1: clamp(28px, 3.6vw, 46px);         /* panel h2 */
-  --fs-h2: clamp(24px, 2.6vw, 30px);         /* large card title / statement */
-  --fs-h3: 22px;                             /* card title */
-  --fs-h4: 18px;                             /* small card title */
-  --fs-lead: clamp(17px, 1.5vw, 19px);       /* intro paragraph */
+  --fs-display-1: clamp(40px, 5.6vw, 72px); /* page hero h1 */
+  --fs-display-2: clamp(32px, 4vw, 52px); /* section h2 */
+  --fs-h1: clamp(28px, 3.4vw, 42px); /* panel h2 */
+  --fs-h2: clamp(24px, 2.6vw, 30px); /* large card title / statement */
+  --fs-h3: 22px; /* card title */
+  --fs-h4: 18px; /* small card title */
+  --fs-lead: clamp(17px, 1.5vw, 19px); /* intro paragraph */
   --fs-body-lg: 17px;
   --fs-body: 15.5px;
   --fs-small: 14px;
   --fs-caption: 13px;
-  --fs-label: 12px;                          /* mono uppercase */
+  --fs-label: 12px; /* mono uppercase */
 
   --lh-tight: 1.04;
   --lh-snug: 1.2;
   --lh-normal: 1.5;
   --lh-relaxed: 1.6;
 
-  --ls-display: -.045em;
-  --ls-heading: -.03em;
-  --ls-title: -.02em;
-  --ls-label: .12em;
+  --ls-display: -0.035em;
+  --ls-heading: -0.025em;
+  --ls-title: -0.02em;
+  --ls-label: 0.1em;
 
   --fw-regular: 400;
   --fw-medium: 500;
@@ -149,42 +174,45 @@
   /* ---------------------------------------------------------------------------
      Radii
      ------------------------------------------------------------------------ */
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-  --radius-xl: 28px;
-  --radius-2xl: 36px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
   --radius-pill: 999px;
 
   /* ---------------------------------------------------------------------------
      Elevation
      ------------------------------------------------------------------------ */
-  --shadow-xs: 0 1px 2px rgba(14, 31, 23, .05);
-  --shadow-card: 0 1px 2px rgba(14, 31, 23, .04), 0 10px 28px -16px rgba(14, 31, 23, .16);  /* resting surface card */
-  --shadow-sm: 0 14px 30px -14px rgba(14, 31, 23, .35);
-  --shadow-md: 0 24px 50px -28px rgba(14, 31, 23, .35);
-  --shadow-lg: 0 30px 60px -20px rgba(14, 31, 23, .25);
-  --shadow-xl: 0 40px 80px -30px rgba(14, 31, 23, .35), 0 0 0 1px rgba(14, 31, 23, .05);
+  --shadow-xs: 0 1px 2px rgba(14, 31, 23, 0.05);
+  --shadow-card: 0 1px 2px rgba(14, 31, 23, 0.04), 0 2px 8px -4px rgba(14, 31, 23, 0.06); /* resting surface card */
+  --shadow-sm: 0 6px 16px -8px rgba(14, 31, 23, 0.18);
+  --shadow-md: 0 1px 2px rgba(14, 31, 23, 0.05), 0 12px 28px -14px rgba(14, 31, 23, 0.18);
+  --shadow-lg: 0 20px 44px -20px rgba(14, 31, 23, 0.2);
+  --shadow-xl: 0 28px 56px -28px rgba(14, 31, 23, 0.26), 0 0 0 1px rgba(14, 31, 23, 0.05);
+  --shadow-nav: 0 12px 40px -18px rgba(14, 31, 23, 0.25);
+  --shadow-menu: 0 30px 60px -20px rgba(14, 31, 23, 0.3);
+  --shadow-on-dark: 0 30px 70px -20px rgba(0, 0, 0, 0.5); /* white card floating on a dark band */
 
   /* ---------------------------------------------------------------------------
      Motion
      ------------------------------------------------------------------------ */
-  --ease: cubic-bezier(.16, 1, .3, 1);
-  --dur-fast: .25s;
-  --dur-base: .45s;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.45s;
   --lift-sm: translateY(-2px);
-  --lift-md: translateY(-4px);
+  --lift-md: translateY(-2px);
 
   /* ---------------------------------------------------------------------------
      3. Layout recipes
      ------------------------------------------------------------------------ */
   --container: 1240px;
   --gutter: clamp(16px, 4vw, 24px);
-  --nav-clearance: clamp(120px, 14vw, 160px);  /* top padding for page heroes */
-  --section-y: clamp(56px, 9vw, 112px);        /* default section rhythm */
-  --section-y-sm: clamp(28px, 5vw, 56px);      /* tight sections that follow each other */
-  --stack-section: clamp(24px, 4vw, 48px);     /* header → content gap */
+  --nav-clearance: clamp(136px, 14vw, 168px); /* top padding for page heroes */
+  --section-y: clamp(56px, 9vw, 112px); /* default section rhythm */
+  --section-y-sm: clamp(28px, 5vw, 56px); /* tight sections that follow each other */
+  --stack-section: clamp(24px, 4vw, 48px); /* header → content gap */
 
   /* Phones are the primary target: every component has a ≤600px layout. Keep this value
      in sync with the `@media (max-width: 600px)` blocks (custom properties can't drive media queries). */

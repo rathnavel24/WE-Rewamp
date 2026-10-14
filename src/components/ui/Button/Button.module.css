@@ -1,0 +1,150 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast),
+    border-color var(--dur-fast),
+    color var(--dur-fast),
+    transform var(--dur-fast) var(--ease);
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
+}
+
+.label {
+  min-width: 0;
+}
+.trailing {
+  transition: transform var(--dur-fast) var(--ease);
+}
+.button:hover .trailing {
+  transform: translateX(2px);
+}
+
+/* Sizes */
+.sm {
+  padding: 11px 16px;
+  font-size: var(--fs-small);
+  border-radius: var(--radius-xs);
+}
+.md {
+  padding: 14px 20px;
+  font-size: var(--fs-body);
+}
+.lg {
+  padding: 17px 24px;
+  font-size: 16px;
+  border-radius: var(--radius-sm);
+}
+@media (max-width: 600px) {
+  .md {
+    padding: 15px 20px;
+  }
+  .lg {
+    padding: 16px 22px;
+    font-size: 16px;
+  }
+}
+
+.block {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  white-space: normal;
+  text-align: left;
+}
+
+/* Variants */
+.primary {
+  background: var(--color-inverse-2);
+  color: var(--white);
+}
+.primary:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--white);
+}
+
+.accent {
+  background: var(--color-accent);
+  color: var(--white);
+}
+.accent:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  color: var(--white);
+}
+
+.secondary {
+  background: var(--color-surface);
+  border-color: var(--border-strong);
+  color: var(--text-strong);
+}
+.secondary:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--text-strong);
+}
+
+.inverse {
+  background: var(--white);
+  color: var(--text-strong);
+  font-weight: var(--fw-semibold);
+}
+.inverse:hover:not(:disabled) {
+  color: var(--text-strong);
+}
+.inverse .trailing {
+  color: var(--color-accent);
+}
+
+.outline-dark {
+  background: transparent;
+  border-color: var(--border-on-dark-strong);
+  color: var(--white);
+}
+.outline-dark:hover:not(:disabled) {
+  background: var(--fill-on-dark);
+  color: var(--white);
+}
+
+.link {
+  padding: 0 0 6px;
+  border-radius: 0;
+  border-bottom: 1.5px solid currentColor;
+  background: none;
+  color: var(--text-strong);
+  font-size: var(--fs-body);
+}
+/* Text links look slim but get a 44px-tall invisible hit area. */
+.link {
+  position: relative;
+}
+.link::before {
+  content: '';
+  position: absolute;
+  inset: -10px -6px -8px;
+}
+.link:hover:not(:disabled),
+.link:active:not(:disabled) {
+  color: var(--color-accent);
+  transform: none;
+}
+:global(.on-dark) .link {
+  color: var(--white);
+}
+:global(.on-dark) .link:hover {
+  color: var(--color-accent-on-dark);
+}

@@ -1,6 +1,6 @@
 import { Button, Section } from '@/components/ui';
-import { ROUTES } from '@/data/routes';
-import { CONTACT_EMAIL } from '@/data/site';
+import { ROUTES } from '@/config/routes';
+import { CONTACT_EMAIL } from '@/content/site';
 import s from './ContactCta.module.css';
 
 export function ContactCta() {
@@ -17,7 +17,14 @@ export function ContactCta() {
             <Button to={ROUTES.contact} variant="inverse" size="lg" icon="arrow_forward" block>
               Start a conversation
             </Button>
-            <Button to={`mailto:${CONTACT_EMAIL}`} variant="outline-dark" size="lg" icon="mail" block className={s.mail}>
+            <Button
+              to={`mailto:${CONTACT_EMAIL}`}
+              variant="outline-dark"
+              size="lg"
+              icon="mail"
+              block
+              className={s.mail}
+            >
               {CONTACT_EMAIL}
             </Button>
           </div>

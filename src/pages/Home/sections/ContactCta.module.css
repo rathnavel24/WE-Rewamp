@@ -9,8 +9,13 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(500px circle at 85% 20%, rgba(207, 85, 18, .4), transparent 60%),
-    radial-gradient(500px circle at 10% 100%, rgba(3, 100, 59, .55), transparent 60%);
+    radial-gradient(560px circle at 88% 10%, var(--glow-on-dark), var(--glow-on-dark-fade) 45%, transparent 70%),
+    radial-gradient(
+      600px circle at 8% 110%,
+      var(--glow-primary-on-dark),
+      var(--glow-primary-on-dark-fade) 45%,
+      transparent 72%
+    );
   pointer-events: none;
 }
 .layout {
@@ -20,11 +25,29 @@
   gap: var(--space-10);
   align-items: end;
 }
-.copy { display: flex; flex-direction: column; gap: var(--space-5); }
-.copy p { max-width: 480px; }
-.actions { display: flex; flex-direction: column; gap: var(--space-3); }
-.mail { overflow-wrap: anywhere; font-size: var(--fs-body); }
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.copy p {
+  max-width: 480px;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.mail {
+  overflow-wrap: anywhere;
+  font-size: var(--fs-body);
+}
 @media (max-width: 600px) {
-  .panel { padding: var(--space-8) var(--space-5) var(--space-5); border-radius: var(--radius-xl); }
-  .layout { gap: var(--space-8); }
+  .panel {
+    padding: var(--space-8) var(--space-5) var(--space-5);
+    border-radius: var(--radius-xl);
+  }
+  .layout {
+    gap: var(--space-8);
+  }
 }

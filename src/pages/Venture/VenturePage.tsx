@@ -1,10 +1,10 @@
 import type { CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppLink, Button, Card, Chip, Grid, Icon, Section, SectionHeader, Stat, Tile } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { ROUTES } from '@/data/routes';
-import { GREEN, ORANGE } from '@/data/tones';
-import { isVentureId, VENTURE_LIST, VENTURES } from '@/data/ventures';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { ROUTES } from '@/config/routes';
+import { GREEN, ORANGE } from '@/content/tones';
+import { isVentureId, VENTURE_LIST, VENTURES } from '@/content/ventures';
 import type { Venture } from '@/types';
 import { NotFoundPage } from '@/pages/NotFound/NotFoundPage';
 import s from './VenturePage.module.css';
@@ -32,7 +32,7 @@ export function VenturePage() {
 }
 
 function VentureView({ v }: { v: Venture }) {
-  useDocumentTitle(`${v.name} — WalletEdge Global`);
+  usePageMeta({ title: v.name, description: v.tagline });
   const toneVars = { '--accent': v.tone.accent } as CSSProperties;
   const others = VENTURE_LIST.filter((o) => o.id !== v.id);
 
@@ -75,7 +75,12 @@ function VentureView({ v }: { v: Venture }) {
                 Enquire about {v.name}
               </Button>
               {v.site && (
-                <Button to={v.site.href} target={v.site.href.startsWith('http') ? '_blank' : undefined} variant="secondary" icon="open_in_new">
+                <Button
+                  to={v.site.href}
+                  target={v.site.href.startsWith('http') ? '_blank' : undefined}
+                  variant="secondary"
+                  icon="open_in_new"
+                >
                   {v.site.label}
                 </Button>
               )}
@@ -89,7 +94,17 @@ function VentureView({ v }: { v: Venture }) {
         <Section pt="none" pb="none">
           <Grid min={220} gap="sm" pair data-stagger="90">
             {v.stats.map((st) => (
-              <Stat key={st.label} variant="soft" size="lg" soft={v.tone.soft} ink={v.tone.ink} count={st.n} suffix={st.suffix} value={`${st.n}${st.suffix}`} label={st.label} />
+              <Stat
+                key={st.label}
+                variant="soft"
+                size="lg"
+                soft={v.tone.soft}
+                ink={v.tone.ink}
+                count={st.n}
+                suffix={st.suffix}
+                value={`${st.n}${st.suffix}`}
+                label={st.label}
+              />
             ))}
           </Grid>
         </Section>

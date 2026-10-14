@@ -1,23 +1,17 @@
 import { useSearchParams } from 'react-router-dom';
 import { Button, Card, Chip, Section, SectionHeader, Tile } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { CONTACT_EMAIL, OFFICES } from '@/data/site';
-import { isVentureId } from '@/data/ventures';
-import type { VentureId } from '@/types';
-import { EnquiryForm } from './EnquiryForm';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { CONTACT_EMAIL, OFFICES, VENTURE_ENQUIRY_TOPIC } from '@/content/site';
+import { isVentureId } from '@/content/ventures';
+import { EnquiryForm } from '@/features/enquiry';
 import s from './ContactPage.module.css';
 
-/** Topic pre-selected when arriving from a venture's "Enquire about…" button. */
-const VENTURE_TOPIC: Record<VentureId, string> = {
-  insureliv: 'IT & BPO',
-  arogyaplus: 'Healthcare',
-  carehub: 'Healthcare',
-  globalcure: 'Healthcare',
-  recovery: 'Financial services'
-};
-
 export function ContactPage() {
-  useDocumentTitle('Contact — WalletEdge Global');
+  usePageMeta({
+    title: 'Contact',
+    description:
+      'Contact WalletEdge Global — offices in Sharjah, UAE and Coimbatore, India. Send an enquiry and we’ll connect you with the right company in the group.'
+  });
   const [params] = useSearchParams();
   const v = params.get('venture') ?? undefined;
   const venture = isVentureId(v) ? v : undefined;
@@ -65,7 +59,11 @@ export function ContactPage() {
 
       <Card data-reveal="up" data-delay="150" variant="ink" padding="lg" className={`on-dark ${s.panel}`}>
         <div className={s.panelGlow} aria-hidden="true" />
-        <EnquiryForm key={venture ?? 'general'} venture={venture} initialTopics={venture ? [VENTURE_TOPIC[venture]] : []} />
+        <EnquiryForm
+          key={venture ?? 'general'}
+          venture={venture}
+          initialTopics={venture ? [VENTURE_ENQUIRY_TOPIC[venture]] : []}
+        />
       </Card>
     </Section>
   );

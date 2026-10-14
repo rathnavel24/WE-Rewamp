@@ -1,9 +1,9 @@
 import { Button, Section, SectionHeader } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { ROUTES } from '@/data/routes';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { ROUTES } from '@/config/routes';
 
 export function NotFoundPage() {
-  useDocumentTitle('Page not found — WalletEdge Global');
+  usePageMeta({ title: 'Page not found' });
   return (
     <Section pt="hero">
       <SectionHeader

@@ -1,7 +1,7 @@
-import { Button, Card, Chip, Grid, Section, SectionHeader, Stat, Tile } from '@/components/ui';
-import { ROUTES } from '@/data/routes';
-import { INSURELIV_TAGS } from '@/data/services';
-import { GREEN, ORANGE } from '@/data/tones';
+import { Button, Card, Chip, Grid, Section, SectionHeader, Stat, Swipe, Tile } from '@/components/ui';
+import { ROUTES } from '@/config/routes';
+import { INSURELIV_TAGS } from '@/content/services';
+import { GREEN, ORANGE } from '@/content/tones';
 import s from './Flagships.module.css';
 
 const AROGYA_STATS = [
@@ -15,7 +15,7 @@ export function Flagships() {
     <Section data-screen-label="Flagships">
       <SectionHeader kicker="03 — Flagship platforms" title="Technology that already works at scale." />
 
-      <Grid min={460}>
+      <Swipe label="Flagship platforms" min={460} peek={88}>
         {/* InsureLiv */}
         <Card data-reveal="up" padding="lg" className={s.card}>
           <div className={s.top}>
@@ -28,7 +28,8 @@ export function Flagships() {
             </Chip>
           </div>
           <p className={s.statement}>
-            An AI-powered insurance operating system that unifies broker, insurer and TPA workflows into one secure pipeline.
+            An AI-powered insurance operating system that unifies broker, insurer and TPA workflows into one secure
+            pipeline.
           </p>
           <Grid min={140} gap="sm" pair>
             <Stat count={90} suffix="%" value="90%" label="Faster processing times" />
@@ -58,18 +59,27 @@ export function Flagships() {
             </Chip>
           </div>
           <p className={s.statement}>
-            Home diagnostics and preventive health packages, delivered by DHA-licensed professionals and CAP-accredited labs.
+            Home diagnostics and preventive health packages, delivered by DHA-licensed professionals and CAP-accredited
+            labs.
           </p>
           <Grid min={120} gap="sm" pair>
             {AROGYA_STATS.map((st) => (
-              <Stat key={st.label} variant="surface" ink={ORANGE.ink} count={st.count} suffix={st.suffix} value={st.display} label={st.label} />
+              <Stat
+                key={st.label}
+                variant="surface"
+                ink={ORANGE.ink}
+                count={st.count}
+                suffix={st.suffix}
+                value={st.display}
+                label={st.label}
+              />
             ))}
           </Grid>
           <Button to={ROUTES.venture('arogyaplus')} variant="link" icon="arrow_forward" className={s.more}>
             Discover ArogyaPlus
           </Button>
         </Card>
-      </Grid>
+      </Swipe>
     </Section>
   );
 }

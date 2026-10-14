@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Card, Chip, Grid, Icon, Section, SectionHeader, Tile } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { COMPANIES } from '@/data/companies';
-import { alternate } from '@/data/tones';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { COMPANIES } from '@/content/companies';
+import { alternate } from '@/content/tones';
 import type { Country } from '@/types';
-import logo from '@/assets/walletedge-logo.png';
+import logo from '@/assets/brand/walletedge-logo.png';
 import s from './CompaniesPage.module.css';
 
 type Filter = 'All' | 'UAE' | 'India';
@@ -14,7 +14,11 @@ const matches = (f: Filter, country: Country) => f === 'All' || country === f.to
 const SUBSIDIARIES = COMPANIES.filter((c) => !c.parent);
 
 export function CompaniesPage() {
-  useDocumentTitle('Our Companies — WalletEdge Global');
+  usePageMeta({
+    title: 'Our Companies',
+    description:
+      'The seven companies of WalletEdge Global across the UAE and India — insurance technology, healthcare, pharmacy, financial recovery and consulting.'
+  });
   const [filter, setFilter] = useState<Filter>('All');
   const shown = COMPANIES.filter((c) => matches(filter, c.country));
 
@@ -62,7 +66,13 @@ export function CompaniesPage() {
           </h2>
           <div data-reveal="fade" className={s.filters} role="group" aria-label="Filter by country">
             {FILTERS.map((f) => (
-              <button key={f} type="button" aria-pressed={filter === f} className={s.filter} onClick={() => setFilter(f)}>
+              <button
+                key={f}
+                type="button"
+                aria-pressed={filter === f}
+                className={s.filter}
+                onClick={() => setFilter(f)}
+              >
                 {f} <span className={s.filterCount}>{COMPANIES.filter((c) => matches(f, c.country)).length}</span>
               </button>
             ))}

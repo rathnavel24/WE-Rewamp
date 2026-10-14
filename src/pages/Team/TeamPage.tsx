@@ -1,9 +1,10 @@
-import { Avatar, Card, Chip, CtaBanner, Grid, Section, SectionHeader } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { ROUTES } from '@/data/routes';
-import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/data/team';
-import { alternate } from '@/data/tones';
+import { Card, Chip, CtaBanner, Grid, Portrait, Section, SectionHeader } from '@/components/ui';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { ROUTES } from '@/config/routes';
+import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/content/team';
+import { alternate } from '@/content/tones';
 import type { Person } from '@/types';
+import { teamPhoto } from '@/content/assets';
 import s from './TeamPage.module.css';
 
 /** Colours alternate across both groups continuously, as in the design. */
@@ -17,7 +18,10 @@ const GROUPS: Array<{ title: string; people: Array<Person & { index: number }> }
 })();
 
 export function TeamPage() {
-  useDocumentTitle('Our Team — WalletEdge Global');
+  usePageMeta({
+    title: 'Our Team',
+    description: 'The founders, board and leaders running each WalletEdge Global company day to day.'
+  });
   return (
     <>
       <Section data-screen-label="Team hero" pt="hero" pb="sm">
@@ -36,16 +40,16 @@ export function TeamPage() {
           {FOUNDERS.map((p) => (
             <div key={p.name} className={`on-dark ${s.founder}`} style={{ background: p.background }}>
               <div className={s.founderGlow} aria-hidden="true" />
-              <div className={s.founderTop}>
-                <Avatar name={p.name} initials={p.initials} size="xl" />
+              <div className={s.founderText}>
                 <Chip variant="glass" mono>
                   Founder
                 </Chip>
+                <div className={s.founderName}>
+                  <span>{p.name}</span>
+                  <span className="t-body-lg">{p.role}</span>
+                </div>
               </div>
-              <div className={s.founderText}>
-                <span className={s.founderName}>{p.name}</span>
-                <span className="t-body-lg">{p.role}</span>
-              </div>
+              <Portrait name={p.name} photo={teamPhoto(p.name)} variant="glass" className={s.founderPhoto} />
             </div>
           ))}
         </Grid>
@@ -64,7 +68,7 @@ export function TeamPage() {
               const tone = alternate(p.index);
               return (
                 <Card key={p.name} padding="sm" interactive className={s.person}>
-                  <Avatar name={p.name} tone={tone} />
+                  <Portrait name={p.name} photo={teamPhoto(p.name)} tone={tone} className={s.personPhoto} />
                   <span className={s.personText}>
                     <span className="t-h4">{p.name}</span>
                     <span className="t-small">{p.role}</span>
@@ -81,7 +85,12 @@ export function TeamPage() {
         </Section>
       ))}
 
-      <CtaBanner title="Want to speak with someone on the leadership team?" cta="Book a meeting" to={ROUTES.contact} pt="md" />
+      <CtaBanner
+        title="Want to speak with someone on the leadership team?"
+        cta="Book a meeting"
+        to={ROUTES.contact}
+        pt="md"
+      />
     </>
   );
 }

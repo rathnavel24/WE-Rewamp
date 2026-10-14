@@ -1,6 +1,6 @@
-import { Button, Card, Chip, Grid, Icon, Section, SectionHeader, Tile } from '@/components/ui';
-import { ROUTES } from '@/data/routes';
-import { SERVICE_CARDS } from '@/data/services';
+import { Button, Card, Chip, Icon, Section, SectionHeader, Swipe, Tile } from '@/components/ui';
+import { ROUTES } from '@/config/routes';
+import { SERVICE_CARDS } from '@/content/services';
 import s from './ServicesSection.module.css';
 
 export function ServicesSection() {
@@ -17,7 +17,7 @@ export function ServicesSection() {
         }
       />
 
-      <Grid min={300} max={3} data-stagger="90">
+      <Swipe label="Our services" min={300} max={3} data-stagger="90">
         {SERVICE_CARDS.map((c) => (
           <Card key={c.no} to={c.href} className={s.card}>
             <div className={s.cardTop}>
@@ -48,7 +48,7 @@ export function ServicesSection() {
             </span>
           </div>
         </Card>
-      </Grid>
+      </Swipe>
     </Section>
   );
 }

@@ -1,0 +1,50 @@
+.tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-icon);
+  font-weight: normal;
+  line-height: 1;
+  font-feature-settings: 'liga';
+  background: var(--tile-bg, var(--color-primary-soft));
+  color: var(--tile-ink, var(--color-primary));
+}
+
+.xs {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  font-size: 18px;
+}
+.sm {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  font-size: 20px;
+}
+.md {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  font-size: 24px;
+}
+.lg {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  font-size: 28px;
+}
+.xl {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  font-size: 32px;
+}
+
+.neutral {
+  --tile-bg: var(--color-surface-sunken);
+  --tile-ink: var(--color-accent);
+}
+.round {
+  border-radius: var(--radius-pill);
+}

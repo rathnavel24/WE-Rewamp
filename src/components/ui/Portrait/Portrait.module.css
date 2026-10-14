@@ -1,0 +1,29 @@
+.portrait {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, var(--portrait-bg, var(--color-primary-soft)), var(--color-surface-sunken));
+  color: var(--portrait-ink, var(--color-primary));
+}
+.glass {
+  background: linear-gradient(160deg, var(--fill-on-dark-strong), var(--fill-on-dark));
+  border: 1px solid var(--border-on-dark);
+  color: var(--white);
+}
+
+.photo,
+.placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.placeholder {
+  fill: currentColor;
+  opacity: 0.22;
+}
+.glass .placeholder {
+  opacity: 0.28;
+}

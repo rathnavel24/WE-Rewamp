@@ -3,10 +3,10 @@
  *
  * Components opt in with data attributes; `scan()` wires them up once per element:
  *   data-reveal="up|fade|scale|left|right|blur" [data-delay]   reveal on scroll
- *   data-stagger="90" [data-type]                             reveal children in sequence
+ *   data-stagger="90" [data-type] [data-stagger-group]        reveal children in sequence (group: all start when
+ *                                                             the container shows — for horizontal scrollers)
  *   data-count="90" [data-suffix] [data-prefix]               count up on scroll
  *   data-marquee="left|right" [data-speed]                    infinite horizontal scroll
- *   data-roller="2300"                                        vertical word rotator
  *   data-orbit="70" [data-reverse]                            slow rotation (children with data-orbit-counter stay upright)
  *   data-float="8"                                            gentle bobbing
  *   data-pulse="0"                                            radar ping
@@ -54,7 +54,8 @@ const io = (): IntersectionObserver => {
           onEnter.delete(e.target);
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+      // Start just before an element scrolls in, so fast scrolling never shows blank sections.
+      { threshold: 0, rootMargin: '0px 0px 8% 0px' }
     );
   }
   return observer;
@@ -72,15 +73,16 @@ const num = (v: string | undefined, fallback: number) => {
   return Number.isFinite(n) ? n : fallback;
 };
 
-function reveal(el: HTMLElement, type: string, delay: number) {
+/** `trigger` is the element whose visibility starts the animation (default: the element itself). */
+function reveal(el: HTMLElement, type: string, delay: number, trigger: Element = el) {
   if (prefersReducedMotion()) return;
   const from = FROM[type as RevealType] ?? FROM.up;
   const to: Keyframe = { opacity: 1, transform: 'none' };
   if (from.filter) to.filter = 'blur(0)';
-  const a = el.animate([from, to], { duration: 1000, delay, easing: EASE, fill: 'both' });
+  const a = el.animate([from, to], { duration: 700, delay, easing: EASE, fill: 'both' });
   a.pause();
   a.onfinish = () => a.cancel();
-  whenVisible(el, () => a.play());
+  whenVisible(trigger, () => a.play());
 }
 
 const formatCount = (v: number, dec: number) => v.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -122,39 +124,18 @@ function marquee(el: HTMLElement) {
   el.addEventListener('mouseleave', () => a.updatePlaybackRate(1));
 }
 
-function roller(el: HTMLElement) {
-  const inner = el.firstElementChild as HTMLElement | null;
-  if (!inner) return;
-  const n = inner.children.length - 1; // last child duplicates the first
-  if (n < 1 || prefersReducedMotion()) return;
-  let i = 0;
-  const hold = num(el.dataset.roller, 2400);
-  const timer = window.setInterval(() => {
-    if (!el.isConnected) {
-      window.clearInterval(timer);
-      return;
-    }
-    const from = i;
-    i++;
-    const a = inner.animate(
-      [{ transform: `translateY(${(-from * 100) / (n + 1)}%)` }, { transform: `translateY(${(-i * 100) / (n + 1)}%)` }],
-      { duration: 700, easing: EASE, fill: 'forwards' }
-    );
-    if (i === n) {
-      a.onfinish = () => {
-        i = 0;
-        inner.animate([{ transform: 'translateY(0)' }], { duration: 0, fill: 'forwards' });
-      };
-    }
-  }, hold);
-}
-
 function orbit(el: HTMLElement) {
   const dur = num(el.dataset.orbit, 60) * 1000;
   const rev = el.dataset.reverse ? -1 : 1;
-  const a = el.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${360 * rev}deg)` }], { duration: dur, iterations: Infinity });
+  const a = el.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${360 * rev}deg)` }], {
+    duration: dur,
+    iterations: Infinity
+  });
   const kids = Array.from(el.querySelectorAll<HTMLElement>('[data-orbit-counter]')).map((k) =>
-    k.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${-360 * rev}deg)` }], { duration: dur, iterations: Infinity })
+    k.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${-360 * rev}deg)` }], {
+      duration: dur,
+      iterations: Infinity
+    })
   );
   if (prefersReducedMotion()) [a, ...kids].forEach((x) => x.pause());
 }
@@ -162,16 +143,21 @@ function orbit(el: HTMLElement) {
 function float(el: HTMLElement) {
   if (prefersReducedMotion()) return;
   const amp = num(el.dataset.float, 10);
-  el.animate(
-    [{ transform: 'translateY(0)' }, { transform: `translateY(${-amp}px)` }, { transform: 'translateY(0)' }],
-    { duration: 5000 + Math.random() * 2000, iterations: Infinity, easing: 'ease-in-out', delay: -Math.random() * 4000 }
-  );
+  el.animate([{ transform: 'translateY(0)' }, { transform: `translateY(${-amp}px)` }, { transform: 'translateY(0)' }], {
+    duration: 5000 + Math.random() * 2000,
+    iterations: Infinity,
+    easing: 'ease-in-out',
+    delay: -Math.random() * 4000
+  });
 }
 
 function pulse(el: HTMLElement) {
   if (prefersReducedMotion()) return;
   el.animate(
-    [{ transform: 'scale(1)', opacity: 0.55 }, { transform: 'scale(2.6)', opacity: 0 }],
+    [
+      { transform: 'scale(1)', opacity: 0.55 },
+      { transform: 'scale(2.6)', opacity: 0 }
+    ],
     { duration: 2200, iterations: Infinity, easing: 'ease-out', delay: num(el.dataset.pulse, 0) }
   );
 }
@@ -189,7 +175,6 @@ function flow(el: HTMLElement) {
 const BEHAVIOURS: Array<[key: string, fn: (el: HTMLElement) => void]> = [
   ['count', count],
   ['marquee', marquee],
-  ['roller', roller],
   ['orbit', orbit],
   ['float', float],
   ['pulse', pulse],
@@ -208,7 +193,8 @@ export function scan(root: ParentNode = document) {
     const gap = num(el.dataset.stagger, 90);
     Array.from(el.children).forEach((c, i) => {
       if (!once('reveal', c)) return;
-      reveal(c as HTMLElement, el.dataset.type || 'up', i * gap);
+      // Children of a horizontal scroller are clipped off-screen, so they key off the container.
+      reveal(c as HTMLElement, el.dataset.type || 'up', i * gap, el.dataset.staggerGroup !== undefined ? el : c);
     });
   });
 

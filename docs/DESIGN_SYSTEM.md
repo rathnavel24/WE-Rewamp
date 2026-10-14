@@ -12,49 +12,55 @@ Every page is built from one set of **tokens** (`src/styles/tokens.css`) and a s
 3. **Use semantic tokens**, not primitives (`--color-primary`, not `--green-700`).
 4. **Dark context = `.on-dark`.** Any dark band or panel adds `on-dark` so text utilities, labels,
    eyebrows, links and section indexes switch to their light treatment automatically.
+5. **No orange glows on dark surfaces.** Orange over forest/ink blends to a muddy brown. Ambient glows on
+   dark bands and panels use `--glow-on-dark` (sage) and `--glow-primary-on-dark` (brand green) only;
+   `--glow-accent` is for light surfaces. Orange stays for solid accents (labels, buttons, icons) on dark.
 
 ## Tokens
 
-| Group | Tokens | Notes |
-| --- | --- | --- |
-| Surfaces | `--color-canvas`, `--color-surface`, `--color-surface-sunken`, `--color-inverse`, `--color-inverse-2` | Canvas is the page; surface is cards |
-| Brand | `--color-primary(-soft)`, `--color-accent(-hover/-strong/-soft/-on-dark)` | Green = trust, orange = action |
-| Text | `--text-strong` → `--text-faint`, `--text-on-dark(-muted/-subtle)` | Six steps on light, three on dark |
-| Borders | `--border-subtle/default/strong`, `--border-on-dark(-strong)` | |
-| Type | `--fs-display-1` … `--fs-label`, `--lh-*`, `--ls-*` | Fluid sizes via `clamp()` |
-| Space | `--space-1` (4px) … `--space-30` (120px) | 4px base |
-| Rhythm | `--section-y`, `--section-y-sm`, `--nav-clearance`, `--stack-section`, `--gutter` | Vertical rhythm lives here only |
-| Radius | `--radius-xs` 8 · `sm` 12 · `md` 16 · `lg` 22 · `xl` 28 · `2xl` 36 · `pill` | |
-| Elevation | `--shadow-xs` … `--shadow-xl` | |
-| Motion | `--ease`, `--dur-fast`, `--dur-base`, `--lift-sm/md` | |
+| Group         | Tokens                                                                                                                                           | Notes                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| Surfaces      | `--color-canvas`, `--color-surface`, `--color-surface-sunken`, `--color-inverse`, `--color-inverse-2`                                            | Canvas is the page; surface is cards |
+| Brand         | `--color-primary(-soft)`, `--color-accent(-hover/-strong/-soft/-on-dark)`                                                                        | Green = trust, orange = action       |
+| Text          | `--text-strong` → `--text-faint`, `--text-on-dark(-soft/-muted/-subtle/-faint)`                                                                  | Six steps on light, five on dark     |
+| Borders       | `--border-subtle/default/strong`, `--border-on-dark(-medium/-strong)`, `--border-accent-soft`                                                    |                                      |
+| Fills on dark | `--fill-on-dark-subtle` · `--fill-on-dark` · `-focus` · `-hover` · `-strong`, `--fill-error-on-dark`                                             | White overlays, weakest → strongest  |
+| Glows         | `--glow-accent`, `--glow-primary` (light) · `--glow-on-dark(-fade)`, `--glow-primary-on-dark(-fade)` (dark) · `--glow-on-colour`, `--glow-white` | See rule 5                           |
+| Type          | `--fs-display-1` … `--fs-label`, `--lh-*`, `--ls-*`                                                                                              | Fluid sizes via `clamp()`            |
+| Space         | `--space-1` (4px) … `--space-30` (120px)                                                                                                         | 4px base                             |
+| Rhythm        | `--section-y`, `--section-y-sm`, `--nav-clearance`, `--stack-section`, `--gutter`                                                                | Vertical rhythm lives here only      |
+| Radius        | `--radius-xs` 8 · `sm` 12 · `md` 16 · `lg` 22 · `xl` 28 · `2xl` 36 · `pill`                                                                      |                                      |
+| Elevation     | `--shadow-xs` … `--shadow-xl`, `--shadow-nav`, `--shadow-menu`, `--shadow-on-dark`                                                               |                                      |
+| Motion        | `--ease`, `--dur-fast`, `--dur-base`, `--lift-sm/md`                                                                                             |                                      |
 
 ## Typography utilities
 
 `.t-display-1` · `.t-display-2` · `.t-h1` · `.t-h2` · `.t-h3` · `.t-h4` · `.t-lead` · `.t-body-lg` ·
 `.t-body` · `.t-small` · `.t-label` · `.eyebrow`
 
-| Use | Class |
-| --- | --- |
-| Page hero `h1` | `t-display-1` (via `SectionHeader size="display-1"`) |
-| Section `h2` | `t-display-2` (SectionHeader default) |
-| Panel `h2` inside a card | `t-h1` |
-| Card titles | `t-h2` (large) · `t-h3` · `t-h4` (small) |
+| Use                      | Class                                                |
+| ------------------------ | ---------------------------------------------------- |
+| Page hero `h1`           | `t-display-1` (via `SectionHeader size="display-1"`) |
+| Section `h2`             | `t-display-2` (SectionHeader default)                |
+| Panel `h2` inside a card | `t-h1`                                               |
+| Card titles              | `t-h2` (large) · `t-h3` · `t-h4` (small)             |
 
 ## Components
 
-| Component | Purpose | Key props |
-| --- | --- | --- |
-| `Section` | Page band; owns vertical rhythm + container | `pt`/`pb`: `none · sm · md · hero`, `tone="inverse"`, `gap` |
-| `SectionHeader` | Kicker + title + lead + action | `size`, `layout="stack \| split"`, `as`, `kicker`, `action` |
-| `Grid` | Responsive auto-column grid | `min` (px), `max` (column cap), `gap`, `mode="fit \| fill"` |
-| `Card` | All boxed content | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive` |
-| `Button` | Every CTA | `variant` (primary, accent, secondary, inverse, outline-dark, link), `size`, `icon`, `block`, `to` |
-| `Chip` | Tags, badges, filters, toggles | `variant` (7), `size`, `mono`, `icon`, `leading`, `to`, `onToggle`/`selected` |
-| `Tile` | Icon in a rounded square | `size="xs…xl"`, `tone`, `solid`, `neutral`, `round` |
-| `Avatar` | Initials avatar | `name`, `tone`, `size="md \| xl"` |
-| `Stat` | Figure + caption, with count-up | `value`, `label`, `count`, `suffix`, `variant`, `size`, `ink` |
-| `SectionIndex` | "01 —— Label" kicker | `no`, `label`, `tone` |
-| `CtaBanner` | Closing dark CTA strip | `title`, `cta`, `to` |
+| Component       | Purpose                                                                                              | Key props                                                                                          |
+| --------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `Section`       | Page band; owns vertical rhythm + container                                                          | `pt`/`pb`: `none · sm · md · hero`, `tone="inverse"`, `gap`                                        |
+| `SectionHeader` | Kicker + title + lead + action                                                                       | `size`, `layout="stack \| split"`, `as`, `kicker`, `action`                                        |
+| `Grid`          | Responsive auto-column grid                                                                          | `min` (px), `max` (column cap), `gap`, `mode="fit \| fill"`                                        |
+| `Swipe`         | A `Grid` on tablet/desktop; on phones a snap-scrolling swipe row with the next card peeking and dots | `label`, `peek` (% width), plus all `Grid` props                                                   |
+| `Card`          | All boxed content                                                                                    | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive`                               |
+| `Button`        | Every CTA                                                                                            | `variant` (primary, accent, secondary, inverse, outline-dark, link), `size`, `icon`, `block`, `to` |
+| `Chip`          | Tags, badges, filters, toggles                                                                       | `variant` (7), `size`, `mono`, `icon`, `leading`, `to`, `onToggle`/`selected`                      |
+| `Tile`          | Icon in a rounded square                                                                             | `size="xs…xl"`, `tone`, `solid`, `neutral`, `round`                                                |
+| `Avatar`        | Initials avatar                                                                                      | `name`, `tone`, `size="md \| xl"`                                                                  |
+| `Stat`          | Figure + caption, with count-up                                                                      | `value`, `label`, `count`, `suffix`, `variant`, `size`, `ink`                                      |
+| `SectionIndex`  | "01 —— Label" kicker                                                                                 | `no`, `label`, `tone`                                                                              |
+| `CtaBanner`     | Closing dark CTA strip                                                                               | `title`, `cta`, `to`                                                                               |
 
 Import from the barrel: `import { Button, Card, Section } from '@/components/ui';`
 

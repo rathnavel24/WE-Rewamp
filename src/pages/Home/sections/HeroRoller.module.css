@@ -1,0 +1,134 @@
+/*
+ * Headline word rotator. Each word sits on its own line, so it shrinks to fit the longest
+ * word ("Financial services." is ~9.4em wide) inside the copy column's container.
+ */
+.roller {
+  position: relative;
+  display: block;
+  font-size: min(1em, 10.4cqi);
+  /* One line of type + room for the underline; letters are masked by this box. */
+  height: 1.22em;
+  overflow: hidden;
+}
+
+.word {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  color: var(--tone);
+}
+/* The outgoing word sits on top of the incoming one while it leaves. */
+.leaving {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.letters {
+  display: flex;
+  white-space: nowrap;
+}
+.letter {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Underline: a faint track with a bar that fills over the hold time (it's the rotation timer). */
+.track {
+  position: relative;
+  display: block;
+  height: 0.055em;
+  margin-top: 0.06em;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0.14;
+}
+.timer {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Reduced motion: a still word with a full underline. */
+.roller:not(.animated) .timer {
+  transform: none;
+}
+
+/* ---------- Motion (skipped entirely for prefers-reduced-motion) ---------- */
+
+.animated .letter {
+  animation: letterIn 0.8s var(--ease) both;
+  animation-delay: calc(var(--delay) + var(--i) * 28ms);
+}
+.animated .track {
+  animation: fadeIn 0.5s ease both;
+  animation-delay: calc(var(--delay) + 200ms);
+}
+.animated .timer {
+  animation: fill var(--hold) linear both;
+  animation-delay: calc(var(--delay) + 450ms);
+}
+
+.animated .leaving .letter {
+  animation: letterOut 0.34s cubic-bezier(0.55, 0, 0.75, 0) both;
+  animation-delay: calc(var(--i) * 9ms);
+}
+.animated .leaving .track {
+  animation: none;
+}
+.animated .leaving .timer {
+  transform: scaleX(1);
+  transform-origin: right;
+  animation: drain 0.34s cubic-bezier(0.55, 0, 0.75, 0) both;
+}
+
+/* Off-screen: freeze everything, including the timer. */
+.paused .letter,
+.paused .track,
+.paused .timer {
+  animation-play-state: paused;
+}
+
+@keyframes letterIn {
+  from {
+    opacity: 0;
+    transform: translateY(105%) rotate(6deg);
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes letterOut {
+  to {
+    opacity: 0;
+    transform: translateY(-90%) rotate(-4deg);
+  }
+}
+@keyframes fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes drain {
+  to {
+    transform: scaleX(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

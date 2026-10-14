@@ -1,0 +1,23 @@
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: var(--radius-xl);
+  background: var(--color-inverse-2);
+}
+.title {
+  max-width: 620px;
+}
+@media (max-width: 600px) {
+  .banner {
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+    gap: var(--space-5);
+  }
+  .banner > :last-child {
+    width: 100%;
+  }
+}

@@ -1,4 +1,4 @@
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { CompaniesSection } from './sections/CompaniesSection';
 import { ContactCta } from './sections/ContactCta';
 import { Flagships } from './sections/Flagships';
@@ -8,7 +8,7 @@ import { TeamPreview } from './sections/TeamPreview';
 import { TrustedBy } from './sections/TrustedBy';
 
 export function HomePage() {
-  useDocumentTitle('WalletEdge Global — Parent Group');
+  usePageMeta();
   return (
     <>
       <Hero />

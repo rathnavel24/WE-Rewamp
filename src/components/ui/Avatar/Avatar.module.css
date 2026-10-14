@@ -1,0 +1,27 @@
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: var(--avatar-bg, var(--color-primary-soft));
+  color: var(--avatar-ink, var(--color-primary));
+}
+
+.md {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  font-size: 19px;
+}
+.xl {
+  width: 84px;
+  height: 84px;
+  border-radius: var(--radius-lg);
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  background: var(--fill-on-dark-strong);
+  border: 1px solid var(--border-on-dark-strong);
+  color: var(--white);
+}

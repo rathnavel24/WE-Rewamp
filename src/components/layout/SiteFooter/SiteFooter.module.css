@@ -1,0 +1,176 @@
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-20) 0 var(--space-8);
+  color: var(--text-strong);
+}
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Desktop: brand | company | ventures | offices on one fixed grid, so columns never reflow unevenly. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: var(--space-12);
+}
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.logo {
+  width: 180px;
+  height: auto;
+}
+.blurb {
+  font-size: var(--fs-small);
+  line-height: var(--lh-relaxed);
+  color: var(--text-muted);
+  max-width: 300px;
+  text-wrap: pretty;
+}
+.mail {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.mail:hover {
+  color: var(--color-accent);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.heading {
+  margin-bottom: var(--space-2);
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.link {
+  font-size: var(--fs-small);
+  color: var(--text-default);
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--color-accent);
+}
+
+.offices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.office {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-style: normal;
+}
+.officeName {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+}
+.hq {
+  padding: 3px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font: var(--fw-medium) 10.5px/1 var(--font-mono);
+  letter-spacing: 0.06em;
+}
+.address {
+  font-size: var(--fs-small);
+  line-height: var(--lh-normal);
+  color: var(--text-muted);
+}
+.phone {
+  font-size: var(--fs-small);
+  color: var(--text-default);
+  text-decoration: none;
+}
+.phone:hover {
+  color: var(--color-accent);
+}
+
+/* Touch screens and tablets: same rhythm, 44px tap targets. */
+@media (pointer: coarse), (max-width: 1024px) {
+  .col {
+    gap: 0;
+  }
+  .link,
+  .phone,
+  .mail {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--fs-caption);
+  color: var(--text-subtle);
+}
+
+/* Tablet: brand across the top, then the three link columns. */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-10) var(--space-8);
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Phones: brand, then Company | Ventures side by side, then offices full width. */
+@media (max-width: 600px) {
+  .footer {
+    padding: var(--space-14) 0 calc(var(--space-6) + env(safe-area-inset-bottom));
+  }
+  .inner {
+    gap: var(--space-10);
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10) var(--space-5);
+  }
+  .officesCol {
+    grid-column: 1 / -1;
+  }
+  .offices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+  .logo {
+    width: 150px;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+}

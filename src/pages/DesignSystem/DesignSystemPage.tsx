@@ -1,7 +1,19 @@
 import type { ReactNode } from 'react';
-import { Avatar, Button, Card, Chip, Grid, Section, SectionHeader, SectionIndex, Stat, Tile, type TileSize } from '@/components/ui';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { GREEN, ORANGE } from '@/data/tones';
+import {
+  Avatar,
+  Button,
+  Card,
+  Chip,
+  Grid,
+  Section,
+  SectionHeader,
+  SectionIndex,
+  Stat,
+  Tile,
+  type TileSize
+} from '@/components/ui';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { GREEN, ORANGE } from '@/content/tones';
 import s from './DesignSystemPage.module.css';
 
 /**
@@ -64,7 +76,7 @@ const SHADOWS = ['xs', 'sm', 'md', 'lg', 'xl'];
 const TILE_SIZES: TileSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 export function DesignSystemPage() {
-  useDocumentTitle('Design system — WalletEdge Global');
+  usePageMeta({ title: 'Design system' });
   return (
     <>
       <Section pt="hero" pb="sm">
@@ -104,7 +116,9 @@ export function DesignSystemPage() {
                 <span className="t-h4">{name}</span>
                 <code className={s.code}>.{cls}</code>
               </div>
-              <span className={cls}>{cls.startsWith('t-display') || cls.startsWith('t-h') ? 'One group, every edge.' : sample}</span>
+              <span className={cls}>
+                {cls.startsWith('t-display') || cls.startsWith('t-h') ? 'One group, every edge.' : sample}
+              </span>
             </div>
           ))}
           <div className={s.typeRow}>
@@ -164,9 +178,7 @@ export function DesignSystemPage() {
             <Button variant="accent" icon="arrow_forward">
               Accent
             </Button>
-            <Button variant="secondary">
-              Secondary
-            </Button>
+            <Button variant="secondary">Secondary</Button>
             <Button variant="link" icon="arrow_outward">
               Link
             </Button>
@@ -190,9 +202,7 @@ export function DesignSystemPage() {
             <Button variant="outline-dark" icon="mail">
               Outline dark
             </Button>
-            <Button variant="accent">
-              Accent
-            </Button>
+            <Button variant="accent">Accent</Button>
             <Button variant="link" icon="arrow_forward">
               Link
             </Button>
@@ -261,19 +271,21 @@ export function DesignSystemPage() {
 
       <Block no="06" title="Cards & stats">
         <Grid min={240} max={4} gap="sm">
-          {(['surface', 'sunken', 'primary-soft', 'accent-soft', 'accent', 'inverse', 'ink', 'glass'] as const).map((v) => (
-            <Card
-              key={v}
-              variant={v}
-              interactive
-              className={['accent', 'inverse', 'ink', 'glass'].includes(v) ? 'on-dark' : undefined}
-              style={v === 'glass' ? { background: 'var(--color-inverse)' } : undefined}
-            >
-              <Tile icon="layers" size="sm" tone={v === 'accent-soft' ? ORANGE : GREEN} />
-              <span className="t-h4">{v}</span>
-              <span className="t-small">variant=&quot;{v}&quot;</span>
-            </Card>
-          ))}
+          {(['surface', 'sunken', 'primary-soft', 'accent-soft', 'accent', 'inverse', 'ink', 'glass'] as const).map(
+            (v) => (
+              <Card
+                key={v}
+                variant={v}
+                interactive
+                className={['accent', 'inverse', 'ink', 'glass'].includes(v) ? 'on-dark' : undefined}
+                style={v === 'glass' ? { background: 'var(--color-inverse)' } : undefined}
+              >
+                <Tile icon="layers" size="sm" tone={v === 'accent-soft' ? ORANGE : GREEN} />
+                <span className="t-h4">{v}</span>
+                <span className="t-small">variant=&quot;{v}&quot;</span>
+              </Card>
+            )
+          )}
         </Grid>
         <Grid min={200} gap="sm">
           <Stat count={90} suffix="%" value="90%" label="Sunken (default)" />

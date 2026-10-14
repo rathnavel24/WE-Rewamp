@@ -5,7 +5,7 @@
   right: -200px;
   top: -260px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(207, 85, 18, .28), transparent 65%);
+  background: radial-gradient(circle, var(--glow-on-dark), var(--glow-on-dark-fade) 40%, transparent 68%);
   pointer-events: none;
 }
 .inner {
@@ -29,13 +29,34 @@
   border-bottom: 1px solid var(--border-on-dark);
   text-decoration: none;
   color: var(--white);
-  transition: padding var(--dur-base) var(--ease), background var(--dur-base);
+  transition:
+    padding var(--dur-base) var(--ease),
+    background var(--dur-base);
 }
-.row:hover { padding-left: 22px; background: rgba(255, 255, 255, .04); color: var(--white); }
-.no { font-size: var(--fs-caption); color: rgba(255, 255, 255, .45); }
-.text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.name { font: var(--fw-medium) clamp(20px, 2.4vw, 30px)/1.15 var(--font-sans); letter-spacing: var(--ls-title); }
-.meta { display: flex; align-items: center; gap: 10px; }
+.row:hover {
+  padding-left: 22px;
+  background: var(--fill-on-dark-subtle);
+  color: var(--white);
+}
+.no {
+  font-size: var(--fs-caption);
+  color: var(--text-on-dark-faint);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.name {
+  font: var(--fw-medium) clamp(20px, 2.4vw, 30px)/1.15 var(--font-sans);
+  letter-spacing: var(--ls-title);
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .arrow {
   width: 40px;
   height: 40px;
@@ -45,19 +66,40 @@
   place-items: center;
   transition: background var(--dur-fast);
 }
-.row:hover .arrow { background: var(--color-accent); }
-
-@media (max-width: 600px) {
-  .row { grid-template-columns: 28px minmax(0, 1fr) auto; gap: var(--space-3); padding: 18px var(--space-1); }
-  .row:active { background: rgba(255, 255, 255, .06); }
-  /* Hide the country chip only — a descendant selector here used to blank the arrow icon too. */
-  .meta > :first-child { display: none; }
-  .name { font-size: 19px; }
-  .arrow { width: 36px; height: 36px; }
-  .marquee { margin-top: var(--space-12); }
+.row:hover .arrow {
+  background: var(--color-accent);
 }
 
-.marquee { margin-top: var(--space-20); display: flex; width: max-content; }
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    padding: 18px var(--space-1);
+  }
+  .row:active {
+    background: var(--fill-on-dark);
+  }
+  /* Hide the country chip only — a descendant selector here used to blank the arrow icon too. */
+  .meta > :first-child {
+    display: none;
+  }
+  .name {
+    font-size: 19px;
+  }
+  .arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .marquee {
+    margin-top: var(--space-12);
+  }
+}
+
+.marquee {
+  margin-top: var(--space-20);
+  display: flex;
+  width: max-content;
+}
 .rollName {
   flex: none;
   display: flex;
@@ -65,9 +107,9 @@
   gap: var(--space-10);
   padding-right: var(--space-10);
   font: var(--fw-semibold) clamp(48px, 7vw, 104px)/1 var(--font-sans);
-  letter-spacing: -.04em;
+  letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, .35);
+  -webkit-text-stroke: 1px var(--stroke-on-dark);
   white-space: nowrap;
 }
 .square {

@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min)), 1fr));
+}
+.fill {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min)), 1fr));
+}
+
+/* Cap column count: each track is at least 1/max of the row (minus gaps). */
+.capped {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, max(var(--grid-min), (100% - (var(--grid-max) - 1) * var(--grid-gap)) / var(--grid-max))), 1fr)
+  );
+}
+
+.sm {
+  --grid-gap: var(--space-3);
+  gap: var(--grid-gap);
+}
+.md {
+  --grid-gap: var(--space-4);
+  gap: var(--grid-gap);
+}
+.lg {
+  --grid-gap: var(--space-10);
+  gap: var(--grid-gap);
+}
+
+/* Phones: two columns; with an odd count the first item takes the full row (3 → 1 + 2). */
+@media (max-width: 600px) {
+  .pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pair > :first-child:nth-last-child(2n + 3) {
+    grid-column: 1 / -1;
+  }
+}

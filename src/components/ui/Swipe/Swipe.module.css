@@ -1,0 +1,60 @@
+.swipe {
+  min-width: 0;
+}
+
+/* Dots only matter when the row scrolls (phones). */
+.dots {
+  display: none;
+  justify-content: center;
+  margin-top: var(--space-3);
+}
+.dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.dot::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+  transition:
+    width var(--dur-base) var(--ease),
+    background var(--dur-base) var(--ease);
+}
+.dotOn::before {
+  width: 22px;
+  background: var(--color-primary);
+}
+
+@media (max-width: 600px) {
+  /* Doubled class: must beat the Grid's own column template. */
+  .track.track {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--swipe-width);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    /* Bleed to the screen edges so cards slide out of view, not into the page margin. */
+    margin-inline: calc(-1 * var(--gutter));
+    padding: var(--space-1) var(--gutter) var(--space-2);
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+  .track > * {
+    scroll-snap-align: start;
+  }
+  .dots {
+    display: flex;
+  }
+}

@@ -1,0 +1,106 @@
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-3);
+}
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.topic {
+  padding: 10px 14px;
+  font-size: var(--fs-small);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  width: 100%;
+  padding: 17px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-on-dark-medium);
+  background: var(--fill-on-dark-subtle);
+  color: var(--white);
+  font-size: var(--fs-body);
+  outline: none;
+  transition:
+    border-color var(--dur-fast),
+    background var(--dur-fast);
+}
+.input::placeholder {
+  color: var(--text-on-dark-faint);
+}
+.input:hover {
+  border-color: var(--border-on-dark-strong);
+}
+.input:focus {
+  border-color: var(--color-accent-on-dark);
+  background: var(--fill-on-dark-focus);
+}
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error {
+  padding: var(--space-3) 14px;
+  border-radius: var(--radius-sm);
+  background: var(--fill-error-on-dark);
+  color: var(--orange-100);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+.error a {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* Success state */
+.sent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+  min-height: 420px;
+  justify-content: center;
+}
+.sentText {
+  max-width: 380px;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  /* 16px+ stops iOS Safari zooming the page when a field is focused. */
+  .input {
+    font-size: 16px;
+    padding: 15px 16px;
+  }
+  .form {
+    gap: var(--space-5);
+  }
+  .sent {
+    min-height: 320px;
+  }
+}
