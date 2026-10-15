@@ -100,7 +100,7 @@
   --scrim: rgba(14, 31, 23, 0.28);
 
   /* Glass surfaces (sticky nav) */
-  --glass: rgba(255, 255, 255, 0.92);
+  --glass: rgba(255, 255, 255, 0.97);
   --glass-clear: rgba(255, 255, 255, 0);
 
   /* Glows (ambient blobs).

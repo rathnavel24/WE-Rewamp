@@ -76,3 +76,12 @@ export const INSURELIV_TAGS = [
   { icon: 'api', label: 'API-first' },
   { icon: 'payments', label: 'Commissions' }
 ];
+
+/** Capability chips on the ArogyaPlus flagship card. */
+export const AROGYA_TAGS = [
+  { icon: 'home_health', label: 'Home sample collection' },
+  { icon: 'science', label: 'Lab tests' },
+  { icon: 'health_and_safety', label: 'Health packages' },
+  { icon: 'medical_services', label: 'Nursing care' },
+  { icon: 'event_available', label: 'Online booking' }
+];

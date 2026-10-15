@@ -61,7 +61,11 @@ interface WordProps {
 
 function Word({ sector, leaving, delayMs = 0, onDone }: WordProps) {
   const letters = Array.from(sector.word);
-  const style = { '--tone': sector.tone.accent, '--delay': `${delayMs}ms`, '--hold': `${HOLD_MS}ms` } as CSSProperties;
+  const style = {
+    '--tone': sector.tone.accent,
+    '--delay': `${delayMs}ms`,
+    '--hold': `${sector.holdMs ?? HOLD_MS}ms`
+  } as CSSProperties;
 
   // Leaving: done when the last letter has gone. Entering: done when the underline timer is full.
   const onLetterEnd = (e: AnimationEvent<HTMLSpanElement>) => {

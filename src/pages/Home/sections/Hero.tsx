@@ -2,12 +2,11 @@ import type { CSSProperties } from 'react';
 import { Button, Icon, Section, Stat, Tile } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { HERO_GROUP_CHIP, HERO_ORBIT, HERO_SECTORS, HERO_SECTORS_SENTENCE, HERO_STATS } from '@/content/hero';
-import { LOGO_ALT } from '@/content/site';
 import { GREEN } from '@/content/tones';
 import { useCycle } from '@/hooks/useCycle';
 import { cx } from '@/lib/cx';
-import logo from '@/assets/brand/walletedge-logo.png';
 import { HeroRoller } from './HeroRoller';
+import { HeroWheel } from './HeroWheel';
 import s from './Hero.module.css';
 
 export function Hero() {
@@ -77,33 +76,11 @@ export function Hero() {
         </div>
       </div>
 
-      {/* The orbit follows the headline: companies in the current sector light up. */}
+      {/* The wheel follows the headline: each word turns it to that sector's companies. */}
       <div data-reveal="scale" data-delay="200" className={s.visual} style={toneVars} aria-hidden="true">
         <div className={cx(s.halo, s.haloGreen, sector.tone === GREEN && s.haloOn)} />
         <div className={cx(s.halo, s.haloOrange, sector.tone !== GREEN && s.haloOn)} />
-        <div className={s.ringOuter} />
-        <div className={s.ringInner} />
-        <div data-orbit="70" className={s.orbit}>
-          <svg className={s.links} viewBox="0 0 100 100" preserveAspectRatio="none">
-            {HERO_ORBIT.map((o) => (
-              <line key={o.id} x1={50} y1={50} x2={o.x} y2={o.y} className={cx(s.link, lit.has(o.id) && s.linkOn)} />
-            ))}
-          </svg>
-          {HERO_ORBIT.map((o) => (
-            <div key={o.id} className={s.planet} style={{ left: `${o.x}%`, top: `${o.y}%` }}>
-              {/* Counter-rotated by the motion engine so labels stay upright. */}
-              <div data-orbit-counter="1">
-                <div className={cx(s.chip, lit.has(o.id) && s.chipOn, !lit.has(o.id) && s.chipDim)}>
-                  <Tile icon={o.icon} size="xs" tone={o.tone} />
-                  {o.name}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div data-float="8" className={cx(s.core, groupLit && s.coreOn)}>
-          <img src={logo} alt={LOGO_ALT} className={s.coreLogo} />
-        </div>
+        <HeroWheel sectors={HERO_SECTORS} index={index} />
       </div>
     </Section>
   );

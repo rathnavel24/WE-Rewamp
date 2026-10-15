@@ -1,6 +1,6 @@
 import { Button, Card, Chip, Grid, Section, SectionHeader, Stat, Swipe, Tile } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
-import { INSURELIV_TAGS } from '@/content/services';
+import { AROGYA_TAGS, INSURELIV_TAGS } from '@/content/services';
 import { GREEN, ORANGE } from '@/content/tones';
 import s from './Flagships.module.css';
 
@@ -75,6 +75,13 @@ export function Flagships() {
               />
             ))}
           </Grid>
+          <div className={s.chips}>
+            {AROGYA_TAGS.map((t) => (
+              <Chip key={t.label} variant="outline" icon={t.icon} className={s.feature}>
+                {t.label}
+              </Chip>
+            ))}
+          </div>
           <Button to={ROUTES.venture('arogyaplus')} variant="link" icon="arrow_forward" className={s.more}>
             Discover ArogyaPlus
           </Button>

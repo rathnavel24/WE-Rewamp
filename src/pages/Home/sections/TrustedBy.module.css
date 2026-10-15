@@ -53,3 +53,11 @@
   white-space: nowrap;
   color: var(--text-subtle);
 }
+
+/* Phones: tighter tracking so the label fits on one or two balanced lines. */
+@media (max-width: 600px) {
+  .label {
+    letter-spacing: 0.06em;
+    text-wrap: balance;
+  }
+}

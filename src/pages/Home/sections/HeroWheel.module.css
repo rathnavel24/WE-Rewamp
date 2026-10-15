@@ -1,0 +1,417 @@
+/* The wheel's turn, registered so it can transition — every card and spoke derives its angle from it. */
+@property --wheel {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+/* A card's place on the rim — registered too, so merging cards can slide together along it. */
+@property --a {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.wheel {
+  --r: 520px; /* wheel radius */
+  --card-w: 360px;
+  --rim-x: 44cqw; /* where the rim's leftmost point sits, as a share of the hero column */
+  position: relative;
+  height: 640px;
+  /* Run on past the column to the page edge (the hero clips it), so the rim and spokes don't stop short. */
+  margin-right: -40vw;
+  /* Cards fade in and out at the top and bottom edges instead of being cut off. */
+  mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  /* Each part follows the turn on its own transition (below), so cards can travel one after another. */
+  --turn: 1.5s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+/* Zero-size anchor at the wheel's centre, off to the right of the cards. */
+.hub {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--rim-x) + var(--r));
+}
+
+.rim,
+.rimInner {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(var(--wheel));
+  transition: --wheel var(--turn);
+}
+.rim {
+  width: calc(2 * var(--r));
+  height: calc(2 * var(--r));
+  border: 1px dashed var(--border-strong);
+}
+.rimInner {
+  width: calc(2 * var(--r) - 360px);
+  height: calc(2 * var(--r) - 360px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Finale: every card travels along the rim to the middle, one after another — nearest first —
+   slowing as it lands. Afterwards cards snap back to their places unseen (no transition), so the next
+   round rises in from below like any other turn. */
+.itemMerge {
+  transition: --a 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--rank) * 0.05s);
+}
+/* Each later arrival lands on top of the pile. */
+.itemMerge .slot {
+  z-index: var(--rank);
+}
+
+/* Spoke from the hub out to a card; it turns with the wheel. */
+.spoke {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--r);
+  height: 1px;
+  background: var(--border-default);
+  transform-origin: right center;
+  transform: rotate(calc(var(--wheel) + var(--a)));
+  transition:
+    --wheel var(--turn) calc(var(--i) * 0.16s),
+    background 0.6s var(--ease);
+}
+/* The current sector's spokes carry a flowing dash in the card's colour. */
+.spokeOn {
+  background: repeating-linear-gradient(90deg, var(--tone) 0 6px, transparent 6px 13px);
+  animation: spokeFlow 0.9s linear infinite;
+}
+@keyframes spokeFlow {
+  to {
+    background-position: 13px 0;
+  }
+}
+
+/* Out to the rim, then counter-rotated so the card stays level. */
+.slot {
+  position: absolute;
+  transform: rotate(calc(var(--wheel) + var(--a))) translateX(calc(-1 * var(--r)))
+    rotate(calc(-1 * (var(--wheel) + var(--a))));
+  /* Staggered: the top card sets off first and the rest follow a beat apart. */
+  transition: --wheel var(--turn) calc(var(--i) * 0.16s);
+}
+
+.card {
+  position: absolute;
+  width: var(--card-w);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-5) var(--space-5) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+  transform: translate(-50%, -50%) scale(0.88);
+  opacity: 0;
+  /* Leaving: fade straight away, while the wheel carries the card up and out. */
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.6s var(--ease);
+}
+/* Arriving: each card fades in near its place and pops to full size with a small overshoot. */
+.cardOn {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.6s var(--ease) calc(0.5s + var(--i) * 0.16s),
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.75s + var(--i) * 0.16s);
+}
+
+/* Finale, in four beats:
+   1. gather — each card shows as it sets off (the ones already on screen just stay), stays solid in the
+      pile so only the top card is ever seen, and settles with a small bounce as it lands;
+   2. squeeze — once the last card is in, the whole pile pulls in on itself;
+   3. burst — the WalletEdge card pops out of the squeezed pile (it is layered above it), and the pile goes;
+   4. reveal — the logo builds up, then the summary and the company tiles come in (see .finale below). */
+.cardMerge {
+  animation:
+    mergeShow 0.3s var(--ease) calc(var(--rank) * 0.05s) both,
+    mergeLand 0.35s ease-out calc(var(--rank) * 0.05s + 0.6s),
+    mergeSqueeze 0.3s cubic-bezier(0.5, 0, 0.75, 0) 1.5s forwards,
+    mergeHide 0.15s linear 1.8s forwards;
+}
+@keyframes mergeShow {
+  from {
+    opacity: var(--from);
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes mergeLand {
+  from {
+    transform: translate(-50%, -50%) scale(1.035);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes mergeSqueeze {
+  to {
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+}
+@keyframes mergeHide {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.label {
+  font: var(--fw-medium) 11.5px/1.2 var(--font-mono);
+  letter-spacing: 0.02em;
+  color: var(--tone-ink);
+}
+.title {
+  font: var(--fw-semibold) 17px/1.25 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+.note {
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--tone);
+  color: var(--white);
+}
+
+/* The card everything merges into, resting where the middle of each set sits on the rim. */
+.finale {
+  position: absolute;
+  top: 50%;
+  left: var(--rim-x);
+  width: var(--card-w);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* Above the whole pile (whose cards are layered by arrival order). */
+  z-index: 100;
+}
+.finaleCard,
+.ghost {
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+}
+.finaleCard {
+  position: relative;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  /* Leaving: lifts away as the wheel starts the next round. */
+  transform: translateY(-40px) scale(0.96);
+  transition:
+    opacity 0.4s var(--ease),
+    transform 0.6s var(--ease);
+}
+/* Arriving: pops up solid in place over the finished pile (a slow fade would let the pile show through). */
+.finaleOn .finaleCard {
+  opacity: 1;
+  transform: none;
+  animation: finalePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.78s both;
+}
+/* Starts at the squeezed pile's size, so it reads as the pile bursting into one card. */
+@keyframes finalePop {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  8% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* A ring of brand colour pulses out from the card as it lands. */
+.finaleCard::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.finaleOn .finaleCard::after {
+  animation: ring 1.1s var(--ease) 1.85s both;
+}
+@keyframes ring {
+  from {
+    box-shadow: 0 0 0 0 var(--color-primary);
+    opacity: 0.45;
+  }
+  to {
+    box-shadow: 0 0 0 26px var(--color-primary);
+    opacity: 0;
+  }
+}
+.ghost {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.finaleOn .ghost {
+  opacity: 1;
+  transition:
+    opacity 0.4s var(--ease) 2.35s,
+    transform 0.6s var(--ease) 2.35s;
+}
+.finaleOn .ghostMid {
+  transform: translateY(12px) scale(0.95);
+}
+.finaleOn .ghostBack {
+  transform: translateY(24px) scale(0.9);
+}
+
+.finaleLogo {
+  display: block;
+  width: 200px;
+  height: auto;
+}
+/* The logo builds up from the bottom, like its bars rising. */
+.finaleOn .finaleLogo {
+  animation: logoIn 0.7s var(--ease) 1.8s both;
+}
+@keyframes logoIn {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(10px);
+  }
+  to {
+    clip-path: inset(0);
+    transform: none;
+  }
+}
+.finaleOn .finaleNote {
+  animation: fadeUp 0.5s var(--ease) 2.2s both;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+/* Company tiles pop in one after another, the "+3" last. */
+.finaleOn .finaleStack > * {
+  animation: tilePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.finaleOn .finaleStack > :nth-child(1) {
+  animation-delay: 2.3s;
+}
+.finaleOn .finaleStack > :nth-child(2) {
+  animation-delay: 2.37s;
+}
+.finaleOn .finaleStack > :nth-child(3) {
+  animation-delay: 2.44s;
+}
+.finaleOn .finaleStack > :nth-child(4) {
+  animation-delay: 2.51s;
+}
+.finaleOn .finaleStack > :nth-child(5) {
+  animation-delay: 2.62s;
+}
+@keyframes tilePop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+.finaleFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+.finaleNote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--fw-medium) var(--fs-caption)/1 var(--font-sans);
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+.finaleCheck {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--white);
+}
+.finaleStack {
+  display: flex;
+  align-items: center;
+}
+.finaleTile,
+.finaleMore {
+  box-shadow: 0 0 0 2px var(--color-surface);
+}
+.finaleStack > * + * {
+  margin-left: -10px;
+}
+.finaleMore {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--white);
+  font: var(--fw-semibold) 11.5px/1 var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rim,
+  .rimInner,
+  .spoke,
+  .slot,
+  .item {
+    transition: none;
+  }
+  .spokeOn {
+    animation: none;
+  }
+  .card,
+  .cardOn {
+    transition: opacity 0.3s linear;
+  }
+  .cardMerge,
+  .finaleOn .finaleCard,
+  .finaleOn .finaleCard::after,
+  .finaleOn .finaleLogo,
+  .finaleOn .finaleNote,
+  .finaleOn .finaleStack > * {
+    animation: none;
+  }
+}
