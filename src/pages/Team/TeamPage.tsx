@@ -1,4 +1,5 @@
-import { Card, Chip, CtaBanner, Grid, Portrait, Section, SectionHeader } from '@/components/ui';
+import { Avatar, Card, Chip, CtaBanner, Grid, Portrait, Section, SectionHeader } from '@/components/ui';
+import { cx } from '@/lib/cx';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
 import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/content/team';
@@ -49,7 +50,11 @@ export function TeamPage() {
                   <span className="t-body-lg">{p.role}</span>
                 </div>
               </div>
-              <Portrait name={p.name} photo={teamPhoto(p.name)} variant="glass" className={s.founderPhoto} />
+              {teamPhoto(p.name) ? (
+                <Portrait name={p.name} photo={teamPhoto(p.name)} variant="glass" className={s.founderPhoto} />
+              ) : (
+                <Avatar name={p.name} initials={p.initials} size="xl" className={s.founderAvatar} />
+              )}
             </div>
           ))}
         </Grid>
@@ -66,9 +71,16 @@ export function TeamPage() {
           <Grid min={280} max={3} gap="sm" data-stagger="60">
             {g.people.map((p) => {
               const tone = alternate(p.index);
+              const photo = teamPhoto(p.name);
+              // Until a photo is added (src/assets/team/<name>.jpg) the card is a compact initials row,
+              // not a large empty portrait.
               return (
-                <Card key={p.name} padding="sm" interactive className={s.person}>
-                  <Portrait name={p.name} photo={teamPhoto(p.name)} tone={tone} className={s.personPhoto} />
+                <Card key={p.name} padding="sm" interactive className={cx(s.person, !photo && s.personCompact)}>
+                  {photo ? (
+                    <Portrait name={p.name} photo={photo} tone={tone} className={s.personPhoto} />
+                  ) : (
+                    <Avatar name={p.name} tone={tone} />
+                  )}
                   <span className={s.personText}>
                     <span className="t-h4">{p.name}</span>
                     <span className="t-small">{p.role}</span>

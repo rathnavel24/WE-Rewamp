@@ -1,0 +1,29 @@
+.consultCard {
+  min-height: 200px;
+  justify-content: space-between;
+  --card-gap: var(--space-10);
+}
+.consultText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+/* Reserve two lines so one- and two-line titles (and their descriptions) line up across the row. */
+.consultTitle {
+  min-height: 2.4em;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Phones: compact rows, not 200px tiles. */
+@media (max-width: 600px) {
+  .consultCard {
+    min-height: 0;
+    flex-direction: row;
+    align-items: flex-start;
+    --card-gap: var(--space-4);
+  }
+  .consultTitle {
+    min-height: 0;
+  }
+}

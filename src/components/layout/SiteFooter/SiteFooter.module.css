@@ -152,7 +152,7 @@
 /* Phones: brand, then Company | Ventures side by side, then offices full width. */
 @media (max-width: 600px) {
   .footer {
-    padding: var(--space-14) 0 calc(var(--space-6) + env(safe-area-inset-bottom));
+    padding: var(--space-10) 0 calc(var(--space-6) + env(safe-area-inset-bottom));
   }
   .inner {
     gap: var(--space-10);
@@ -165,7 +165,7 @@
     grid-column: 1 / -1;
   }
   .logo {
-    width: 150px;
+    width: 124px;
   }
   .bottom {
     flex-direction: column;

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { APP_ROUTES } from '@/app/routes';
 import { COMPANIES } from './companies';
 import { SERVICE_CARDS } from './services';
-import { ENQUIRY_TOPICS, NAV_LINKS, VENTURE_ENQUIRY_TOPIC } from './site';
+import { ENQUIRY_TOPICS, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
 
 /** Does an internal href resolve to a real page (not the 404 catch-all)? */
@@ -35,7 +35,7 @@ describe('content integrity', () => {
 
   it('each venture pre-selects a topic that exists on the enquiry form', () => {
     const topics = new Set(ENQUIRY_TOPICS.map((t) => t.label));
-    for (const topic of Object.values(VENTURE_ENQUIRY_TOPIC)) expect(topics).toContain(topic);
+    for (const v of Object.values(VENTURES)) expect(topics).toContain(v.enquiryTopic);
   });
 
   it('nav ids are unique', () => {

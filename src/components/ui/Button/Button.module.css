@@ -72,6 +72,7 @@
 /* Variants */
 .primary {
   background: var(--color-inverse-2);
+  box-shadow: var(--shadow-xs), var(--highlight-on-dark);
   color: var(--white);
 }
 .primary:hover:not(:disabled) {

@@ -1,0 +1,20 @@
+.feature {
+  --card-gap: var(--space-8);
+}
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Phones: icon beside the text. */
+@media (max-width: 600px) {
+  .feature {
+    flex-direction: row;
+    align-items: flex-start;
+    --card-gap: var(--space-4);
+  }
+  .feature :global(.t-h3) {
+    font-size: 18px;
+  }
+}

@@ -89,6 +89,11 @@
 .sentText {
   max-width: 380px;
 }
+.sentActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
 
 /* ---------- Phones ---------- */
 @media (max-width: 600px) {

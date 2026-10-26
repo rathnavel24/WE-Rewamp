@@ -3,7 +3,7 @@ import type { Tone } from '@/types';
 /* Tones reference design tokens (src/styles/tokens.css) so colour lives in one place. */
 export const GREEN: Tone = {
   accent: 'var(--color-primary)',
-  ink: 'var(--color-primary)',
+  ink: 'var(--color-primary-strong)',
   soft: 'var(--color-primary-soft)'
 };
 export const ORANGE: Tone = {

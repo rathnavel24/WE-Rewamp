@@ -1,4 +1,4 @@
-import type { Feature, ServiceCard, ServicePillar } from '@/types';
+import type { Feature, PracticeCompany, ServiceCard, ServicePillar } from '@/types';
 import { ROUTES } from '@/config/routes';
 import { GREEN, ORANGE } from './tones';
 
@@ -84,4 +84,44 @@ export const AROGYA_TAGS = [
   { icon: 'health_and_safety', label: 'Health packages' },
   { icon: 'medical_services', label: 'Nursing care' },
   { icon: 'event_available', label: 'Online booking' }
+];
+
+/** Services page · 01 IT & BPO: the group's technology platforms. */
+export const IT_BPO_PLATFORMS: PracticeCompany[] = [
+  {
+    venture: 'insureliv',
+    icon: 'shield_with_heart',
+    tone: GREEN,
+    variant: 'sunken',
+    title: 'InsureLiv',
+    desc: 'An AI-powered insurance operating system built by WhiteBlue FinTech for brokerages. It automates the entire broker workflow — lead capture, multi-insurer quoting, document verification and renewals — boosting productivity while cutting turnaround and cost.'
+  },
+  {
+    venture: 'arogyaplus',
+    icon: 'biotech',
+    tone: ORANGE,
+    variant: 'accent-soft',
+    title: 'ArogyaPlus',
+    desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies — at-home and in-clinic medical services, health packages, lab test bookings with home sample collection, and professional nursing care.'
+  }
+];
+
+/** Services page · 05 Healthcare: DHA-licensed companies the group holds major stakes in. */
+export const HEALTHCARE_COMPANIES: PracticeCompany[] = [
+  {
+    venture: 'carehub',
+    icon: 'home_health',
+    tone: GREEN,
+    meta: 'carehubuae.com',
+    title: 'CareHub Healthcare LLC',
+    desc: 'A premier DHA-licensed home healthcare provider in Dubai — 24/7 private nursing, elderly assistance, post-operative recovery, wound care, IV infusions, physiotherapy and digital phlebotomy.'
+  },
+  {
+    venture: 'globalcure',
+    icon: 'medication',
+    tone: ORANGE,
+    meta: '+971 50 515 2391',
+    title: 'Global Cure RX Pharmacy LLC',
+    desc: 'A community pharmacy in Dubai dispensing high-value prescriptions with insurance tie-ups — plus OTC medicines, supplements, medication counselling and repeat dispensing. Walk-ins welcome.'
+  }
 ];

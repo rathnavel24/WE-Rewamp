@@ -1,0 +1,32 @@
+.panel {
+  --card-gap: var(--space-10);
+}
+.step {
+  --card-gap: var(--space-7);
+}
+.stepTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Phones: icon beside the text. */
+@media (max-width: 600px) {
+  .panel {
+    --card-gap: var(--space-6);
+  }
+  .step {
+    flex-direction: row;
+    align-items: flex-start;
+    --card-gap: var(--space-4);
+  }
+  .stepTop {
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+}

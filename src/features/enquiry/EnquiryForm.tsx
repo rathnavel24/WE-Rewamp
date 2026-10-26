@@ -1,4 +1,5 @@
 import { Button, Chip, Tile } from '@/components/ui';
+import { ROUTES } from '@/config/routes';
 import { CONTACT_EMAIL, ENQUIRY_TOPICS } from '@/content/site';
 import { GREEN } from '@/content/tones';
 import type { VentureId } from '@/types';
@@ -26,9 +27,14 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
         <p className={`t-body-lg ${s.sentText}`}>
           Your message is with the WalletEdge Global team. We’ll reply within one business day.
         </p>
-        <Button variant="outline-dark" onClick={reset}>
-          Send another message
-        </Button>
+        <div className={s.sentActions}>
+          <Button to={ROUTES.companies} variant="inverse" icon="arrow_forward">
+            Explore our companies
+          </Button>
+          <Button variant="outline-dark" onClick={reset}>
+            Send another message
+          </Button>
+        </div>
       </div>
     );
   }

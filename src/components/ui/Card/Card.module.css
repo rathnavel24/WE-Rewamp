@@ -43,10 +43,12 @@
 }
 .sunken {
   background: var(--color-surface-sunken);
+  border-color: var(--border-subtle);
   color: var(--text-strong);
 }
 .primary-soft {
   background: var(--color-primary-soft);
+  border-color: var(--border-primary-soft);
   color: var(--text-strong);
 }
 .accent-soft {
@@ -60,11 +62,13 @@
 }
 .inverse {
   background: var(--color-inverse);
+  box-shadow: var(--highlight-on-dark);
   color: var(--white);
   overflow: hidden;
 }
 .ink {
   background: var(--color-inverse-2);
+  box-shadow: var(--highlight-on-dark);
   color: var(--white);
   overflow: hidden;
 }
@@ -90,12 +94,18 @@
   .interactive:hover {
     transform: var(--lift-md);
   }
+  /* Under the pointer a card rises and its edge picks up the brand green. */
   .surface.interactive:hover {
     box-shadow: var(--shadow-md);
-    border-color: var(--border-default);
+    border-color: var(--border-hover);
   }
   .sunken.interactive:hover {
     background: var(--color-surface-hover);
+    border-color: var(--border-default);
+  }
+  .primary-soft.interactive:hover,
+  .accent-soft.interactive:hover {
+    box-shadow: var(--shadow-md);
   }
   .glass.interactive:hover {
     background: var(--fill-on-dark-hover);

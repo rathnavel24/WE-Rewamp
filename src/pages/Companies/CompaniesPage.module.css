@@ -142,6 +142,40 @@
 .featured .cardBody {
   max-width: 640px;
 }
+/* Desktop: the parent card's details on the left, the group at a glance on the right. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.facts > * {
+  padding: var(--space-4) var(--space-5);
+}
+.facts > * + * {
+  border-left: 1px solid var(--border-default);
+}
+@media (min-width: 900px) {
+  .featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    column-gap: var(--space-12);
+    align-content: start;
+  }
+  .featured > * {
+    grid-column: 1;
+  }
+  /* The icon row spans the card, so the country tag sits top-right like on every other card. */
+  .featured > .cardTop {
+    grid-column: 1 / -1;
+  }
+  .featured > .facts {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: end;
+  }
+}
 
 .cta {
   display: inline-flex;
@@ -206,7 +240,8 @@
     align-self: start;
   }
   .cardBody > :nth-child(3),
-  .cta {
+  .cta,
+  .facts {
     grid-column: 1 / -1;
   }
   .cta {

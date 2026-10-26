@@ -1,4 +1,4 @@
-import type { EnquiryTopic, NavLink, Office, VentureId } from '@/types';
+import type { EnquiryTopic, NavLink, Office } from '@/types';
 import { ROUTES } from '@/config/routes';
 import { GREEN, ORANGE } from './tones';
 
@@ -44,12 +44,3 @@ export const ENQUIRY_TOPICS: EnquiryTopic[] = [
   { label: 'Healthcare', icon: 'medical_services' },
   { label: 'Partnership', icon: 'handshake' }
 ];
-
-/** Topic pre-selected on the contact form when arriving from a venture's "Enquire about…" button. */
-export const VENTURE_ENQUIRY_TOPIC: Record<VentureId, string> = {
-  insureliv: 'IT & BPO',
-  arogyaplus: 'Healthcare',
-  carehub: 'Healthcare',
-  globalcure: 'Healthcare',
-  recovery: 'Financial services'
-};

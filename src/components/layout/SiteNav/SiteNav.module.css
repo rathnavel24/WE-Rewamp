@@ -212,6 +212,9 @@
 .sheet {
   position: fixed;
   top: 88px;
+  max-height: calc(100dvh - 100px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   left: 12px;
   right: 12px;
   background: var(--white);
@@ -234,6 +237,32 @@
   font: 500 17px/1 var(--font-sans);
 }
 .sheetLink:hover {
+  background: var(--color-canvas);
+  color: var(--text-strong);
+}
+.sheetActive {
+  background: var(--color-canvas);
+  color: var(--color-primary);
+}
+.sheetSub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 0 6px 6px;
+}
+.sheetSubLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  font: 500 14px/1.2 var(--font-sans);
+}
+.sheetSubLink:hover,
+.sheetSubLink[aria-current='page'] {
   background: var(--color-canvas);
   color: var(--text-strong);
 }

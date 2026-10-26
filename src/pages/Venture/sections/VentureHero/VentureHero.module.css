@@ -1,0 +1,92 @@
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font: var(--fw-medium) var(--fs-caption)/1 var(--font-sans);
+  color: var(--text-muted);
+}
+.back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* 44px tap target without moving the breadcrumb. */
+  min-height: 44px;
+  margin-block: -15px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--color-accent);
+}
+.sep {
+  opacity: 0.4;
+}
+.current {
+  color: var(--text-strong);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: var(--space-10);
+  align-items: end;
+}
+.heroLead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.identity > :last-child {
+  align-self: center;
+}
+.tagline {
+  font: var(--fw-medium) clamp(20px, 2.1vw, 26px)/1.35 var(--font-sans);
+  letter-spacing: -0.015em;
+  color: var(--text-default);
+  max-width: 600px;
+  text-wrap: pretty;
+}
+.aboutCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.enquire:hover:not(:disabled) {
+  background: var(--accent);
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .heroGrid {
+    gap: var(--space-6);
+  }
+  .heroLead {
+    gap: var(--space-5);
+  }
+  .identity > :first-child {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    border-radius: var(--radius-md);
+  }
+  .tagline {
+    font-size: 19px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .actions > * {
+    width: 100%;
+  }
+}

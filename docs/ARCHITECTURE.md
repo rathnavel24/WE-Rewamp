@@ -10,6 +10,8 @@ src/
   main.tsx            Entry: global CSS + <AppProviders><App/></AppProviders>
   app/                App shell — route table, providers, error boundary, lazy loading
   pages/<Name>/       One folder per route; composes sections, features and the UI kit
+    <Name>Page.tsx    Thin: page meta + the list of sections, top to bottom
+    sections/         One folder per section (<Section>.tsx + .module.css + index.ts), barrel in index.ts
   features/<name>/    Self-contained capabilities with logic + UI + API (enquiry, ai, …)
   components/
     layout/           Site chrome: SiteNav, SiteFooter, Layout
@@ -77,18 +79,41 @@ Two more rules:
 ### Add a page
 
 1. `src/pages/Careers/CareersPage.tsx` exporting `CareersPage`; call `usePageMeta({ title: 'Careers', description: '…' })`.
-2. Add a line to `APP_ROUTES` in `src/app/routes.ts`:
-   `{ path: 'careers', Page: lazyPage(() => import('@/pages/Careers/CareersPage'), 'CareersPage') }`
-   (keep `'*'` last).
-3. Add `careers: '/careers'` to `ROUTES` in `src/config/routes.ts`, and to `NAV_LINKS` in `src/content/site.ts`
-   if it belongs in the nav.
+2. In `src/config/routes.ts` add `careers: 'careers'` to `PATHS` and ``careers: `/${PATHS.careers}` `` to `ROUTES`
+   — the only place a URL is written.
+3. Add a line to `APP_ROUTES` in `src/app/routes.ts` (keep `'*'` last):
+   `{ path: PATHS.careers, Page: lazyPage(() => import('@/pages/Careers/CareersPage'), 'CareersPage') }`
+4. Add it to `NAV_LINKS` in `src/content/site.ts` if it belongs in the nav.
 
-The page is code-split automatically and preloaded in the background.
+The page is code-split automatically and preloaded in the background. `content.test.ts` fails if any link points
+at a path with no route.
 
 ### Add a section to a page
 
-Create `src/pages/<Page>/sections/<Name>.tsx` (+ `.module.css`) built from `Section` → `SectionHeader` →
-`Grid` → `Card`, with its copy in `src/content/`. Render it from the page component.
+```
+src/pages/<Page>/sections/<Name>/
+  <Name>.tsx          built from Section → SectionHeader → Grid → Card
+  <Name>.module.css   this section's styles only (phone rules at the bottom)
+  index.ts            export { <Name> } from './<Name>';
+```
+
+Export it from `sections/index.ts` (in page order) and render it from `<Page>Page.tsx`. Lists and repeatable copy
+go in `src/content/`; a section's own one-off heading can stay in its JSX. A card used by several sections of the
+same page gets its own folder in that `sections/` (e.g. `Services/sections/PracticeCompanyCard`); once a second
+page needs it, move it to `components/ui` and make it content-free.
+
+A short page (one or two sections, under ~120 lines — Team, Companies, Contact) can stay a single file; split it
+when it grows.
+
+### Add a venture (group company)
+
+1. Add its id to `VentureId` in `src/types/index.ts`.
+2. Add its entry to `VENTURES` in `src/content/ventures.ts` — TypeScript then requires every field. That one entry
+   drives its page at `/ventures/<id>`, the nav mega-menu, the footer, "More from the group", and the contact
+   form's pre-selected topic (`enquiryTopic`). Optional blocks appear only when their data is present: `stats`,
+   `steps` (process) and `caseStudy`.
+3. Add it to `COMPANIES` in `src/content/companies.ts` for the directory (a new country also needs a
+   `COUNTRY_LABELS` entry — its filter appears automatically).
 
 ### Add or change content
 

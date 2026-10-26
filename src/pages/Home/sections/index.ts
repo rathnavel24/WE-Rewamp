@@ -1,0 +1,8 @@
+/* Home page sections, top to bottom. Each lives in its own folder: <Name>.tsx + <Name>.module.css + index.ts. */
+export { Hero } from './Hero';
+export { TrustedBy } from './TrustedBy';
+export { ServicesSection } from './ServicesSection';
+export { CompaniesSection } from './CompaniesSection';
+export { Flagships } from './Flagships';
+export { TeamPreview } from './TeamPreview';
+export { ContactCta } from './ContactCta';

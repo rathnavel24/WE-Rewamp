@@ -1,0 +1,16 @@
+.card {
+  flex-direction: row;
+  align-items: center;
+  --card-gap: var(--space-4);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.photo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+}

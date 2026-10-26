@@ -1,3 +1,4 @@
+import { PATHS } from '@/config/routes';
 import { lazyPage, type LazyPage } from './lazyPage';
 
 export interface AppRoute {
@@ -7,18 +8,21 @@ export interface AppRoute {
 }
 
 /**
- * Every page of the site. To add one: create src/pages/<Name>/<Name>Page.tsx, add a line
- * here, and (if it's linked) add its path builder to src/config/routes.ts.
+ * Every page of the site. To add one: create src/pages/<Name>/<Name>Page.tsx, add its path to
+ * PATHS and ROUTES in src/config/routes.ts, then add a line here.
  * Pages are code-split and preloaded in the background after the first paint.
  */
 export const APP_ROUTES: AppRoute[] = [
   { Page: lazyPage(() => import('@/pages/Home/HomePage'), 'HomePage') },
-  { path: 'services', Page: lazyPage(() => import('@/pages/Services/ServicesPage'), 'ServicesPage') },
-  { path: 'companies', Page: lazyPage(() => import('@/pages/Companies/CompaniesPage'), 'CompaniesPage') },
-  { path: 'team', Page: lazyPage(() => import('@/pages/Team/TeamPage'), 'TeamPage') },
-  { path: 'contact', Page: lazyPage(() => import('@/pages/Contact/ContactPage'), 'ContactPage') },
-  { path: 'ventures/:id', Page: lazyPage(() => import('@/pages/Venture/VenturePage'), 'VenturePage') },
-  { path: 'design-system', Page: lazyPage(() => import('@/pages/DesignSystem/DesignSystemPage'), 'DesignSystemPage') },
+  { path: PATHS.services, Page: lazyPage(() => import('@/pages/Services/ServicesPage'), 'ServicesPage') },
+  { path: PATHS.companies, Page: lazyPage(() => import('@/pages/Companies/CompaniesPage'), 'CompaniesPage') },
+  { path: PATHS.team, Page: lazyPage(() => import('@/pages/Team/TeamPage'), 'TeamPage') },
+  { path: PATHS.contact, Page: lazyPage(() => import('@/pages/Contact/ContactPage'), 'ContactPage') },
+  { path: PATHS.venture, Page: lazyPage(() => import('@/pages/Venture/VenturePage'), 'VenturePage') },
+  {
+    path: PATHS.designSystem,
+    Page: lazyPage(() => import('@/pages/DesignSystem/DesignSystemPage'), 'DesignSystemPage')
+  },
   { path: '*', Page: lazyPage(() => import('@/pages/NotFound/NotFoundPage'), 'NotFoundPage') }
 ];
 

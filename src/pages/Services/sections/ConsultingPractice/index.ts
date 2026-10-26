@@ -1,0 +1,1 @@
+export { ConsultingPractice } from './ConsultingPractice';

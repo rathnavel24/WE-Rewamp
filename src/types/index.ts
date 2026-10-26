@@ -45,8 +45,17 @@ export interface Venture {
   featTitle: string;
   features: Feature[];
   steps?: ProcessStep[];
-  /** Shows the EMAAR case-study block. */
-  caseStudy?: boolean;
+  /** Optional case-study block on the venture page. */
+  caseStudy?: CaseStudy;
+  /** Contact-form topic pre-selected from this venture's "Enquire about…" button (one of ENQUIRY_TOPICS). */
+  enquiryTopic: string;
+}
+
+export interface CaseStudy {
+  kicker: string;
+  title: string;
+  lead: string;
+  points: Array<Feature & { tone: Tone }>;
 }
 
 export interface Company {
@@ -75,6 +84,19 @@ export interface ServiceCard {
   tags: string[];
   tone: Tone;
   href: string;
+}
+
+/** A group company presented as a card inside a practice on the Services page. */
+export interface PracticeCompany {
+  venture: VentureId;
+  icon: string;
+  tone: Tone;
+  title: string;
+  desc: string;
+  /** Card surface; defaults to the plain card. */
+  variant?: 'sunken' | 'accent-soft';
+  /** Small label beside the icon (site or phone). Cards with one show a "View company" footer. */
+  meta?: string;
 }
 
 export interface ServicePillar {

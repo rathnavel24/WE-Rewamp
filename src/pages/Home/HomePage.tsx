@@ -1,11 +1,5 @@
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { CompaniesSection } from './sections/CompaniesSection';
-import { ContactCta } from './sections/ContactCta';
-import { Flagships } from './sections/Flagships';
-import { Hero } from './sections/Hero';
-import { ServicesSection } from './sections/ServicesSection';
-import { TeamPreview } from './sections/TeamPreview';
-import { TrustedBy } from './sections/TrustedBy';
+import { CompaniesSection, ContactCta, Flagships, Hero, ServicesSection, TeamPreview, TrustedBy } from './sections';
 
 export function HomePage() {
   usePageMeta();

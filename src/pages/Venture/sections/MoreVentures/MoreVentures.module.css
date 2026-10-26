@@ -1,0 +1,15 @@
+.other {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  --card-gap: var(--space-3);
+}
+.other:hover {
+  border-color: var(--color-accent);
+}
+.otherName {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font: var(--fw-semibold) 16px/1.2 var(--font-sans);
+}

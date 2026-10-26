@@ -1,0 +1,54 @@
+.card {
+  --card-gap: var(--space-8);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font: var(--fw-semibold) var(--fs-h3)/1 var(--font-sans);
+  letter-spacing: var(--ls-title);
+}
+.top > :last-child {
+  align-self: center;
+}
+.warmChip {
+  border-color: transparent;
+  color: var(--color-accent-strong);
+}
+
+.statement {
+  font: var(--fw-medium) clamp(20px, 2vw, 25px)/1.35 var(--font-sans);
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.more {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .card {
+    --card-gap: var(--space-5);
+  }
+  .brand {
+    font-size: 20px;
+  }
+  .statement {
+    font-size: 18px;
+  }
+}

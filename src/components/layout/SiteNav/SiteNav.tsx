@@ -66,6 +66,11 @@ export function SiteNav() {
                 className={s.item}
                 onMouseEnter={() => l.menu && setOpenMenu(l.id)}
                 onMouseLeave={() => setOpenMenu(null)}
+                // Keyboard: tabbing onto the link opens its menu; tabbing out of the item closes it.
+                onFocus={() => l.menu && setOpenMenu(l.id)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) setOpenMenu(null);
+                }}
               >
                 <AppLink
                   to={l.href}
@@ -129,10 +134,32 @@ export function SiteNav() {
       {!desktop && mobileOpen && (
         <div className={s.sheet}>
           {NAV_LINKS.map((l) => (
-            <AppLink key={l.id} to={l.href} className={s.sheetLink}>
-              {l.label}
-              <Icon name="arrow_forward" size={20} color="var(--color-primary)" />
-            </AppLink>
+            <div key={l.id}>
+              <AppLink
+                to={l.href}
+                className={`${s.sheetLink} ${active === l.id ? s.sheetActive : ''}`}
+                aria-current={active === l.id ? 'page' : undefined}
+              >
+                {l.label}
+                <Icon name="arrow_forward" size={20} color="var(--color-primary)" />
+              </AppLink>
+              {/* Phones get the companies menu inline, so every venture is one tap from anywhere. */}
+              {l.menu && (
+                <div className={s.sheetSub}>
+                  {VENTURE_LIST.map((v) => (
+                    <AppLink
+                      key={v.id}
+                      to={ROUTES.venture(v.id)}
+                      className={s.sheetSubLink}
+                      aria-current={pathname === ROUTES.venture(v.id) ? 'page' : undefined}
+                    >
+                      <Tile icon={v.icon} size="xs" tone={v.tone} />
+                      {v.name}
+                    </AppLink>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       )}

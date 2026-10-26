@@ -4,6 +4,7 @@ import { GREEN, ORANGE } from './tones';
 export const VENTURES: Record<VentureId, Venture> = {
   insureliv: {
     id: 'insureliv',
+    enquiryTopic: 'IT & BPO',
     tone: GREEN,
     name: 'InsureLiv',
     icon: 'shield_with_heart',
@@ -48,6 +49,7 @@ export const VENTURES: Record<VentureId, Venture> = {
   },
   arogyaplus: {
     id: 'arogyaplus',
+    enquiryTopic: 'Healthcare',
     tone: ORANGE,
     name: 'ArogyaPlus',
     icon: 'biotech',
@@ -105,6 +107,7 @@ export const VENTURES: Record<VentureId, Venture> = {
   },
   carehub: {
     id: 'carehub',
+    enquiryTopic: 'Healthcare',
     tone: GREEN,
     name: 'CareHub Healthcare',
     icon: 'home_health',
@@ -145,6 +148,7 @@ export const VENTURES: Record<VentureId, Venture> = {
   },
   globalcure: {
     id: 'globalcure',
+    enquiryTopic: 'Healthcare',
     tone: ORANGE,
     name: 'Global Cure RX',
     footerName: 'Global Cure RX Pharmacy',
@@ -181,6 +185,7 @@ export const VENTURES: Record<VentureId, Venture> = {
   },
   recovery: {
     id: 'recovery',
+    enquiryTopic: 'Financial services',
     tone: GREEN,
     name: 'Recovery Services',
     icon: 'account_balance',
@@ -203,7 +208,25 @@ export const VENTURES: Record<VentureId, Venture> = {
       },
       { icon: 'gavel', title: 'Legal expertise in-house', desc: 'Backed by a dedicated group legal consultant.' }
     ],
-    caseStudy: true
+    caseStudy: {
+      kicker: 'Case focus · EMAAR Group',
+      title: 'Streamlining the corporate recovery process.',
+      lead: 'EMAAR coordinates massive property portfolios where Emaar Community Management mandates master property insurance, public liability and fidelity guarantee. When incidents affect assets, recovery depends on complex commercial claims with regional insurers — the gaps WalletEdge is built to close.',
+      points: [
+        {
+          icon: 'automation',
+          tone: GREEN,
+          title: 'Automated claims management',
+          desc: 'Workflows that close expectation gaps between real estate entities, TPAs and insurers.'
+        },
+        {
+          icon: 'sync_alt',
+          tone: ORANGE,
+          title: 'Integrated TPA routing',
+          desc: 'Claims sync directly with corporate asset panels — verification from months to a few digital cycles.'
+        }
+      ]
+    }
   }
 };
 

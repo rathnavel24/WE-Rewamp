@@ -1,8 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import { Button, Card, Chip, Section, SectionHeader, Tile } from '@/components/ui';
+import { AppLink, Button, Card, Chip, Icon, Section, SectionHeader, Tile } from '@/components/ui';
+import { ROUTES } from '@/config/routes';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { CONTACT_EMAIL, OFFICES, VENTURE_ENQUIRY_TOPIC } from '@/content/site';
-import { isVentureId } from '@/content/ventures';
+import { CONTACT_EMAIL, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
+import { isVentureId, VENTURES } from '@/content/ventures';
 import { EnquiryForm } from '@/features/enquiry';
 import s from './ContactPage.module.css';
 
@@ -15,10 +16,22 @@ export function ContactPage() {
   const [params] = useSearchParams();
   const v = params.get('venture') ?? undefined;
   const venture = isVentureId(v) ? v : undefined;
+  const t = params.get('topic');
+  const topic = ENQUIRY_TOPICS.find((e) => e.label === t)?.label;
+  // A venture implies its topic; ?topic= adds one directly (e.g. from a Services practice).
+  const initialTopics = [
+    ...new Set([venture && VENTURES[venture].enquiryTopic, topic].filter((x): x is string => !!x))
+  ];
 
   return (
     <Section data-screen-label="Contact" pt="hero" innerClassName={s.layout} gap="none">
       <div className={s.intro}>
+        {venture && (
+          <AppLink data-reveal="fade" to={ROUTES.venture(venture)} className={s.back}>
+            <Icon name="arrow_back" size={17} />
+            Back to {VENTURES[venture].name}
+          </AppLink>
+        )}
         <SectionHeader
           as="h1"
           size="display-1"
@@ -59,11 +72,7 @@ export function ContactPage() {
 
       <Card data-reveal="up" data-delay="150" variant="ink" padding="lg" className={`on-dark ${s.panel}`}>
         <div className={s.panelGlow} aria-hidden="true" />
-        <EnquiryForm
-          key={venture ?? 'general'}
-          venture={venture}
-          initialTopics={venture ? [VENTURE_ENQUIRY_TOPIC[venture]] : []}
-        />
+        <EnquiryForm key={`${venture ?? 'general'}:${topic ?? ''}`} venture={venture} initialTopics={initialTopics} />
       </Card>
     </Section>
   );

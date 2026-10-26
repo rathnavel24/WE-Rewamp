@@ -28,6 +28,22 @@
   padding-bottom: var(--section-y-sm);
 }
 
+/* Fills the first screen on desktop: never taller than the viewport's height, with the nav clearance
+   shrinking on short screens (laptops) so the content keeps its room. Phones scroll naturally. */
+@media (min-width: 1024px) {
+  .fill {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
+    padding-top: min(var(--nav-clearance), max(104px, 15svh));
+    padding-bottom: clamp(20px, 4svh, 48px);
+  }
+  .fill > .inner {
+    width: 100%;
+  }
+}
+
 .inverse {
   background: var(--color-inverse);
   overflow: hidden;

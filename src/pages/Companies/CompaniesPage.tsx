@@ -1,17 +1,25 @@
 import { useState } from 'react';
-import { Card, Chip, Grid, Icon, Section, SectionHeader, Tile } from '@/components/ui';
+import { Card, Chip, Grid, Icon, Section, SectionHeader, Stat, Tile } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { COMPANIES } from '@/content/companies';
+import { COMPANIES, COUNTRY_LABELS } from '@/content/companies';
 import { alternate } from '@/content/tones';
 import type { Country } from '@/types';
 import logo from '@/assets/brand/walletedge-logo.png';
 import s from './CompaniesPage.module.css';
 
-type Filter = 'All' | 'UAE' | 'India';
-const FILTERS: Filter[] = ['All', 'UAE', 'India'];
-const matches = (f: Filter, country: Country) => f === 'All' || country === f.toUpperCase();
+type Filter = 'All' | Country;
+// One filter per country that has a company, in the order they first appear.
+const FILTERS: Filter[] = ['All', ...new Set(COMPANIES.map((c) => c.country))];
+const matches = (f: Filter, country: Country) => f === 'All' || country === f;
+const filterLabel = (f: Filter) => (f === 'All' ? 'All' : COUNTRY_LABELS[f]);
 
 const SUBSIDIARIES = COMPANIES.filter((c) => !c.parent);
+/** The group at a glance, shown on the parent company's card — derived, so it stays right as companies are added. */
+const GROUP_FACTS = [
+  { count: SUBSIDIARIES.length, label: 'Subsidiaries' },
+  { count: new Set(SUBSIDIARIES.map((c) => c.sector)).size, label: 'Sectors' },
+  { count: new Set(COMPANIES.map((c) => c.country)).size, label: 'Countries' }
+];
 
 export function CompaniesPage() {
   usePageMeta({
@@ -73,7 +81,8 @@ export function CompaniesPage() {
                 className={s.filter}
                 onClick={() => setFilter(f)}
               >
-                {f} <span className={s.filterCount}>{COMPANIES.filter((c) => matches(f, c.country)).length}</span>
+                {filterLabel(f)}{' '}
+                <span className={s.filterCount}>{COMPANIES.filter((c) => matches(f, c.country)).length}</span>
               </button>
             ))}
           </div>
@@ -99,6 +108,20 @@ export function CompaniesPage() {
                 {c.cta}
                 <Icon name="arrow_forward" size={18} />
               </span>
+              {c.parent && (
+                <div className={s.facts}>
+                  {GROUP_FACTS.map((f) => (
+                    <Stat
+                      key={f.label}
+                      variant="plain"
+                      size="sm"
+                      count={f.count}
+                      value={String(f.count)}
+                      label={f.label}
+                    />
+                  ))}
+                </div>
+              )}
             </Card>
           ))}
         </Grid>

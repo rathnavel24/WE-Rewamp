@@ -16,6 +16,8 @@ interface SectionProps extends HTMLAttributes<HTMLElement> {
   innerClassName?: string;
   /** Vertical gap between the container's direct children. */
   gap?: 'none' | 'md' | 'lg';
+  /** Landing band: on desktop it fills the first screen exactly, with its content centred in it. */
+  fill?: boolean;
   children: ReactNode;
   [dataAttr: `data-${string}`]: string | undefined;
 }
@@ -28,13 +30,21 @@ export function Section({
   contained = true,
   innerClassName,
   gap = 'lg',
+  fill = false,
   className,
   children,
   ...rest
 }: SectionProps) {
   return (
     <section
-      className={cx(s.section, s[`pt-${pt}`], s[`pb-${pb}`], tone === 'inverse' && cx(s.inverse, 'on-dark'), className)}
+      className={cx(
+        s.section,
+        s[`pt-${pt}`],
+        s[`pb-${pb}`],
+        fill && s.fill,
+        tone === 'inverse' && cx(s.inverse, 'on-dark'),
+        className
+      )}
       {...rest}
     >
       {contained ? (

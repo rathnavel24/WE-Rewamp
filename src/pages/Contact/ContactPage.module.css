@@ -42,6 +42,22 @@
   background: var(--color-surface-sunken);
 }
 
+/* Phones: heading → form → offices, so the main action isn't two screens down. */
+@media (max-width: 600px) {
+  .layout {
+    gap: var(--space-8);
+  }
+  .intro {
+    display: contents;
+  }
+  .panel {
+    order: 1;
+  }
+  .offices {
+    order: 2;
+  }
+}
+
 /* Form panel */
 .panel {
   position: sticky;
@@ -72,4 +88,18 @@
   .intro {
     gap: var(--space-6);
   }
+}
+
+/* "Back to <venture>" when the visitor arrived from a venture page. */
+.back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-block: -15px calc(-1 * var(--space-4));
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--color-accent);
 }

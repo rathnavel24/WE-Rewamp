@@ -1,4 +1,4 @@
-import type { Company } from '@/types';
+import type { Company, Country } from '@/types';
 import { ROUTES } from '@/config/routes';
 import { GREEN, ORANGE } from './tones';
 
@@ -107,3 +107,9 @@ export const ROLL_NAMES = [
   'WalletEdge Financial',
   'WalletEdge Services'
 ];
+
+/** Display name for each country, used by the directory filters. Add a country here when adding its first company. */
+export const COUNTRY_LABELS: Record<Country, string> = {
+  UAE: 'UAE',
+  INDIA: 'India'
+};

@@ -160,7 +160,7 @@ export const HERO_SECTORS: HeroSector[] = [
     ]
   },
   // Held longer, so every card has time to fly in and merge before the next round.
-  { word: 'every sector.', tone: GREEN, ventures: [], cards: [], finale: true, holdMs: 4200 }
+  { word: 'every sector.', tone: GREEN, ventures: [], cards: [], finale: true, holdMs: 3800 }
 ];
 
 /** The WalletEdge card everything merges into at the end of each round. */

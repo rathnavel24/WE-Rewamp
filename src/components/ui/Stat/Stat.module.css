@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: var(--space-2);
   min-width: 0;
+  /* Values shrink to fit their own box (cqi below), so a long figure like "10,000+" never touches the edge. */
+  container-type: inline-size;
 }
 .sunken,
 .surface,
@@ -33,11 +35,11 @@
   color: var(--stat-ink, var(--text-strong));
 }
 .sm .value {
-  font-size: 34px;
+  font-size: min(34px, 26cqi);
   letter-spacing: -0.03em;
 }
 .md .value {
-  font-size: 38px;
+  font-size: min(38px, 20cqi);
 }
 .lg .value {
   font-size: clamp(40px, 4.4vw, 56px);
@@ -66,10 +68,10 @@
     gap: var(--space-2);
   }
   .sm .value {
-    font-size: 28px;
+    font-size: min(28px, 26cqi);
   }
   .md .value {
-    font-size: 30px;
+    font-size: min(30px, 20cqi);
   }
   .lg .value {
     font-size: 34px;
