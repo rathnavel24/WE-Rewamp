@@ -1,5 +1,8 @@
-import { Chip, Section, SectionHeader, Tile } from '@/components/ui';
-import { SERVICE_PILLARS } from '@/content/services';
+import type { CSSProperties } from 'react';
+import { AppLink, Icon, Section, SectionHeader } from '@/components/ui';
+import { PARENT_COMPANIES } from '@/content/companies';
+import { SERVICES } from '@/content/services';
+import { DeliveredBy } from '@/features/companies';
 import s from './ServicesHero.module.css';
 
 export function ServicesHero() {
@@ -8,22 +11,25 @@ export function ServicesHero() {
       <SectionHeader
         as="h1"
         size="display-1"
+        layout="split"
         kicker="Our services"
-        title="Five practices, run by specialists, backed by one group."
+        title="Our services and the companies that deliver them"
+        lead="WalletEdge Global operates across four sectors. Each section below sets out what we offer and the group companies responsible for delivering it."
       />
-      <nav aria-label="Practices" data-stagger="60" className={s.pillars}>
-        {SERVICE_PILLARS.map((p) => (
-          <Chip
-            key={p.anchor}
-            to={p.anchor}
-            variant="surface"
-            size="lg"
-            leading={<Tile icon={p.icon} size="xs" tone={p.tone} round />}
-          >
-            {p.title}
-          </Chip>
+      {/* Contents: the four services as a ruled strip, each linking to its section. */}
+      <nav aria-label="Services on this page" data-stagger="70" className={s.contents}>
+        {SERVICES.map((x) => (
+          <AppLink key={x.id} to={`#${x.id}`} className={s.entry} style={{ '--tone': x.tone.accent } as CSSProperties}>
+            <span className={s.no}>{x.no}</span>
+            <span className={s.name}>
+              {x.title}
+              <Icon name="arrow_downward" size={18} className={s.arrow} />
+            </span>
+            <span className={s.covers}>{x.tags.join(', ')}</span>
+          </AppLink>
         ))}
       </nav>
+      <DeliveredBy companies={PARENT_COMPANIES} label="Parent companies" />
     </Section>
   );
 }

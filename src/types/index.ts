@@ -30,6 +30,8 @@ export interface ProcessStep extends Feature {
 
 export interface Venture {
   id: VentureId;
+  /** The service this venture is listed under on the Services page. */
+  service: ServiceId;
   tone: Tone;
   name: string;
   icon: string;
@@ -58,63 +60,90 @@ export interface CaseStudy {
   points: Array<Feature & { tone: Tone }>;
 }
 
-export interface Company {
+/** The group's four services; each id is also its section anchor on the Services page. */
+export type ServiceId = 'it-bpo' | 'financial' | 'consulting' | 'healthcare';
+
+/** A legal entity of the group. Parents sit above the services; every other company sits under one. */
+export interface GroupCompany {
   name: string;
-  short: string;
-  sector: string;
-  icon: string;
   country: Country;
-  desc: string;
-  /** Destination from the Companies directory. */
-  href: string;
-  cta: string;
-  tone: Tone;
+  /** The service the company is listed under. Parents have none. */
+  service?: ServiceId;
   parent?: boolean;
-  /** One-liner used in the Home page company list. */
-  groupLine: string;
-  /** Destination from the Home page company list. */
-  groupHref: string;
+  /** Short line on what the company does, from the client's content document. */
+  note?: string;
+  /** The platform this company builds or runs, linked from its role line. */
+  venture?: VentureId;
 }
 
-export interface ServiceCard {
+/** Something a service offers — a platform, an offering line or a company — shown on the Home page. */
+export interface ServiceOffering {
+  icon: string;
+  title: string;
+  desc?: string;
+  /** Internal link, usually a venture page. */
+  href?: string;
+  /** Small label beside the icon (website or phone). */
+  meta?: string;
+  /** What the offering covers, as a short list. */
+  items?: string[];
+  /** One key figure from the content document. */
+  stat?: { value: string; label: string };
+}
+
+export interface Service {
+  id: ServiceId;
   no: string;
   icon: string;
   title: string;
+  /** Short name for pills and menus. */
+  short: string;
   desc: string;
+  /** What the service offers — brands, offerings or clients. */
   tags: string[];
   tone: Tone;
-  href: string;
+  /** Longer introduction for the Home page panel. */
+  summary: string;
+  offerings: ServiceOffering[];
 }
 
-/** A group company presented as a card inside a practice on the Services page. */
-export interface PracticeCompany {
-  venture: VentureId;
-  icon: string;
-  tone: Tone;
+/** One offering on the Services page: a platform, an offering line or a company, in detail. */
+export interface ServiceColumn {
   title: string;
-  desc: string;
-  /** Card surface; defaults to the plain card. */
-  variant?: 'sunken' | 'accent-soft';
-  /** Small label beside the icon (site or phone). Cards with one show a "View company" footer. */
+  /** The platform or company this column describes; shows its logo. */
+  venture?: VentureId;
+  /** Internal link, usually a venture page. */
+  href?: string;
+  /** Small label under the title (website or phone). */
   meta?: string;
+  desc?: string;
+  stats?: Stat[];
+  /** What it covers, as a short checked list. */
+  points?: string[];
 }
 
-export interface ServicePillar {
-  title: string;
-  icon: string;
-  anchor: string;
-  tone: Tone;
+/** The Services page section for one service. */
+export interface ServiceDetail {
+  /** One-line statement beside the service name. */
+  heading: string;
+  /** Clients named for this service in the content document. */
+  clients?: string[];
+  columns: ServiceColumn[];
+  /** Set the section on the dark band. */
+  dark?: boolean;
 }
 
 export interface Person {
   name: string;
   role: string;
+  /** The business the person leads, as named in the content document. */
   unit?: string;
+  /** The platform or company that business is, for grouping and its logo. */
+  venture?: VentureId;
 }
 
 export interface Founder extends Person {
   initials: string;
-  background: string;
 }
 
 export interface NavLink {

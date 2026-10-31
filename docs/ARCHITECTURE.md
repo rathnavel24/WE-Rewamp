@@ -99,21 +99,21 @@ src/pages/<Page>/sections/<Name>/
 
 Export it from `sections/index.ts` (in page order) and render it from `<Page>Page.tsx`. Lists and repeatable copy
 go in `src/content/`; a section's own one-off heading can stay in its JSX. A card used by several sections of the
-same page gets its own folder in that `sections/` (e.g. `Services/sections/PracticeCompanyCard`); once a second
+same page gets its own folder in that `sections/` (e.g. `Services/sections/ServiceDetail`); once a second
 page needs it, move it to `components/ui` and make it content-free.
 
-A short page (one or two sections, under ~120 lines — Team, Companies, Contact) can stay a single file; split it
+A short page (one or two sections, under ~120 lines — Team, Contact) can stay a single file; split it
 when it grows.
 
 ### Add a venture (group company)
 
 1. Add its id to `VentureId` in `src/types/index.ts`.
-2. Add its entry to `VENTURES` in `src/content/ventures.ts` — TypeScript then requires every field. That one entry
-   drives its page at `/ventures/<id>`, the nav mega-menu, the footer, "More from the group", and the contact
+2. Add its entry to `VENTURES` in `src/content/ventures.ts` — TypeScript then requires every field, including the
+   `service` it sits under. That one entry drives its page at `/ventures/<id>`, the footer, "More from the group", and the contact
    form's pre-selected topic (`enquiryTopic`). Optional blocks appear only when their data is present: `stats`,
    `steps` (process) and `caseStudy`.
-3. Add it to `COMPANIES` in `src/content/companies.ts` for the directory (a new country also needs a
-   `COUNTRY_LABELS` entry — its filter appears automatically).
+3. If it is a new legal company, add it to `GROUP_COMPANIES` in `src/content/companies.ts` with its `service`; it then
+   appears under that service on the Services and Home pages (a new country also needs a `COUNTRY_LABELS` entry).
 
 ### Add or change content
 

@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { APP_ROUTES } from '@/app/routes';
-import { COMPANIES } from './companies';
-import { SERVICE_CARDS } from './services';
+import { GROUP_COMPANIES } from './companies';
+import { clientLogo, companyLogo, ventureLogo } from './assets';
+import { CLIENTS } from './clients';
+import { SERVICES, serviceHref } from './services';
+import { DIVISION_LEADERS } from './team';
 import { ENQUIRY_TOPICS, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
 
@@ -23,8 +26,8 @@ describe('content integrity', () => {
   it('every internal link points at a real page', () => {
     const hrefs = [
       ...NAV_LINKS.map((l) => l.href),
-      ...COMPANIES.flatMap((c) => [c.href, c.groupHref]),
-      ...SERVICE_CARDS.map((s) => s.href)
+      ...SERVICES.map((s) => serviceHref(s.id)),
+      ...Object.values(VENTURES).map((v) => serviceHref(v.service))
     ].filter(internal);
     expect(hrefs.filter((h) => !resolves(h))).toEqual([]);
   });
@@ -36,6 +39,41 @@ describe('content integrity', () => {
   it('each venture pre-selects a topic that exists on the enquiry form', () => {
     const topics = new Set(ENQUIRY_TOPICS.map((t) => t.label));
     for (const v of Object.values(VENTURES)) expect(topics).toContain(v.enquiryTopic);
+  });
+
+  it('every company is a parent or sits under a known service', () => {
+    const ids = new Set(SERVICES.map((x) => x.id));
+    for (const c of GROUP_COMPANIES) expect(c.parent || (c.service && ids.has(c.service))).toBeTruthy();
+  });
+
+  it('lists the seven companies exactly as named and ordered in the content document', () => {
+    expect(GROUP_COMPANIES.map((c) => `${c.name} (${c.country === 'INDIA' ? 'India' : c.country})`)).toEqual([
+      'Wallet Edge Global FZC LLC (UAE)',
+      'Wallet Edge Technologies LLC (UAE)',
+      'CareHub Healthcare LLC (UAE)',
+      'Global Cure RX Pharmacy LLC (UAE)',
+      'WhiteBlue Fintech Ltd (UAE)',
+      'Wallet Edge Financial Services Pvt Ltd (India)',
+      'Wallet Edge Services Pvt Ltd (India)'
+    ]);
+  });
+
+  it('does not mention Real Estate while it is held back', () => {
+    const text = JSON.stringify([SERVICES, VENTURES, ENQUIRY_TOPICS, DIVISION_LEADERS, CLIENTS]);
+    expect(text).not.toMatch(/real estate|seyyone/i);
+  });
+
+  it('every client in the Trusted by strip has a logo file', () => {
+    expect(CLIENTS.filter((name) => !clientLogo(name))).toEqual([]);
+  });
+
+  it('every group company has a logo', () => {
+    expect(GROUP_COMPANIES.filter((c) => !companyLogo(c)).map((c) => c.name)).toEqual([]);
+  });
+
+  it('every platform except Recovery Services has its own logo', () => {
+    const missing = Object.values(VENTURES).filter((v) => !ventureLogo(v.id));
+    expect(missing.map((v) => v.id)).toEqual(['recovery']);
   });
 
   it('nav ids are unique', () => {

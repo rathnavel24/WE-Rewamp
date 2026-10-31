@@ -1,48 +1,118 @@
+/* Desktop: the heading and office directory on the left, the enquiry form beside them. */
 .layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
   gap: var(--space-12);
   align-items: start;
+}
+@media (min-width: 981px) {
+  .layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-16);
+  }
 }
 .intro {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-10);
 }
 
+/* ---------- Offices: ruled directory ---------- */
 .offices {
+  border-top: 1px solid var(--border-strong);
+}
+.office {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+  font-style: normal;
+}
+.office + .office {
+  border-top: 1px solid var(--border-default);
 }
 .officeHead {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
-.officeName {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+.country {
+  font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans);
+  letter-spacing: var(--ls-title);
+  color: var(--text-strong);
+}
+.badge {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--color-primary);
 }
 .address {
-  font-style: normal;
-  font-size: var(--fs-body);
-  line-height: 1.55;
-  color: var(--text-body);
-}
-.officeLinks {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-body-lg);
+  line-height: 1.5;
+  color: var(--text-muted);
 }
-.officeLinks > * {
-  border-color: transparent;
-  background: var(--color-surface-sunken);
+.addressFirst {
+  color: var(--text-strong);
+}
+.lines {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.line {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+}
+.line dt {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--text-faint);
+}
+.line dd {
+  margin: 0;
+  min-width: 0;
+}
+.link {
+  font: var(--fw-medium) var(--fs-body)/1.4 var(--font-sans);
+  color: var(--text-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--border-default);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color var(--dur-fast);
+}
+.link:hover {
+  color: var(--text-strong);
+  text-decoration-color: currentColor;
 }
 
-/* Phones: heading → form → offices, so the main action isn't two screens down. */
+/* ---------- Form panel: stays in view beside the directory on desktop ---------- */
+@media (min-width: 981px) {
+  .panel {
+    position: sticky;
+    top: 132px;
+  }
+}
+
+/* "Back to <venture>" when the visitor arrived from a venture page. */
+.back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-block: -15px calc(-1 * var(--space-6));
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Phones: heading, then the form, then the offices ---------- */
 @media (max-width: 600px) {
   .layout {
     gap: var(--space-8);
@@ -56,50 +126,7 @@
   .offices {
     order: 2;
   }
-}
-
-/* Form panel */
-.panel {
-  position: sticky;
-  top: 110px;
-}
-@media (max-width: 980px) {
-  .panel {
-    position: relative;
-    top: 0;
+  .line {
+    grid-template-columns: 56px minmax(0, 1fr);
   }
-}
-.panelGlow {
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  right: -160px;
-  top: -180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--glow-on-dark), var(--glow-on-dark-fade) 40%, transparent 68%);
-  pointer-events: none;
-}
-
-/* ---------- Phones ---------- */
-@media (max-width: 600px) {
-  .layout {
-    gap: var(--space-8);
-  }
-  .intro {
-    gap: var(--space-6);
-  }
-}
-
-/* "Back to <venture>" when the visitor arrived from a venture page. */
-.back {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  margin-block: -15px calc(-1 * var(--space-4));
-  color: var(--text-muted);
-  text-decoration: none;
-}
-.back:hover {
-  color: var(--color-accent);
 }

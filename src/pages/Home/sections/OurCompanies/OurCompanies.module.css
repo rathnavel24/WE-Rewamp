@@ -1,0 +1,153 @@
+/* A ruled register of the seven companies: company, role, country. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+}
+.table thead th {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-default);
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--text-faint);
+  text-align: left;
+}
+.table tbody tr + tr {
+  border-top: 1px solid var(--border-default);
+}
+.table tbody > tr > * {
+  padding: var(--space-5) var(--space-6) var(--space-5) 0;
+  vertical-align: middle;
+  text-align: left;
+}
+.company {
+  width: 50%;
+  font-weight: inherit;
+}
+.companyCell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+/* Each company's logo on a fixed white plate, so different shapes line up. */
+.logo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 56px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--text-faint);
+}
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+.name {
+  display: block;
+  font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans);
+  letter-spacing: var(--ls-title);
+  color: var(--text-strong);
+}
+.note {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+.role {
+  font-size: var(--fs-body);
+}
+.parent {
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+}
+.serviceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.arrow {
+  color: var(--text-faint);
+  transition:
+    color var(--dur-fast),
+    transform var(--dur-fast) var(--ease);
+}
+@media (hover: hover) {
+  .serviceLink:hover {
+    color: var(--text-strong);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .serviceLink:hover .arrow {
+    color: var(--text-strong);
+    transform: translate(2px, -2px);
+  }
+}
+.table thead .countryHead,
+.table tbody > tr > .country {
+  padding-right: 0;
+  text-align: right;
+}
+.country {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Phones: each company becomes a stacked row; the column labels are dropped. */
+@media (max-width: 600px) {
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-5) 0;
+  }
+  .table tbody > tr > * {
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+  .company {
+    grid-column: 1;
+  }
+  .table tbody > tr > .country {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .role {
+    grid-column: 1 / -1;
+    font-size: var(--fs-small);
+  }
+  .name {
+    font-size: var(--fs-h4);
+  }
+  .companyCell {
+    gap: var(--space-3);
+  }
+  .logo {
+    width: 84px;
+    height: 44px;
+    padding: var(--space-1) var(--space-2);
+  }
+}

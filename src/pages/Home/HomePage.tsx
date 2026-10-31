@@ -1,5 +1,5 @@
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { CompaniesSection, ContactCta, Flagships, Hero, ServicesSection, TeamPreview, TrustedBy } from './sections';
+import { ContactCta, Hero, OurCompanies, ServicesSection, TeamPreview, TrustedBy } from './sections';
 
 export function HomePage() {
   usePageMeta();
@@ -8,8 +8,7 @@ export function HomePage() {
       <Hero />
       <TrustedBy />
       <ServicesSection />
-      <CompaniesSection />
-      <Flagships />
+      <OurCompanies />
       <TeamPreview />
       <ContactCta />
     </>

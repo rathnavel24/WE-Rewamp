@@ -6,7 +6,6 @@ import type { VentureId } from '@/types';
  */
 export const PATHS = {
   services: 'services',
-  companies: 'companies',
   team: 'team',
   contact: 'contact',
   venture: 'ventures/:id',
@@ -17,7 +16,6 @@ export const PATHS = {
 export const ROUTES = {
   home: '/',
   services: `/${PATHS.services}`,
-  companies: `/${PATHS.companies}`,
   team: `/${PATHS.team}`,
   contact: `/${PATHS.contact}`,
   /** The contact page with the form pre-filled for a venture or an enquiry topic. */

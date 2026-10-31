@@ -1,7 +1,7 @@
 # WalletEdge Global — Website (frontend)
 
 React build of the **WalletEdge Global redesign** from Claude Design: a pixel-matched port of the six
-design pages (Home, Services, Companies, Team, Contact, Venture × 5), including the motion system,
+design pages (Home, Services, Team, Contact, Venture × 5), including the motion system,
 page-transition curtain, mega-menu and responsive behaviour.
 
 **Stack:** React 19 · TypeScript · Vite · React Router · CSS Modules (no UI library, so nothing changes the design)
@@ -22,15 +22,14 @@ Feature flags (e.g. the AI assistant) are switched on per environment with `VITE
 
 ## Routes
 
-| Path                                                                                | Page                                               |
-| ----------------------------------------------------------------------------------- | -------------------------------------------------- |
-| `/`                                                                                 | Home                                               |
-| `/services` (`#it-bpo`, `#financial`, `#real-estate`, `#consulting`, `#healthcare`) | Services                                           |
-| `/companies`                                                                        | Companies (group structure + filterable directory) |
-| `/team`                                                                             | Our Team                                           |
-| `/contact` (`?venture=<id>` pre-selects a topic)                                    | Contact + enquiry form                             |
-| `/ventures/:id` — `insureliv`, `arogyaplus`, `carehub`, `globalcure`, `recovery`    | Venture detail                                     |
-| `/design-system` (not linked in the nav)                                            | Living style guide — every token and component     |
+| Path                                                                             | Page                                             |
+| -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `/`                                                                              | Home                                             |
+| `/services` (`#it-bpo`, `#financial`, `#consulting`, `#healthcare`)              | Services — each service with its group companies |
+| `/team`                                                                          | Our Team                                         |
+| `/contact` (`?venture=<id>` pre-selects a topic)                                 | Contact + enquiry form                           |
+| `/ventures/:id` — `insureliv`, `arogyaplus`, `carehub`, `globalcure`, `recovery` | Venture detail                                   |
+| `/design-system` (not linked in the nav)                                         | Living style guide — every token and component   |
 
 It's a client-side router, so the host must serve `index.html` for unknown paths
 (`public/_redirects` covers Netlify; on Vercel add a rewrite to `/index.html`).

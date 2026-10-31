@@ -1,108 +1,165 @@
-import { Avatar, Card, Chip, CtaBanner, Grid, Portrait, Section, SectionHeader } from '@/components/ui';
-import { cx } from '@/lib/cx';
+import type { CSSProperties } from 'react';
+import { AppLink, Avatar, CtaBanner, Icon, Portrait, Section, SectionHeader } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
+import { teamPhoto, ventureLogo } from '@/content/assets';
 import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/content/team';
-import { alternate } from '@/content/tones';
-import type { Person } from '@/types';
-import { teamPhoto } from '@/content/assets';
+import { alternate, GREEN, ORANGE } from '@/content/tones';
+import { VENTURES } from '@/content/ventures';
+import type { Person, VentureId } from '@/types';
 import s from './TeamPage.module.css';
 
-/** Colours alternate across both groups continuously, as in the design. */
-const GROUPS: Array<{ title: string; people: Array<Person & { index: number }> }> = (() => {
-  let k = 0;
-  const tag = (list: Person[]) => list.map((p) => ({ ...p, index: k++ }));
-  return [
-    { title: 'Board of directors', people: tag(BOARD) },
-    { title: 'Company & division leadership', people: tag(DIVISION_LEADERS) }
-  ];
-})();
+/** Business leaders grouped by the business they lead, in the content document's order. */
+const BUSINESSES = DIVISION_LEADERS.reduce<Array<{ venture: VentureId; unit: string; people: Person[] }>>(
+  (groups, p) => {
+    if (!p.venture) return groups;
+    const group = groups.find((g) => g.venture === p.venture);
+    if (group) group.people.push(p);
+    else groups.push({ venture: p.venture, unit: p.unit ?? VENTURES[p.venture].name, people: [p] });
+    return groups;
+  },
+  []
+);
+
+const SECTIONS = [
+  { id: 'founders', label: 'Founders', count: FOUNDERS.length },
+  { id: 'board', label: 'Board of directors', count: BOARD.length },
+  { id: 'leadership', label: 'Business leaders', count: DIVISION_LEADERS.length }
+];
+
+const pad = (n: number) => String(n).padStart(2, '0');
 
 export function TeamPage() {
   usePageMeta({
     title: 'Our Team',
-    description: 'The founders, board and leaders running each WalletEdge Global company day to day.'
+    description: 'The founders, board of directors and business leaders of WalletEdge Global and its group companies.'
   });
   return (
     <>
-      <Section data-screen-label="Team hero" pt="hero" pb="sm">
+      <Section data-screen-label="Team hero" pt="hero" pb="sm" gap="md">
         <SectionHeader
           as="h1"
           size="display-1"
           layout="split"
           kicker="Our team"
-          title="The people behind the group."
-          lead="Founders and a board who set direction, with dedicated leaders running healthcare, recovery, real estate and technology every day."
+          title="Leadership and management"
+          lead="The founders, board and business leaders responsible for the companies of WalletEdge Global."
         />
-      </Section>
-
-      <Section data-screen-label="Founders" pt="none" pb="sm">
-        <Grid min={460} data-stagger="120">
-          {FOUNDERS.map((p) => (
-            <div key={p.name} className={`on-dark ${s.founder}`} style={{ background: p.background }}>
-              <div className={s.founderGlow} aria-hidden="true" />
-              <div className={s.founderText}>
-                <Chip variant="glass" mono>
-                  Founder
-                </Chip>
-                <div className={s.founderName}>
-                  <span>{p.name}</span>
-                  <span className="t-body-lg">{p.role}</span>
-                </div>
-              </div>
-              {teamPhoto(p.name) ? (
-                <Portrait name={p.name} photo={teamPhoto(p.name)} variant="glass" className={s.founderPhoto} />
-              ) : (
-                <Avatar name={p.name} initials={p.initials} size="xl" className={s.founderAvatar} />
-              )}
-            </div>
+        <nav aria-label="Sections on this page" className={s.contents}>
+          {SECTIONS.map((x, i) => (
+            <AppLink
+              key={x.id}
+              to={`#${x.id}`}
+              className={s.entry}
+              style={{ '--tone': alternate(i).accent } as CSSProperties}
+            >
+              <span className={s.count}>{pad(x.count)}</span>
+              <span className={s.entryLabel}>
+                {x.label}
+                <Icon name="arrow_downward" size={18} className={s.arrow} />
+              </span>
+            </AppLink>
           ))}
-        </Grid>
+        </nav>
       </Section>
 
-      {GROUPS.map((g) => (
-        <Section key={g.title} pt="sm" pb="none" gap="md">
-          <div data-reveal="fade" className={s.groupHead}>
-            <h2 className="t-label">{g.title}</h2>
-            <span className={s.groupRule} />
-            <span className="t-label">{String(g.people.length).padStart(2, '0')}</span>
-          </div>
-          {/* Three per row keeps both groups (3 and 9 people) as complete rows. */}
-          <Grid min={280} max={3} gap="sm" data-stagger="60">
-            {g.people.map((p) => {
-              const tone = alternate(p.index);
-              const photo = teamPhoto(p.name);
-              // Until a photo is added (src/assets/team/<name>.jpg) the card is a compact initials row,
-              // not a large empty portrait.
-              return (
-                <Card key={p.name} padding="sm" interactive className={cx(s.person, !photo && s.personCompact)}>
-                  {photo ? (
-                    <Portrait name={p.name} photo={photo} tone={tone} className={s.personPhoto} />
-                  ) : (
-                    <Avatar name={p.name} tone={tone} />
-                  )}
-                  <span className={s.personText}>
-                    <span className="t-h4">{p.name}</span>
-                    <span className="t-small">{p.role}</span>
-                    {p.unit && (
-                      <Chip size="sm" mono style={{ color: tone.ink }}>
-                        {p.unit}
-                      </Chip>
+      {/* Founders: the one dark band on the page. */}
+      <Section id="founders" data-screen-label="Founders" tone="inverse">
+        <div className={s.founders}>
+          {FOUNDERS.map((p, i) => {
+            const photo = teamPhoto(p.name);
+            return (
+              <article key={p.name} className={s.founder}>
+                {photo ? (
+                  <Portrait name={p.name} photo={photo} variant="glass" className={s.founderPhoto} />
+                ) : (
+                  <span
+                    className={s.monogram}
+                    style={{ '--tone': (i % 2 ? ORANGE : GREEN).accent } as CSSProperties}
+                    aria-hidden="true"
+                  >
+                    {p.initials}
+                  </span>
+                )}
+                <span className={s.founderLabel}>Founder</span>
+                <h2 className={`t-display-2 ${s.founderName}`}>{p.name}</h2>
+                <p className={s.founderRole}>{p.role}</p>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section id="board" data-screen-label="Board" pb="sm" gap="none">
+        <GroupHead title="Board of directors" count={BOARD.length} />
+        <ul className={s.people}>
+          {BOARD.map((p, i) => (
+            <PersonRow key={p.name} person={p} index={i} />
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="leadership" data-screen-label="Business leaders" pt="sm" gap="none">
+        <GroupHead
+          title="Business leadership"
+          count={DIVISION_LEADERS.length}
+          lead="The leaders responsible for each business in the group."
+        />
+        <div className={s.businesses}>
+          {BUSINESSES.map((b, bi) => {
+            const logo = ventureLogo(b.venture);
+            return (
+              <section key={b.venture} className={s.business} aria-label={b.unit}>
+                <AppLink to={ROUTES.venture(b.venture)} className={s.businessName}>
+                  <span className={s.logo}>
+                    {logo ? (
+                      <img src={logo} alt="" />
+                    ) : (
+                      <Icon name={VENTURES[b.venture].icon} size={24} className={s.logoIcon} />
                     )}
                   </span>
-                </Card>
-              );
-            })}
-          </Grid>
-        </Section>
-      ))}
+                  <span className={s.unit}>
+                    {b.unit}
+                    <Icon name="arrow_outward" size={16} className={s.arrow} />
+                  </span>
+                </AppLink>
+                <ul className={s.people}>
+                  {b.people.map((p, i) => (
+                    <PersonRow key={p.name} person={p} index={bi + i} />
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      </Section>
 
-      <CtaBanner
-        title="Want to speak with someone on the leadership team?"
-        cta="Book a meeting"
-        to={ROUTES.contact}
-        pt="md"
-      />
+      <CtaBanner title="Contact the leadership team" cta="Contact us" to={ROUTES.contact} pt="none" />
     </>
+  );
+}
+
+function GroupHead({ title, count, lead }: { title: string; count: number; lead?: string }) {
+  return (
+    <header className={s.groupHead}>
+      <h2 className="t-h1">{title}</h2>
+      {lead && <p className={s.groupLead}>{lead}</p>}
+      <span className={s.groupCount}>{pad(count)}</span>
+    </header>
+  );
+}
+
+function PersonRow({ person: p, index }: { person: Person; index: number }) {
+  const photo = teamPhoto(p.name);
+  return (
+    <li className={s.person}>
+      {photo ? (
+        <Portrait name={p.name} photo={photo} tone={alternate(index)} className={s.personPhoto} />
+      ) : (
+        <Avatar name={p.name} tone={alternate(index)} />
+      )}
+      <span className={s.personName}>{p.name}</span>
+      <span className={s.personRole}>{p.role}</span>
+    </li>
   );
 }

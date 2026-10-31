@@ -4,14 +4,12 @@ export const FOUNDERS: Founder[] = [
   {
     name: 'SaiPranav',
     role: 'Founder & Chief Executive Officer',
-    initials: 'SP',
-    background: 'linear-gradient(150deg, var(--green-700), var(--forest-900))'
+    initials: 'SP'
   },
   {
     name: 'Gopi Senthil Raja',
     role: 'Founder & Chief Operating Officer',
-    initials: 'GS',
-    background: 'linear-gradient(150deg, var(--orange-600), var(--orange-900))'
+    initials: 'GS'
   }
 ];
 
@@ -22,15 +20,15 @@ export const BOARD: Person[] = [
 ];
 
 export const DIVISION_LEADERS: Person[] = [
-  { name: 'Ramachandran Ramasamy', role: 'Director', unit: 'CareHub Healthcare' },
-  { name: 'Manikandan Gurusamy', role: 'Director', unit: 'Global Cure RX Pharmacy' },
-  { name: 'TA Rangarajan', role: 'Executive Director', unit: 'Recovery Services' },
-  { name: 'TA Devarajan', role: 'Group Legal Consultant', unit: 'Recovery Services' },
-  { name: 'SaiGokul', role: 'Manager', unit: 'Recovery Services' },
-  { name: 'Kalesh Kumar', role: 'General Manager', unit: 'ArogyaPlus.com' },
-  { name: 'Prakash', role: 'Operations Manager', unit: 'ArogyaPlus.com' },
-  { name: 'Suresh Kumar A', role: 'Operations Head', unit: 'Real Estate' },
-  { name: 'Ananth', role: 'Head of Marketing', unit: 'Real Estate' }
+  { name: 'Ramachandran Ramasamy', role: 'Director', unit: 'CareHub Healthcare', venture: 'carehub' },
+  { name: 'Manikandan Gurusamy', role: 'Director', unit: 'Global Cure RX Pharmacy', venture: 'globalcure' },
+  { name: 'TA Rangarajan', role: 'Executive Director', unit: 'Recovery Services', venture: 'recovery' },
+  { name: 'TA Devarajan', role: 'Group Legal Consultant', unit: 'Recovery Services', venture: 'recovery' },
+  { name: 'SaiGokul', role: 'Manager', unit: 'Recovery Services', venture: 'recovery' },
+  { name: 'Kalesh Kumar', role: 'General Manager', unit: 'ArogyaPlus.com', venture: 'arogyaplus' },
+  { name: 'Prakash', role: 'Operations Manager', unit: 'ArogyaPlus.com', venture: 'arogyaplus' }
+  // Real Estate leaders (Suresh Kumar A — Operations Head; Ananth — Head of Marketing) are held back
+  // while Real Estate is not shown on the site. Restore them here when it returns.
 ];
 
 /** Leadership preview on the Home page. */

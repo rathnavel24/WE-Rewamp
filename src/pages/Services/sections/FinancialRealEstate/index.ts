@@ -1,1 +1,0 @@
-export { FinancialRealEstate } from './FinancialRealEstate';

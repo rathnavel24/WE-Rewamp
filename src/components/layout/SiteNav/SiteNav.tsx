@@ -7,7 +7,7 @@ import { useScrollProgress } from '@/hooks/useScrollProgress';
 import { useViewportWidth } from '@/hooks/useViewport';
 import { LOGO_ALT, NAV_LINKS } from '@/content/site';
 import { ROUTES } from '@/config/routes';
-import { VENTURE_LIST } from '@/content/ventures';
+import { SERVICES, serviceHref } from '@/content/services';
 import logo from '@/assets/brand/walletedge-logo.png';
 import s from './SiteNav.module.css';
 
@@ -15,7 +15,7 @@ const DESKTOP_MIN = 980;
 
 /** Which top-level nav item a pathname belongs to. */
 const activeId = (pathname: string) => {
-  if (pathname.startsWith('/ventures')) return 'companies';
+  if (pathname.startsWith('/ventures')) return 'services';
   const seg = pathname.split('/')[1];
   return seg || 'home';
 };
@@ -86,17 +86,17 @@ export function SiteNav() {
                 {l.menu && openMenu === l.id && (
                   <div className={s.menuWrap}>
                     <div className={s.menu}>
-                      {VENTURE_LIST.map((v) => (
-                        <AppLink key={v.id} to={ROUTES.venture(v.id)} className={s.menuItem}>
+                      {SERVICES.map((v) => (
+                        <AppLink key={v.id} to={serviceHref(v.id)} className={s.menuItem}>
                           <Tile icon={v.icon} size="sm" tone={v.tone} />
                           <span className={s.menuText}>
-                            <span className={s.menuName}>{v.name}</span>
-                            <span className={s.menuLine}>{v.menuLine}</span>
+                            <span className={s.menuName}>{v.title}</span>
+                            <span className={s.menuLine}>{v.tags.join(' · ')}</span>
                           </span>
                         </AppLink>
                       ))}
-                      <AppLink to={ROUTES.companies} className={s.menuAll}>
-                        View the full group
+                      <AppLink to={ROUTES.services} className={s.menuAll}>
+                        View all services
                         <Icon name="arrow_outward" size={18} />
                       </AppLink>
                     </div>
@@ -143,18 +143,13 @@ export function SiteNav() {
                 {l.label}
                 <Icon name="arrow_forward" size={20} color="var(--color-primary)" />
               </AppLink>
-              {/* Phones get the companies menu inline, so every venture is one tap from anywhere. */}
+              {/* Phones get the services menu inline, so every service is one tap from anywhere. */}
               {l.menu && (
                 <div className={s.sheetSub}>
-                  {VENTURE_LIST.map((v) => (
-                    <AppLink
-                      key={v.id}
-                      to={ROUTES.venture(v.id)}
-                      className={s.sheetSubLink}
-                      aria-current={pathname === ROUTES.venture(v.id) ? 'page' : undefined}
-                    >
+                  {SERVICES.map((v) => (
+                    <AppLink key={v.id} to={serviceHref(v.id)} className={s.sheetSubLink}>
                       <Tile icon={v.icon} size="xs" tone={v.tone} />
-                      {v.name}
+                      {v.title}
                     </AppLink>
                   ))}
                 </div>

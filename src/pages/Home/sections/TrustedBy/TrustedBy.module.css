@@ -24,18 +24,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 56px;
+  height: 64px;
   padding-inline: clamp(28px, 4vw, 48px);
   border-right: 1px solid var(--border-subtle);
 }
 .logo {
   display: block;
-  height: 32px;
+  height: 40px;
   width: auto;
-  max-width: 140px;
+  max-width: 170px;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.6;
+  opacity: 0.75;
   transition:
     filter var(--dur-fast),
     opacity var(--dur-fast);

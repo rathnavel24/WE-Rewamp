@@ -1,5 +1,5 @@
 /** Height kept clear under the fixed nav when scrolling to an anchor. */
-export const NAV_OFFSET = 100;
+export const NAV_OFFSET = 108;
 
 /** Smooth-scrolls to an element id, leaving room for the fixed nav. */
 export function scrollToAnchor(id: string) {

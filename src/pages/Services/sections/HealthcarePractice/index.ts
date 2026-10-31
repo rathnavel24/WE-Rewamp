@@ -1,1 +1,0 @@
-export { HealthcarePractice } from './HealthcarePractice';

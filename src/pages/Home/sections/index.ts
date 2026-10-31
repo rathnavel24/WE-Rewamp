@@ -2,7 +2,6 @@
 export { Hero } from './Hero';
 export { TrustedBy } from './TrustedBy';
 export { ServicesSection } from './ServicesSection';
-export { CompaniesSection } from './CompaniesSection';
-export { Flagships } from './Flagships';
+export { OurCompanies } from './OurCompanies';
 export { TeamPreview } from './TeamPreview';
 export { ContactCta } from './ContactCta';

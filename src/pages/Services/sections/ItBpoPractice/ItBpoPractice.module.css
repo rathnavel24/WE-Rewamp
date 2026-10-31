@@ -1,8 +1,0 @@
-.panel {
-  --card-gap: var(--space-10);
-}
-@media (max-width: 600px) {
-  .panel {
-    --card-gap: var(--space-6);
-  }
-}

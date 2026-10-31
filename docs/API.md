@@ -31,7 +31,7 @@ Request
   "company": "Acme LLC", // optional
   "phone": "+971 50 000 0000", // optional
   "message": "We'd like to discuss…", // optional
-  "topics": ["Healthcare", "Partnership"], // 0..n of: "IT & BPO", "Financial services", "Real estate",
+  "topics": ["Healthcare", "Partnership"], // 0..n of: "IT & BPO", "Financial services",
   //          "Consulting", "Healthcare", "Partnership"
   "venture": "carehub", // optional: insureliv | arogyaplus | carehub | globalcure | recovery
   "source": "/contact" // optional: page path the form was sent from
@@ -61,15 +61,15 @@ Frontend file: `src/features/enquiry/api.ts`.
 Today every list below is hard-coded in `src/content/*.ts`. If the client wants to edit content without a redeploy,
 expose these read-only endpoints and I'll swap the data imports for fetches (shapes mirror `src/types/index.ts`).
 
-| Endpoint                 | Purpose                                                                                                        | Replaces                   |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `GET /api/site`          | Contact email, office addresses & phones, footer blurb, headline stats (7 companies, 15+ clients, 2 countries) | `src/content/site.ts`      |
-| `GET /api/companies`     | The 7 group companies (name, sector, country, description, links) — Companies page, Home list, group diagram   | `src/content/companies.ts` |
-| `GET /api/ventures`      | Summary list of the 5 ventures — nav mega-menu, footer, "More from the group"                                  | `src/content/ventures.ts`  |
-| `GET /api/ventures/{id}` | Full venture detail: tagline, about, stats, features, process steps, website                                   | `src/content/ventures.ts`  |
-| `GET /api/services`      | Service cards, consulting services, pillars                                                                    | `src/content/services.ts`  |
-| `GET /api/team`          | Founders, board, division leaders (name, role, unit, optional photo URL)                                       | `src/content/team.ts`      |
-| `GET /api/clients`       | "Trusted by" client names (optionally logo URLs)                                                               | `src/content/clients.ts`   |
+| Endpoint                 | Purpose                                                                                                       | Replaces                   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `GET /api/site`          | Contact email, office addresses & phones, footer blurb, headline stats (7 companies, 15 clients, 2 countries) | `src/content/site.ts`      |
+| `GET /api/companies`     | The 7 group companies (name, country, service, note) — listed under each service on Services and Home         | `src/content/companies.ts` |
+| `GET /api/ventures`      | Summary list of the 5 ventures — footer, "More from the group"                                                | `src/content/ventures.ts`  |
+| `GET /api/ventures/{id}` | Full venture detail: tagline, about, stats, features, process steps, website                                  | `src/content/ventures.ts`  |
+| `GET /api/services`      | The 4 services (nav menu, Home cards, Services page), consulting lines, platform cards                        | `src/content/services.ts`  |
+| `GET /api/team`          | Founders, board, division leaders (name, role, unit, optional photo URL)                                      | `src/content/team.ts`      |
+| `GET /api/clients`       | "Trusted by" client names (optionally logo URLs)                                                              | `src/content/clients.ts`   |
 
 Example — `GET /api/ventures/arogyaplus`
 

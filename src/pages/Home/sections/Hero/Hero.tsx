@@ -20,15 +20,8 @@ export function Hero() {
     <Section data-screen-label="Hero" pt="hero" pb="sm" fill className={s.hero} innerClassName={s.layout} gap="none">
       <div className={s.gridBg} aria-hidden="true" />
       <div className={s.copy}>
-        <div data-reveal="blur" className={s.badge}>
-          <span className={s.dot}>
-            <span data-pulse="0" className={s.ping} />
-          </span>
-          Parent group · UAE &amp; India
-        </div>
-
         <h1 data-reveal="up" data-delay="80" className="t-display-1">
-          One group building the edge in <span className="visually-hidden">{HERO_SECTORS_SENTENCE}</span>
+          A diversified group operating in <span className="visually-hidden">{HERO_SECTORS_SENTENCE}</span>
           <HeroRoller sectors={HERO_SECTORS} index={index} previous={previous} onNext={next} onLeft={clearPrevious} />
         </h1>
 
@@ -48,16 +41,16 @@ export function Hero() {
         </div>
 
         <p data-reveal="up" data-delay="160" className={`t-lead ${s.lead}`}>
-          WalletEdge Global is the principal stakeholder behind seven companies across the UAE and India — from
-          AI-powered insurance platforms and DHA-licensed healthcare to financial recovery and business consulting.
+          WalletEdge Global is the parent group of seven companies across the UAE and India, delivering IT &amp; BPO,
+          financial services, consulting and healthcare.
         </p>
 
         <div data-reveal="up" data-delay="240" className={s.buttons}>
-          <Button to={ROUTES.companies} icon="arrow_forward" size="lg">
-            Explore our companies
+          <Button to={ROUTES.services} icon="arrow_forward" size="lg">
+            Explore our services
           </Button>
-          <Button to={ROUTES.services} variant="secondary" size="lg">
-            Our services
+          <Button to={ROUTES.contact} variant="secondary" size="lg">
+            Contact us
           </Button>
         </div>
 

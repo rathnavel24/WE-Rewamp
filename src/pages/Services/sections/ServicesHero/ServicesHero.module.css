@@ -1,26 +1,91 @@
-.pillars {
+/* Four columns under one strong rule, split by hairlines. */
+.contents {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-default);
+}
+.entry {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-6) var(--space-6) 0;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.entry + .entry {
+  padding-left: var(--space-6);
+  border-left: 1px solid var(--border-default);
+}
+.no {
+  font: var(--fw-semibold) var(--fs-h1)/1 var(--font-sans);
+  font-stretch: var(--font-stretch-display);
+  letter-spacing: var(--ls-heading);
+  color: var(--tone);
+}
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
+}
+.arrow {
+  color: var(--text-faint);
+  transition:
+    color var(--dur-fast),
+    transform var(--dur-fast) var(--ease);
+}
+@media (hover: hover) {
+  .entry:hover {
+    color: var(--text-strong);
+  }
+  .entry:hover .arrow {
+    color: var(--tone);
+    transform: translateY(2px);
+  }
+}
+.covers {
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--text-muted);
 }
 
+/* Tablet: two by two. */
+@media (max-width: 900px) {
+  .contents {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .entry:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .entry:nth-child(n + 3) {
+    border-top: 1px solid var(--border-default);
+  }
+}
+/* Phones: one ruled list. */
 @media (max-width: 600px) {
-  /* One swipeable row that bleeds to the screen edges, instead of three wrapped rows. */
-  .pillars {
-    flex-wrap: nowrap;
-    gap: var(--space-2);
-    overflow-x: auto;
-    scrollbar-width: none;
-    margin-inline: calc(-1 * var(--gutter));
-    padding: 2px var(--gutter);
-    scroll-padding-inline: var(--gutter);
+  .contents {
+    grid-template-columns: 1fr;
   }
-  .pillars::-webkit-scrollbar {
-    display: none;
+  .entry,
+  .entry + .entry {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-4) 0;
+    border-left: 0;
   }
-  .pillars > * {
-    flex: none;
-    padding: 8px 14px 8px 8px;
-    font-size: var(--fs-small);
+  .entry + .entry {
+    border-top: 1px solid var(--border-default);
+  }
+  .no {
+    grid-row: span 2;
+    font-size: var(--fs-h3);
+  }
+  .name {
+    margin-top: 0;
   }
 }

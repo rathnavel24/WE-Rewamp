@@ -133,11 +133,15 @@
   /* ---------------------------------------------------------------------------
      Typography
      ------------------------------------------------------------------------ */
-  --font-sans: 'Geist', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  /* Instrument Sans: one professional grotesk for headings and text; display sizes use its narrower cut.
+     IBM Plex Mono: small labels and figures. */
+  --font-sans: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-stretch-display: 88%;
   --font-icon: 'Material Symbols Rounded';
 
   /* Type scale — every heading/text style in the product maps to one of these. */
+  --fs-hero: clamp(44px, 6.4vw, 88px); /* Home hero headline */
   --fs-display-1: clamp(40px, 5.6vw, 72px); /* page hero h1 */
   --fs-display-2: clamp(32px, 4vw, 52px); /* section h2 */
   --fs-h1: clamp(28px, 3.4vw, 42px); /* panel h2 */
@@ -156,8 +160,9 @@
   --lh-normal: 1.5;
   --lh-relaxed: 1.6;
 
-  --ls-display: -0.035em;
-  --ls-heading: -0.025em;
+  --ls-hero: -0.035em;
+  --ls-display: -0.028em;
+  --ls-heading: -0.02em;
   --ls-title: -0.02em;
   --ls-label: 0.1em;
 

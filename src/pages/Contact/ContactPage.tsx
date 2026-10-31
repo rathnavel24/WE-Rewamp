@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { AppLink, Button, Card, Chip, Icon, Section, SectionHeader, Tile } from '@/components/ui';
+import { AppLink, Card, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { CONTACT_EMAIL, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
@@ -11,14 +11,14 @@ export function ContactPage() {
   usePageMeta({
     title: 'Contact',
     description:
-      'Contact WalletEdge Global — offices in Sharjah, UAE and Coimbatore, India. Send an enquiry and we’ll connect you with the right company in the group.'
+      'Contact WalletEdge Global — offices in Sharjah, UAE and Coimbatore, India. Send an enquiry and we will connect you with the relevant company in the group.'
   });
   const [params] = useSearchParams();
   const v = params.get('venture') ?? undefined;
   const venture = isVentureId(v) ? v : undefined;
   const t = params.get('topic');
   const topic = ENQUIRY_TOPICS.find((e) => e.label === t)?.label;
-  // A venture implies its topic; ?topic= adds one directly (e.g. from a Services practice).
+  // A venture implies its topic; ?topic= adds one directly.
   const initialTopics = [
     ...new Set([venture && VENTURES[venture].enquiryTopic, topic].filter((x): x is string => !!x))
   ];
@@ -36,42 +36,49 @@ export function ContactPage() {
           as="h1"
           size="display-1"
           kicker="Contact W.E. Global"
-          title="Let’s talk about what you’re building."
-          lead="Tell us what you need and we’ll connect you with the right company in the group."
+          title="Get in touch"
+          lead="Send us an enquiry and we will connect you with the relevant company in the group."
         />
 
-        <div data-stagger="100" className={s.offices}>
+        {/* Offices: a ruled directory, one block per office. */}
+        <div className={s.offices}>
           {OFFICES.map((o) => (
-            <Card key={o.country} as="article" padding="md">
+            <address key={o.country} className={s.office}>
               <div className={s.officeHead}>
-                <span className={s.officeName}>
-                  <Tile icon={o.icon} size="sm" tone={o.tone} />
-                  <h2 className="t-h4">{o.country}</h2>
-                </span>
-                <Chip size="sm" mono>
-                  {o.badge}
-                </Chip>
+                <h2 className={s.country}>{o.country}</h2>
+                {o.badge === 'HQ' && <span className={s.badge}>Head office</span>}
               </div>
-              <address className={s.address}>
-                {o.addressLines[0]}
-                <br />
-                {o.addressLines[1]}
-              </address>
-              <div className={s.officeLinks}>
-                <Button to={o.phone.href} variant="secondary" size="sm" iconStart="call">
-                  {o.phone.label}
-                </Button>
-                <Button to={`mailto:${CONTACT_EMAIL}`} variant="secondary" size="sm" iconStart="mail">
-                  {CONTACT_EMAIL}
-                </Button>
-              </div>
-            </Card>
+              <p className={s.address}>
+                {o.addressLines.map((line, i) => (
+                  <span key={line} className={i === 0 ? s.addressFirst : undefined}>
+                    {line}
+                  </span>
+                ))}
+              </p>
+              <dl className={s.lines}>
+                <div className={s.line}>
+                  <dt>Phone</dt>
+                  <dd>
+                    <a href={o.phone.href} className={s.link}>
+                      {o.phone.label}
+                    </a>
+                  </dd>
+                </div>
+                <div className={s.line}>
+                  <dt>Email</dt>
+                  <dd>
+                    <a href={`mailto:${CONTACT_EMAIL}`} className={s.link}>
+                      {CONTACT_EMAIL}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </address>
           ))}
         </div>
       </div>
 
       <Card data-reveal="up" data-delay="150" variant="ink" padding="lg" className={`on-dark ${s.panel}`}>
-        <div className={s.panelGlow} aria-hidden="true" />
         <EnquiryForm key={`${venture ?? 'general'}:${topic ?? ''}`} venture={venture} initialTopics={initialTopics} />
       </Card>
     </Section>

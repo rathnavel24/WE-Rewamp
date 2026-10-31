@@ -23,7 +23,7 @@
   gap: var(--space-5);
 }
 .logo {
-  width: 180px;
+  width: 260px;
   height: auto;
 }
 .blurb {
@@ -165,7 +165,7 @@
     grid-column: 1 / -1;
   }
   .logo {
-    width: 124px;
+    width: 190px;
   }
   .bottom {
     flex-direction: column;

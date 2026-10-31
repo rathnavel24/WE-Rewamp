@@ -1,26 +1,22 @@
 import { CtaBanner } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
-import { ConsultingPractice, FinancialRealEstate, HealthcarePractice, ItBpoPractice, ServicesHero } from './sections';
+import { SERVICES, SERVICE_DETAILS } from '@/content/services';
+import { ServiceDetail, ServicesHero } from './sections';
 
 export function ServicesPage() {
   usePageMeta({
     title: 'Services',
     description:
-      'Five practices backed by one group: IT & BPO, financial services, real estate, consulting and healthcare.'
+      'IT & BPO, financial services, consulting and healthcare services from WalletEdge Global and its group companies in the UAE and India.'
   });
   return (
     <>
       <ServicesHero />
-      <ItBpoPractice />
-      <FinancialRealEstate />
-      <ConsultingPractice />
-      <HealthcarePractice />
-      <CtaBanner
-        title="Not sure which practice fits? We’ll route you to the right team."
-        cta="Contact us"
-        to={ROUTES.contact}
-      />
+      {SERVICES.map((x) => (
+        <ServiceDetail key={x.id} service={x} detail={SERVICE_DETAILS[x.id]} />
+      ))}
+      <CtaBanner title="Discuss your requirements with our team" cta="Contact us" to={ROUTES.contact} />
     </>
   );
 }

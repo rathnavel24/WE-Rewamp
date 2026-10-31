@@ -104,7 +104,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
           placeItems: 'center'
         }}
       >
-        <img ref={markRef} src={logo} alt="" style={{ width: 'min(280px,60vw)', height: 'auto', display: 'block' }} />
+        <img ref={markRef} src={logo} alt="" style={{ width: 'min(400px,75vw)', height: 'auto', display: 'block' }} />
       </div>
     </PageTransitionContext.Provider>
   );

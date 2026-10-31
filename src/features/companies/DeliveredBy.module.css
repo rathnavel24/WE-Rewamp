@@ -1,0 +1,30 @@
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+}
+.label {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--faint, var(--text-faint));
+}
+.company {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+  font: var(--fw-semibold) var(--fs-small)/1.3 var(--font-sans);
+  color: var(--ink, var(--text-strong));
+}
+.country {
+  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
+  color: var(--faint, var(--text-faint));
+}
+
+@media (max-width: 600px) {
+  .line {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}

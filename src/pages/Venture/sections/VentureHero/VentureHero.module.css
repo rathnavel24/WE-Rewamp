@@ -42,6 +42,23 @@
   align-items: center;
   gap: 14px;
 }
+/* The brand's own logo, on a white plate the height of the icon tile it replaces. */
+.logo {
+  display: grid;
+  place-items: center;
+  height: 64px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+.logo img {
+  display: block;
+  width: auto;
+  max-width: 220px;
+  height: 100%;
+  object-fit: contain;
+}
 .identity > :last-child {
   align-self: center;
 }

@@ -36,8 +36,8 @@ function VentureView({ v }: { v: Venture }) {
       {v.caseStudy && <VentureCaseStudy study={v.caseStudy} />}
       <CtaBanner
         pt="sm"
-        title={`Interested in ${v.name}? We’ll put you in touch with the team.`}
-        cta={`Enquire about ${v.name}`}
+        title={`Speak with the ${v.name} team`}
+        cta="Send an enquiry"
         to={ROUTES.enquire({ venture: v.id })}
       />
       <MoreVentures ventures={VENTURE_LIST.filter((o) => o.id !== v.id)} />

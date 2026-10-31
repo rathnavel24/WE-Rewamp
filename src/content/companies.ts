@@ -1,114 +1,54 @@
-import type { Company, Country } from '@/types';
-import { ROUTES } from '@/config/routes';
-import { GREEN, ORANGE } from './tones';
+import type { Country, GroupCompany, ServiceId } from '@/types';
 
-export const COMPANIES: Company[] = [
-  {
-    name: 'Wallet Edge Global FZC LLC',
-    short: 'Wallet Edge Global',
-    sector: 'Parent company',
-    icon: 'account_tree',
-    country: 'UAE',
-    desc: 'The holding company and principal stakeholder of the group, based in SPC Freezone, Sharjah.',
-    href: ROUTES.contact,
-    cta: 'Contact the group',
-    tone: GREEN,
-    parent: true,
-    groupLine: 'Parent company & principal stakeholder',
-    groupHref: ROUTES.companies
-  },
+/**
+ * The group's seven companies, named and ordered exactly as in the client's content document ("Our Companies").
+ * Listed in full in the Home "Our companies" section; each one also appears under its service ("Delivered by").
+ */
+export const GROUP_COMPANIES: GroupCompany[] = [
+  { name: 'Wallet Edge Global FZC LLC', country: 'UAE', parent: true, note: 'SPC Freezone, Sharjah' },
   {
     name: 'Wallet Edge Technologies LLC',
-    short: 'Wallet Edge Technologies',
-    sector: 'Health technology',
-    icon: 'memory',
     country: 'UAE',
-    desc: 'The technology company powering ArogyaPlus — on-demand diagnostics and home healthcare in Dubai.',
-    href: ROUTES.venture('arogyaplus'),
-    cta: 'See ArogyaPlus',
-    tone: ORANGE,
-    groupLine: 'Technology arm — powers ArogyaPlus',
-    groupHref: ROUTES.venture('arogyaplus')
+    service: 'it-bpo',
+    note: 'Powers the ArogyaPlus platform',
+    venture: 'arogyaplus'
   },
   {
     name: 'CareHub Healthcare LLC',
-    short: 'CareHub Healthcare',
-    sector: 'Home healthcare',
-    icon: 'home_health',
     country: 'UAE',
-    desc: 'DHA-licensed home nursing, doctor visits, palliative and post-operative care across Dubai.',
-    href: ROUTES.venture('carehub'),
-    cta: 'View company',
-    tone: GREEN,
-    groupLine: 'DHA-licensed home healthcare & nursing',
-    groupHref: ROUTES.venture('carehub')
+    service: 'healthcare',
+    note: 'DHA-licensed home healthcare · carehubuae.com',
+    venture: 'carehub'
   },
   {
     name: 'Global Cure RX Pharmacy LLC',
-    short: 'Global Cure RX',
-    sector: 'Pharmacy',
-    icon: 'medication',
     country: 'UAE',
-    desc: 'Community pharmacy in Dubai with insurance tie-ups for high-value prescriptions.',
-    href: ROUTES.venture('globalcure'),
-    cta: 'View company',
-    tone: ORANGE,
-    groupLine: 'Community pharmacy in Dubai',
-    groupHref: ROUTES.venture('globalcure')
+    service: 'healthcare',
+    note: 'DHA-licensed community pharmacy, Dubai',
+    venture: 'globalcure'
   },
   {
     name: 'WhiteBlue Fintech Ltd',
-    short: 'WhiteBlue Fintech',
-    sector: 'InsurTech',
-    icon: 'shield_with_heart',
     country: 'UAE',
-    desc: 'Enterprise tech firm behind InsureLiv, the AI insurance operating system for the GCC.',
-    href: ROUTES.venture('insureliv'),
-    cta: 'See InsureLiv',
-    tone: GREEN,
-    groupLine: 'Builder of the InsureLiv platform',
-    groupHref: ROUTES.venture('insureliv')
+    service: 'it-bpo',
+    note: 'Built the InsureLiv platform',
+    venture: 'insureliv'
   },
   {
     name: 'Wallet Edge Financial Services Pvt Ltd',
-    short: 'WE Financial Services',
-    sector: 'Financial services',
-    icon: 'account_balance',
     country: 'INDIA',
-    desc: 'Financial recovery and asset retrieval with data-driven, transparent processes.',
-    href: ROUTES.venture('recovery'),
-    cta: 'Recovery Services',
-    tone: ORANGE,
-    groupLine: 'Financial recovery & services',
-    groupHref: ROUTES.venture('recovery')
+    service: 'financial',
+    note: 'The group’s financial services company in India'
   },
-  {
-    name: 'Wallet Edge Services Pvt Ltd',
-    short: 'WE Services',
-    sector: 'Services & operations',
-    icon: 'support_agent',
-    country: 'INDIA',
-    desc: 'Operations and services company for the group, based in Coimbatore.',
-    href: ROUTES.contact,
-    cta: 'Get in touch',
-    tone: GREEN,
-    groupLine: 'Services & operations',
-    groupHref: ROUTES.companies
-  }
+  { name: 'Wallet Edge Services Pvt Ltd', country: 'INDIA', parent: true }
 ];
 
-/** Names that scroll in the outlined marquee on the Home page. */
-export const ROLL_NAMES = [
-  'WalletEdge Global',
-  'WalletEdge Technologies',
-  'CareHub Healthcare',
-  'Global Cure RX',
-  'WhiteBlue Fintech',
-  'WalletEdge Financial',
-  'WalletEdge Services'
-];
+export const PARENT_COMPANIES = GROUP_COMPANIES.filter((c) => c.parent);
 
-/** Display name for each country, used by the directory filters. Add a country here when adding its first company. */
+/** The companies listed under a service. */
+export const companiesFor = (id: ServiceId) => GROUP_COMPANIES.filter((c) => c.service === id);
+
+/** Display name for each country the group operates in. */
 export const COUNTRY_LABELS: Record<Country, string> = {
   UAE: 'UAE',
   INDIA: 'India'

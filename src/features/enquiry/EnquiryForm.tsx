@@ -28,8 +28,8 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
           Your message is with the WalletEdge Global team. We’ll reply within one business day.
         </p>
         <div className={s.sentActions}>
-          <Button to={ROUTES.companies} variant="inverse" icon="arrow_forward">
-            Explore our companies
+          <Button to={ROUTES.services} variant="inverse" icon="arrow_forward">
+            Explore our services
           </Button>
           <Button variant="outline-dark" onClick={reset}>
             Send another message

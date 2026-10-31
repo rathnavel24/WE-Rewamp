@@ -9,10 +9,10 @@ export function TeamPreview() {
   return (
     <Section data-screen-label="Team" pt="none">
       <SectionHeader
-        kicker="04 — Our team"
-        title="Founder-led, with operators in every business."
+        kicker="03 — Our team"
+        title="Experienced leadership across the group"
         layout="split"
-        lead="A board that sets direction for the group, and dedicated leaders running each company day to day."
+        lead="Our founders and board set the direction of the group, supported by dedicated leaders for each business."
         action={
           <Button to={ROUTES.team} variant="link" icon="arrow_outward">
             Meet all {LEADER_COUNT} leaders

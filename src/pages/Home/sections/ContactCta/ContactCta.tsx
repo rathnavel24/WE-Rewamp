@@ -10,8 +10,10 @@ export function ContactCta() {
         <div className={s.glow} aria-hidden="true" />
         <div className={s.layout}>
           <div className={s.copy}>
-            <h2 className="t-display-2">Let’s build your next edge together.</h2>
-            <p className="t-lead">Offices in Sharjah and Coimbatore. One conversation reaches the whole group.</p>
+            <h2 className="t-display-2">Partner with WalletEdge Global</h2>
+            <p className="t-lead">
+              Speak with our teams in Sharjah and Coimbatore about any of our services or group companies.
+            </p>
           </div>
           <div className={s.actions}>
             <Button to={ROUTES.contact} variant="inverse" size="lg" icon="arrow_forward" block>

@@ -15,7 +15,6 @@ export interface AppRoute {
 export const APP_ROUTES: AppRoute[] = [
   { Page: lazyPage(() => import('@/pages/Home/HomePage'), 'HomePage') },
   { path: PATHS.services, Page: lazyPage(() => import('@/pages/Services/ServicesPage'), 'ServicesPage') },
-  { path: PATHS.companies, Page: lazyPage(() => import('@/pages/Companies/CompaniesPage'), 'CompaniesPage') },
   { path: PATHS.team, Page: lazyPage(() => import('@/pages/Team/TeamPage'), 'TeamPage') },
   { path: PATHS.contact, Page: lazyPage(() => import('@/pages/Contact/ContactPage'), 'ContactPage') },
   { path: PATHS.venture, Page: lazyPage(() => import('@/pages/Venture/VenturePage'), 'VenturePage') },

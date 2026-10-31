@@ -75,7 +75,7 @@ textarea::placeholder {
 
 section[id],
 [id].anchor {
-  scroll-margin-top: 124px;
+  scroll-margin-top: 132px;
 }
 
 /* ---------- Layout ---------- */
@@ -94,6 +94,7 @@ section[id],
 .t-display-2,
 .t-h1 {
   font-weight: var(--fw-semibold);
+  font-stretch: var(--font-stretch-display);
   text-wrap: balance;
 }
 .t-display-1 {

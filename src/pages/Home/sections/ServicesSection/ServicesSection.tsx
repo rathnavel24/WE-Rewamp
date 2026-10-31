@@ -1,16 +1,23 @@
-import { Button, Card, Chip, Icon, Section, SectionHeader, Swipe, Tile } from '@/components/ui';
+import type { CSSProperties } from 'react';
+import { AppLink, Button, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
-import { SERVICE_CARDS } from '@/content/services';
+import { companiesFor } from '@/content/companies';
+import { SERVICES, serviceHref } from '@/content/services';
+import { DeliveredBy } from '@/features/companies';
+import type { Service, ServiceOffering } from '@/types';
 import s from './ServicesSection.module.css';
 
+const toneVars = (x: Service) => ({ '--tone': x.tone.accent, '--tone-ink': x.tone.ink }) as CSSProperties;
+
+/** 01 — The four services: one ruled row each, the service on the left and what it offers on the right. */
 export function ServicesSection() {
   return (
     <Section data-screen-label="Services">
       <SectionHeader
         kicker="01 — Our services"
-        title="Five practices. One accountable group."
+        title="A portfolio of services across four sectors"
         layout="split"
-        lead="IT, finance, real estate, consulting and healthcare — each run by a dedicated company in the group."
+        lead="WalletEdge Global brings together IT & BPO, financial services, consulting and healthcare, delivered through its group companies in the UAE and India."
         action={
           <Button to={ROUTES.services} variant="link" icon="arrow_outward">
             All services
@@ -18,38 +25,79 @@ export function ServicesSection() {
         }
       />
 
-      <Swipe label="Our services" min={300} max={3} data-stagger="90">
-        {SERVICE_CARDS.map((c) => (
-          <Card key={c.no} to={c.href} className={s.card}>
-            <div className={s.cardTop}>
-              <Tile icon={c.icon} size="lg" tone={c.tone} />
-              <span className={`t-mono ${s.no}`}>{c.no}</span>
-            </div>
-            <div className={s.body}>
-              <h3 className="t-h3">{c.title}</h3>
-              <p className="t-body">{c.desc}</p>
-            </div>
-            <div className={s.tags}>
-              {c.tags.map((t) => (
-                <Chip key={t} size="sm">
-                  {t}
-                </Chip>
-              ))}
-            </div>
-          </Card>
+      <ol className={s.rows}>
+        {SERVICES.map((x) => (
+          <ServiceRow key={x.id} service={x} />
         ))}
-
-        <Card to={ROUTES.contact} variant="accent" className={s.card}>
-          <Icon name="handshake" size={36} />
-          <div className={s.partnerBody}>
-            <h3 className="t-h2">Need a partner across more than one of these?</h3>
-            <span className={s.partnerLink}>
-              Talk to the group
-              <Icon name="arrow_forward" size={18} />
-            </span>
-          </div>
-        </Card>
-      </Swipe>
+      </ol>
     </Section>
+  );
+}
+
+function ServiceRow({ service: x }: { service: Service }) {
+  // Healthcare's offerings are its companies, so they aren't named a second time.
+  const companies = companiesFor(x.id).filter((c) => !x.offerings.some((o) => o.title === c.name));
+  return (
+    <li className={s.row} style={toneVars(x)}>
+      <div className={s.intro}>
+        <span className={s.no} aria-hidden="true">
+          {x.no}
+        </span>
+        <h3 className={`t-h1 ${s.title}`}>{x.title}</h3>
+        <p className={s.summary}>{x.summary}</p>
+        <Button to={serviceHref(x.id)} variant="link" icon="arrow_forward" className={s.explore}>
+          Explore {x.short}
+        </Button>
+      </div>
+
+      <div className={s.detail}>
+        <ul className={s.offers}>
+          {x.offerings.map((o) => (
+            <li key={o.title}>
+              <Offer offering={o} />
+            </li>
+          ))}
+        </ul>
+        <DeliveredBy companies={companies} />
+      </div>
+    </li>
+  );
+}
+
+function Offer({ offering: o }: { offering: ServiceOffering }) {
+  const body = (
+    <>
+      <span className={s.offerMain}>
+        <span className={s.offerTitle}>
+          {o.title}
+          {o.href && <Icon name="arrow_outward" size={20} className={s.offerArrow} />}
+        </span>
+        {o.meta && <span className={s.offerMeta}>{o.meta}</span>}
+        {o.desc && <span className={s.offerDesc}>{o.desc}</span>}
+        {o.items && (
+          <span className={s.items}>
+            {o.items.map((item) => (
+              <span key={item} className={s.item}>
+                <Icon name="check" size={16} className={s.check} />
+                {item}
+              </span>
+            ))}
+          </span>
+        )}
+      </span>
+      {o.stat && (
+        <span className={s.stat}>
+          <span className={s.statValue}>{o.stat.value}</span>
+          <span className={s.statLabel}>{o.stat.label}</span>
+        </span>
+      )}
+    </>
+  );
+  return o.href ? (
+    <AppLink to={o.href} className={`${s.offer} ${s.offerLink}`}>
+      {body}
+    </AppLink>
+  ) : (
+    <div className={s.offer}>{body}</div>
   );
 }
