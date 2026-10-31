@@ -91,11 +91,22 @@
   .heroLead {
     gap: var(--space-5);
   }
-  .identity > :first-child {
+  .identity {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .identity > :first-child:not(.logo) {
     width: 56px;
     height: 56px;
     font-size: 28px;
     border-radius: var(--radius-md);
+  }
+  .logo {
+    height: 52px;
+    padding: var(--space-2) var(--space-3);
+  }
+  .logo img {
+    max-width: 180px;
   }
   .tagline {
     font-size: 19px;

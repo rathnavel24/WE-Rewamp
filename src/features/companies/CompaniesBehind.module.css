@@ -66,10 +66,7 @@
   color: var(--ink, var(--text-strong));
 }
 .role {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  align-self: flex-start;
+  display: block;
   font-size: var(--fs-small);
   line-height: 1.45;
   color: var(--muted, var(--text-muted));
@@ -85,6 +82,9 @@ a.role {
   transition: text-decoration-color var(--dur-fast);
 }
 .arrow {
+  display: inline-block;
+  margin-left: var(--space-1);
+  vertical-align: -0.15em;
   color: var(--faint, var(--text-faint));
   transition:
     color var(--dur-fast),
@@ -117,14 +117,23 @@ a.role {
     padding: var(--space-6) var(--space-5);
   }
   .item {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-3) var(--space-4);
   }
   .logo {
-    width: 84px;
-    height: 44px;
+    grid-column: 1 / -1;
+    width: 108px;
+    height: 48px;
+    border: 1px solid var(--rule, var(--border-default));
+  }
+  .body {
+    grid-column: 1;
   }
   .country {
     grid-column: 2;
-    padding-top: 0;
+    padding-top: 4px;
+  }
+  .heading {
+    font-size: var(--fs-h4);
   }
 }

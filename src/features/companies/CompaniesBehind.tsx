@@ -1,4 +1,4 @@
-import { AppLink, Icon } from '@/components/ui';
+import { AppLink, ArrowText, Icon } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { companyLogo } from '@/content/assets';
 import { COUNTRY_LABELS } from '@/content/companies';
@@ -39,8 +39,9 @@ export function CompaniesBehind({ companies, service, className }: CompaniesBehi
                 {c.note &&
                   (venture ? (
                     <AppLink to={ROUTES.venture(venture.id)} className={s.role}>
-                      <span className={s.roleText}>{c.note}</span>
-                      <Icon name="arrow_outward" size={16} className={s.arrow} />
+                      <span className={s.roleText}>
+                        <ArrowText text={c.note} size={16} iconClassName={s.arrow} />
+                      </span>
                     </AppLink>
                   ) : (
                     <span className={s.role}>{c.note}</span>

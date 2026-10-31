@@ -14,3 +14,20 @@
   height: 56px;
   border-radius: var(--radius-sm);
 }
+
+/* Phones: a ruled list rather than four stacked boxes. Doubled classes outrank the Card and Grid defaults. */
+@media (max-width: 600px) {
+  .list.list {
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+  }
+  .card.card {
+    padding: var(--space-4) 0;
+    border: 0;
+    border-bottom: 1px solid var(--border-default);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+  }
+}

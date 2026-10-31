@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { AppLink, Icon, Section } from '@/components/ui';
+import { AppLink, ArrowText, Icon, Section } from '@/components/ui';
 import { ventureLogo } from '@/content/assets';
 import { companiesFor } from '@/content/companies';
 import { cx } from '@/lib/cx';
@@ -70,8 +70,7 @@ function Column({ column: c }: { column: ServiceColumn }) {
       <h3 className={s.colTitle}>
         {c.href ? (
           <AppLink to={c.href} className={s.colLink}>
-            {c.title}
-            <Icon name="arrow_outward" size={22} className={s.arrow} />
+            <ArrowText text={c.title} size={22} iconClassName={s.arrow} />
           </AppLink>
         ) : (
           c.title

@@ -20,7 +20,7 @@ export function TeamPreview() {
         }
       />
 
-      <Grid min={240} max={4} gap="sm" data-stagger="80">
+      <Grid min={240} max={4} gap="sm" data-stagger="80" className={s.list}>
         {HOME_LEADERS.map((p, i) => (
           <Card key={p.name} padding="sm" interactive className={s.card}>
             {teamPhoto(p.name) ? (

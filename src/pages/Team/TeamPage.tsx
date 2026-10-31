@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { AppLink, Avatar, CtaBanner, Icon, Portrait, Section, SectionHeader } from '@/components/ui';
+import { AppLink, ArrowText, Avatar, CtaBanner, Icon, Portrait, Section, SectionHeader } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
 import { teamPhoto, ventureLogo } from '@/content/assets';
@@ -119,8 +119,7 @@ export function TeamPage() {
                     )}
                   </span>
                   <span className={s.unit}>
-                    {b.unit}
-                    <Icon name="arrow_outward" size={16} className={s.arrow} />
+                    <ArrowText text={b.unit} size={16} iconClassName={s.arrow} />
                   </span>
                 </AppLink>
                 <ul className={s.people}>

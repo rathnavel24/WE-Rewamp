@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { AppLink, Button, Icon, Section, SectionHeader } from '@/components/ui';
+import { AppLink, ArrowText, Button, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { companiesFor } from '@/content/companies';
 import { SERVICES, serviceHref } from '@/content/services';
@@ -69,8 +69,7 @@ function Offer({ offering: o }: { offering: ServiceOffering }) {
     <>
       <span className={s.offerMain}>
         <span className={s.offerTitle}>
-          {o.title}
-          {o.href && <Icon name="arrow_outward" size={20} className={s.offerArrow} />}
+          {o.href ? <ArrowText text={o.title} size={20} iconClassName={s.offerArrow} /> : o.title}
         </span>
         {o.meta && <span className={s.offerMeta}>{o.meta}</span>}
         {o.desc && <span className={s.offerDesc}>{o.desc}</span>}

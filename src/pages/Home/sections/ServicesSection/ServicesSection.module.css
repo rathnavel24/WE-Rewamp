@@ -100,13 +100,14 @@
   min-width: 0;
 }
 .offerTitle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+  display: block;
   font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans);
   letter-spacing: var(--ls-title);
 }
 .offerArrow {
+  display: inline-block;
+  margin-left: var(--space-2);
+  vertical-align: -0.15em;
   color: var(--text-faint);
   transition:
     color var(--dur-fast),
