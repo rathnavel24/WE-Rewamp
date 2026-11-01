@@ -137,3 +137,10 @@ a.role {
     font-size: var(--fs-h4);
   }
 }
+
+/* Touch screens: 44px-tall tap targets. */
+@media (pointer: coarse) {
+  a.role {
+    padding-block: var(--space-3);
+  }
+}

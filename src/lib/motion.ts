@@ -42,6 +42,21 @@ const once = (key: string, el: Element): boolean => {
 /** Callbacks fired the first time an element scrolls into view. */
 const onEnter = new WeakMap<Element, Array<() => void>>();
 
+/** While the intro curtain covers the page, on-screen reveals queue here instead of playing unseen. */
+let held: Array<() => void> | null = null;
+
+/** Queue reveals until `releaseReveals()` — used by the intro so the first screen animates in as it lifts. */
+export function holdReveals() {
+  held ??= [];
+}
+
+/** Play every queued reveal and stop holding. */
+export function releaseReveals() {
+  const queue = held;
+  held = null;
+  queue?.forEach((fn) => fn());
+}
+
 let observer: IntersectionObserver | null = null;
 const io = (): IntersectionObserver => {
   if (!observer) {
@@ -50,8 +65,10 @@ const io = (): IntersectionObserver => {
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
           observer!.unobserve(e.target);
-          onEnter.get(e.target)?.forEach((fn) => fn());
+          const fns = onEnter.get(e.target) ?? [];
           onEnter.delete(e.target);
+          if (held) held.push(...fns);
+          else fns.forEach((fn) => fn());
         });
       },
       // Start just before an element scrolls in, so fast scrolling never shows blank sections.

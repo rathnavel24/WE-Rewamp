@@ -41,7 +41,10 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
 
   return (
     <form className={s.form} onSubmit={onSubmit}>
-      <h2 className="t-h2">Send an enquiry</h2>
+      <header className={s.head}>
+        <h2 className="t-h2">Send an enquiry</h2>
+        <p className={s.sub}>We’ll connect you with the right company in the group.</p>
+      </header>
 
       <fieldset className={s.fieldset}>
         <legend className={`t-label ${s.legend}`}>I’m interested in</legend>
@@ -52,7 +55,6 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
               <Chip
                 key={t.label}
                 variant="outline-dark"
-                size="lg"
                 icon={on ? 'check' : t.icon}
                 selected={on}
                 onToggle={() => toggleTopic(t.label)}
@@ -70,11 +72,11 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
         <Field name="company" label="Company" autoComplete="organization" />
         <Field name="email" type="email" label="Work email" required autoComplete="email" />
         <Field name="phone" type="tel" label="Phone" autoComplete="tel" />
+        <label className={`${s.field} ${s.wide}`}>
+          <span className={s.label}>Message</span>
+          <textarea className={s.textarea} name="message" rows={3} placeholder="How can we help?" />
+        </label>
       </div>
-      <label className={s.field}>
-        <span className="visually-hidden">Message</span>
-        <textarea className={`${s.input} ${s.textarea}`} name="message" rows={4} placeholder="How can we help?" />
-      </label>
 
       {status === 'error' && (
         <p className={s.error} role="alert">
@@ -82,9 +84,20 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
         </p>
       )}
 
-      <Button type="submit" variant="accent" size="lg" icon="arrow_forward" block disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending…' : 'Send message'}
-      </Button>
+      <div className={s.footer}>
+        <Button
+          type="submit"
+          variant="accent"
+          icon="arrow_forward"
+          disabled={status === 'sending'}
+          className={s.submit}
+        >
+          {status === 'sending' ? 'Sending…' : 'Send enquiry'}
+        </Button>
+        <p className={s.alt}>
+          or email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
+      </div>
     </form>
   );
 }
@@ -99,17 +112,19 @@ interface FieldProps {
   onChange?: (v: string) => void;
 }
 
-/** Labelled text input; the label is visually hidden and the placeholder carries the hint. */
+/** Boxed field: a small label sits inside the box, above the input. */
 function Field({ name, label, type = 'text', required, autoComplete, value, onChange }: FieldProps) {
   return (
     <label className={s.field}>
-      <span className="visually-hidden">{label}</span>
+      <span className={s.label}>
+        {label}
+        {required && <span aria-hidden="true"> *</span>}
+      </span>
       <input
         className={s.input}
         name={name}
         type={type}
         required={required}
-        placeholder={required ? `${label} *` : label}
         autoComplete={autoComplete}
         {...(onChange ? { value, onChange: (e) => onChange(e.target.value) } : {})}
       />

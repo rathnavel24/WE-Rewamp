@@ -56,6 +56,23 @@
 .addressFirst {
   color: var(--text-strong);
 }
+.corporate {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-6);
+}
+.corporateItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-style: normal;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.corporateItem .addressFirst {
+  font-weight: var(--fw-semibold);
+}
 .lines {
   display: flex;
   flex-direction: column;
@@ -90,7 +107,10 @@
   text-decoration-color: currentColor;
 }
 
-/* ---------- Form panel: stays in view beside the directory on desktop ---------- */
+/* ---------- Form panel: brand green, stays in view beside the directory on desktop ---------- */
+.panel {
+  background: linear-gradient(150deg, var(--color-primary), var(--color-inverse) 70%);
+}
 @media (min-width: 981px) {
   .panel {
     position: sticky;
@@ -128,5 +148,17 @@
   }
   .line {
     grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .corporate {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch screens: 44px-tall tap targets. */
+@media (pointer: coarse) {
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }

@@ -7,7 +7,8 @@ import { DeliveredBy } from '@/features/companies';
 import type { Service, ServiceOffering } from '@/types';
 import s from './ServicesSection.module.css';
 
-const toneVars = (x: Service) => ({ '--tone': x.tone.accent, '--tone-ink': x.tone.ink }) as CSSProperties;
+const toneVars = (x: Service) =>
+  ({ '--tone': x.tone.accent, '--tone-ink': x.tone.ink, '--tone-soft': x.tone.soft }) as CSSProperties;
 
 /** 01 — The four services: one ruled row each, the service on the left and what it offers on the right. */
 export function ServicesSection() {
@@ -55,6 +56,11 @@ function ServiceRow({ service: x }: { service: Service }) {
           {x.offerings.map((o) => (
             <li key={o.title}>
               <Offer offering={o} />
+              {o.download && (
+                <Button to={o.download.href} download variant="link" icon="download" className={s.download}>
+                  {o.download.label}
+                </Button>
+              )}
             </li>
           ))}
         </ul>

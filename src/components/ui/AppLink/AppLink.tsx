@@ -10,7 +10,7 @@ const isExternal = (href: string) => /^(https?:|mailto:|tel:)/i.test(href);
 
 /**
  * Drop-in `<a>` for the whole site. Internal links route through the page-transition
- * curtain; anchors smooth-scroll; external / modified clicks behave natively.
+ * curtain; anchors smooth-scroll; external, download and modified clicks behave natively.
  */
 export function AppLink({ to, onClick, target, ...rest }: AppLinkProps) {
   const { go } = usePageTransition();
@@ -18,7 +18,7 @@ export function AppLink({ to, onClick, target, ...rest }: AppLinkProps) {
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(e);
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    if (target === '_blank' || isExternal(to)) return;
+    if (target === '_blank' || isExternal(to) || rest.download !== undefined) return;
     e.preventDefault();
     go(to);
   };

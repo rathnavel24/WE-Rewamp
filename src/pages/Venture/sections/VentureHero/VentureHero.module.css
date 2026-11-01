@@ -42,10 +42,12 @@
   align-items: center;
   gap: 14px;
 }
-/* The brand's own logo, on a white plate the height of the icon tile it replaces. */
+/* The brand's own logo, on a white plate the height of the icon tile it replaces. Flex (not grid), so the
+   image's 100% height resolves against the plate and tall logos can't spill out of it. */
 .logo {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 64px;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--border-subtle);

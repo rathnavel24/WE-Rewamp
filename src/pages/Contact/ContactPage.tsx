@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { AppLink, Card, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { CONTACT_EMAIL, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
+import { CONTACT_EMAIL, CORPORATE_OFFICES, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
 import { isVentureId, VENTURES } from '@/content/ventures';
 import { EnquiryForm } from '@/features/enquiry';
 import s from './ContactPage.module.css';
@@ -11,7 +11,7 @@ export function ContactPage() {
   usePageMeta({
     title: 'Contact',
     description:
-      'Contact WalletEdge Global — offices in Sharjah, UAE and Coimbatore, India. Send an enquiry and we will connect you with the relevant company in the group.'
+      'Contact WalletEdge Global — offices in Sharjah and Dubai, UAE and Coimbatore, India. Send an enquiry and we will connect you with the relevant company in the group.'
   });
   const [params] = useSearchParams();
   const v = params.get('venture') ?? undefined;
@@ -35,18 +35,18 @@ export function ContactPage() {
         <SectionHeader
           as="h1"
           size="display-1"
-          kicker="Contact W.E. Global"
+          kicker="Contact us"
           title="Get in touch"
           lead="Send us an enquiry and we will connect you with the relevant company in the group."
         />
 
-        {/* Offices: a ruled directory, one block per office. */}
+        {/* Offices: a ruled directory, one block per office, then the corporate offices in Dubai. */}
         <div className={s.offices}>
-          {OFFICES.map((o) => (
+          {OFFICES.map((o, i) => (
             <address key={o.country} className={s.office}>
               <div className={s.officeHead}>
                 <h2 className={s.country}>{o.country}</h2>
-                {o.badge === 'HQ' && <span className={s.badge}>Head office</span>}
+                {o.badge === 'HQ' && <span className={s.badge}>Registered office</span>}
               </div>
               <p className={s.address}>
                 {o.addressLines.map((line, i) => (
@@ -64,17 +64,35 @@ export function ContactPage() {
                     </a>
                   </dd>
                 </div>
-                <div className={s.line}>
-                  <dt>Email</dt>
-                  <dd>
-                    <a href={`mailto:${CONTACT_EMAIL}`} className={s.link}>
-                      {CONTACT_EMAIL}
-                    </a>
-                  </dd>
-                </div>
+                {/* One group inbox: listed once, under the first office. */}
+                {i === 0 && (
+                  <div className={s.line}>
+                    <dt>Email</dt>
+                    <dd>
+                      <a href={`mailto:${CONTACT_EMAIL}`} className={s.link}>
+                        {CONTACT_EMAIL}
+                      </a>
+                    </dd>
+                  </div>
+                )}
               </dl>
             </address>
           ))}
+          <section className={s.office} aria-labelledby="contact-corporate">
+            <h2 id="contact-corporate" className={s.country}>
+              Corporate offices, Dubai
+            </h2>
+            <div className={s.corporate}>
+              {CORPORATE_OFFICES.map((o) => (
+                <address key={o.company} className={s.corporateItem}>
+                  <span className={s.addressFirst}>{o.company}</span>
+                  {o.addressLines.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </address>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
 

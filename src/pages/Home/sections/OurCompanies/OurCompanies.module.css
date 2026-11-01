@@ -155,3 +155,10 @@
     padding: var(--space-1) var(--space-2);
   }
 }
+
+/* Touch screens: 44px-tall tap targets. */
+@media (pointer: coarse) {
+  .serviceLink {
+    min-height: 44px;
+  }
+}

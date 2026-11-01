@@ -10,7 +10,7 @@ export function TrustedBy() {
   return (
     <section data-screen-label="Trusted by" className={s.section}>
       <p data-reveal="fade" className={`t-label ${s.label}`}>
-        Trusted by leading insurers &amp; enterprises in the region
+        Trusted by
       </p>
       <div className={s.mask}>
         <div className={s.row} data-marquee="left" data-speed="55">

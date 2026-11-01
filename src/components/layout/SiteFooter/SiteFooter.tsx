@@ -1,6 +1,6 @@
 import { AppLink } from '@/components/ui/AppLink';
 import { Icon } from '@/components/ui/Icon';
-import { CONTACT_EMAIL, NAV_LINKS, OFFICES } from '@/content/site';
+import { CONTACT_EMAIL, CORPORATE_OFFICES, NAV_LINKS, OFFICES } from '@/content/site';
 import { ROUTES } from '@/config/routes';
 import { VENTURE_LIST } from '@/content/ventures';
 import logo from '@/assets/brand/walletedge-logo.png';
@@ -24,7 +24,6 @@ export function SiteFooter() {
           </div>
 
           <nav className={s.col} aria-label="Company">
-            <span className={s.heading}>Company</span>
             {NAV_LINKS.map((l) => (
               <AppLink key={l.id} to={l.href} className={s.link}>
                 {l.label}
@@ -33,7 +32,6 @@ export function SiteFooter() {
           </nav>
 
           <nav className={s.col} aria-label="Ventures">
-            <span className={s.heading}>Ventures</span>
             {VENTURE_LIST.map((v) => (
               <AppLink key={v.id} to={ROUTES.venture(v.id)} className={s.link}>
                 {v.footerName ?? v.name}
@@ -42,13 +40,12 @@ export function SiteFooter() {
           </nav>
 
           <div className={`${s.col} ${s.officesCol}`}>
-            <span className={s.heading}>Offices</span>
             <div className={s.offices}>
               {OFFICES.map((o) => (
                 <address key={o.country} className={s.office}>
                   <span className={s.officeName}>
                     {o.country}
-                    {o.badge === 'HQ' && <span className={s.hq}>HQ</span>}
+                    {o.badge === 'HQ' && <span className={s.hq}>Registered office</span>}
                   </span>
                   <span className={s.address}>
                     {o.addressLines[0]}
@@ -64,9 +61,27 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <section className={s.corporate} aria-labelledby="footer-corporate">
+          <h2 id="footer-corporate" className={s.corporateTitle}>
+            Corporate offices
+          </h2>
+          <div className={s.corporateList}>
+            {CORPORATE_OFFICES.map((o) => (
+              <address key={o.company} className={s.office}>
+                <span className={s.officeName}>{o.company}</span>
+                <span className={s.address}>
+                  {o.addressLines[0]}
+                  <br />
+                  {o.addressLines[1]}
+                </span>
+              </address>
+            ))}
+          </div>
+        </section>
+
         <div className={s.bottom}>
           <span>© 2026 Wallet Edge Global FZC LLC. All rights reserved.</span>
-          <span>Sharjah, UAE · Coimbatore, India</span>
+          <span>Sharjah · Dubai, UAE · Coimbatore, India</span>
         </div>
       </div>
     </footer>

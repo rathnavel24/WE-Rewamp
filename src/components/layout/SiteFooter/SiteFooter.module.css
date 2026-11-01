@@ -53,13 +53,6 @@
   gap: var(--space-3);
   min-width: 0;
 }
-.heading {
-  margin-bottom: var(--space-2);
-  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--text-subtle);
-}
 .link {
   font-size: var(--fs-small);
   color: var(--text-default);
@@ -112,6 +105,26 @@
   color: var(--color-accent);
 }
 
+/* Corporate offices: one row of addresses under the columns, split from them by a hairline. */
+.corporate {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 3.1fr);
+  gap: var(--space-12);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--border-subtle);
+}
+.corporateTitle {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+}
+.corporateList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
 /* Touch screens and tablets: same rhythm, 44px tap targets. */
 @media (pointer: coarse), (max-width: 1024px) {
   .col {
@@ -147,6 +160,13 @@
   .brandCol {
     grid-column: 1 / -1;
   }
+  .corporate {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .corporateList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Phones: brand, then Company | Ventures side by side, then offices full width. */
@@ -163,6 +183,9 @@
   }
   .officesCol {
     grid-column: 1 / -1;
+  }
+  .corporateList {
+    grid-template-columns: 1fr;
   }
   .logo {
     width: 190px;

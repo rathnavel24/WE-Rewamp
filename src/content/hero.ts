@@ -1,4 +1,5 @@
-import type { Tone, VentureId } from '@/types';
+import type { ServiceId, Tone, VentureId } from '@/types';
+import { SERVICES } from './services';
 import { GREEN, ORANGE } from './tones';
 
 export interface HeroSector {
@@ -7,8 +8,8 @@ export interface HeroSector {
   tone: Tone;
   /** Ventures behind this word (phone chips). None = the group itself. */
   ventures: VentureId[];
-  /** Cards the hero wheel turns to while this word shows, top to bottom. */
-  cards: HeroWheelCard[];
+  /** The service-category card the hero wheel turns to while this word shows. None on the finale. */
+  card?: HeroWheelCard;
   /** The closing word: every card on the wheel merges into one WalletEdge card instead of turning. */
   finale?: boolean;
   /** How long this word stays, if not the usual. */
@@ -18,128 +19,46 @@ export interface HeroSector {
 export interface HeroWheelCard {
   icon: string;
   tone: Tone;
-  /** Small mono line above the title, e.g. "InsurTech · GCC". */
+  /** Small mono line above the title, e.g. "Service 01". */
   label: string;
   title: string;
   note: string;
 }
 
-/** Sectors cycled by the headline, each linked to the companies working in it. */
+/** One wheel card per service category, in the order of SERVICES. */
+const serviceCard = (id: ServiceId, note: string): HeroWheelCard => {
+  const svc = SERVICES.find((x) => x.id === id)!;
+  return { icon: svc.icon, tone: svc.tone, label: `Service ${svc.no}`, title: svc.title, note };
+};
+
+/** Sectors cycled by the headline, each bringing its service category round on the wheel. */
 export const HERO_SECTORS: HeroSector[] = [
   {
     word: 'IT & BPO.',
     tone: ORANGE,
     ventures: ['insureliv', 'arogyaplus'],
-    cards: [
-      {
-        icon: 'shield_with_heart',
-        tone: GREEN,
-        label: 'InsurTech · GCC',
-        title: 'InsureLiv',
-        note: 'AI insurance operating system'
-      },
-      {
-        icon: 'biotech',
-        tone: ORANGE,
-        label: 'HealthTech · Dubai',
-        title: 'ArogyaPlus',
-        note: 'Home diagnostics & health packages'
-      },
-      {
-        icon: 'memory',
-        tone: GREEN,
-        label: 'Technology · UAE',
-        title: 'Wallet Edge Technologies',
-        note: 'The technology behind ArogyaPlus'
-      }
-    ]
+    card: serviceCard('it-bpo', 'InsureTech & HealthTech')
   },
   {
     word: 'financial services.',
     tone: GREEN,
     ventures: ['recovery'],
-    cards: [
-      {
-        icon: 'account_balance',
-        tone: ORANGE,
-        label: 'Financial services',
-        title: 'Recovery Services',
-        note: 'Financial recovery & asset retrieval'
-      },
-      {
-        icon: 'shield',
-        tone: GREEN,
-        label: 'Insurance recovery',
-        title: 'Recovery agent services',
-        note: 'Clients include EMAAR and LIVA Insurance'
-      },
-      {
-        icon: 'corporate_fare',
-        tone: ORANGE,
-        label: 'Group company · India',
-        title: 'Wallet Edge Financial Services',
-        note: 'Wallet Edge Financial Services Pvt Ltd'
-      }
-    ]
+    card: serviceCard('financial', 'Insurance recovery & NRI investment planning')
   },
   {
     word: 'consulting.',
     tone: ORANGE,
     ventures: [],
-    cards: [
-      {
-        icon: 'business_center',
-        tone: GREEN,
-        label: 'Consulting',
-        title: 'Business consulting',
-        note: 'Including company formation in UAE'
-      },
-      {
-        icon: 'account_tree',
-        tone: ORANGE,
-        label: 'Consulting',
-        title: 'Management consulting',
-        note: 'HR, finance & accounts'
-      },
-      {
-        icon: 'groups',
-        tone: GREEN,
-        label: 'HR consulting',
-        title: 'Recruitment, PRO & payroll',
-        note: 'Part of management consulting'
-      }
-    ]
+    card: serviceCard('consulting', 'Business setup, management, HR & accounting')
   },
   {
     word: 'healthcare.',
     tone: GREEN,
     ventures: ['carehub', 'globalcure', 'arogyaplus'],
-    cards: [
-      {
-        icon: 'home_health',
-        tone: GREEN,
-        label: 'Home healthcare · Dubai',
-        title: 'CareHub Healthcare',
-        note: 'DHA-licensed nursing & doctor visits'
-      },
-      {
-        icon: 'medication',
-        tone: ORANGE,
-        label: 'Pharmacy · Dubai',
-        title: 'Global Cure RX Pharmacy',
-        note: 'Community pharmacy, insurance tie-ups'
-      },
-      {
-        icon: 'biotech',
-        tone: GREEN,
-        label: 'Diagnostics · Dubai',
-        title: 'ArogyaPlus',
-        note: 'Home sample collection & lab tests'
-      }
-    ]
+    card: serviceCard('healthcare', 'Home healthcare & pharmacy')
   },
-  // Held longer, so every card has time to fly in and merge before the next round.
-  { word: 'the UAE & India.', tone: ORANGE, ventures: [], cards: [], finale: true, holdMs: 3800 }
+  // Held longer, so the cards have time to fly in and merge before the next round.
+  { word: 'the UAE & India.', tone: ORANGE, ventures: [], finale: true, holdMs: 3800 }
 ];
 
 /** The WalletEdge card everything merges into at the end of each round. */
@@ -179,7 +98,7 @@ export const HERO_ORBIT: HeroOrbitItem[] = [
 export const HERO_GROUP_CHIP = { name: 'WalletEdge Global', icon: 'account_tree' };
 
 export const HERO_STATS: Array<{ count: number; suffix?: string; label: string }> = [
-  { count: 7, label: 'Group companies' },
-  { count: 15, label: 'Trusted clients' },
+  { count: 7, label: 'Companies' },
+  { count: 4, label: 'Services' },
   { count: 2, label: 'Countries' }
 ];

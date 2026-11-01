@@ -1,4 +1,4 @@
-import type { EnquiryTopic, NavLink, Office } from '@/types';
+import type { CorporateOffice, EnquiryTopic, NavLink, Office } from '@/types';
 import { ROUTES } from '@/config/routes';
 import { GREEN, ORANGE } from './tones';
 
@@ -11,7 +11,8 @@ export const CONTACT_EMAIL = 'admin@walletedgeglobal.com';
 
 export const NAV_LINKS: NavLink[] = [
   { id: 'home', label: 'Home', href: ROUTES.home },
-  { id: 'services', label: 'Services', href: ROUTES.services, menu: true },
+  { id: 'services', label: 'Services', href: ROUTES.services, menu: 'services' },
+  { id: 'companies', label: 'Companies', href: `${ROUTES.home}#companies`, menu: 'companies' },
   { id: 'team', label: 'Our Team', href: ROUTES.team },
   { id: 'contact', label: 'Contact', href: ROUTES.contact }
 ];
@@ -34,6 +35,23 @@ export const OFFICES: Office[] = [
     tone: ORANGE,
     addressLines: ['3/365, NGGO Colony Gate, MTP Road', 'Coimbatore 641017'],
     phone: { label: '+91 88258 98569', href: 'tel:+918825898569' }
+  }
+];
+
+/** Corporate offices of the group companies in Dubai (client tracker, WE009). */
+export const CORPORATE_OFFICES: CorporateOffice[] = [
+  {
+    company: 'Wallet Edge Technologies',
+    addressLines: ['Breeze Business Center, Al Hamsah Building', 'Office 307, 3rd floor, Al Karama, Dubai, UAE']
+  },
+  { company: 'CareHub Home Nursing Services', addressLines: ['45B Street, Al Karama', 'Dubai, UAE'] },
+  {
+    company: 'Global Cure RX Pharmacy',
+    addressLines: ['Shop 22, Building P15, France Cluster', 'Dubai, UAE']
+  },
+  {
+    company: 'InsureLiv — WhiteBlue Fintech Limited',
+    addressLines: ['Dubai International Financial Centre (DIFC)', 'Dubai, UAE']
   }
 ];
 

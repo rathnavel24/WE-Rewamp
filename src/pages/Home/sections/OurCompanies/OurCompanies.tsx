@@ -7,7 +7,7 @@ import s from './OurCompanies.module.css';
 /** 02 — The group's seven companies, as listed in the content document, each with its role and country. */
 export function OurCompanies() {
   return (
-    <Section data-screen-label="Companies" pt="none">
+    <Section id="companies" data-screen-label="Companies" pt="none">
       <SectionHeader
         kicker="02 — Our companies"
         title="The WalletEdge Global group of companies"

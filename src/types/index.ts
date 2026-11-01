@@ -77,6 +77,12 @@ export interface GroupCompany {
 }
 
 /** Something a service offers — a platform, an offering line or a company — shown on the Home page. */
+/** A downloadable file linked from the site. */
+export interface Download {
+  label: string;
+  href: string;
+}
+
 export interface ServiceOffering {
   icon: string;
   title: string;
@@ -89,6 +95,8 @@ export interface ServiceOffering {
   items?: string[];
   /** One key figure from the content document. */
   stat?: { value: string; label: string };
+  /** A file to download, such as a brochure (path under public/). */
+  download?: Download;
 }
 
 export interface Service {
@@ -120,6 +128,7 @@ export interface ServiceColumn {
   stats?: Stat[];
   /** What it covers, as a short checked list. */
   points?: string[];
+  download?: Download;
 }
 
 /** The Services page section for one service. */
@@ -150,7 +159,8 @@ export interface NavLink {
   id: string;
   label: string;
   href: string;
-  menu?: boolean;
+  /** Drop-down shown under this link. */
+  menu?: 'services' | 'companies';
 }
 
 export interface Office {
@@ -162,6 +172,12 @@ export interface Office {
   tone: Tone;
   addressLines: string[];
   phone: { label: string; href: string };
+}
+
+/** A group company's corporate office, listed in the footer. */
+export interface CorporateOffice {
+  company: string;
+  addressLines: string[];
 }
 
 export interface EnquiryTopic {

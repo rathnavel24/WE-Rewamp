@@ -10,10 +10,10 @@ export const VENTURES: Record<VentureId, Venture> = {
     name: 'InsureLiv',
     icon: 'shield_with_heart',
     menuLine: 'AI insurance operating system',
-    sector: 'InsurTech · WhiteBlue Fintech',
+    sector: 'InsureTech · WhiteBlue Fintech',
     tagline: 'The AI-powered insurance operating system for brokers, insurers and TPAs across the UAE and GCC.',
     about:
-      'InsureLiv is the group’s flagship AI-powered InsurTech ecosystem, built to transform modern insurance distribution across the UAE and the broader GCC region. Backed by enterprise tech firm WhiteBlue, this intelligent insurance operating system brings entire broker, insurer and TPA workflows — automated lead management, AI quote comparison, OCR document screening and commission reconciliation — into one secure, unified pipeline. By removing operational fragmentation, InsureLiv enables insurance businesses to scale confidently, cut processing times by 90% and reduce overhead costs.',
+      'InsureLiv is the group’s flagship AI-powered InsureTech ecosystem, built to transform modern insurance distribution across the UAE and the broader GCC region. Backed by enterprise tech firm WhiteBlue, this intelligent insurance operating system brings entire broker, insurer and TPA workflows — automated lead management, AI quote comparison, OCR document screening and commission reconciliation — into one secure, unified pipeline. By removing operational fragmentation, InsureLiv enables insurance businesses to scale confidently, cut processing times by 90% and reduce overhead costs.',
     stats: [
       { n: 90, suffix: '%', label: 'Reduction in processing time' },
       { n: 5, suffix: '', label: 'Core modules in one platform' },
@@ -130,7 +130,7 @@ export const VENTURES: Record<VentureId, Venture> = {
       {
         icon: 'healing',
         title: 'Specialised clinical care',
-        desc: 'Palliative care, post-operative recovery and intensive elderly or pediatric support.'
+        desc: 'Palliative care, post-operative recovery and intensive elderly or paediatric support.'
       },
       {
         icon: 'stethoscope',

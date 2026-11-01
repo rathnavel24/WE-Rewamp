@@ -1,4 +1,6 @@
 import type { Country, GroupCompany, ServiceId } from '@/types';
+import { ROUTES } from '@/config/routes';
+import { serviceHref } from './services';
 
 /**
  * The group's seven companies, named and ordered exactly as in the client's content document ("Our Companies").
@@ -44,6 +46,10 @@ export const GROUP_COMPANIES: GroupCompany[] = [
 ];
 
 export const PARENT_COMPANIES = GROUP_COMPANIES.filter((c) => c.parent);
+
+/** Where a company links to: its platform's page, else its service, else the Home companies register. */
+export const companyHref = (c: GroupCompany) =>
+  c.venture ? ROUTES.venture(c.venture) : c.service ? serviceHref(c.service) : `${ROUTES.home}#companies`;
 
 /** The companies listed under a service. */
 export const companiesFor = (id: ServiceId) => GROUP_COMPANIES.filter((c) => c.service === id);

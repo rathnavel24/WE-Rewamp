@@ -10,9 +10,9 @@ export function ContactCta() {
         <div className={s.glow} aria-hidden="true" />
         <div className={s.layout}>
           <div className={s.copy}>
-            <h2 className="t-display-2">Partner with WalletEdge Global</h2>
+            <h2 className="t-display-2">Connect with WalletEdge Global</h2>
             <p className="t-lead">
-              Speak with our teams in Sharjah and Coimbatore about any of our services or group companies.
+              Speak with our teams in Sharjah, Dubai and Coimbatore about any of our services or group companies.
             </p>
           </div>
           <div className={s.actions}>

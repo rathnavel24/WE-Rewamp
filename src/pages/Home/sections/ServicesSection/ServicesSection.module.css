@@ -63,6 +63,10 @@
   padding: 0;
   list-style: none;
 }
+/* Sits under its offering (outside the offering's link), sharing the row's bottom padding. */
+.download {
+  margin: calc(-1 * var(--space-2)) 0 var(--space-6);
+}
 .offers > li + li {
   border-top: 1px solid var(--border-default);
 }
@@ -101,8 +105,10 @@
 }
 .offerTitle {
   display: block;
-  font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans);
+  font: var(--fw-semibold) var(--fs-h2)/var(--lh-snug) var(--font-sans);
   letter-spacing: var(--ls-title);
+  /* Each offering's name carries its service's colour, so the names read first in the row. */
+  color: var(--tone-ink);
 }
 .offerArrow {
   display: inline-block;
@@ -114,8 +120,12 @@
     transform var(--dur-fast) var(--ease);
 }
 .offerMeta {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  background: var(--tone-soft);
   font: var(--fw-medium) var(--fs-label)/1.4 var(--font-mono);
-  color: var(--text-muted);
+  color: var(--tone-ink);
 }
 .offerDesc {
   max-width: 54ch;

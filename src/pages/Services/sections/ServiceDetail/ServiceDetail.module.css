@@ -92,15 +92,24 @@
   gap: var(--space-4);
   padding: var(--space-8) var(--space-10) var(--space-8) 0;
 }
-.column + .column {
+/* Two per row: the right-hand column takes the divider; later rows (consulting's four) get a top rule. */
+.column:nth-child(even) {
   padding-left: var(--space-10);
   padding-right: 0;
   border-left: 1px solid var(--rule);
 }
+.column:nth-child(n + 3) {
+  border-top: 1px solid var(--rule);
+}
+.download {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}
 /* The platform's or company's logo above its name, on a white plate. */
 .colLogo {
-  display: grid;
-  place-items: center start;
+  /* Flex (not grid), so the image's 100% height resolves against the plate and tall logos can't spill out. */
+  display: flex;
+  align-items: center;
   align-self: flex-start;
   height: 64px;
   padding: var(--space-3) var(--space-4);
@@ -199,7 +208,7 @@
     grid-template-columns: 1fr;
   }
   .column,
-  .column + .column {
+  .column:nth-child(even) {
     padding: var(--space-6) 0;
     border-left: 0;
   }
@@ -232,5 +241,14 @@
   }
   .statValue {
     font-size: var(--fs-h2);
+  }
+}
+
+/* Touch screens: 44px-tall tap targets on the linked column titles. */
+@media (pointer: coarse) {
+  .colLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }

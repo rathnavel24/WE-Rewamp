@@ -3,7 +3,7 @@ import { APP_ROUTES } from '@/app/routes';
 import { GROUP_COMPANIES } from './companies';
 import { clientLogo, companyLogo, ventureLogo } from './assets';
 import { CLIENTS } from './clients';
-import { SERVICES, serviceHref } from './services';
+import { SERVICE_DETAILS, SERVICES, serviceHref } from './services';
 import { DIVISION_LEADERS } from './team';
 import { ENQUIRY_TOPICS, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
@@ -74,6 +74,15 @@ describe('content integrity', () => {
   it('every platform except Recovery Services has its own logo', () => {
     const missing = Object.values(VENTURES).filter((v) => !ventureLogo(v.id));
     expect(missing.map((v) => v.id)).toEqual(['recovery']);
+  });
+
+  it('every download link has its file in public/', () => {
+    const files = [...SERVICES.flatMap((x) => x.offerings), ...Object.values(SERVICE_DETAILS).flatMap((d) => d.columns)]
+      .map((o) => o.download?.href)
+      .filter((h): h is string => !!h);
+    expect(files.length).toBeGreaterThan(0);
+    const published = new Set(Object.keys(import.meta.glob('/public/**/*')).map((k) => k.replace(/^\/public/, '')));
+    expect(files.filter((h) => !published.has(h))).toEqual([]);
   });
 
   it('nav ids are unique', () => {

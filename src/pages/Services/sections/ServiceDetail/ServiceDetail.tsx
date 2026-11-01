@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { AppLink, ArrowText, Icon, Section } from '@/components/ui';
+import { AppLink, ArrowText, Button, Icon, Section } from '@/components/ui';
 import { ventureLogo } from '@/content/assets';
 import { companiesFor } from '@/content/companies';
 import { cx } from '@/lib/cx';
@@ -100,6 +100,11 @@ function Column({ column: c }: { column: ServiceColumn }) {
             </li>
           ))}
         </ul>
+      )}
+      {c.download && (
+        <Button to={c.download.href} download variant="link" icon="download" className={s.download}>
+          {c.download.label}
+        </Button>
       )}
     </article>
   );
