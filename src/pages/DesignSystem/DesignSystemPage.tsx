@@ -126,7 +126,7 @@ export function DesignSystemPage() {
               <span className="t-h4">Eyebrow</span>
               <code className={s.code}>.eyebrow</code>
             </div>
-            <span className="eyebrow">01 — Our services</span>
+            <span className="eyebrow">Our services</span>
           </div>
         </Card>
       </Block>
@@ -298,7 +298,7 @@ export function DesignSystemPage() {
       <Block no="07" title="Section header">
         <Card padding="xl">
           <SectionHeader
-            kicker="01 — Kicker"
+            kicker="Kicker"
             title="Split layout keeps lead and actions on the right."
             size="h1"
             layout="split"

@@ -10,12 +10,12 @@ import s from './ServicesSection.module.css';
 const toneVars = (x: Service) =>
   ({ '--tone': x.tone.accent, '--tone-ink': x.tone.ink, '--tone-soft': x.tone.soft }) as CSSProperties;
 
-/** 01 — The four services: one ruled row each, the service on the left and what it offers on the right. */
+/** The four services: one ruled row each, the service on the left and what it offers on the right. */
 export function ServicesSection() {
   return (
     <Section data-screen-label="Services">
       <SectionHeader
-        kicker="01 — Our services"
+        kicker="Our services"
         title="A portfolio of services across four sectors"
         layout="split"
         lead="WalletEdge Global brings together IT & BPO, financial services, consulting and healthcare, delivered through its group companies in the UAE and India."
@@ -36,14 +36,11 @@ export function ServicesSection() {
 }
 
 function ServiceRow({ service: x }: { service: Service }) {
-  // Healthcare's offerings are its companies, so they aren't named a second time.
-  const companies = companiesFor(x.id).filter((c) => !x.offerings.some((o) => o.title === c.name));
+  // Healthcare's offerings name their companies, so they aren't named a second time.
+  const companies = companiesFor(x.id).filter((c) => !x.offerings.some((o) => o.meta?.startsWith(c.name)));
   return (
     <li className={s.row} style={toneVars(x)}>
       <div className={s.intro}>
-        <span className={s.no} aria-hidden="true">
-          {x.no}
-        </span>
         <h3 className={`t-h1 ${s.title}`}>{x.title}</h3>
         <p className={s.summary}>{x.summary}</p>
         <Button to={serviceHref(x.id)} variant="link" icon="arrow_forward" className={s.explore}>

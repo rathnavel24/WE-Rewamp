@@ -20,9 +20,11 @@
   padding: 0;
   border: 0;
 }
-.legend {
+/* Doubled class outranks the dimmer .on-dark .t-label, which is too faint on the brighter green panel. */
+.legend.legend {
   padding: 0;
   margin-bottom: var(--space-3);
+  color: var(--text-on-dark-soft);
 }
 .topics {
   display: flex;
@@ -71,10 +73,10 @@
   background: var(--fill-on-dark-focus);
 }
 .label {
-  font-size: 11.5px;
+  font-size: var(--fs-caption);
   font-weight: var(--fw-medium);
   line-height: 1.3;
-  color: var(--text-on-dark-subtle);
+  color: var(--text-on-dark-soft);
 }
 .input,
 .textarea {
@@ -92,7 +94,7 @@
   min-height: 66px;
 }
 .textarea::placeholder {
-  color: var(--text-on-dark-faint);
+  color: var(--text-on-dark-muted);
 }
 
 .footer {
@@ -112,6 +114,14 @@
 }
 .alt a:hover {
   color: var(--color-accent-on-dark);
+}
+/* Touch screens: a 44px-tall tap target that doesn't move the line. */
+@media (pointer: coarse) {
+  .alt a {
+    display: inline-block;
+    padding-block: var(--space-3);
+    margin-block: calc(-1 * var(--space-3));
+  }
 }
 
 .error {

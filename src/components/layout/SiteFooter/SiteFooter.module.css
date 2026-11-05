@@ -23,7 +23,7 @@
   gap: var(--space-5);
 }
 .logo {
-  width: 260px;
+  width: 180px;
   height: auto;
 }
 .blurb {
@@ -105,11 +105,10 @@
   color: var(--color-accent);
 }
 
-/* Corporate offices: one row of addresses under the columns, split from them by a hairline. */
+/* Corporate offices: a heading over one full-width row of addresses, split from the columns by a hairline. */
 .corporate {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 3.1fr);
-  gap: var(--space-12);
+  gap: var(--space-5);
   padding-top: var(--space-10);
   border-top: 1px solid var(--border-subtle);
 }
@@ -148,7 +147,7 @@
   padding-top: var(--space-6);
   border-top: 1px solid var(--border-subtle);
   font-size: var(--fs-caption);
-  color: var(--text-subtle);
+  color: var(--text-muted);
 }
 
 /* Tablet: brand across the top, then the three link columns. */
@@ -159,10 +158,6 @@
   }
   .brandCol {
     grid-column: 1 / -1;
-  }
-  .corporate {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
   }
   .corporateList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -188,7 +183,7 @@
     grid-template-columns: 1fr;
   }
   .logo {
-    width: 190px;
+    width: 150px;
   }
   .bottom {
     flex-direction: column;

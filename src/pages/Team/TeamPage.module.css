@@ -18,12 +18,6 @@
   padding-left: var(--space-6);
   border-left: 1px solid var(--border-default);
 }
-.count {
-  font: var(--fw-semibold) var(--fs-h1)/1 var(--font-sans);
-  font-stretch: var(--font-stretch-display);
-  letter-spacing: var(--ls-heading);
-  color: var(--tone);
-}
 .entryLabel {
   display: inline-flex;
   align-items: center;
@@ -85,10 +79,6 @@
   height: 200px;
   margin-bottom: var(--space-5);
 }
-.founderLabel {
-  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  color: var(--color-accent-on-dark);
-}
 .founderName {
   color: var(--white);
 }
@@ -100,25 +90,13 @@
 /* ---------- Group heads ---------- */
 .groupHead {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: var(--space-2) var(--space-6);
+  gap: var(--space-2);
   padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--border-strong);
 }
-.groupHead > h2 {
-  grid-column: 1;
-}
 .groupLead {
-  grid-column: 1;
   font-size: var(--fs-body-lg);
   color: var(--text-muted);
-}
-.groupCount {
-  grid-column: 2;
-  grid-row: 1;
-  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  color: var(--text-faint);
 }
 
 /* ---------- People: ruled rows ---------- */
@@ -127,15 +105,22 @@
   padding: 0;
   list-style: none;
 }
+/* Two equal columns, so designations line up across the Board and Business leadership lists. */
 .person {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: var(--space-5);
   padding: var(--space-4) 0;
 }
 .person + .person {
   border-top: 1px solid var(--border-default);
+}
+.personWho {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  min-width: 0;
 }
 .personPhoto {
   width: 48px;
@@ -150,73 +135,7 @@
   color: var(--text-muted);
 }
 
-/* ---------- Business leadership: one row per business ---------- */
-.businesses {
-  display: flex;
-  flex-direction: column;
-}
-.business {
-  display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: var(--space-10);
-  padding: var(--space-6) 0;
-}
-.business + .business {
-  border-top: 1px solid var(--border-default);
-}
-.businessName {
-  display: flex;
-  align-items: center;
-  align-self: start;
-  gap: var(--space-4);
-  padding-top: var(--space-3);
-  color: var(--text-strong);
-  text-decoration: none;
-}
-@media (hover: hover) {
-  .businessName:hover {
-    color: var(--text-strong);
-  }
-  .businessName:hover .arrow {
-    color: var(--color-primary);
-    transform: translate(2px, -2px);
-  }
-}
-.logo {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 112px;
-  height: 52px;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  background: var(--white);
-}
-.logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.logoIcon {
-  color: var(--color-primary);
-}
-.unit {
-  display: block;
-  font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
-}
-.business .person:first-child {
-  padding-top: var(--space-2);
-}
-
 /* ---------- Tablet and phones ---------- */
-@media (max-width: 900px) {
-  .business {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-}
 @media (max-width: 760px) {
   .founders {
     grid-template-columns: 1fr;
@@ -238,17 +157,11 @@
   }
   .entry,
   .entry + .entry {
-    flex-direction: row;
-    align-items: baseline;
-    gap: var(--space-4);
     padding: var(--space-4) 0;
     border-left: 0;
   }
   .entry + .entry {
     border-top: 1px solid var(--border-default);
-  }
-  .count {
-    font-size: var(--fs-h3);
   }
   .monogram {
     width: 88px;
@@ -259,11 +172,21 @@
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--space-1) var(--space-4);
   }
-  .person > :first-child {
+  /* The avatar, name and designation join the row's own grid: avatar left, the two lines beside it. */
+  .personWho {
+    display: contents;
+  }
+  .personWho > :first-child:not(:last-child) {
     grid-row: span 2;
   }
   .personRole {
     grid-column: 2;
     font-size: var(--fs-small);
+  }
+  .personPlain {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .personPlain .personRole {
+    grid-column: 1;
   }
 }

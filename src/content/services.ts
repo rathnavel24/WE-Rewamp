@@ -17,7 +17,6 @@ const NRI_PLANNING = [
 export const SERVICES: Service[] = [
   {
     id: 'it-bpo',
-    no: '01',
     icon: 'hub',
     title: 'IT & BPO Services',
     short: 'IT & BPO',
@@ -31,7 +30,7 @@ export const SERVICES: Service[] = [
         icon: 'shield_with_heart',
         title: 'InsureTech',
         meta: 'InsureLiv',
-        desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech for insurance brokerages — from lead capture and multi-insurer quoting to automated document verification and policy renewals.',
+        desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech Ltd for insurance brokerages — from lead capture and multi-insurer quoting to automated document verification and policy renewals.',
         href: ROUTES.venture('insureliv'),
         stat: { value: '90%', label: 'Cut in processing times' }
       },
@@ -39,7 +38,7 @@ export const SERVICES: Service[] = [
         icon: 'biotech',
         title: 'HealthTech',
         meta: 'ArogyaPlus',
-        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies — at-home and in-clinic medical services, health packages and lab tests with home sample collection.',
+        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies LLC — at-home and in-clinic medical services, health packages and lab tests with home sample collection.',
         href: ROUTES.venture('arogyaplus'),
         stat: { value: '10,000+', label: 'Families served' }
       }
@@ -47,7 +46,6 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'financial',
-    no: '02',
     icon: 'account_balance',
     title: 'Financial Services',
     short: 'Financial',
@@ -73,7 +71,6 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'consulting',
-    no: '03',
     icon: 'insights',
     title: 'Consulting Services',
     short: 'Consulting',
@@ -91,7 +88,6 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'healthcare',
-    no: '04',
     icon: 'medical_services',
     title: 'Healthcare Services',
     short: 'Healthcare',
@@ -137,7 +133,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         venture: 'insureliv',
         meta: 'InsureLiv',
         href: ROUTES.venture('insureliv'),
-        desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech for insurance brokerages. It automates the entire broker workflow — from lead capture and multi-insurer quoting to automated document verification and policy renewals — boosting agent productivity while reducing turnaround times and operating costs.',
+        desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech Ltd for insurance brokerages. It automates the entire broker workflow — from lead capture and multi-insurer quoting to automated document verification and policy renewals — boosting agent productivity while reducing turnaround times and operating costs.',
         stats: VENTURES.insureliv.stats?.slice(0, 1),
         points: titles(VENTURES.insureliv.features)
       },
@@ -146,7 +142,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         venture: 'arogyaplus',
         meta: 'ArogyaPlus',
         href: ROUTES.venture('arogyaplus'),
-        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies — on-demand at-home and in-clinic medical services, health packages, specialised lab test bookings with secure home sample collection, and professional nursing care, delivered by DHA-licensed professionals and CAP-accredited laboratories.',
+        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies LLC — on-demand at-home and in-clinic medical services, health packages, specialised lab test bookings with secure home sample collection, and professional nursing care, delivered by DHA-licensed professionals and CAP-accredited laboratories.',
         stats: VENTURES.arogyaplus.stats,
         points: titles(VENTURES.arogyaplus.features)
       }

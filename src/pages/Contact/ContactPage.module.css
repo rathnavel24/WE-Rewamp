@@ -87,7 +87,7 @@
 }
 .line dt {
   font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  color: var(--text-faint);
+  color: var(--text-muted);
 }
 .line dd {
   margin: 0;

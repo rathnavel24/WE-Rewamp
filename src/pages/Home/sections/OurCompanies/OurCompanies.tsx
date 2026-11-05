@@ -4,15 +4,15 @@ import { COUNTRY_LABELS, GROUP_COMPANIES } from '@/content/companies';
 import { SERVICES, serviceHref } from '@/content/services';
 import s from './OurCompanies.module.css';
 
-/** 02 — The group's seven companies, as listed in the content document, each with its role and country. */
+/** The group's seven companies, each with its role and country (client tracker, WE011). */
 export function OurCompanies() {
   return (
     <Section id="companies" data-screen-label="Companies" pt="none">
       <SectionHeader
-        kicker="02 — Our companies"
+        kicker="Our companies"
         title="The WalletEdge Global group of companies"
         layout="split"
-        lead="Seven companies across the UAE and India: two parent companies and the companies that deliver each of our services."
+        lead="Seven companies across the UAE and India: a holding company and the companies that deliver each of our services."
       />
 
       <table className={s.table}>
@@ -35,21 +35,18 @@ export function OurCompanies() {
                     <span className={s.logo}>
                       {companyLogo(c) ? <img src={companyLogo(c)} alt="" /> : <Icon name="corporate_fare" size={22} />}
                     </span>
-                    <span>
-                      <span className={s.name}>{c.name}</span>
-                      {c.note && <span className={s.note}>{c.note}</span>}
-                    </span>
+                    <span className={s.name}>{c.name}</span>
                   </span>
                 </th>
                 <td className={s.role}>
                   {service ? (
                     <AppLink to={serviceHref(service.id)} className={s.serviceLink}>
                       <span className={s.dot} style={{ background: service.tone.accent }} aria-hidden="true" />
-                      {service.title}
+                      {c.role}
                       <Icon name="arrow_outward" size={16} className={s.arrow} />
                     </AppLink>
                   ) : (
-                    <span className={s.parent}>Parent company</span>
+                    <span className={s.rolePlain}>{c.role}</span>
                   )}
                 </td>
                 <td className={s.country}>{COUNTRY_LABELS[c.country]}</td>

@@ -7,10 +7,17 @@ import { serviceHref } from './services';
  * Listed in full in the Home "Our companies" section; each one also appears under its service ("Delivered by").
  */
 export const GROUP_COMPANIES: GroupCompany[] = [
-  { name: 'Wallet Edge Global FZC LLC', country: 'UAE', parent: true, note: 'SPC Freezone, Sharjah' },
+  {
+    name: 'Wallet Edge Global FZC LLC',
+    country: 'UAE',
+    role: 'Holding Company',
+    parent: true,
+    note: 'SPC Freezone, Sharjah'
+  },
   {
     name: 'Wallet Edge Technologies LLC',
     country: 'UAE',
+    role: 'HealthTech',
     service: 'it-bpo',
     note: 'Powers the ArogyaPlus platform',
     venture: 'arogyaplus'
@@ -18,6 +25,7 @@ export const GROUP_COMPANIES: GroupCompany[] = [
   {
     name: 'CareHub Healthcare LLC',
     country: 'UAE',
+    role: 'Healthcare',
     service: 'healthcare',
     note: 'DHA-licensed home healthcare · carehubuae.com',
     venture: 'carehub'
@@ -25,6 +33,7 @@ export const GROUP_COMPANIES: GroupCompany[] = [
   {
     name: 'Global Cure RX Pharmacy LLC',
     country: 'UAE',
+    role: 'Healthcare',
     service: 'healthcare',
     note: 'DHA-licensed community pharmacy, Dubai',
     venture: 'globalcure'
@@ -32,6 +41,7 @@ export const GROUP_COMPANIES: GroupCompany[] = [
   {
     name: 'WhiteBlue Fintech Ltd',
     country: 'UAE',
+    role: 'InsureTech',
     service: 'it-bpo',
     note: 'Built the InsureLiv platform',
     venture: 'insureliv'
@@ -39,10 +49,11 @@ export const GROUP_COMPANIES: GroupCompany[] = [
   {
     name: 'Wallet Edge Financial Services Pvt Ltd',
     country: 'INDIA',
+    role: 'Financial Services',
     service: 'financial',
     note: 'The group’s financial services company in India'
   },
-  { name: 'Wallet Edge Services Pvt Ltd', country: 'INDIA', parent: true }
+  { name: 'Wallet Edge Services Pvt Ltd', country: 'INDIA', role: 'BPO', parent: true }
 ];
 
 export const PARENT_COMPANIES = GROUP_COMPANIES.filter((c) => c.parent);

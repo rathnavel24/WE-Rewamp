@@ -99,7 +99,7 @@ Phones are the primary audience; every component has a phone layout behind `@med
 </Section>
 
 <Section>
-  <SectionHeader kicker="01 — Practices" title="…" />
+  <SectionHeader kicker="Practices" title="…" />
   <Grid min={300} max={3}>
     {items.map((i) => (
       <Card key={i.id} to={i.href}>

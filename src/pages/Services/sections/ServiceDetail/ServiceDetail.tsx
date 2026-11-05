@@ -14,9 +14,10 @@ interface ServiceDetailProps {
 
 /** One service in full: name and statement, its offerings as ruled columns, and the companies behind it. */
 export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
-  // Where the offerings are the companies themselves (healthcare), they aren't named twice.
-  const companies = companiesFor(x.id).filter((c) => !d.columns.some((col) => col.title === c.name));
-  const vars = { '--tone': x.tone.accent, '--tone-ink': x.tone.ink } as CSSProperties;
+  // Where the offerings already name their companies (healthcare), they aren't named twice.
+  const companies = companiesFor(x.id).filter((c) => !d.columns.some((col) => col.meta?.startsWith(c.name)));
+  // On the dark band the stylesheet sets a lighter --tone-ink; an inline value here would override it.
+  const vars = { '--tone': x.tone.accent, ...(!d.dark && { '--tone-ink': x.tone.ink }) } as CSSProperties;
   return (
     <Section
       id={x.id}
@@ -28,7 +29,6 @@ export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
       <div className={cx(s.wrap, d.dark && s.dark)} style={vars}>
         <header className={s.head}>
           <div className={s.name}>
-            <span className={s.no}>{x.no}</span>
             <h2 className="t-display-2">{x.title}</h2>
           </div>
           <div className={s.intro}>

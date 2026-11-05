@@ -1,33 +1,18 @@
 import type { CSSProperties } from 'react';
-import { AppLink, ArrowText, Avatar, CtaBanner, Icon, Portrait, Section, SectionHeader } from '@/components/ui';
+import { AppLink, Avatar, CtaBanner, Icon, Portrait, Section, SectionHeader } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
-import { teamPhoto, ventureLogo } from '@/content/assets';
+import { teamPhoto } from '@/content/assets';
 import { BOARD, DIVISION_LEADERS, FOUNDERS } from '@/content/team';
 import { alternate, GREEN, ORANGE } from '@/content/tones';
-import { VENTURES } from '@/content/ventures';
-import type { Person, VentureId } from '@/types';
+import type { Person } from '@/types';
 import s from './TeamPage.module.css';
 
-/** Business leaders grouped by the business they lead, in the content document's order. */
-const BUSINESSES = DIVISION_LEADERS.reduce<Array<{ venture: VentureId; unit: string; people: Person[] }>>(
-  (groups, p) => {
-    if (!p.venture) return groups;
-    const group = groups.find((g) => g.venture === p.venture);
-    if (group) group.people.push(p);
-    else groups.push({ venture: p.venture, unit: p.unit ?? VENTURES[p.venture].name, people: [p] });
-    return groups;
-  },
-  []
-);
-
 const SECTIONS = [
-  { id: 'founders', label: 'Founders', count: FOUNDERS.length },
-  { id: 'board', label: 'Board of directors', count: BOARD.length },
-  { id: 'leadership', label: 'Business leaders', count: DIVISION_LEADERS.length }
+  { id: 'founders', label: 'Founders' },
+  { id: 'board', label: 'Board of directors' },
+  { id: 'leadership', label: 'Business leaders' }
 ];
-
-const pad = (n: number) => String(n).padStart(2, '0');
 
 export function TeamPage() {
   usePageMeta({
@@ -53,7 +38,6 @@ export function TeamPage() {
               className={s.entry}
               style={{ '--tone': alternate(i).accent } as CSSProperties}
             >
-              <span className={s.count}>{pad(x.count)}</span>
               <span className={s.entryLabel}>
                 {x.label}
                 <Icon name="arrow_downward" size={18} className={s.arrow} />
@@ -81,7 +65,6 @@ export function TeamPage() {
                     {p.initials}
                   </span>
                 )}
-                <span className={s.founderLabel}>Founder</span>
                 <h2 className={`t-display-2 ${s.founderName}`}>{p.name}</h2>
                 <p className={s.founderRole}>{p.role}</p>
               </article>
@@ -91,7 +74,7 @@ export function TeamPage() {
       </Section>
 
       <Section id="board" data-screen-label="Board" pb="sm" gap="none">
-        <GroupHead title="Board of directors" count={BOARD.length} />
+        <GroupHead title="Board of directors" />
         <ul className={s.people}>
           {BOARD.map((p, i) => (
             <PersonRow key={p.name} person={p} index={i} />
@@ -100,37 +83,15 @@ export function TeamPage() {
       </Section>
 
       <Section id="leadership" data-screen-label="Business leaders" pt="sm" gap="none">
-        <GroupHead
-          title="Business leadership"
-          count={DIVISION_LEADERS.length}
-          lead="The leaders responsible for each business in the group."
-        />
-        <div className={s.businesses}>
-          {BUSINESSES.map((b, bi) => {
-            const logo = ventureLogo(b.venture);
-            return (
-              <section key={b.venture} className={s.business} aria-label={b.unit}>
-                <AppLink to={ROUTES.venture(b.venture)} className={s.businessName}>
-                  <span className={s.logo}>
-                    {logo ? (
-                      <img src={logo} alt="" />
-                    ) : (
-                      <Icon name={VENTURES[b.venture].icon} size={24} className={s.logoIcon} />
-                    )}
-                  </span>
-                  <span className={s.unit}>
-                    <ArrowText text={b.unit} size={16} iconClassName={s.arrow} />
-                  </span>
-                </AppLink>
-                <ul className={s.people}>
-                  {b.people.map((p, i) => (
-                    <PersonRow key={p.name} person={p} index={bi + i} />
-                  ))}
-                </ul>
-              </section>
-            );
-          })}
-        </div>
+        <GroupHead title="Business leadership" lead="The leaders responsible for each business in the group." />
+        <ul className={s.people}>
+          {DIVISION_LEADERS.map((p) => (
+            <li key={p.name} className={`${s.person} ${s.personPlain}`}>
+              <span className={s.personName}>{p.name}</span>
+              <span className={s.personRole}>{p.role}</span>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <CtaBanner title="Contact the leadership team" cta="Contact us" to={ROUTES.contact} pt="none" />
@@ -138,12 +99,11 @@ export function TeamPage() {
   );
 }
 
-function GroupHead({ title, count, lead }: { title: string; count: number; lead?: string }) {
+function GroupHead({ title, lead }: { title: string; lead?: string }) {
   return (
     <header className={s.groupHead}>
       <h2 className="t-h1">{title}</h2>
       {lead && <p className={s.groupLead}>{lead}</p>}
-      <span className={s.groupCount}>{pad(count)}</span>
     </header>
   );
 }
@@ -152,12 +112,14 @@ function PersonRow({ person: p, index }: { person: Person; index: number }) {
   const photo = teamPhoto(p.name);
   return (
     <li className={s.person}>
-      {photo ? (
-        <Portrait name={p.name} photo={photo} tone={alternate(index)} className={s.personPhoto} />
-      ) : (
-        <Avatar name={p.name} tone={alternate(index)} />
-      )}
-      <span className={s.personName}>{p.name}</span>
+      <span className={s.personWho}>
+        {photo ? (
+          <Portrait name={p.name} photo={photo} tone={alternate(index)} className={s.personPhoto} />
+        ) : (
+          <Avatar name={p.name} tone={alternate(index)} />
+        )}
+        <span className={s.personName}>{p.name}</span>
+      </span>
       <span className={s.personRole}>{p.role}</span>
     </li>
   );

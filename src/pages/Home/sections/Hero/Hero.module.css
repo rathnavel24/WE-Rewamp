@@ -83,6 +83,7 @@
 }
 
 .stats {
+  --stat-value-size: clamp(28px, 6vw, 34px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 560px;

@@ -20,7 +20,6 @@ export function ServicesHero() {
       <nav aria-label="Services on this page" data-stagger="70" className={s.contents}>
         {SERVICES.map((x) => (
           <AppLink key={x.id} to={`#${x.id}`} className={s.entry} style={{ '--tone': x.tone.accent } as CSSProperties}>
-            <span className={s.no}>{x.no}</span>
             <span className={s.name}>
               {x.title}
               <Icon name="arrow_downward" size={18} className={s.arrow} />

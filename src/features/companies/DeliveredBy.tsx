@@ -11,7 +11,7 @@ interface DeliveredByProps {
 
 /**
  * One quiet line naming the companies behind a service, each with its country.
- * Colours follow `--ink` / `--faint` when a dark section sets them.
+ * Colours follow `--ink` / `--muted` when a dark section sets them.
  */
 export function DeliveredBy({ companies, label = 'Delivered by', className }: DeliveredByProps) {
   if (!companies.length) return null;

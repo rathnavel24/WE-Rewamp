@@ -1,5 +1,5 @@
 /* One ruled row per service: the service on the left (pinned while its offerings are read), what it offers on
-   the right. No cards or icon tiles — the large coloured number is each service's marker. */
+   the right. No cards or icon tiles — the coloured offering names carry each service's tone. */
 .rows {
   margin: 0;
   padding: 0;
@@ -31,16 +31,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
-}
-.no {
-  font: var(--fw-semibold) var(--fs-display-2)/1 var(--font-sans);
-  font-stretch: var(--font-stretch-display);
-  letter-spacing: var(--ls-display);
-  color: var(--tone);
-  font-variant-numeric: tabular-nums;
-}
-.title {
-  margin-top: var(--space-1);
 }
 .summary {
   max-width: 44ch;
@@ -141,12 +131,15 @@
 }
 .item {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   font-size: var(--fs-small);
   color: var(--text-strong);
 }
+/* Sits on the first line of a wrapped item, not in the middle of it. */
 .check {
+  flex: none;
+  margin-top: 2px;
   color: var(--tone-ink);
 }
 /* Key figure, set large on the right. */
@@ -175,9 +168,6 @@
   .row {
     gap: var(--space-6);
     padding: var(--space-10) 0;
-  }
-  .no {
-    font-size: var(--fs-h1);
   }
   .title {
     font-size: 26px;

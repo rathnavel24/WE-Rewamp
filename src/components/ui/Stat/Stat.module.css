@@ -34,8 +34,9 @@
 .plain .value {
   color: var(--stat-ink, var(--text-strong));
 }
+/* --stat-value-size: set by a row of stats that must match, whatever each cell's width. */
 .sm .value {
-  font-size: min(34px, 26cqi);
+  font-size: var(--stat-value-size, min(34px, 26cqi));
   letter-spacing: -0.03em;
 }
 .md .value {
@@ -68,7 +69,7 @@
     gap: var(--space-2);
   }
   .sm .value {
-    font-size: min(28px, 26cqi);
+    font-size: var(--stat-value-size, min(28px, 26cqi));
   }
   .md .value {
     font-size: min(30px, 20cqi);

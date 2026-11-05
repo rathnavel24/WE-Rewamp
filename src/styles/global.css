@@ -163,18 +163,18 @@ section[id],
   font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--text-subtle);
+  color: var(--text-muted);
 }
 .t-mono {
   font-family: var(--font-mono);
 }
 
-/* Accent kicker above section titles ("01 — Our services"). */
+/* Accent kicker above section titles ("Our services"). The strong orange keeps this small text readable. */
 .eyebrow {
   font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 /* Inverse context: anything inside a dark band/panel. */

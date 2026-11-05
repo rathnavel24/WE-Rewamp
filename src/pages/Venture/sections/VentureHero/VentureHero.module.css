@@ -113,7 +113,9 @@
   .tagline {
     font-size: 19px;
   }
+  /* The actions come before the long description, so they're on the first screen. */
   .actions {
+    order: -1;
     flex-direction: column;
   }
   .actions > * {

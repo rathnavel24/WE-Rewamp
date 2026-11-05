@@ -24,10 +24,6 @@ export interface Feature {
   desc: string;
 }
 
-export interface ProcessStep extends Feature {
-  no: string;
-}
-
 export interface Venture {
   id: VentureId;
   /** The service this venture is listed under on the Services page. */
@@ -46,7 +42,7 @@ export interface Venture {
   stats?: Stat[];
   featTitle: string;
   features: Feature[];
-  steps?: ProcessStep[];
+  steps?: Feature[];
   /** Optional case-study block on the venture page. */
   caseStudy?: CaseStudy;
   /** Contact-form topic pre-selected from this venture's "Enquire about…" button (one of ENQUIRY_TOPICS). */
@@ -67,6 +63,8 @@ export type ServiceId = 'it-bpo' | 'financial' | 'consulting' | 'healthcare';
 export interface GroupCompany {
   name: string;
   country: Country;
+  /** What the company is, as shown in the Home "Our companies" register. */
+  role: string;
   /** The service the company is listed under. Parents have none. */
   service?: ServiceId;
   parent?: boolean;
@@ -101,7 +99,6 @@ export interface ServiceOffering {
 
 export interface Service {
   id: ServiceId;
-  no: string;
   icon: string;
   title: string;
   /** Short name for pills and menus. */
@@ -145,10 +142,6 @@ export interface ServiceDetail {
 export interface Person {
   name: string;
   role: string;
-  /** The business the person leads, as named in the content document. */
-  unit?: string;
-  /** The platform or company that business is, for grouping and its logo. */
-  venture?: VentureId;
 }
 
 export interface Founder extends Person {

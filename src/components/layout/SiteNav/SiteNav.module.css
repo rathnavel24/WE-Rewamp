@@ -83,7 +83,7 @@
   background: var(--fill-primary-hover);
 }
 
-/* Services mega-menu */
+/* Drop-down menus: companies in two columns, services in one. */
 .menuWrap {
   position: absolute;
   top: 100%;
@@ -91,6 +91,9 @@
   transform: translateX(-50%);
   padding-top: 12px;
   width: 560px;
+}
+.menuWrapNarrow {
+  width: 390px;
 }
 .menu {
   background: var(--white);
@@ -101,6 +104,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
+}
+.menuSingle {
+  grid-template-columns: 1fr;
 }
 .menuItem {
   display: flex;
@@ -116,24 +122,6 @@
   background: var(--color-canvas);
   color: var(--text-strong);
 }
-/* Company logo on a small white plate, the size of the service tiles. */
-.menuLogo {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 36px;
-  padding: 4px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xs);
-  background: var(--white);
-}
-.menuLogo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
 .menuText {
   display: flex;
   flex-direction: column;
@@ -145,20 +133,6 @@
 .menuLine {
   font: 400 12.5px/1.4 var(--font-sans);
   color: var(--text-muted);
-}
-.menuAll {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  background: var(--color-inverse);
-  color: var(--white);
-  text-decoration: none;
-  font: 500 13.5px/1.2 var(--font-sans);
-}
-.menuAll:hover {
-  color: var(--white);
 }
 
 .actions {
@@ -265,13 +239,9 @@
 }
 .sheetSub {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2px;
   padding: 0 6px 6px;
-}
-/* Company names are long: one per row. */
-.sheetSubList {
-  grid-template-columns: 1fr;
 }
 .sheetSubLink {
   display: flex;

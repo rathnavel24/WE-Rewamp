@@ -5,7 +5,7 @@ import { clientLogo, companyLogo, ventureLogo } from './assets';
 import { CLIENTS } from './clients';
 import { SERVICE_DETAILS, SERVICES, serviceHref } from './services';
 import { DIVISION_LEADERS } from './team';
-import { ENQUIRY_TOPICS, NAV_LINKS } from './site';
+import { CORPORATE_OFFICES, ENQUIRY_TOPICS, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
 
 /** Does an internal href resolve to a real page (not the 404 catch-all)? */
@@ -56,6 +56,23 @@ describe('content integrity', () => {
       'Wallet Edge Financial Services Pvt Ltd (India)',
       'Wallet Edge Services Pvt Ltd (India)'
     ]);
+  });
+
+  it('shows each company with the role from the client tracker (WE011)', () => {
+    expect(GROUP_COMPANIES.map((c) => c.role)).toEqual([
+      'Holding Company',
+      'HealthTech',
+      'Healthcare',
+      'Healthcare',
+      'InsureTech',
+      'Financial Services',
+      'BPO'
+    ]);
+  });
+
+  it('names corporate offices exactly as in the company register (WE014)', () => {
+    const names = GROUP_COMPANIES.map((c) => c.name);
+    expect(CORPORATE_OFFICES.filter((o) => !names.includes(o.company))).toEqual([]);
   });
 
   it('does not mention Real Estate while it is held back', () => {

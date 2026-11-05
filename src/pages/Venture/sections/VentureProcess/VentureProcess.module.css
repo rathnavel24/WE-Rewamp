@@ -6,8 +6,6 @@
 }
 .stepTop {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .featureText {
   display: flex;
@@ -24,9 +22,5 @@
     flex-direction: row;
     align-items: flex-start;
     --card-gap: var(--space-4);
-  }
-  .stepTop {
-    flex-direction: column-reverse;
-    gap: var(--space-2);
   }
 }

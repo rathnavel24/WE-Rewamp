@@ -19,8 +19,6 @@ export interface HeroSector {
 export interface HeroWheelCard {
   icon: string;
   tone: Tone;
-  /** Small mono line above the title, e.g. "Service 01". */
-  label: string;
   title: string;
   note: string;
 }
@@ -28,7 +26,7 @@ export interface HeroWheelCard {
 /** One wheel card per service category, in the order of SERVICES. */
 const serviceCard = (id: ServiceId, note: string): HeroWheelCard => {
   const svc = SERVICES.find((x) => x.id === id)!;
-  return { icon: svc.icon, tone: svc.tone, label: `Service ${svc.no}`, title: svc.title, note };
+  return { icon: svc.icon, tone: svc.tone, title: svc.title, note };
 };
 
 /** Sectors cycled by the headline, each bringing its service category round on the wheel. */
@@ -89,8 +87,8 @@ export interface HeroOrbitItem {
 export const HERO_ORBIT: HeroOrbitItem[] = [
   { id: 'insureliv', name: 'InsureLiv', icon: 'shield_with_heart', tone: GREEN },
   { id: 'arogyaplus', name: 'ArogyaPlus', icon: 'biotech', tone: ORANGE },
-  { id: 'carehub', name: 'CareHub Healthcare', icon: 'home_health', tone: GREEN },
-  { id: 'globalcure', name: 'Global Cure RX', icon: 'medication', tone: ORANGE },
+  { id: 'carehub', name: 'CareHub Healthcare LLC', icon: 'home_health', tone: GREEN },
+  { id: 'globalcure', name: 'Global Cure RX Pharmacy LLC', icon: 'medication', tone: ORANGE },
   { id: 'recovery', name: 'Recovery', icon: 'account_balance', tone: GREEN }
 ];
 

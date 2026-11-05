@@ -79,7 +79,6 @@ export function HeroWheel({ sectors, index }: HeroWheelProps) {
                 <div className={cx(s.card, shown && !merging && s.cardOn, near && s.cardNear, merges && s.cardMerge)}>
                   <Tile icon={card.icon} size="lg" tone={card.tone} />
                   <div className={s.text}>
-                    <span className={s.label}>{card.label}</span>
                     <span className={s.title}>{card.title}</span>
                     <span className={s.note}>{card.note}</span>
                   </div>

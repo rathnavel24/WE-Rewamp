@@ -11,7 +11,7 @@ This site has an **approved design**. The general guidance further down is about
 ## Don't reinvent — extend
 
 - **Palette and type are fixed.** Brand forest green (trust) and orange (action) on a soft sage-paper neutral; Instrument Sans for headings and text (display sizes use its narrower cut via `--font-stretch-display`), IBM Plex Mono for small labels — chosen with the client on 1 Nov 2026. Do not propose new palettes, typefaces or a new layout concept unless the client asks.
-- **The visual language is already chosen** — mono uppercase labels/kickers, rounded cards, numbered section indexes ("01 — Our services"), the hero card wheel, page-transition curtain. The "AI tells" listed below are deliberate here; keep them consistent rather than removing them.
+- **The visual language is already chosen** — mono uppercase labels/kickers, rounded cards, the hero card wheel, page-transition curtain. The "AI tells" listed below are deliberate here; keep them consistent rather than removing them. The client had prefixed numbers removed site-wide (tracker WE012, 5 Nov 2026): no "01 — Our services" kickers, numbered markers or counts on the public pages.
 - Spend design effort on **hierarchy, spacing, responsiveness, empty/loading/error states and copy**, not on new decoration.
 
 ## Where things live

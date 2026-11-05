@@ -10,10 +10,10 @@ export const VENTURES: Record<VentureId, Venture> = {
     name: 'InsureLiv',
     icon: 'shield_with_heart',
     menuLine: 'AI insurance operating system',
-    sector: 'InsureTech · WhiteBlue Fintech',
+    sector: 'InsureTech · WhiteBlue Fintech Ltd',
     tagline: 'The AI-powered insurance operating system for brokers, insurers and TPAs across the UAE and GCC.',
     about:
-      'InsureLiv is the group’s flagship AI-powered InsureTech ecosystem, built to transform modern insurance distribution across the UAE and the broader GCC region. Backed by enterprise tech firm WhiteBlue, this intelligent insurance operating system brings entire broker, insurer and TPA workflows — automated lead management, AI quote comparison, OCR document screening and commission reconciliation — into one secure, unified pipeline. By removing operational fragmentation, InsureLiv enables insurance businesses to scale confidently, cut processing times by 90% and reduce overhead costs.',
+      'InsureLiv is the group’s flagship AI-powered InsureTech ecosystem, built to transform modern insurance distribution across the UAE and the broader GCC region. Backed by enterprise tech firm WhiteBlue Fintech Ltd, this intelligent insurance operating system brings entire broker, insurer and TPA workflows — automated lead management, AI quote comparison, OCR document screening and commission reconciliation — into one secure, unified pipeline. By removing operational fragmentation, InsureLiv enables insurance businesses to scale confidently, cut processing times by 90% and reduce overhead costs.',
     stats: [
       { n: 90, suffix: '%', label: 'Reduction in processing time' },
       { n: 5, suffix: '', label: 'Core modules in one platform' },
@@ -56,7 +56,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     name: 'ArogyaPlus',
     icon: 'biotech',
     menuLine: 'Home diagnostics & health packages',
-    sector: 'HealthTech · Wallet Edge Technologies',
+    sector: 'HealthTech · Wallet Edge Technologies LLC',
     tagline: 'Home-based diagnostics and preventive health packages, with digital reports within 48 hours.',
     about:
       'ArogyaPlus is a premier, technology-driven healthcare platform specialising in accessible, comprehensive home-based diagnostics and preventive health packages. Serving over 10,000 families with a portfolio of more than 250 advanced laboratory tests, it bridges the gap between premium clinical accuracy and patient convenience. Using certified, accredited and HIPAA-compliant laboratory networks, ArogyaPlus delivers precise health insights, digital reporting within 48 hours and integrated medical doctor reviews directly to consumers.',
@@ -87,20 +87,17 @@ export const VENTURES: Record<VentureId, Venture> = {
     ],
     steps: [
       {
-        no: '01',
         icon: 'inventory_2',
         title: 'Pick a package',
         desc: 'Browse packages and choose what fits your health goals.'
       },
-      { no: '02', icon: 'event_available', title: 'Book a slot', desc: 'Select a convenient date and time.' },
+      { icon: 'event_available', title: 'Book a slot', desc: 'Select a convenient date and time.' },
       {
-        no: '03',
         icon: 'vaccines',
         title: 'Sample collected',
         desc: 'A certified professional collects the sample safely.'
       },
       {
-        no: '04',
         icon: 'description',
         title: 'Get your report',
         desc: 'Receive your digital report and review the findings.'
@@ -112,13 +109,13 @@ export const VENTURES: Record<VentureId, Venture> = {
     service: 'healthcare',
     enquiryTopic: 'Healthcare',
     tone: GREEN,
-    name: 'CareHub Healthcare',
+    name: 'CareHub Healthcare LLC',
     icon: 'home_health',
     menuLine: 'DHA-licensed home nursing',
     sector: 'DHA-licensed · Dubai',
     tagline: 'Home nursing, diagnostics and medical tourism, delivered to homes, hotels and offices in Dubai.',
     about:
-      'CareHub Healthcare is a premium, Dubai-based medical provider specialising in comprehensive home nursing, diagnostics and global medical tourism. Operating with DHA-licensed professionals, it delivers patient-centric medical care directly to homes, hotels and offices — 24/7 home nursing, personalised palliative care, elderly and paediatric support, and specialised in-home therapies. CareHub Healthcare also coordinates cross-border healthcare journeys, serving as a trusted, ethical bridge between international patients and leading medical institutions across the UAE.',
+      'CareHub Healthcare LLC is a premium, Dubai-based medical provider specialising in comprehensive home nursing, diagnostics and global medical tourism. Operating with DHA-licensed professionals, it delivers patient-centric medical care directly to homes, hotels and offices — 24/7 home nursing, personalised palliative care, elderly and paediatric support, and specialised in-home therapies. CareHub Healthcare LLC also coordinates cross-border healthcare journeys, serving as a trusted, ethical bridge between international patients and leading medical institutions across the UAE.',
     site: { label: 'carehubuae.com', href: 'https://carehubuae.com' },
     featTitle: 'DHA-licensed home healthcare & nursing',
     features: [
@@ -154,14 +151,14 @@ export const VENTURES: Record<VentureId, Venture> = {
     service: 'healthcare',
     enquiryTopic: 'Healthcare',
     tone: ORANGE,
-    name: 'Global Cure RX Pharmacy',
+    name: 'Global Cure RX Pharmacy LLC',
     icon: 'medication',
     menuLine: 'Community pharmacy, Dubai',
     sector: 'Pharmacy · Dubai',
     tagline:
       'A DHA-licensed community pharmacy in Dubai, dispensing high-value prescriptions through insurance tie-ups.',
     about:
-      'Global Cure RX Pharmacy functions as a dedicated pharmaceutical division committed to delivering patient care and facilitating worldwide access to authentic medications, bridging healthcare gaps with a comprehensive selection of prescription treatments, specialised therapies and healthcare items. Its retail outlet in Dubai is a DHA-licensed community pharmacy that dispenses high-value prescriptions through tie-ups with insurance companies. Walk-in patients are welcome, without prior appointment. Call +971 50 515 2391 to order.',
+      'Global Cure RX Pharmacy LLC functions as a dedicated pharmaceutical division committed to delivering patient care and facilitating worldwide access to authentic medications, bridging healthcare gaps with a comprehensive selection of prescription treatments, specialised therapies and healthcare items. Its retail outlet in Dubai is a DHA-licensed community pharmacy that dispenses high-value prescriptions through tie-ups with insurance companies. Walk-in patients are welcome, without prior appointment. Call +971 50 515 2391 to order.',
     site: { label: '+971 50 515 2391', href: 'tel:+971505152391' },
     featTitle: 'Pharmacy services',
     features: [

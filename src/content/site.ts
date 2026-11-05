@@ -41,16 +41,16 @@ export const OFFICES: Office[] = [
 /** Corporate offices of the group companies in Dubai (client tracker, WE009). */
 export const CORPORATE_OFFICES: CorporateOffice[] = [
   {
-    company: 'Wallet Edge Technologies',
+    company: 'Wallet Edge Technologies LLC',
     addressLines: ['Breeze Business Center, Al Hamsah Building', 'Office 307, 3rd floor, Al Karama, Dubai, UAE']
   },
-  { company: 'CareHub Home Nursing Services', addressLines: ['45B Street, Al Karama', 'Dubai, UAE'] },
+  { company: 'CareHub Healthcare LLC', addressLines: ['45B Street, Al Karama', 'Dubai, UAE'] },
   {
-    company: 'Global Cure RX Pharmacy',
+    company: 'Global Cure RX Pharmacy LLC',
     addressLines: ['Shop 22, Building P15, France Cluster', 'Dubai, UAE']
   },
   {
-    company: 'InsureLiv — WhiteBlue Fintech Limited',
+    company: 'WhiteBlue Fintech Ltd',
     addressLines: ['Dubai International Financial Centre (DIFC)', 'Dubai, UAE']
   }
 ];

@@ -7,6 +7,31 @@
   gap: var(--space-2);
 }
 
+/* Full rows whatever the count, so no empty slot is left: 5 cards run 3 + 2, 4 run 2 + 2. Doubled class outranks Grid. */
+@media (min-width: 981px) {
+  .grid.grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .feature {
+    grid-column: span 2;
+  }
+  .feature:nth-child(4):nth-last-child(2),
+  .feature:nth-child(5):nth-last-child(1),
+  .feature:first-child:nth-last-child(4),
+  .feature:first-child:nth-last-child(4) ~ .feature {
+    grid-column: span 3;
+  }
+}
+/* Tablets: two across, with an odd last card taking the whole row. */
+@media (min-width: 601px) and (max-width: 980px) {
+  .grid.grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .feature:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Phones: icon beside the text. */
 @media (max-width: 600px) {
   .feature {

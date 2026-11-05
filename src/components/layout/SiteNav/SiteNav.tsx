@@ -9,7 +9,6 @@ import { LOGO_ALT, NAV_LINKS } from '@/content/site';
 import { ROUTES } from '@/config/routes';
 import { SERVICES, serviceHref } from '@/content/services';
 import { COUNTRY_LABELS, GROUP_COMPANIES, companyHref } from '@/content/companies';
-import { companyLogo } from '@/content/assets';
 import logo from '@/assets/brand/walletedge-logo.png';
 import s from './SiteNav.module.css';
 
@@ -90,7 +89,6 @@ export function SiteNav() {
                     <div className={s.menu}>
                       {GROUP_COMPANIES.map((c) => (
                         <AppLink key={c.name} to={companyHref(c)} className={s.menuItem}>
-                          <span className={s.menuLogo}>{companyLogo(c) && <img src={companyLogo(c)} alt="" />}</span>
                           <span className={s.menuText}>
                             <span className={s.menuName}>{c.name}</span>
                             <span className={s.menuLine}>
@@ -100,16 +98,12 @@ export function SiteNav() {
                           </span>
                         </AppLink>
                       ))}
-                      <AppLink to={l.href} className={s.menuAll}>
-                        View all companies
-                        <Icon name="arrow_outward" size={18} />
-                      </AppLink>
                     </div>
                   </div>
                 )}
                 {l.menu === 'services' && openMenu === l.id && (
-                  <div className={s.menuWrap}>
-                    <div className={s.menu}>
+                  <div className={`${s.menuWrap} ${s.menuWrapNarrow}`}>
+                    <div className={`${s.menu} ${s.menuSingle}`}>
                       {SERVICES.map((v) => (
                         <AppLink key={v.id} to={serviceHref(v.id)} className={s.menuItem}>
                           <Tile icon={v.icon} size="sm" tone={v.tone} />
@@ -119,10 +113,6 @@ export function SiteNav() {
                           </span>
                         </AppLink>
                       ))}
-                      <AppLink to={ROUTES.services} className={s.menuAll}>
-                        View all services
-                        <Icon name="arrow_outward" size={18} />
-                      </AppLink>
                     </div>
                   </div>
                 )}
@@ -169,7 +159,7 @@ export function SiteNav() {
               </AppLink>
               {/* Phones get the services menu inline, so every service is one tap from anywhere. */}
               {l.menu === 'companies' && (
-                <div className={`${s.sheetSub} ${s.sheetSubList}`}>
+                <div className={s.sheetSub}>
                   {GROUP_COMPANIES.map((c) => (
                     <AppLink key={c.name} to={companyHref(c)} className={s.sheetSubLink}>
                       {c.name}

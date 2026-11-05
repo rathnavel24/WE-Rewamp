@@ -205,11 +205,6 @@
   gap: 3px;
   min-width: 0;
 }
-.label {
-  font: var(--fw-medium) 11.5px/1.2 var(--font-mono);
-  letter-spacing: 0.02em;
-  color: var(--tone-ink);
-}
 .title {
   font: var(--fw-semibold) 17px/1.25 var(--font-sans);
   letter-spacing: -0.01em;

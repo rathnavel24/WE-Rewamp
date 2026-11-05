@@ -9,7 +9,7 @@
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--border-default);
   font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  color: var(--text-faint);
+  color: var(--text-muted);
   text-align: left;
 }
 .table tbody tr + tr {
@@ -21,7 +21,7 @@
   text-align: left;
 }
 .company {
-  width: 50%;
+  width: 68%;
   font-weight: inherit;
 }
 .companyCell {
@@ -55,16 +55,10 @@
   letter-spacing: var(--ls-title);
   color: var(--text-strong);
 }
-.note {
-  display: block;
-  margin-top: var(--space-1);
-  font-size: var(--fs-small);
-  color: var(--text-muted);
-}
 .role {
   font-size: var(--fs-body);
 }
-.parent {
+.rolePlain {
   font-weight: var(--fw-semibold);
   color: var(--text-strong);
 }
