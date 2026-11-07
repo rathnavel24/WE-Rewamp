@@ -6,9 +6,6 @@
   aspect-ratio: 3 / 4;
   padding: 0;
   background: var(--team-tile);
-  transition:
-    transform var(--dur-base) var(--ease),
-    box-shadow var(--dur-base);
 }
 .person .photo {
   position: absolute;
@@ -16,24 +13,13 @@
   border: 0;
   border-radius: 0;
   background: none;
-  -webkit-mask-image: linear-gradient(to bottom, black 42%, transparent 72%);
-  mask-image: linear-gradient(to bottom, black 42%, transparent 72%);
-}
-.photo > * {
-  transform-origin: bottom center;
-  transition: transform var(--dur-base) var(--ease);
+  /* Gone before the name begins, so the text never sits over the portrait. */
+  -webkit-mask-image: linear-gradient(to bottom, black 44%, transparent 64%);
+  mask-image: linear-gradient(to bottom, black 44%, transparent 64%);
 }
 .photo svg {
   height: 72%;
   opacity: 0.6;
-}
-@media (hover: hover) {
-  .person:hover {
-    box-shadow: var(--shadow-sm);
-  }
-  .person:hover .photo > * {
-    transform: scale(1.04);
-  }
 }
 .text {
   position: relative;
@@ -41,6 +27,8 @@
   flex-direction: column;
   gap: var(--space-1);
   min-width: 0;
+  /* A set height, taller on narrower tiles where text wraps more: it fits the longest designation, so names line up. */
+  min-height: 52cqi;
   padding: var(--space-5);
 }
 .person .name {
@@ -48,22 +36,69 @@
   color: var(--white);
 }
 .person .role {
+  /* Designations keep the line breaks given in the content. */
+  white-space: pre-line;
   color: var(--white);
 }
 .person .company {
   color: var(--text-on-dark-soft);
 }
-/* Narrow tiles (the Home preview on phones and tablets): tighter, so long names leave the portrait in view. */
-@container (max-width: 220px) {
+
+/* Narrow tiles give the text more of their height, so the portrait draws smaller and higher to stay clear of it. */
+@container (max-width: 290px) {
   .text {
+    min-height: 84cqi;
+  }
+  .person .photo {
+    -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 40%);
+    mask-image: linear-gradient(to bottom, black 28%, transparent 40%);
+  }
+  .photo svg {
+    height: 46%;
+  }
+}
+@container (max-width: 240px) {
+  .text {
+    min-height: 80cqi;
     padding: var(--space-3);
   }
   .person .name {
     font-size: var(--fs-h4);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .photo > * {
-    transition: none;
+/* Phones: fixed sizes, as the text there doesn't scale with the tile. The portrait stops short of the highest name. */
+@container (max-width: 200px) {
+  .text {
+    min-height: 218px;
+  }
+  .person .photo {
+    -webkit-mask-image: linear-gradient(to bottom, black 54px, transparent 72px);
+    mask-image: linear-gradient(to bottom, black 54px, transparent 72px);
+  }
+  .photo svg {
+    height: 88px;
+    margin-top: var(--space-1);
+  }
+}
+
+/* Name and designation only (the Home preview): less height set aside. */
+.text.compact {
+  min-height: 36cqi;
+}
+@container (max-width: 290px) {
+  .text.compact {
+    min-height: 44cqi;
+  }
+}
+@container (max-width: 200px) {
+  .text.compact {
+    min-height: 114px;
+  }
+}
+
+/* Phones: full tiles are narrow and carry the most text, so they run taller. */
+@media (max-width: 460px) {
+  .person.full {
+    aspect-ratio: 5 / 9;
   }
 }

@@ -41,19 +41,25 @@ export const OFFICES: Office[] = [
 /** Corporate offices of the group companies in Dubai (client tracker, WE009). */
 export const CORPORATE_OFFICES: CorporateOffice[] = [
   {
-    company: 'Wallet Edge Technologies LLC',
+    companies: ['Wallet Edge Global FZC LLC', 'Wallet Edge Technologies LLC'],
     addressLines: ['Breeze Business Center, Al Hamsah Building', 'Office 307, 3rd floor, Al Karama, Dubai, UAE']
   },
-  { company: 'CareHub Healthcare LLC', addressLines: ['45B Street, Al Karama', 'Dubai, UAE'] },
+  { companies: ['CareHub Healthcare LLC'], addressLines: ['45B Street, Al Karama', 'Dubai, UAE'] },
   {
-    company: 'Global Cure RX Pharmacy LLC',
+    companies: ['Global Cure RX Pharmacy LLC'],
     addressLines: ['Shop 22, Building P15, France Cluster', 'Dubai, UAE']
   },
   {
-    company: 'WhiteBlue Fintech Ltd',
+    companies: ['WhiteBlue Fintech Ltd'],
     addressLines: ['Dubai International Financial Centre (DIFC)', 'Dubai, UAE']
   }
 ];
+
+/** The India corporate office, listed beside the Dubai ones in the footer. */
+export const INDIA_CORPORATE_OFFICE: CorporateOffice = {
+  companies: ['Wallet Edge Financial Services Pvt Ltd', 'Wallet Edge Services Pvt Ltd'],
+  addressLines: ['3/365, NGGO Colony Gate, MTP Road', 'Coimbatore, Tamil Nadu, India 641017']
+};
 
 export const ENQUIRY_TOPICS: EnquiryTopic[] = [
   { label: 'IT & BPO', icon: 'hub' },

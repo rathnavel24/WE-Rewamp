@@ -5,11 +5,10 @@ const HOLDING = 'Wallet Edge Global FZC LLC';
 const TECHNOLOGIES = 'Wallet Edge Technologies LLC';
 const CAREHUB = 'CareHub Healthcare LLC';
 const GLOBAL_CURE = 'Global Cure RX Pharmacy LLC';
-const FINANCIAL = 'Wallet Edge Financial Services Pvt Ltd';
 
 /**
- * Names and designations as given in the client tracker (WE017). Companies follow the business each leader runs in the
- * redesign brief; founders and the board sit with the holding company. Awaiting client confirmation (WE025).
+ * Names and designations as given by the client, with \n marking the line breaks they asked for in a designation.
+ * Companies for founders, the board and the healthcare and ArogyaPlus leaders await client confirmation (WE025).
  */
 export const FOUNDERS: Person[] = [
   { name: 'Sai Pranav', role: 'Founder & Chief Executive Officer', company: HOLDING },
@@ -18,20 +17,20 @@ export const FOUNDERS: Person[] = [
 
 export const BOARD: Person[] = [
   { name: 'Rajarajeshwari Chandran', role: 'Director', company: HOLDING },
-  { name: 'ShanmugaRaj Gajendran', role: 'Director', company: HOLDING },
+  { name: 'Shanmugaraj Gajendran', role: 'Director', company: HOLDING },
   { name: 'Srikanth Murugesan', role: 'Non-Executive Director', company: HOLDING }
 ];
 
 export const DIVISION_LEADERS: Person[] = [
   { name: 'Ramachandran Ramasamy', role: 'Director - Healthcare', company: CAREHUB },
   { name: 'Manikandan Gurusamy', role: 'Director - Healthcare', company: GLOBAL_CURE },
-  { name: 'TA Rangarajan', role: 'Executive Director - Insurance Claims Recovery Services', company: FINANCIAL },
+  { name: 'TA Rangarajan', role: 'Executive Director -\nInsurance Claims Recovery Services', company: HOLDING },
   {
     name: 'TA Devarajan',
-    role: 'Group Legal Consultant & Chief Technical Advisor, Insurance Claims Recovery Services',
-    company: FINANCIAL
+    role: 'Group Legal Consultant &\nChief Technical Advisor,\nInsurance Claims Recovery Services',
+    company: HOLDING
   },
-  { name: 'Sai Gokul', role: 'Manager - Claims Recovery Services', company: FINANCIAL },
+  { name: 'Sai Gokul', role: 'Manager - Claims Recovery Services', company: HOLDING },
   { name: 'Kalesh Kumar', role: 'General Manager - ArogyaPlus', company: TECHNOLOGIES },
   { name: 'Prakash K', role: 'Operations Manager - ArogyaPlus', company: TECHNOLOGIES }
   // Real Estate leaders (Suresh Kumar A — Operations Head; Ananth — Head of Marketing) are held back

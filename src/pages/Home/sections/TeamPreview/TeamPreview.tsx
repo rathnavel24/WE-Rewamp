@@ -6,7 +6,7 @@ import s from './TeamPreview.module.css';
 
 export function TeamPreview() {
   return (
-    <Section data-screen-label="Team" pt="none">
+    <Section data-screen-label="Team">
       <SectionHeader
         kicker="Our team"
         title="Experienced leadership across the group"
@@ -21,7 +21,7 @@ export function TeamPreview() {
 
       <Grid min={160} gap="sm" data-stagger="80" className={s.list}>
         {HOME_LEADERS.map((p) => (
-          <PersonCard key={p.name} person={p} />
+          <PersonCard key={p.name} person={p} compact />
         ))}
       </Grid>
     </Section>

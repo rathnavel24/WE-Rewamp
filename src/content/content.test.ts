@@ -5,7 +5,7 @@ import { clientLogo, companyLogo, ventureLogo } from './assets';
 import { CLIENTS } from './clients';
 import { SERVICE_DETAILS, SERVICES, serviceHref } from './services';
 import { DIVISION_LEADERS, TEAM } from './team';
-import { CORPORATE_OFFICES, ENQUIRY_TOPICS, NAV_LINKS } from './site';
+import { CORPORATE_OFFICES, ENQUIRY_TOPICS, INDIA_CORPORATE_OFFICE, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
 
 /** Does an internal href resolve to a real page (not the 404 catch-all)? */
@@ -72,7 +72,8 @@ describe('content integrity', () => {
 
   it('names corporate offices exactly as in the company register (WE014)', () => {
     const names = GROUP_COMPANIES.map((c) => c.name);
-    expect(CORPORATE_OFFICES.filter((o) => !names.includes(o.company))).toEqual([]);
+    const named = [...CORPORATE_OFFICES, INDIA_CORPORATE_OFFICE].flatMap((o) => o.companies);
+    expect(named.filter((c) => !names.includes(c))).toEqual([]);
   });
 
   it('shows every team member with a company from the register (WE014, WE025)', () => {

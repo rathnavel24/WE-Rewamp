@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 import s from './Button.module.css';
 
 export type ButtonVariant =
-  | 'primary' // ink fill → green on hover. Default call to action.
+  | 'primary' // brand green fill, deepening on hover. Default call to action.
   | 'accent' // orange fill. Highest-emphasis action on dark panels.
   | 'secondary' // white with border. Pairs with primary.
   | 'inverse' // white fill on dark backgrounds.

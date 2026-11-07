@@ -48,6 +48,9 @@
   background: var(--color-inverse);
   overflow: hidden;
 }
+.surface {
+  background: var(--color-surface);
+}
 
 .inner {
   position: relative;

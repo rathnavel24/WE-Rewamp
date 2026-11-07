@@ -8,8 +8,8 @@ interface SectionProps extends HTMLAttributes<HTMLElement> {
   /** Top padding: hero clears the fixed nav; md is the default section rhythm. */
   pt?: SectionSpace;
   pb?: SectionSpace;
-  /** `inverse` = full-bleed forest band with light text. */
-  tone?: 'canvas' | 'inverse';
+  /** `inverse` = full-bleed forest band with light text; `surface` = full-bleed white band, to break up long pages. */
+  tone?: 'canvas' | 'surface' | 'inverse';
   /** Wrap children in `.container` (default). Set false for full-bleed content. */
   contained?: boolean;
   /** Class for the inner container. */
@@ -43,6 +43,7 @@ export function Section({
         s[`pb-${pb}`],
         fill && s.fill,
         tone === 'inverse' && cx(s.inverse, 'on-dark'),
+        tone === 'surface' && s.surface,
         className
       )}
       {...rest}

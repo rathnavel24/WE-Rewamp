@@ -200,7 +200,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     about:
       'Wallet Edge provides professional financial recovery and asset retrieval solutions. Our team ensures faster turnaround and efficient recovery of outstanding dues through data-driven processes and transparent communication with all stakeholders — with clients including EMAAR and LIVA Insurance.',
     // Placeholder until the client supplies the real brochure — swap the file in public/brochures/.
-    download: { label: 'Download brochure', href: '/brochures/insurance-clients-recovery-services.pdf' },
+    download: { label: 'Download brochure', href: '/brochures/insurance-claims-recovery-services.pdf' },
     featTitle: 'Our approach',
     features: [
       {

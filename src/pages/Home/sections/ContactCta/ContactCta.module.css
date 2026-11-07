@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-2xl);
-  background: var(--color-inverse-2);
+  background: var(--gradient-brand);
   padding: clamp(32px, 6vw, 80px);
 }
 .glow {

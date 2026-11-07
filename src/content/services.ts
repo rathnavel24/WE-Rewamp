@@ -46,7 +46,7 @@ export const SERVICES: Service[] = [
     icon: 'account_balance',
     title: 'Financial Services',
     short: 'Financial',
-    desc: 'Insurance clients recovery services, and financial planning including NRI investment planning.',
+    desc: 'Insurance claims recovery services, and financial planning including NRI investment planning.',
     tags: ['Insurance recovery', 'NRI investment planning'],
     tone: ORANGE,
     summary:
@@ -54,7 +54,7 @@ export const SERVICES: Service[] = [
     offerings: [
       {
         icon: 'shield',
-        title: 'Insurance clients recovery services',
+        title: 'Insurance claims recovery services',
         desc: 'Faster turnaround and efficient recovery of outstanding dues, with clients including EMAAR and LIVA Insurance.',
         href: ROUTES.venture('recovery'),
         download: VENTURES.recovery.download
@@ -179,7 +179,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
     dark: true,
     columns: [
       {
-        title: 'Insurance clients recovery services',
+        title: 'Insurance claims recovery services',
         href: ROUTES.venture('recovery'),
         desc: VENTURES.recovery.tagline,
         points: titles(VENTURES.recovery.features),
@@ -193,6 +193,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
   },
   consulting: {
     heading: 'Business setup, management, HR and accounting',
+    surface: true,
     columns: consulting.offerings.map((o) => ({ title: o.title, points: o.items }))
   },
   healthcare: {

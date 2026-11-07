@@ -22,11 +22,11 @@ export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
     <Section
       id={x.id}
       data-screen-label={x.short}
-      tone={d.dark ? 'inverse' : 'canvas'}
-      pt={d.dark ? 'md' : 'sm'}
-      pb={d.dark ? 'md' : 'sm'}
+      tone={d.dark ? 'inverse' : d.surface ? 'surface' : 'canvas'}
+      pt={d.dark || d.surface ? 'md' : 'sm'}
+      pb={d.dark || d.surface ? 'md' : 'sm'}
     >
-      <div className={cx(s.wrap, d.dark && s.dark)} style={vars}>
+      <div className={cx(s.wrap, d.dark && s.dark, d.surface && s.onSurface)} style={vars}>
         <header className={s.head}>
           <div className={s.name}>
             <h2 className="t-display-2">{x.title}</h2>
@@ -47,7 +47,7 @@ export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
           </div>
         </header>
 
-        <div className={s.columns}>
+        <div className={cx(s.columns, !d.columns.some((col) => col.desc) && s.plain)}>
           {d.columns.map((col) => (
             <Column key={col.title} column={col} />
           ))}
@@ -62,21 +62,23 @@ export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
 function Column({ column: c }: { column: ServiceColumn }) {
   return (
     <article className={s.column}>
-      {c.venture && ventureLogo(c.venture) && (
-        <span className={s.colLogo}>
-          <img src={ventureLogo(c.venture)} alt="" />
-        </span>
-      )}
-      <h3 className={s.colTitle}>
-        {c.href ? (
-          <AppLink to={c.href} className={s.colLink}>
-            <ArrowText text={c.title} size={22} iconClassName={s.arrow} />
-          </AppLink>
-        ) : (
-          c.title
+      <div className={s.colHead}>
+        {c.venture && ventureLogo(c.venture) && (
+          <span className={s.colLogo}>
+            <img src={ventureLogo(c.venture)} alt="" />
+          </span>
         )}
-      </h3>
-      {c.meta && <span className={s.meta}>{c.meta}</span>}
+        <h3 className={s.colTitle}>
+          {c.href ? (
+            <AppLink to={c.href} className={s.colLink}>
+              <ArrowText text={c.title} size={22} iconClassName={s.arrow} />
+            </AppLink>
+          ) : (
+            c.title
+          )}
+        </h3>
+        {c.meta && <span className={s.meta}>{c.meta}</span>}
+      </div>
       {c.desc && <p className={s.desc}>{c.desc}</p>}
       {c.stats && c.stats.length > 0 && (
         <dl className={s.stats}>
@@ -92,26 +94,28 @@ function Column({ column: c }: { column: ServiceColumn }) {
           ))}
         </dl>
       )}
-      {c.points && (
-        <ul className={s.points}>
-          {c.points.map((p) => (
-            <li key={p} className={s.point}>
-              <Icon name="check" size={18} className={s.check} />
-              {p}
-            </li>
-          ))}
-        </ul>
-      )}
-      {c.site && (
-        <Button to={c.site.href} target="_blank" variant="link" icon="open_in_new" className={s.download}>
-          Visit {c.site.label}
-        </Button>
-      )}
-      {c.download && (
-        <Button to={c.download.href} download variant="link" icon="download" className={s.download}>
-          {c.download.label}
-        </Button>
-      )}
+      <div className={s.colFoot}>
+        {c.points && (
+          <ul className={s.points}>
+            {c.points.map((p) => (
+              <li key={p} className={s.point}>
+                <Icon name="check" size={18} className={s.check} />
+                {p}
+              </li>
+            ))}
+          </ul>
+        )}
+        {c.site && (
+          <Button to={c.site.href} target="_blank" variant="link" icon="open_in_new" className={s.download}>
+            Visit {c.site.label}
+          </Button>
+        )}
+        {c.download && (
+          <Button to={c.download.href} download variant="link" icon="download" className={s.download}>
+            {c.download.label}
+          </Button>
+        )}
+      </div>
     </article>
   );
 }

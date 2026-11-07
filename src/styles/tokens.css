@@ -16,7 +16,7 @@
   /* Neutrals — one ramp, a soft paper with a faint sage undertone so it sits with the forest greens
      (light steps for surfaces, stone steps for text). */
   --sand-50: #fafaf7;
-  --sand-100: #f4f4ef;
+  --sand-100: #f6f6f1;
   --sand-200: #ecede6;
   --sand-300: #e1e3db;
   --stone-300: #c9cfcb;
@@ -61,7 +61,8 @@
   --color-surface-hover: var(--sand-200);
   --color-divider: var(--sand-300); /* solid hairlines between list rows */
   --color-inverse: var(--forest-900); /* dark bands & panels */
-  --color-inverse-2: var(--stone-900); /* darkest — buttons, CTA panels */
+  --color-inverse-2: var(--stone-900); /* darkest — ink cards */
+  --gradient-brand: linear-gradient(115deg, var(--green-800), var(--forest-900) 72%); /* call-to-action panels */
 
   /* Brand */
   --color-primary: var(--green-700);
@@ -160,10 +161,10 @@
   --lh-normal: 1.5;
   --lh-relaxed: 1.6;
 
-  --ls-hero: -0.035em;
-  --ls-display: -0.028em;
-  --ls-heading: -0.02em;
-  --ls-title: -0.02em;
+  --ls-hero: -0.026em;
+  --ls-display: -0.02em;
+  --ls-heading: -0.014em;
+  --ls-title: -0.012em;
   --ls-label: 0.1em;
 
   --fw-regular: 400;

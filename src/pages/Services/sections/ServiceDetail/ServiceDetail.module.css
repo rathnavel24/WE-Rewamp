@@ -24,8 +24,17 @@
   padding-top: 0;
   border-top: 0;
 }
-/* The dark band's edge already divides it from the next section, so that section needs no rule of its own. */
-section:has(.dark) + section .wrap {
+.onSurface {
+  padding-top: 0;
+  border-top: 0;
+}
+/* A band's edge already divides it from the next section, so that section needs no rule of its own; nor does the
+   first section, which follows the page hero's own rules. */
+section:has(.dark, .onSurface) + section .wrap {
+  border-top: 0;
+}
+section:not(:has(.wrap)) + section .wrap {
+  padding-top: 0;
   border-top: 0;
 }
 
@@ -37,6 +46,8 @@ section:has(.dark) + section .wrap {
 @media (min-width: 1024px) {
   .head {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    /* The service's name and its statement share a baseline, despite their different sizes. */
+    align-items: first baseline;
     gap: var(--space-16);
   }
 }
@@ -49,7 +60,6 @@ section:has(.dark) + section .wrap {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding-top: var(--space-2);
 }
 .heading {
   font: var(--fw-semibold) var(--fs-h2)/1.2 var(--font-sans);
@@ -84,11 +94,19 @@ section:has(.dark) + section .wrap {
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
+/* Side-by-side columns share one set of rows, so head, description, figures and checklist each line up across the
+   pair however long the text in either one runs. No row gap: an empty row must take up no space. */
 .column {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  padding: var(--space-8) var(--space-10) var(--space-8) 0;
+}
+.colHead {
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-8) var(--space-10) var(--space-8) 0;
 }
 /* Two per row: the right-hand column takes the divider; later rows (consulting's four) get a top rule. */
 .column:nth-child(even) {
@@ -99,9 +117,15 @@ section:has(.dark) + section .wrap {
 .column:nth-child(n + 3) {
   border-top: 1px solid var(--rule);
 }
+/* The checklist and any link stay together, so a link sits directly under its own list. */
+.colFoot {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+}
 .download {
   align-self: flex-start;
-  margin-top: var(--space-2);
+  margin-top: var(--space-5);
 }
 /* The platform's or company's logo above its name, on a white plate. */
 .colLogo {
@@ -112,7 +136,8 @@ section:has(.dark) + section .wrap {
   align-self: flex-start;
   width: 232px;
   height: 64px;
-  padding: var(--space-2) var(--space-4);
+  /* Tight top and bottom: compact logos are limited by height, and need it to match the wider ones. */
+  padding: var(--space-1) var(--space-4);
   border-radius: var(--radius-sm);
   background: var(--white);
 }
@@ -153,16 +178,22 @@ section:has(.dark) + section .wrap {
   color: var(--muted);
 }
 .desc {
+  grid-row: 2;
   max-width: 58ch;
+  margin-top: var(--space-4);
   font-size: var(--fs-body);
   line-height: var(--lh-relaxed);
   color: var(--muted);
 }
+/* Equal columns, so the figures also sit at the same positions across the pair. */
 .stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-10);
-  margin: var(--space-2) 0 0;
+  grid-row: 3;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
 }
 .stat {
   display: flex;
@@ -183,15 +214,16 @@ section:has(.dark) + section .wrap {
 .points {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  align-content: start;
   gap: var(--space-2) var(--space-6);
-  margin: var(--space-2) 0 0;
+  margin: var(--space-5) 0 0;
   padding: var(--space-5) 0 0;
   border-top: 1px solid var(--rule);
   list-style: none;
 }
-/* Directly under a title (consulting) there is nothing to separate from, and a rule would stop at the column. */
-.colTitle + .points {
-  margin-top: 0;
+/* With no descriptions in the section (consulting) there is nothing to separate from, and a rule would stop at the column. */
+.plain .points {
+  margin-top: var(--space-3);
   padding-top: 0;
   border-top: 0;
 }
@@ -232,14 +264,11 @@ section:has(.dark) + section .wrap {
   .colLogo {
     width: 196px;
     height: 52px;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-3);
   }
   .stats {
-    display: grid;
+    grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    /* Figures line up along the top when one label wraps and another doesn't. */
-    align-items: start;
-    gap: var(--space-4);
   }
   .statValue {
     font-size: var(--fs-h2);

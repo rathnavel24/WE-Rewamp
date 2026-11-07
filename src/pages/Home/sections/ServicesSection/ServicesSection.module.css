@@ -15,13 +15,17 @@
 @media (min-width: 1024px) {
   .row {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    /* The service's name and its first offering share a baseline, despite their different sizes. */
+    align-items: first baseline;
     gap: var(--space-16);
     padding: var(--space-16) 0;
+  }
+  .offers > li:first-child .offer {
+    padding-top: 0;
   }
   .intro {
     position: sticky;
     top: 140px;
-    align-self: start;
   }
 }
 

@@ -7,7 +7,7 @@ import s from './OurCompanies.module.css';
 /** The group's seven companies, each with its role and country (client tracker, WE011). */
 export function OurCompanies() {
   return (
-    <Section id="companies" data-screen-label="Companies" pt="none">
+    <Section id="companies" data-screen-label="Companies" tone="surface">
       <SectionHeader
         kicker="Our companies"
         title="The WalletEdge Global group of companies"
@@ -46,7 +46,10 @@ export function OurCompanies() {
                       <Icon name="arrow_outward" size={16} className={s.arrow} />
                     </AppLink>
                   ) : (
-                    <span className={s.rolePlain}>{c.role}</span>
+                    <span className={s.rolePlain}>
+                      <span className={`${s.dot} ${s.dotPlain}`} aria-hidden="true" />
+                      {c.role}
+                    </span>
                   )}
                 </td>
                 <td className={s.country}>{COUNTRY_LABELS[c.country]}</td>

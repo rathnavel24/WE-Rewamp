@@ -1,8 +1,11 @@
 import { AppLink } from '@/components/ui/AppLink';
 import { companyHref, GROUP_COMPANIES } from '@/content/companies';
-import { CORPORATE_OFFICES, OFFICES } from '@/content/site';
+import { CORPORATE_OFFICES, INDIA_CORPORATE_OFFICE } from '@/content/site';
+import type { CorporateOffice } from '@/types';
 import logo from '@/assets/brand/walletedge-logo.png';
 import s from './SiteFooter.module.css';
+
+const [GROUP_OFFICE, ...OTHER_OFFICES] = CORPORATE_OFFICES;
 
 export function SiteFooter() {
   return (
@@ -30,44 +33,36 @@ export function SiteFooter() {
             </div>
           </nav>
 
-          {OFFICES.map((o) => (
-            <address key={o.country} className={s.office}>
-              <span className={s.officeName}>
-                {o.country}
-                {o.badge === 'HQ' && <span className={s.hq}>Registered office</span>}
-              </span>
-              <span className={s.address}>
-                {o.addressLines[0]}
-                <br />
-                {o.addressLines[1]}
-              </span>
-              <a href={o.phone.href} className={s.phone}>
-                {o.phone.label}
-              </a>
-            </address>
+          <h2 className={`${s.title} ${s.officesTitle}`}>Corporate offices</h2>
+          <Office office={GROUP_OFFICE} />
+          <Office office={INDIA_CORPORATE_OFFICE} />
+          <hr className={s.rule} />
+          {OTHER_OFFICES.map((o) => (
+            <Office key={o.companies[0]} office={o} />
           ))}
         </div>
-
-        <section className={s.corporate} aria-labelledby="footer-corporate">
-          <h2 id="footer-corporate" className={s.title}>
-            Corporate offices
-          </h2>
-          <div className={s.corporateList}>
-            {CORPORATE_OFFICES.map((o) => (
-              <address key={o.company} className={s.office}>
-                <span className={s.officeName}>{o.company}</span>
-                <span className={s.address}>
-                  {o.addressLines[0]}
-                  <br />
-                  {o.addressLines[1]}
-                </span>
-              </address>
-            ))}
-          </div>
-        </section>
 
         <p className={s.bottom}>© 2026 Wallet Edge Global FZC LLC. All rights reserved.</p>
       </div>
     </footer>
+  );
+}
+
+function Office({ office: o }: { office: CorporateOffice }) {
+  return (
+    <address className={s.office}>
+      <span className={s.names}>
+        {o.companies.map((name) => (
+          <span key={name} className={s.title}>
+            {name}
+          </span>
+        ))}
+      </span>
+      <span className={s.address}>
+        {o.addressLines[0]}
+        <br />
+        {o.addressLines[1]}
+      </span>
+    </address>
   );
 }

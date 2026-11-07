@@ -140,6 +140,8 @@ export interface ServiceDetail {
   columns: ServiceColumn[];
   /** Set the section on the dark band. */
   dark?: boolean;
+  /** Set the section on a white band. */
+  surface?: boolean;
 }
 
 export interface Person {
@@ -169,9 +171,9 @@ export interface Office {
   phone: { label: string; href: string };
 }
 
-/** A group company's corporate office, listed in the footer. */
+/** A corporate office and the group companies it serves, listed in the footer. */
 export interface CorporateOffice {
-  company: string;
+  companies: string[];
   addressLines: string[];
 }
 

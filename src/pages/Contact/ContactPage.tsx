@@ -84,8 +84,12 @@ export function ContactPage() {
             </h2>
             <div className={s.corporate}>
               {CORPORATE_OFFICES.map((o) => (
-                <address key={o.company} className={s.corporateItem}>
-                  <span className={s.addressFirst}>{o.company}</span>
+                <address key={o.companies[0]} className={s.corporateItem}>
+                  {o.companies.map((name) => (
+                    <span key={name} className={s.addressFirst}>
+                      {name}
+                    </span>
+                  ))}
                   {o.addressLines.map((line) => (
                     <span key={line}>{line}</span>
                   ))}
