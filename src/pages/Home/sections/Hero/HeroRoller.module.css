@@ -6,6 +6,9 @@
   position: relative;
   display: block;
   font-size: min(1em, 10.4cqi);
+  /* Clears the descenders of the line above, matching the gap between the headline's first two lines. Set from the
+     headline's size, as this box's own em shrinks with long words. */
+  margin-top: calc(var(--hero-size, var(--fs-hero)) * 0.22 + 2px);
   /* One line of type + room for the underline; letters are masked by this box. */
   height: 1.22em;
   overflow: hidden;
@@ -24,8 +27,10 @@
   left: 0;
 }
 
+/* The words open on capitals with a wide side bearing; this pulls them flush with the headline's left edge. */
 .letters {
   display: flex;
+  margin-left: -0.04em;
   white-space: nowrap;
 }
 .letter {
@@ -39,6 +44,7 @@
   display: block;
   height: 0.055em;
   margin-top: 0.06em;
+  margin-left: 0.02em;
   border-radius: 99px;
   overflow: hidden;
 }

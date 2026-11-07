@@ -1,9 +1,7 @@
 import type { CSSProperties } from 'react';
 import { AppLink, ArrowText, Button, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
-import { companiesFor } from '@/content/companies';
 import { SERVICES, serviceHref } from '@/content/services';
-import { DeliveredBy } from '@/features/companies';
 import type { Service, ServiceOffering } from '@/types';
 import s from './ServicesSection.module.css';
 
@@ -36,8 +34,6 @@ export function ServicesSection() {
 }
 
 function ServiceRow({ service: x }: { service: Service }) {
-  // Healthcare's offerings name their companies, so they aren't named a second time.
-  const companies = companiesFor(x.id).filter((c) => !x.offerings.some((o) => o.meta?.startsWith(c.name)));
   return (
     <li className={s.row} style={toneVars(x)}>
       <div className={s.intro}>
@@ -61,7 +57,6 @@ function ServiceRow({ service: x }: { service: Service }) {
             </li>
           ))}
         </ul>
-        <DeliveredBy companies={companies} />
       </div>
     </li>
   );

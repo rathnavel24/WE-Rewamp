@@ -11,13 +11,14 @@ export const VENTURES: Record<VentureId, Venture> = {
     icon: 'shield_with_heart',
     menuLine: 'AI insurance operating system',
     sector: 'InsureTech · WhiteBlue Fintech Ltd',
-    tagline: 'The AI-powered insurance operating system for brokers, insurers and TPAs across the UAE and GCC.',
+    tagline: 'The AI-powered insurance operating system designed specifically for insurance brokerages.',
     about:
-      'InsureLiv is the group’s flagship AI-powered InsureTech ecosystem, built to transform modern insurance distribution across the UAE and the broader GCC region. Backed by enterprise tech firm WhiteBlue Fintech Ltd, this intelligent insurance operating system brings entire broker, insurer and TPA workflows — automated lead management, AI quote comparison, OCR document screening and commission reconciliation — into one secure, unified pipeline. By removing operational fragmentation, InsureLiv enables insurance businesses to scale confidently, cut processing times by 90% and reduce overhead costs.',
+      'InsureLiv offers an AI-powered insurance operating system designed specifically for insurance brokerages. The platform serves as a unified end-to-end lifecycle management solution that connects agents, operations, and leadership across the entire broker workflow, from initial lead capture to policy renewal.',
     stats: [
-      { n: 90, suffix: '%', label: 'Reduction in processing time' },
-      { n: 5, suffix: '', label: 'Core modules in one platform' },
-      { n: 1, suffix: '', label: 'Pipeline — lead to renewal' }
+      { n: 7, suffix: 'X', label: 'Faster turnaround' },
+      { n: 70, prefix: '+', suffix: '%', label: 'Productivity gain' },
+      { n: 50, suffix: '%', label: 'Cost savings' },
+      { n: 35, prefix: '+', suffix: '%', label: 'Lead conversion' }
     ],
     featTitle: 'Key capabilities',
     features: [
@@ -57,14 +58,15 @@ export const VENTURES: Record<VentureId, Venture> = {
     icon: 'biotech',
     menuLine: 'Home diagnostics & health packages',
     sector: 'HealthTech · Wallet Edge Technologies LLC',
-    tagline: 'Home-based diagnostics and preventive health packages, with digital reports within 48 hours.',
+    tagline: 'Book comprehensive health packages and individual laboratory tests online.',
     about:
-      'ArogyaPlus is a premier, technology-driven healthcare platform specialising in accessible, comprehensive home-based diagnostics and preventive health packages. Serving over 10,000 families with a portfolio of more than 250 advanced laboratory tests, it bridges the gap between premium clinical accuracy and patient convenience. Using certified, accredited and HIPAA-compliant laboratory networks, ArogyaPlus delivers precise health insights, digital reporting within 48 hours and integrated medical doctor reviews directly to consumers.',
+      'ArogyaPlus is an online platform to book comprehensive health packages and individual laboratory tests. Operating through CAP-accredited labs and DHA-certified staff, it lets you schedule diagnostic screenings conveniently. The platform provides comprehensive tracking for vital biomarkers including heart, liver, kidney, thyroid, vitamin, and metabolic parameters.',
     site: { label: 'arogyaplus.com', href: 'https://arogyaplus.com' },
     stats: [
-      { n: 10000, suffix: '+', label: 'Families served' },
-      { n: 250, suffix: '+', label: 'Advanced laboratory tests' },
-      { n: 48, suffix: 'h', label: 'Digital reports delivered' }
+      { n: 1000, suffix: '+', label: 'Families served' },
+      { n: 250, suffix: '+', label: 'Advanced lab tests' },
+      { n: 48, suffix: 'h', label: 'Digital reports' },
+      { n: 98, suffix: '%', label: 'Happy customers' }
     ],
     featTitle: 'Services',
     features: [
@@ -113,36 +115,36 @@ export const VENTURES: Record<VentureId, Venture> = {
     icon: 'home_health',
     menuLine: 'DHA-licensed home nursing',
     sector: 'DHA-licensed · Dubai',
-    tagline: 'Home nursing, diagnostics and medical tourism, delivered to homes, hotels and offices in Dubai.',
+    tagline: 'Championing your recovery, elevating your healthy future: expert home nursing in Dubai.',
     about:
-      'CareHub Healthcare LLC is a premium, Dubai-based medical provider specialising in comprehensive home nursing, diagnostics and global medical tourism. Operating with DHA-licensed professionals, it delivers patient-centric medical care directly to homes, hotels and offices — 24/7 home nursing, personalised palliative care, elderly and paediatric support, and specialised in-home therapies. CareHub Healthcare LLC also coordinates cross-border healthcare journeys, serving as a trusted, ethical bridge between international patients and leading medical institutions across the UAE.',
+      'CareHub Healthcare LLC understands that medical needs are rarely singular; they require a multi-disciplinary approach that evolves with the patient. We have meticulously designed a “Healthcare Hub” that integrates acute clinical nursing, specialised chronic care, and preventative wellness services under one roof. Every service we provide is delivered by DHA-licensed professionals who adhere to international safety protocols, ensuring that whether you require a simple blood test or complex ventilator support, you receive hospital-grade excellence in the privacy of your home.',
     site: { label: 'carehubuae.com', href: 'https://carehubuae.com' },
     featTitle: 'DHA-licensed home healthcare & nursing',
     features: [
       {
-        icon: 'nightlight',
-        title: '24/7 at-home nursing',
-        desc: 'Licensed professionals deployed to homes, hotels or offices across Dubai.'
+        icon: 'vaccines',
+        title: 'Private nursing',
+        desc: 'Skilled home nursing: professional bedside care, including injection services, blood tests at home, and medication management.'
       },
       {
-        icon: 'healing',
-        title: 'Specialised clinical care',
-        desc: 'Palliative care, post-operative recovery and intensive elderly or paediatric support.'
+        icon: 'home_health',
+        title: 'Home nursing',
+        desc: 'Critical and post-operative care: specialised ventilator care, post-stroke recovery, and paralytic care to ensure a safe transition from hospital to home.'
+      },
+      {
+        icon: 'elderly',
+        title: 'Post-hospitalisation',
+        desc: 'Elderly and chronic care: compassionate elderly care and specialised Parkinson’s care designed to maintain independence and dignity.'
+      },
+      {
+        icon: 'spa',
+        title: 'Palliative care',
+        desc: 'Specialised therapy and wellness: expert physiotherapy services, palliative care, and premium Hydrafacial services for holistic wellbeing.'
       },
       {
         icon: 'stethoscope',
         title: 'Doctor home visits',
-        desc: 'On-demand clinical assessments and consultations — no clinic visit needed.'
-      },
-      {
-        icon: 'water_drop',
-        title: 'In-home specialised services',
-        desc: 'Wound care, IV infusions, physiotherapy and digital phlebotomy.'
-      },
-      {
-        icon: 'flight_land',
-        title: 'Medical tourism',
-        desc: 'Coordinating cross-border care journeys with leading UAE institutions.'
+        desc: 'On-demand clinical assessments and consultations at your place, for convenience and safety.'
       }
     ]
   },
@@ -153,34 +155,33 @@ export const VENTURES: Record<VentureId, Venture> = {
     tone: ORANGE,
     name: 'Global Cure RX Pharmacy LLC',
     icon: 'medication',
-    menuLine: 'Community pharmacy, Dubai',
+    menuLine: 'Online pharmacy & medical supplies',
     sector: 'Pharmacy · Dubai',
-    tagline:
-      'A DHA-licensed community pharmacy in Dubai, dispensing high-value prescriptions through insurance tie-ups.',
+    tagline: 'Online pharmacy and medical supplies.',
     about:
-      'Global Cure RX Pharmacy LLC functions as a dedicated pharmaceutical division committed to delivering patient care and facilitating worldwide access to authentic medications, bridging healthcare gaps with a comprehensive selection of prescription treatments, specialised therapies and healthcare items. Its retail outlet in Dubai is a DHA-licensed community pharmacy that dispenses high-value prescriptions through tie-ups with insurance companies. Walk-in patients are welcome, without prior appointment. Call +971 50 515 2391 to order.',
+      'Global Cure RX Pharmacy LLC is a Dubai-based online platform providing easy access to authenticated medicines, wellness vitamins, cosmetics, personal care items, and certified medical or surgical equipment. Physically located in International City, it is a healthcare partner catering to everyday health and professional needs, with delivery across the entire United Arab Emirates.',
     site: { label: '+971 50 515 2391', href: 'tel:+971505152391' },
     featTitle: 'Pharmacy services',
     features: [
       {
-        icon: 'prescriptions',
-        title: 'Prescription & OTC',
-        desc: 'Prescription and over-the-counter medicines, vitamins, supplements and personal care.'
+        icon: 'inventory_2',
+        title: 'Diverse product range',
+        desc: 'Supplies medical consumables, orthopaedic supports, surgical products, and everyday wellness items.'
+      },
+      {
+        icon: 'chat',
+        title: '1-click WhatsApp ordering',
+        desc: 'A seamless feature that compiles cart details into a pre-filled WhatsApp message for instant checkout.'
       },
       {
         icon: 'verified_user',
-        title: 'Insurance tie-ups',
-        desc: 'High-value prescriptions dispensed with leading insurance companies.'
+        title: 'Enhanced payment security',
+        desc: 'Avoids online card gateways, eliminating data leak risks by handling order fulfilment securely.'
       },
       {
-        icon: 'forum',
-        title: 'Medication counselling',
-        desc: 'Pharmacists provide medication counselling, advice on minor ailments and help with prescription queries.'
-      },
-      {
-        icon: 'autorenew',
-        title: 'Repeat dispensing',
-        desc: 'Available for patients managing long-term conditions. Walk-in customers welcome, no appointment needed.'
+        icon: 'support_agent',
+        title: 'Expert support',
+        desc: 'Offers direct access to licensed Dubai pharmacy specialists for consultations and immediate assistance.'
       }
     ]
   },

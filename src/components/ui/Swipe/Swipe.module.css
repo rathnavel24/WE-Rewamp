@@ -2,59 +2,131 @@
   min-width: 0;
 }
 
-/* Dots only matter when the row scrolls (phones). */
-.dots {
-  display: none;
-  justify-content: center;
-  margin-top: var(--space-3);
+.track {
+  --swipe-gap: var(--space-3);
+  --swipe-view: var(--swipe-desktop);
+  --swipe-slide: calc((100cqi - (var(--swipe-view) - 1) * var(--swipe-gap)) / var(--swipe-view));
+  /* Stays inside the page's side padding, softened by a slight fade at the column's edges. Room above and below keeps
+     the hover lift and shadows from being clipped. */
+  --swipe-fade: var(--space-2);
+  container-type: inline-size;
+  padding-block: var(--space-2) var(--space-4);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--swipe-fade),
+    black calc(100% - var(--swipe-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--swipe-fade),
+    black calc(100% - var(--swipe-fade)),
+    transparent
+  );
+  /* Horizontal drags move the row; vertical ones still scroll the page. */
+  touch-action: pan-y;
+  cursor: grab;
 }
-.dot {
+.track:active {
+  cursor: grabbing;
+  user-select: none;
+}
+.row {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+/* The trailing gap belongs to the set, so one set's width is exactly one loop. */
+.set {
   display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.dot::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: var(--radius-pill);
-  background: var(--border-strong);
-  transition:
-    width var(--dur-base) var(--ease),
-    background var(--dur-base) var(--ease);
-}
-.dotOn::before {
-  width: 22px;
-  background: var(--color-primary);
+  grid-auto-flow: column;
+  grid-auto-columns: var(--swipe-slide);
+  gap: var(--swipe-gap);
+  padding-right: var(--swipe-gap);
 }
 
-@media (max-width: 600px) {
-  /* Doubled class: must beat the Grid's own column template. */
-  .track.track {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: var(--swipe-width);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: none;
-    /* Bleed to the screen edges so cards slide out of view, not into the page margin. */
-    margin-inline: calc(-1 * var(--gutter));
-    padding: var(--space-1) var(--gutter) var(--space-2);
+/* ---------- Position bar and buttons ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: var(--space-3);
+}
+.progress {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--border-default);
+}
+/* A second bar follows the first, so the position wraps around with the loop. */
+.bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--swipe-at, 0) * 100%);
+  width: calc(var(--swipe-size, 0) * 100%);
+  border-radius: inherit;
+  background: var(--color-primary);
+}
+.barWrap {
+  left: calc((var(--swipe-at, 0) - 1) * 100%);
+}
+.buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+.button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--text-strong);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast),
+    border-color var(--dur-fast),
+    color var(--dur-fast);
+}
+.button:focus-visible {
+  border-radius: var(--radius-pill);
+}
+@media (hover: hover) {
+  .button:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--white);
   }
-  .track::-webkit-scrollbar {
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 1023px) {
+  .track {
+    --swipe-view: 2;
+  }
+}
+@media (max-width: 600px) {
+  .track {
+    --swipe-slide: calc(var(--swipe-peek) * 1cqi);
+  }
+  /* Phones swipe instead. */
+  .buttons {
     display: none;
   }
-  .track > * {
-    scroll-snap-align: start;
+  .controls {
+    margin-top: var(--space-2);
   }
-  .dots {
-    display: flex;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }

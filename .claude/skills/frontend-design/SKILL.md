@@ -37,7 +37,7 @@ This site has an **approved design**. The general guidance further down is about
 ## Content constraints
 
 - **The client's content document is the source of truth** (`WEGlobal.docx`); the group's IT head checks the site against it. Don't invent claims, numbers or descriptions — use the document's wording, and flag anything it doesn't cover.
-- **Services first, no separate company directory.** Four services, in this order: IT & BPO, Financial Services, Consulting, Healthcare (`SERVICES` in `src/content/services.ts`). The group's seven companies (`GROUP_COMPANIES` in `src/content/companies.ts`, names and order exactly as in the document) appear under their service ("Delivered by") and in full in the Home "Our companies" register, after the services. Parents: Wallet Edge Global FZC LLC (UAE) and Wallet Edge Services Pvt Ltd (India).
+- **Services first, no separate company directory.** Four services, in this order: IT & BPO, Financial Services, Consulting, Healthcare (`SERVICES` in `src/content/services.ts`). The group's seven companies (`GROUP_COMPANIES` in `src/content/companies.ts`, names and order exactly as in the document) appear under their service on the Services page and in full in the Home "Our companies" register, after the services. Parents: Wallet Edge Global FZC LLC (UAE) and Wallet Edge Services Pvt Ltd (India).
 - **Real Estate is held back** — don't mention it (or the Seyyone Ventures project) anywhere until the client says so. `content.test.ts` enforces this.
 - Write copy from the visitor's point of view, in British/UAE-business English, sentence case.
 

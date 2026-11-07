@@ -32,15 +32,15 @@ export const SERVICES: Service[] = [
         meta: 'InsureLiv',
         desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech Ltd for insurance brokerages — from lead capture and multi-insurer quoting to automated document verification and policy renewals.',
         href: ROUTES.venture('insureliv'),
-        stat: { value: '90%', label: 'Cut in processing times' }
+        stat: { value: '7X', label: 'Faster turnaround' }
       },
       {
         icon: 'biotech',
         title: 'HealthTech',
         meta: 'ArogyaPlus',
-        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies LLC — at-home and in-clinic medical services, health packages and lab tests with home sample collection.',
+        desc: 'An online platform powered by Wallet Edge Technologies LLC to book comprehensive health packages and individual laboratory tests, through CAP-accredited labs and DHA-certified staff.',
         href: ROUTES.venture('arogyaplus'),
-        stat: { value: '10,000+', label: 'Families served' }
+        stat: { value: '1,000+', label: 'Families served' }
       }
     ]
   },
@@ -80,10 +80,26 @@ export const SERVICES: Service[] = [
     summary:
       'Consulting covering business setup in the UAE, management consulting, HR consulting, and accounting and bookkeeping.',
     offerings: [
-      { icon: 'business_center', title: 'Business consulting', items: ['Business setup in the UAE'] },
-      { icon: 'account_tree', title: 'Management consulting' },
-      { icon: 'groups', title: 'HR consulting', items: ['Recruitment, PRO services and payroll'] },
-      { icon: 'calculate', title: 'Accounting and bookkeeping' }
+      {
+        icon: 'business_center',
+        title: 'Business consulting',
+        items: ['Business setup in the UAE', 'Company registration and licensing support']
+      },
+      {
+        icon: 'account_tree',
+        title: 'Management consulting',
+        items: ['Business strategy and planning', 'Operations and process improvement']
+      },
+      {
+        icon: 'groups',
+        title: 'HR consulting',
+        items: ['Recruitment and PRO services', 'Payroll management']
+      },
+      {
+        icon: 'calculate',
+        title: 'Accounting and bookkeeping',
+        items: ['Bookkeeping and financial records', 'Financial reporting']
+      }
     ]
   },
   {
@@ -107,7 +123,7 @@ export const SERVICES: Service[] = [
         icon: 'medication',
         title: 'Pharmacy',
         meta: 'Global Cure RX Pharmacy LLC',
-        desc: 'DHA-licensed community pharmacy, dispensing high-value prescriptions through tie-ups with insurance companies.',
+        desc: 'A Dubai-based online platform for authenticated medicines, wellness vitamins, cosmetics, personal care items, and certified medical or surgical equipment.',
         href: ROUTES.venture('globalcure')
       }
     ]
@@ -133,18 +149,28 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         venture: 'insureliv',
         meta: 'InsureLiv',
         href: ROUTES.venture('insureliv'),
-        desc: 'An AI-powered insurance operating system built by WhiteBlue Fintech Ltd for insurance brokerages. It automates the entire broker workflow — from lead capture and multi-insurer quoting to automated document verification and policy renewals — boosting agent productivity while reducing turnaround times and operating costs.',
-        stats: VENTURES.insureliv.stats?.slice(0, 1),
-        points: titles(VENTURES.insureliv.features)
+        desc: VENTURES.insureliv.about,
+        stats: VENTURES.insureliv.stats,
+        points: [
+          'AI quote builder',
+          'Automated document review',
+          'API-first portal integration',
+          'Full pipeline visibility'
+        ]
       },
       {
         title: 'HealthTech',
         venture: 'arogyaplus',
         meta: 'ArogyaPlus',
         href: ROUTES.venture('arogyaplus'),
-        desc: 'A Dubai-based health technology platform powered by Wallet Edge Technologies LLC — on-demand at-home and in-clinic medical services, health packages, specialised lab test bookings with secure home sample collection, and professional nursing care, delivered by DHA-licensed professionals and CAP-accredited laboratories.',
+        desc: VENTURES.arogyaplus.about,
         stats: VENTURES.arogyaplus.stats,
-        points: titles(VENTURES.arogyaplus.features)
+        points: [
+          'Comprehensive screening packages',
+          'Convenient home sample collection',
+          'Individual test customisation',
+          'Fast digital reports'
+        ]
       }
     ]
   },
@@ -178,7 +204,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         venture: 'carehub',
         href: ROUTES.venture('carehub'),
         meta: 'CareHub Healthcare LLC · carehubuae.com',
-        desc: 'A premier DHA-licensed home healthcare provider in Dubai — tailored 24/7 private nursing, elderly assistance and post-operative recovery support, with home-based clinical services such as wound care, IV infusions, physiotherapy and digital phlebotomy.',
+        desc: VENTURES.carehub.about,
         points: titles(VENTURES.carehub.features)
       },
       {
@@ -186,7 +212,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         venture: 'globalcure',
         href: ROUTES.venture('globalcure'),
         meta: 'Global Cure RX Pharmacy LLC · +971 50 515 2391',
-        desc: 'A retail outlet in Dubai dispensing pharmaceutical products, with high-value prescriptions through tie-ups with insurance companies. This DHA-licensed community pharmacy stocks prescription and over-the-counter medicines, vitamins, health supplements and personal care products, with medication counselling, advice on minor ailments, help with prescription queries and repeat dispensing. Walk-in patients are welcome.',
+        desc: VENTURES.globalcure.about,
         points: titles(VENTURES.globalcure.features)
       }
     ]

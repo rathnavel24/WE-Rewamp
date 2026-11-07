@@ -5,7 +5,7 @@ import s from './DeliveredBy.module.css';
 
 interface DeliveredByProps {
   companies: GroupCompany[];
-  label?: string;
+  label: string;
   className?: string;
 }
 
@@ -13,7 +13,7 @@ interface DeliveredByProps {
  * One quiet line naming the companies behind a service, each with its country.
  * Colours follow `--ink` / `--muted` when a dark section sets them.
  */
-export function DeliveredBy({ companies, label = 'Delivered by', className }: DeliveredByProps) {
+export function DeliveredBy({ companies, label, className }: DeliveredByProps) {
   if (!companies.length) return null;
   return (
     <dl className={cx(s.line, className)}>

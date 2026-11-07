@@ -13,8 +13,9 @@ export function VentureStats({ stats, tone }: { stats: VentureStat[]; tone: Tone
             soft={tone.soft}
             ink={tone.ink}
             count={st.n}
+            prefix={st.prefix}
             suffix={st.suffix}
-            value={`${st.n}${st.suffix}`}
+            value={`${st.prefix ?? ''}${st.n}${st.suffix}`}
             label={st.label}
           />
         ))}

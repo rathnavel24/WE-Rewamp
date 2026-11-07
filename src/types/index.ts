@@ -14,6 +14,7 @@ export type VentureId = 'insureliv' | 'arogyaplus' | 'carehub' | 'globalcure' | 
 
 export interface Stat {
   n: number;
+  prefix?: string;
   suffix: string;
   label: string;
 }
@@ -142,10 +143,6 @@ export interface ServiceDetail {
 export interface Person {
   name: string;
   role: string;
-}
-
-export interface Founder extends Person {
-  initials: string;
 }
 
 export interface NavLink {

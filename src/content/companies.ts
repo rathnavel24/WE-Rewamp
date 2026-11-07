@@ -4,7 +4,7 @@ import { serviceHref } from './services';
 
 /**
  * The group's seven companies, named and ordered exactly as in the client's content document ("Our Companies").
- * Listed in full in the Home "Our companies" section; each one also appears under its service ("Delivered by").
+ * Listed in full in the Home "Our companies" section; each one also appears under its service on the Services page.
  */
 export const GROUP_COMPANIES: GroupCompany[] = [
   {

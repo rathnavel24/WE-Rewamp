@@ -84,6 +84,7 @@ function Column({ column: c }: { column: ServiceColumn }) {
             <div key={st.label} className={s.stat}>
               <dt className={s.statLabel}>{st.label}</dt>
               <dd className={s.statValue}>
+                {st.prefix}
                 {st.n.toLocaleString('en')}
                 {st.suffix}
               </dd>

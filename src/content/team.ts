@@ -1,17 +1,9 @@
-import type { Founder, Person } from '@/types';
+import type { Person } from '@/types';
 
 /** Names and designations as given in the client tracker (WE017). */
-export const FOUNDERS: Founder[] = [
-  {
-    name: 'Sai Pranav',
-    role: 'Founder & Chief Executive Officer',
-    initials: 'SP'
-  },
-  {
-    name: 'Gopi Senthil Raja',
-    role: 'Founder & Chief Operating Officer',
-    initials: 'GS'
-  }
+export const FOUNDERS: Person[] = [
+  { name: 'Sai Pranav', role: 'Founder & Chief Executive Officer' },
+  { name: 'Gopi Senthil Raja', role: 'Founder & Chief Operating Officer' }
 ];
 
 export const BOARD: Person[] = [
@@ -34,6 +26,9 @@ export const DIVISION_LEADERS: Person[] = [
   // Real Estate leaders (Suresh Kumar A — Operations Head; Ananth — Head of Marketing) are held back
   // while Real Estate is not shown on the site. Restore them here when it returns.
 ];
+
+/** Everyone on the Our Team page, in the tracker's order. */
+export const TEAM: Person[] = [...FOUNDERS, ...BOARD, ...DIVISION_LEADERS];
 
 /** Leadership preview on the Home page. */
 export const HOME_LEADERS: Person[] = [...FOUNDERS, ...BOARD.slice(0, 2)];

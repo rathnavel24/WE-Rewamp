@@ -8,6 +8,7 @@ interface StatProps {
   label: ReactNode;
   /** Numeric target for the count-up animation. */
   count?: number | string;
+  prefix?: string;
   suffix?: string;
   /** Box style: sunken (canvas), surface (white), soft (tone tint), plain (no box). */
   variant?: 'sunken' | 'surface' | 'soft' | 'plain';
@@ -24,6 +25,7 @@ export function Stat({
   value,
   label,
   count,
+  prefix,
   suffix,
   variant = 'sunken',
   size = 'md',
@@ -37,6 +39,7 @@ export function Stat({
       <span
         className={s.value}
         data-count={count !== undefined ? String(count) : undefined}
+        data-prefix={count !== undefined ? prefix : undefined}
         data-suffix={count !== undefined ? suffix : undefined}
       >
         {value}

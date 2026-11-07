@@ -1,192 +1,56 @@
-/* ---------- Hero contents: a ruled strip of the page's three groups ---------- */
-.contents {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: var(--space-4);
-  border-top: 1px solid var(--border-strong);
-  border-bottom: 1px solid var(--border-default);
-}
-.entry {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-6) var(--space-6) 0;
-  color: var(--text-strong);
-  text-decoration: none;
-}
-.entry + .entry {
-  padding-left: var(--space-6);
-  border-left: 1px solid var(--border-default);
-}
-.entryLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
-}
-.arrow {
-  display: inline-block;
-  margin-left: var(--space-1);
-  vertical-align: -0.15em;
-  color: var(--text-faint);
+/* A tall gradient tile. The portrait dissolves into the gradient, and the name and designation sit on its deep end. */
+.person.person {
+  --card-gap: 0;
+  justify-content: flex-end;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  background: var(--team-tile);
   transition:
-    color var(--dur-fast),
-    transform var(--dur-fast) var(--ease);
+    transform var(--dur-base) var(--ease),
+    box-shadow var(--dur-base);
+}
+.person .photo {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 42%, transparent 72%);
+  mask-image: linear-gradient(to bottom, black 42%, transparent 72%);
+}
+.photo > * {
+  transform-origin: bottom center;
+  transition: transform var(--dur-base) var(--ease);
+}
+.photo svg {
+  height: 72%;
+  opacity: 0.6;
 }
 @media (hover: hover) {
-  .entry:hover {
-    color: var(--text-strong);
+  .person:hover {
+    box-shadow: var(--shadow-sm);
   }
-  .entry:hover .arrow {
-    color: var(--tone);
-    transform: translateY(2px);
+  .person:hover .photo > * {
+    transform: scale(1.04);
   }
 }
-
-/* ---------- Founders: two columns on the dark band, split by a rule ---------- */
-.founders {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.founder {
+.text {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-  padding-right: var(--space-12);
-  scroll-margin-top: 132px;
-}
-.founder + .founder {
-  padding-right: 0;
-  padding-left: var(--space-12);
-  border-left: 1px solid var(--border-on-dark);
-}
-.monogram {
-  display: grid;
-  place-items: center;
-  width: 120px;
-  height: 120px;
-  margin-bottom: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: var(--tone);
-  color: var(--white);
-  font: var(--fw-semibold) 44px/1 var(--font-sans);
-  font-stretch: var(--font-stretch-display);
-  letter-spacing: var(--ls-heading);
-}
-.founderPhoto {
-  width: 160px;
-  height: 200px;
-  margin-bottom: var(--space-5);
-}
-.founderName {
-  color: var(--white);
-}
-.founderRole {
-  font-size: var(--fs-body-lg);
-  color: var(--text-on-dark-muted);
-}
-
-/* ---------- Group heads ---------- */
-.groupHead {
-  display: grid;
-  gap: var(--space-2);
-  padding-bottom: var(--space-5);
-  border-bottom: 1px solid var(--border-strong);
-}
-.groupLead {
-  font-size: var(--fs-body-lg);
-  color: var(--text-muted);
-}
-
-/* ---------- People: ruled rows ---------- */
-.people {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-/* Two equal columns, so designations line up across the Board and Business leadership lists. */
-.person {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-4) 0;
-}
-.person + .person {
-  border-top: 1px solid var(--border-default);
-}
-.personWho {
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-1);
   min-width: 0;
+  padding: var(--space-5);
 }
-.personPhoto {
-  width: 48px;
-  height: 48px;
+.person .name {
+  font-size: var(--fs-h3);
+  color: var(--white);
 }
-.personName {
-  font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
-  color: var(--text-strong);
+.role {
+  color: var(--white);
 }
-.personRole {
-  font-size: var(--fs-body);
-  color: var(--text-muted);
-}
-
-/* ---------- Tablet and phones ---------- */
-@media (max-width: 760px) {
-  .founders {
-    grid-template-columns: 1fr;
-  }
-  .founder,
-  .founder + .founder {
-    padding: 0;
-    border-left: 0;
-  }
-  .founder + .founder {
-    margin-top: var(--space-10);
-    padding-top: var(--space-10);
-    border-top: 1px solid var(--border-on-dark);
-  }
-}
-@media (max-width: 600px) {
-  .contents {
-    grid-template-columns: 1fr;
-  }
-  .entry,
-  .entry + .entry {
-    padding: var(--space-4) 0;
-    border-left: 0;
-  }
-  .entry + .entry {
-    border-top: 1px solid var(--border-default);
-  }
-  .monogram {
-    width: 88px;
-    height: 88px;
-    font-size: 32px;
-  }
-  .person {
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--space-1) var(--space-4);
-  }
-  /* The avatar, name and designation join the row's own grid: avatar left, the two lines beside it. */
-  .personWho {
-    display: contents;
-  }
-  .personWho > :first-child:not(:last-child) {
-    grid-row: span 2;
-  }
-  .personRole {
-    grid-column: 2;
-    font-size: var(--fs-small);
-  }
-  .personPlain {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .personPlain .personRole {
-    grid-column: 1;
+@media (prefers-reduced-motion: reduce) {
+  .photo > * {
+    transition: none;
   }
 }

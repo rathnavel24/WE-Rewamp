@@ -233,7 +233,7 @@
   }
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     /* Figures line up along the top when one label wraps and another doesn't. */
     align-items: start;
     gap: var(--space-4);

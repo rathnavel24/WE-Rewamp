@@ -242,6 +242,9 @@
 
   --z-nav: 100;
   --z-overlay: 200;
+
+  /* Our Team tiles: the brand green, deepening to where the white text sits. */
+  --team-tile: linear-gradient(to bottom, var(--green-600), var(--green-900) 62%);
 }
 
 /* Phones: the nav is 56px tall, so heroes need less clearance than the desktop value. */
