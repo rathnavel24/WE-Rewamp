@@ -34,6 +34,10 @@ figure,
 blockquote {
   margin: 0;
 }
+/* No lone last words at the end of a paragraph. */
+p {
+  text-wrap: pretty;
+}
 img,
 svg {
   display: block;

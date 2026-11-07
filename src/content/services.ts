@@ -3,9 +3,6 @@ import { ROUTES } from '@/config/routes';
 import { GREEN, ORANGE } from './tones';
 import { VENTURES } from './ventures';
 
-/** Placeholder until the client supplies the real brochure — swap the file in public/brochures/. */
-const RECOVERY_BROCHURE = { label: 'Download brochure', href: '/brochures/insurance-clients-recovery-services.pdf' };
-
 /** What NRI investment planning covers (client tracker, WE005). */
 const NRI_PLANNING = [
   'Financial services — dealing in shares, securities, commodities, currencies and derivatives, including stockbroking and PMS distribution',
@@ -60,7 +57,7 @@ export const SERVICES: Service[] = [
         title: 'Insurance clients recovery services',
         desc: 'Faster turnaround and efficient recovery of outstanding dues, with clients including EMAAR and LIVA Insurance.',
         href: ROUTES.venture('recovery'),
-        download: RECOVERY_BROCHURE
+        download: VENTURES.recovery.download
       },
       {
         icon: 'savings',
@@ -156,7 +153,8 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
           'Automated document review',
           'API-first portal integration',
           'Full pipeline visibility'
-        ]
+        ],
+        site: VENTURES.insureliv.site
       },
       {
         title: 'HealthTech',
@@ -170,7 +168,8 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
           'Convenient home sample collection',
           'Individual test customisation',
           'Fast digital reports'
-        ]
+        ],
+        site: VENTURES.arogyaplus.site
       }
     ]
   },
@@ -184,7 +183,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         href: ROUTES.venture('recovery'),
         desc: VENTURES.recovery.tagline,
         points: titles(VENTURES.recovery.features),
-        download: RECOVERY_BROCHURE
+        download: VENTURES.recovery.download
       },
       {
         title: 'Financial planning — NRI investment planning',

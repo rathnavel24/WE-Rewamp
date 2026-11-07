@@ -24,6 +24,10 @@
   padding-top: 0;
   border-top: 0;
 }
+/* The dark band's edge already divides it from the next section, so that section needs no rule of its own. */
+section:has(.dark) + section .wrap {
+  border-top: 0;
+}
 
 /* ---------- Head: name left, statement right ---------- */
 .head {
@@ -101,19 +105,20 @@
 }
 /* The platform's or company's logo above its name, on a white plate. */
 .colLogo {
-  /* Flex (not grid), so the image's 100% height resolves against the plate and tall logos can't spill out. */
+  /* One plate size for every logo; flex (not grid), so the image's 100% height resolves against the plate. */
   display: flex;
   align-items: center;
+  justify-content: center;
   align-self: flex-start;
+  width: 232px;
   height: 64px;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
   background: var(--white);
 }
 .colLogo img {
   display: block;
-  width: auto;
-  max-width: 200px;
+  width: 100%;
   height: 100%;
   object-fit: contain;
 }
@@ -225,11 +230,9 @@
     font-size: var(--fs-h3);
   }
   .colLogo {
+    width: 196px;
     height: 52px;
     padding: var(--space-2) var(--space-3);
-  }
-  .colLogo img {
-    max-width: 170px;
   }
   .stats {
     display: grid;

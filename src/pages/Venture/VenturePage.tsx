@@ -31,7 +31,7 @@ function VentureView({ v }: { v: Venture }) {
     <div style={toneVars}>
       <VentureHero v={v} />
       {v.stats && <VentureStats stats={v.stats} tone={v.tone} />}
-      <VentureCapabilities title={v.featTitle} features={v.features} tone={v.tone} />
+      <VentureCapabilities title={v.featTitle} features={v.features} tone={v.tone} pt={v.stats ? 'md' : 'sm'} />
       {v.steps && <VentureProcess steps={v.steps} />}
       {v.caseStudy && <VentureCaseStudy study={v.caseStudy} />}
       <CtaBanner

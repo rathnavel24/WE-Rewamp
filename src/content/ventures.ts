@@ -14,6 +14,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     tagline: 'The AI-powered insurance operating system designed specifically for insurance brokerages.',
     about:
       'InsureLiv offers an AI-powered insurance operating system designed specifically for insurance brokerages. The platform serves as a unified end-to-end lifecycle management solution that connects agents, operations, and leadership across the entire broker workflow, from initial lead capture to policy renewal.',
+    site: { label: 'insureliv.com', href: 'https://www.insureliv.com/ae/en' },
     stats: [
       { n: 7, suffix: 'X', label: 'Faster turnaround' },
       { n: 70, prefix: '+', suffix: '%', label: 'Productivity gain' },
@@ -61,7 +62,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     tagline: 'Book comprehensive health packages and individual laboratory tests online.',
     about:
       'ArogyaPlus is an online platform to book comprehensive health packages and individual laboratory tests. Operating through CAP-accredited labs and DHA-certified staff, it lets you schedule diagnostic screenings conveniently. The platform provides comprehensive tracking for vital biomarkers including heart, liver, kidney, thyroid, vitamin, and metabolic parameters.',
-    site: { label: 'arogyaplus.com', href: 'https://arogyaplus.com' },
+    site: { label: 'arogyaplus.com', href: 'https://www.arogyaplus.com/' },
     stats: [
       { n: 1000, suffix: '+', label: 'Families served' },
       { n: 250, suffix: '+', label: 'Advanced lab tests' },
@@ -198,6 +199,8 @@ export const VENTURES: Record<VentureId, Venture> = {
       'Professional recovery of outstanding dues and assets, with transparent communication with all stakeholders.',
     about:
       'Wallet Edge provides professional financial recovery and asset retrieval solutions. Our team ensures faster turnaround and efficient recovery of outstanding dues through data-driven processes and transparent communication with all stakeholders — with clients including EMAAR and LIVA Insurance.',
+    // Placeholder until the client supplies the real brochure — swap the file in public/brochures/.
+    download: { label: 'Download brochure', href: '/brochures/insurance-clients-recovery-services.pdf' },
     featTitle: 'Our approach',
     features: [
       {

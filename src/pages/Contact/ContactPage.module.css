@@ -56,10 +56,10 @@
 .addressFirst {
   color: var(--text-strong);
 }
+/* One per row, so each address keeps its lines instead of wrapping in a narrow column. */
 .corporate {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5) var(--space-6);
+  gap: var(--space-4);
 }
 .corporateItem {
   display: flex;
@@ -148,9 +148,6 @@
   }
   .line {
     grid-template-columns: 56px minmax(0, 1fr);
-  }
-  .corporate {
-    grid-template-columns: 1fr;
   }
 }
 

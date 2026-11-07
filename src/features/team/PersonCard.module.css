@@ -1,6 +1,7 @@
 /* A tall gradient tile. The portrait dissolves into the gradient, and the name and designation sit on its deep end. */
 .person.person {
   --card-gap: 0;
+  container-type: inline-size;
   justify-content: flex-end;
   aspect-ratio: 3 / 4;
   padding: 0;
@@ -46,8 +47,20 @@
   font-size: var(--fs-h3);
   color: var(--white);
 }
-.role {
+.person .role {
   color: var(--white);
+}
+.person .company {
+  color: var(--text-on-dark-soft);
+}
+/* Narrow tiles (the Home preview on phones and tablets): tighter, so long names leave the portrait in view. */
+@container (max-width: 220px) {
+  .text {
+    padding: var(--space-3);
+  }
+  .person .name {
+    font-size: var(--fs-h4);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .photo > * {

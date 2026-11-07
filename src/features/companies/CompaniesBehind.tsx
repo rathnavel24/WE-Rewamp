@@ -9,7 +9,7 @@ import s from './CompaniesBehind.module.css';
 
 interface CompaniesBehindProps {
   companies: GroupCompany[];
-  /** The service's name, used in the heading: "The group companies behind IT & BPO Services". */
+  /** The service's name, which labels the block for screen readers. */
   service: string;
   className?: string;
 }
@@ -21,11 +21,8 @@ interface CompaniesBehindProps {
 export function CompaniesBehind({ companies, service, className }: CompaniesBehindProps) {
   if (!companies.length) return null;
   return (
-    <section className={cx(s.panel, className)} aria-label={`Group companies behind ${service}`}>
-      <p className={s.heading}>
-        <span className={s.kicker}>Group companies</span>
-        The {companies.length === 1 ? 'company' : 'companies'} behind {service}
-      </p>
+    <section className={cx(s.panel, className)} aria-label={`Companies behind ${service}`}>
+      <p className={s.heading}>Explore the {companies.length === 1 ? 'company' : 'companies'}</p>
       <ul className={s.list}>
         {companies.map((c) => {
           const venture = c.venture ? VENTURES[c.venture] : undefined;

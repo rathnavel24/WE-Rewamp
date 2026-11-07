@@ -58,6 +58,11 @@ export function VentureHero({ v }: { v: Venture }) {
                 {v.site.label}
               </Button>
             )}
+            {v.download && (
+              <Button to={v.download.href} download variant="secondary" icon="download">
+                {v.download.label}
+              </Button>
+            )}
           </div>
         </div>
       </div>

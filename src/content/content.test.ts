@@ -4,7 +4,7 @@ import { GROUP_COMPANIES } from './companies';
 import { clientLogo, companyLogo, ventureLogo } from './assets';
 import { CLIENTS } from './clients';
 import { SERVICE_DETAILS, SERVICES, serviceHref } from './services';
-import { DIVISION_LEADERS } from './team';
+import { DIVISION_LEADERS, TEAM } from './team';
 import { CORPORATE_OFFICES, ENQUIRY_TOPICS, NAV_LINKS } from './site';
 import { isVentureId, VENTURES } from './ventures';
 
@@ -73,6 +73,11 @@ describe('content integrity', () => {
   it('names corporate offices exactly as in the company register (WE014)', () => {
     const names = GROUP_COMPANIES.map((c) => c.name);
     expect(CORPORATE_OFFICES.filter((o) => !names.includes(o.company))).toEqual([]);
+  });
+
+  it('shows every team member with a company from the register (WE014, WE025)', () => {
+    const names = GROUP_COMPANIES.map((c) => c.name);
+    expect(TEAM.filter((p) => !p.company || !names.includes(p.company)).map((p) => p.name)).toEqual([]);
   });
 
   it('does not mention Real Estate while it is held back', () => {

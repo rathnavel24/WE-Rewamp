@@ -1,8 +1,6 @@
 import { AppLink } from '@/components/ui/AppLink';
-import { Icon } from '@/components/ui/Icon';
-import { CONTACT_EMAIL, CORPORATE_OFFICES, NAV_LINKS, OFFICES } from '@/content/site';
-import { ROUTES } from '@/config/routes';
-import { VENTURE_LIST } from '@/content/ventures';
+import { companyHref, GROUP_COMPANIES } from '@/content/companies';
+import { CORPORATE_OFFICES, OFFICES } from '@/content/site';
 import logo from '@/assets/brand/walletedge-logo.png';
 import s from './SiteFooter.module.css';
 
@@ -11,58 +9,47 @@ export function SiteFooter() {
     <footer className={s.footer}>
       <div className={`container ${s.inner}`}>
         <div className={s.grid}>
-          <div className={s.brandCol}>
+          <div className={s.brand}>
             <img src={logo} alt="WalletEdge" className={s.logo} />
             <p className={s.blurb}>
-              The parent group behind businesses in IT &amp; BPO, financial services, consulting and healthcare across
-              the UAE and India.
+              The holding company for all services — IT&nbsp;&amp;&nbsp;BPO, financial services, consulting and
+              healthcare across the UAE and India.
             </p>
-            <a href={`mailto:${CONTACT_EMAIL}`} className={s.mail}>
-              <Icon name="mail" size={18} color="var(--color-primary)" />
-              {CONTACT_EMAIL}
-            </a>
           </div>
 
-          <nav className={s.col} aria-label="Company">
-            {NAV_LINKS.map((l) => (
-              <AppLink key={l.id} to={l.href} className={s.link}>
-                {l.label}
-              </AppLink>
-            ))}
-          </nav>
-
-          <nav className={s.col} aria-label="Ventures">
-            {VENTURE_LIST.map((v) => (
-              <AppLink key={v.id} to={ROUTES.venture(v.id)} className={s.link}>
-                {v.footerName ?? v.name}
-              </AppLink>
-            ))}
-          </nav>
-
-          <div className={`${s.col} ${s.officesCol}`}>
-            <div className={s.offices}>
-              {OFFICES.map((o) => (
-                <address key={o.country} className={s.office}>
-                  <span className={s.officeName}>
-                    {o.country}
-                    {o.badge === 'HQ' && <span className={s.hq}>Registered office</span>}
-                  </span>
-                  <span className={s.address}>
-                    {o.addressLines[0]}
-                    <br />
-                    {o.addressLines[1]}
-                  </span>
-                  <a href={o.phone.href} className={s.phone}>
-                    {o.phone.label}
-                  </a>
-                </address>
+          <nav className={s.companies} aria-labelledby="footer-companies">
+            <h2 id="footer-companies" className={s.title}>
+              Our companies
+            </h2>
+            <div className={s.links}>
+              {GROUP_COMPANIES.map((c) => (
+                <AppLink key={c.name} to={companyHref(c)} className={s.link}>
+                  {c.name}
+                </AppLink>
               ))}
             </div>
-          </div>
+          </nav>
+
+          {OFFICES.map((o) => (
+            <address key={o.country} className={s.office}>
+              <span className={s.officeName}>
+                {o.country}
+                {o.badge === 'HQ' && <span className={s.hq}>Registered office</span>}
+              </span>
+              <span className={s.address}>
+                {o.addressLines[0]}
+                <br />
+                {o.addressLines[1]}
+              </span>
+              <a href={o.phone.href} className={s.phone}>
+                {o.phone.label}
+              </a>
+            </address>
+          ))}
         </div>
 
         <section className={s.corporate} aria-labelledby="footer-corporate">
-          <h2 id="footer-corporate" className={s.corporateTitle}>
+          <h2 id="footer-corporate" className={s.title}>
             Corporate offices
           </h2>
           <div className={s.corporateList}>
@@ -79,10 +66,7 @@ export function SiteFooter() {
           </div>
         </section>
 
-        <div className={s.bottom}>
-          <span>© 2026 Wallet Edge Global FZC LLC. All rights reserved.</span>
-          <span>Sharjah · Dubai, UAE · Coimbatore, India</span>
-        </div>
+        <p className={s.bottom}>© 2026 Wallet Edge Global FZC LLC. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -96,6 +96,7 @@ export const HERO_ORBIT: HeroOrbitItem[] = [
 export const HERO_GROUP_CHIP = { name: 'WalletEdge Global', icon: 'account_tree' };
 
 export const HERO_STATS: Array<{ count: number; suffix?: string; label: string }> = [
+  { count: 100, suffix: '+', label: 'Group employees' },
   { count: 7, label: 'Companies' },
   { count: 4, label: 'Services' },
   { count: 2, label: 'Countries' }

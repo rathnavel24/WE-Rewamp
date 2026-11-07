@@ -85,18 +85,28 @@
 .stats {
   --stat-value-size: clamp(28px, 6vw, 34px);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   max-width: 560px;
   margin-top: var(--space-4);
   border-top: 1px solid var(--border-default);
 }
 /* Open figures under one hairline: aligned columns, no boxes. */
 .stats > * {
-  padding: var(--space-5) var(--space-5) 0 0;
+  padding: var(--space-5) var(--space-4) 0 0;
 }
 .stats > * + * {
-  padding-left: var(--space-5);
+  padding-left: var(--space-4);
   border-left: 1px solid var(--border-subtle);
+}
+/* Phones: two by two, each row starting flush with the page edge. */
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stats > :nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
 }
 
 /* Phones/tablets: companies behind the current headline word (the orbit is hidden here). */

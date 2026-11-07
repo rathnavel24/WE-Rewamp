@@ -37,8 +37,6 @@ export interface Venture {
   about: string;
   /** Short line used in the nav mega-menu. */
   menuLine: string;
-  /** Label in the footer, when it differs from `name`. */
-  footerName?: string;
   site?: { label: string; href: string };
   stats?: Stat[];
   featTitle: string;
@@ -46,6 +44,8 @@ export interface Venture {
   steps?: Feature[];
   /** Optional case-study block on the venture page. */
   caseStudy?: CaseStudy;
+  /** A file to download from the venture page, such as a brochure. */
+  download?: Download;
   /** Contact-form topic pre-selected from this venture's "Enquire about…" button (one of ENQUIRY_TOPICS). */
   enquiryTopic: string;
 }
@@ -126,6 +126,8 @@ export interface ServiceColumn {
   stats?: Stat[];
   /** What it covers, as a short checked list. */
   points?: string[];
+  /** The platform's own website. */
+  site?: { label: string; href: string };
   download?: Download;
 }
 
@@ -143,6 +145,9 @@ export interface ServiceDetail {
 export interface Person {
   name: string;
   role: string;
+  company?: string;
+  /** Which dummy portrait to show until there is a photo; neutral when unset. */
+  figure?: 'male' | 'female';
 }
 
 export interface NavLink {

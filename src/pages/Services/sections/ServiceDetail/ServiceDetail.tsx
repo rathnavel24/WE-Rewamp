@@ -102,6 +102,11 @@ function Column({ column: c }: { column: ServiceColumn }) {
           ))}
         </ul>
       )}
+      {c.site && (
+        <Button to={c.site.href} target="_blank" variant="link" icon="open_in_new" className={s.download}>
+          Visit {c.site.label}
+        </Button>
+      )}
       {c.download && (
         <Button to={c.download.href} download variant="link" icon="download" className={s.download}>
           {c.download.label}

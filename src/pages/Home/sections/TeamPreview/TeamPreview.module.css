@@ -1,33 +1,9 @@
-.card {
-  flex-direction: row;
-  align-items: center;
-  --card-gap: var(--space-4);
+/* Always complete rows: four across, or two by two on phones. Doubled class outranks the Grid's own columns. */
+.list.list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.photo {
-  flex: none;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
-}
-
-/* Phones: a ruled list rather than four stacked boxes. Doubled classes outrank the Card and Grid defaults. */
 @media (max-width: 600px) {
   .list.list {
-    gap: 0;
-    border-top: 1px solid var(--border-strong);
-  }
-  .card.card {
-    padding: var(--space-4) 0;
-    border: 0;
-    border-bottom: 1px solid var(--border-default);
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-    transform: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
