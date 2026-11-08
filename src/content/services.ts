@@ -55,7 +55,7 @@ export const SERVICES: Service[] = [
       {
         icon: 'shield',
         title: 'Insurance claims recovery services',
-        desc: 'Faster turnaround and efficient recovery of outstanding dues, with clients including EMAAR and LIVA Insurance.',
+        desc: VENTURES.recovery.tagline,
         href: ROUTES.venture('recovery'),
         download: VENTURES.recovery.download
       },

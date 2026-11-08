@@ -20,7 +20,7 @@ export function VentureCapabilities({ title, features, tone, pt }: VentureCapabi
             <Tile icon={f.icon} tone={tone} />
             <span className={s.featureText}>
               <span className="t-h3">{f.title}</span>
-              <span className="t-body">{f.desc}</span>
+              {f.desc && <span className="t-body">{f.desc}</span>}
             </span>
           </Card>
         ))}

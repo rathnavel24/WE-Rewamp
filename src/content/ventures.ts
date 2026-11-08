@@ -196,24 +196,19 @@ export const VENTURES: Record<VentureId, Venture> = {
     menuLine: 'Financial recovery & claims',
     sector: 'Financial services',
     tagline:
-      'Professional recovery of outstanding dues and assets, with transparent communication with all stakeholders.',
+      'Assisting insurers where claims have been settled and recovery must be pursued under subrogation rights.',
     about:
-      'Wallet Edge provides professional financial recovery and asset retrieval solutions. Our team ensures faster turnaround and efficient recovery of outstanding dues through data-driven processes and transparent communication with all stakeholders — with clients including EMAAR and LIVA Insurance.',
-    // Placeholder until the client supplies the real brochure — swap the file in public/brochures/.
+      'Wallet Edge Global FZC LLC operates in strategic association with V N C Claims Consultancy, India, a reputed and accredited firm with decades of proven expertise in marine recovery operations. Our specialised focus centres on assisting insurers where claims have been settled, and recovery must be pursued under subrogation rights.',
     download: { label: 'Download brochure', href: '/brochures/insurance-claims-recovery-services.pdf' },
-    featTitle: 'Our approach',
+    featTitle: 'We excel in recovery actions against',
     features: [
-      {
-        icon: 'query_stats',
-        title: 'Data-driven processes',
-        desc: 'Every case tracked and prioritised with clear, measurable progress.'
-      },
-      {
-        icon: 'campaign',
-        title: 'Transparent communication',
-        desc: 'All stakeholders stay informed from first notice to settlement.'
-      },
-      { icon: 'gavel', title: 'Legal expertise in-house', desc: 'Backed by a dedicated group legal consultant.' }
+      { icon: 'directions_boat', title: 'International Sea Carriers' },
+      { icon: 'inventory_2', title: 'Non-Vessel Operating Common Carriers (NVOCC)' },
+      { icon: 'flight', title: 'Air Carriers and Aviation Companies' },
+      { icon: 'local_shipping', title: 'Road Transport and Logistics Providers' },
+      { icon: 'alt_route', title: 'Multimodal Transport Operators' },
+      { icon: 'anchor', title: 'Port Authorities and Terminal Operations' },
+      { icon: 'gavel', title: 'Various Third-Party Liability Cases' }
     ],
     caseStudy: {
       kicker: 'Case focus · EMAAR Group',

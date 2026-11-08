@@ -22,7 +22,7 @@ export interface Stat {
 export interface Feature {
   icon: string;
   title: string;
-  desc: string;
+  desc?: string;
 }
 
 export interface Venture {
