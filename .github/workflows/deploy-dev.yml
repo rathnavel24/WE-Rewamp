@@ -1,9 +1,9 @@
 name: Deploy to dev
 
 # Builds the site and publishes it to https://dev.walletedgeglobal.com
+# Runs only when started by hand: GitHub > Actions > Deploy to dev > Run workflow
+# (or `gh workflow run deploy-dev.yml --ref main`). Pushing to main does not deploy.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
