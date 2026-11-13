@@ -150,6 +150,11 @@
 .sentText {
   max-width: 380px;
 }
+.sentText a {
+  color: var(--white);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
 .sentActions {
   display: flex;
   flex-wrap: wrap;

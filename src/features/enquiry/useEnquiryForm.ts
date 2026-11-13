@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
 import type { VentureId } from '@/types';
-import { submitEnquiry } from './api';
+import { enquiryMailto, sendsByEmail, submitEnquiry } from './api';
 import type { EnquiryPayload } from './types';
 
-export type EnquiryStatus = 'idle' | 'sending' | 'sent' | 'error';
+/** `emailed`: no backend, so the enquiry was handed to the visitor's email app to send. */
+export type EnquiryStatus = 'idle' | 'sending' | 'sent' | 'emailed' | 'error';
 
 interface Options {
   /** Topics ticked on first render (e.g. when arriving from a venture page). */
@@ -48,15 +49,18 @@ export function useEnquiryForm({ initialTopics = [], venture }: Options = {}) {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === 'sending') return;
+    const payload = toPayload(new FormData(e.currentTarget), topics, { venture, source: window.location.pathname });
+    if (sendsByEmail) {
+      window.location.href = enquiryMailto(payload);
+      setStatus('emailed');
+      return;
+    }
     const controller = new AbortController();
     inFlight.current = controller;
     setStatus('sending');
     setError('');
     try {
-      await submitEnquiry(
-        toPayload(new FormData(e.currentTarget), topics, { venture, source: window.location.pathname }),
-        controller.signal
-      );
+      await submitEnquiry(payload, controller.signal);
       setStatus('sent');
     } catch (err) {
       if (controller.signal.aborted) return;

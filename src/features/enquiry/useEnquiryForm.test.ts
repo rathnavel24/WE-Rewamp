@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { enquiryMailto } from './api';
 import { toPayload } from './useEnquiryForm';
 
 describe('toPayload', () => {
@@ -19,5 +20,20 @@ describe('toPayload', () => {
       venture: 'carehub',
       source: '/contact'
     });
+  });
+});
+
+describe('enquiryMailto', () => {
+  it('addresses the enquiry and carries every filled field', () => {
+    const url = enquiryMailto(
+      { name: 'Jane Doe', company: 'Acme', email: 'jane@example.com', message: 'Hi & thanks', topics: ['Healthcare'] },
+      'team@example.com'
+    );
+    expect(url.startsWith('mailto:team@example.com?subject=')).toBe(true);
+    const params = new URLSearchParams(url.split('?')[1]);
+    expect(params.get('subject')).toBe('Website enquiry from Jane Doe, Acme');
+    expect(params.get('body')).toBe(
+      'Name: Jane Doe\nCompany: Acme\nEmail: jane@example.com\nInterested in: Healthcare\n\nHi & thanks'
+    );
   });
 });

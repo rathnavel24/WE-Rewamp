@@ -19,14 +19,21 @@ export function EnquiryForm({ initialTopics, venture }: EnquiryFormProps) {
     venture
   });
 
-  if (status === 'sent') {
+  if (status === 'sent' || status === 'emailed') {
     return (
       <div className={s.sent} role="status">
-        <Tile icon="check" size="xl" tone={GREEN} solid />
+        <Tile icon={status === 'emailed' ? 'mail' : 'check'} size="xl" tone={GREEN} solid />
         <span className="t-h1">Thank you, {name.trim().split(' ')[0] || 'there'}.</span>
-        <p className={`t-body-lg ${s.sentText}`}>
-          Your message is with the WalletEdge Global team. We’ll reply within one business day.
-        </p>
+        {status === 'emailed' ? (
+          <p className={`t-body-lg ${s.sentText}`}>
+            Your email app has opened with your enquiry ready to go. Press send and we’ll reply within one business day.
+            If it didn’t open, write to us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+          </p>
+        ) : (
+          <p className={`t-body-lg ${s.sentText}`}>
+            Your message is with the WalletEdge Global team. We’ll reply within one business day.
+          </p>
+        )}
         <div className={s.sentActions}>
           <Button to={ROUTES.services} variant="inverse" icon="arrow_forward">
             Explore our services

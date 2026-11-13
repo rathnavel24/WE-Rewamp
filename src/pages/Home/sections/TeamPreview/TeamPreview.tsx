@@ -9,7 +9,7 @@ export function TeamPreview() {
     <Section data-screen-label="Team">
       <SectionHeader
         kicker="Our team"
-        title="Experienced leadership across the group"
+        title="Leadership Team"
         layout="split"
         lead="Our founders and board set the direction of the group, supported by dedicated leaders for each business."
         action={
