@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { AppLink, Card, Icon, Section, SectionHeader } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { CONTACT_EMAIL, CORPORATE_OFFICES, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
+import { CONTACT_EMAIL, ENQUIRY_TOPICS, OFFICES } from '@/content/site';
 import { isVentureId, VENTURES } from '@/content/ventures';
 import { EnquiryForm } from '@/features/enquiry';
 import s from './ContactPage.module.css';
@@ -40,7 +40,7 @@ export function ContactPage() {
           lead="Send us an enquiry and we will connect you with the relevant company in the group."
         />
 
-        {/* Offices: a ruled directory, one block per office, then the corporate offices in Dubai. */}
+        {/* Offices: a ruled directory, one block per office. */}
         <div className={s.offices}>
           {OFFICES.map((o, i) => (
             <address key={o.country} className={s.office}>
@@ -78,25 +78,7 @@ export function ContactPage() {
               </dl>
             </address>
           ))}
-          <section className={s.office} aria-labelledby="contact-corporate">
-            <h2 id="contact-corporate" className={s.country}>
-              Corporate offices, Dubai
-            </h2>
-            <div className={s.corporate}>
-              {CORPORATE_OFFICES.map((o) => (
-                <address key={o.companies[0]} className={s.corporateItem}>
-                  {o.companies.map((name) => (
-                    <span key={name} className={s.addressFirst}>
-                      {name}
-                    </span>
-                  ))}
-                  {o.addressLines.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </address>
-              ))}
-            </div>
-          </section>
+          {/* The corporate offices aren't listed here: the site footer, directly below, lists them all. */}
         </div>
       </div>
 

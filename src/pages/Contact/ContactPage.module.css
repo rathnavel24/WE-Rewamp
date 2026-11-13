@@ -57,22 +57,6 @@
   color: var(--text-strong);
 }
 /* One per row, so each address keeps its lines instead of wrapping in a narrow column. */
-.corporate {
-  display: grid;
-  gap: var(--space-4);
-}
-.corporateItem {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-style: normal;
-  font-size: var(--fs-small);
-  line-height: 1.5;
-  color: var(--text-muted);
-}
-.corporateItem .addressFirst {
-  font-weight: var(--fw-semibold);
-}
 .lines {
   display: flex;
   flex-direction: column;

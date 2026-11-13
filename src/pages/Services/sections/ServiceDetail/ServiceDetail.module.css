@@ -223,6 +223,8 @@ section:not(:has(.wrap)) + section .wrap {
 }
 /* With no descriptions in the section (consulting) there is nothing to separate from, and a rule would stop at the column. */
 .plain .points {
+  /* One item per line: the lists are short, and a second track only made longer items wrap early. */
+  grid-template-columns: minmax(0, 1fr);
   margin-top: var(--space-3);
   padding-top: 0;
   border-top: 0;
@@ -253,7 +255,34 @@ section:not(:has(.wrap)) + section .wrap {
     border-top: 1px solid var(--rule);
   }
 }
+/* Tablet: plain columns (consulting's four short lists) still fit two across, so they keep the 2×2 grid. */
+@media (min-width: 601px) and (max-width: 900px) {
+  .plain {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .plain .column:nth-child(odd) {
+    padding-right: var(--space-6);
+  }
+  .plain .column:nth-child(even) {
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--rule);
+  }
+  .plain .column + .column {
+    border-top: 0;
+  }
+  .plain .column:nth-child(n + 3) {
+    border-top: 1px solid var(--rule);
+  }
+}
 @media (max-width: 600px) {
+  /* Plain columns are just a title and a short list, so they stack tighter than the fuller ones. */
+  .plain .column,
+  .plain .column:nth-child(even) {
+    padding: var(--space-5) 0;
+  }
+  .plain .points {
+    margin-top: var(--space-2);
+  }
   .wrap {
     gap: var(--space-8);
     padding-top: var(--space-10);
@@ -277,9 +306,9 @@ section:not(:has(.wrap)) + section .wrap {
 
 /* Touch screens: 44px-tall tap targets on the linked column titles. */
 @media (pointer: coarse) {
+  /* inline-block, not inline-flex: flex would drop the space ArrowText leaves before the last word. */
   .colLink {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     min-height: 44px;
   }
 }

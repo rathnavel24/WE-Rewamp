@@ -196,7 +196,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     menuLine: 'Financial recovery & claims',
     sector: 'Financial services',
     tagline:
-      'Assisting insurers where claims have been settled and recovery must be pursued under subrogation rights.',
+      'Excellence in insurance recovery and consulting services for the UAE and international maritime sectors. Protecting your interests with professional expertise and proven results.',
     about:
       'Wallet Edge Global FZC LLC operates in strategic association with V N C Claims Consultancy, India, a reputed and accredited firm with decades of proven expertise in marine recovery operations. Our specialised focus centres on assisting insurers where claims have been settled, and recovery must be pursued under subrogation rights.',
     download: { label: 'Download brochure', href: '/brochures/insurance-claims-recovery-services.pdf' },

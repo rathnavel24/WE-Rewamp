@@ -23,27 +23,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px;
+  height: 80px;
   padding-inline: clamp(28px, 4vw, 48px);
   border-right: 1px solid var(--border-subtle);
 }
+/* Always the full-colour logo, as the client supplied it — no greyscale or hover state. */
 .logo {
   display: block;
-  height: 40px;
+  height: 56px;
   width: auto;
   max-width: 170px;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.75;
-  transition:
-    filter var(--dur-fast),
-    opacity var(--dur-fast);
-}
-@media (hover: hover) {
-  .client:hover .logo {
-    filter: none;
-    opacity: 1;
-  }
 }
 /* Stand-in until a logo file exists in src/assets/clients/ */
 .wordmark {

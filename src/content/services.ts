@@ -50,7 +50,7 @@ export const SERVICES: Service[] = [
     tags: ['Insurance recovery', 'NRI investment planning'],
     tone: ORANGE,
     summary:
-      'Recovery of outstanding dues for insurance clients, and financial planning for NRIs — from shares and mutual funds to banking services.',
+      'Insurance recovery and subrogation for insurers across the UAE and the Gulf, and financial planning for NRIs — from shares and mutual funds to banking services.',
     offerings: [
       {
         icon: 'shield',
@@ -175,8 +175,20 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
   },
   financial: {
     heading: 'Insurance recovery and NRI investment planning',
-    clients: ['EMAAR', 'LIVA Insurance'],
-    dark: true,
+    // Client list from the recovery brochure (Nov 2026).
+    clients: [
+      'EMAAR',
+      'LIVA Insurance',
+      'Orient Takaful',
+      'National General Insurance',
+      'Al Wathba Insurance',
+      'Qatar Insurance Company',
+      'Al Ain Ahlia',
+      'Union Insurance',
+      'Sukoon Insurance',
+      'Al Buhaira National Insurance',
+      'RAK Insurance'
+    ],
     columns: [
       {
         title: 'Insurance claims recovery services',
