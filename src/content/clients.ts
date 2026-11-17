@@ -2,7 +2,7 @@
 export const CLIENTS = [
   'Emaar Properties',
   'Liva Insurance',
-  'Orient Insurance',
+  'Orient Takaful',
   'National General Insurance',
   'Al Wathba Insurance',
   'Qatar Insurance Company',

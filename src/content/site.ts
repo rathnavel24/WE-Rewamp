@@ -33,8 +33,8 @@ export const OFFICES: Office[] = [
     badge: 'COIMBATORE',
     icon: 'location_city',
     tone: ORANGE,
-    addressLines: ['3/365, NGGO Colony Gate, MTP Road', 'Coimbatore 641017'],
-    phone: { label: '+91 88258 98569', href: 'tel:+918825898569' }
+    addressLines: ['1st Floor, 3/365, NGGO Colony Gate', 'MTP Road, Coimbatore 641017'],
+    phone: { label: '+91 88258 98569', href: 'tel:+918825898569', whatsapp: true }
   }
 ];
 
@@ -58,7 +58,7 @@ export const CORPORATE_OFFICES: CorporateOffice[] = [
 /** The India corporate office, listed beside the Dubai ones in the footer. */
 export const INDIA_CORPORATE_OFFICE: CorporateOffice = {
   companies: ['Wallet Edge Financial Services Pvt Ltd', 'Wallet Edge Services Pvt Ltd'],
-  addressLines: ['3/365, NGGO Colony Gate, MTP Road', 'Coimbatore, Tamil Nadu, India 641017']
+  addressLines: ['1st Floor, 3/365, NGGO Colony Gate, MTP Road', 'Coimbatore, Tamil Nadu, India 641017']
 };
 
 export const ENQUIRY_TOPICS: EnquiryTopic[] = [

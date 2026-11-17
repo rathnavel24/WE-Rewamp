@@ -57,7 +57,7 @@ export function ContactPage() {
               </p>
               <dl className={s.lines}>
                 <div className={s.line}>
-                  <dt>Phone</dt>
+                  <dt>{o.phone.whatsapp ? 'Phone / WhatsApp' : 'Phone'}</dt>
                   <dd>
                     <a href={o.phone.href} className={s.link}>
                       {o.phone.label}

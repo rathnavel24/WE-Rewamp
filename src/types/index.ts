@@ -38,6 +38,8 @@ export interface Venture {
   /** Short line used in the nav mega-menu. */
   menuLine: string;
   site?: { label: string; href: string };
+  /** A direct phone line, shown beside the website. */
+  phone?: { label: string; href: string };
   stats?: Stat[];
   featTitle: string;
   features: Feature[];
@@ -168,7 +170,8 @@ export interface Office {
   icon: string;
   tone: Tone;
   addressLines: string[];
-  phone: { label: string; href: string };
+  /** `whatsapp`: the number also takes WhatsApp, so it is labelled "Phone / WhatsApp". */
+  phone: { label: string; href: string; whatsapp?: boolean };
 }
 
 /** A corporate office and the group companies it serves, listed in the footer. */

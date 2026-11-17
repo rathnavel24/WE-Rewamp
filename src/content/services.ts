@@ -120,7 +120,7 @@ export const SERVICES: Service[] = [
         icon: 'medication',
         title: 'Pharmacy',
         meta: 'Global Cure RX Pharmacy LLC',
-        desc: 'A Dubai-based online platform for authenticated medicines, wellness vitamins, cosmetics, personal care items, and certified medical or surgical equipment.',
+        desc: 'A retail pharmacy in Dubai that also takes orders online, through globalcurerx.com and WhatsApp: medicines, wellness vitamins, cosmetics, personal care items and certified medical equipment.',
         href: ROUTES.venture('globalcure')
       }
     ]
@@ -225,7 +225,8 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         href: ROUTES.venture('globalcure'),
         meta: 'Global Cure RX Pharmacy LLC · +971 50 515 2391',
         desc: VENTURES.globalcure.about,
-        points: titles(VENTURES.globalcure.features)
+        points: titles(VENTURES.globalcure.features),
+        site: VENTURES.globalcure.site
       }
     ]
   }

@@ -156,12 +156,14 @@ export const VENTURES: Record<VentureId, Venture> = {
     tone: ORANGE,
     name: 'Global Cure RX Pharmacy LLC',
     icon: 'medication',
-    menuLine: 'Online pharmacy & medical supplies',
+    menuLine: 'Retail pharmacy with online ordering',
     sector: 'Pharmacy · Dubai',
-    tagline: 'Online pharmacy and medical supplies.',
+    tagline: 'A retail pharmacy in Dubai that also takes orders online, through its website and WhatsApp.',
+    // Client's wording (16 Nov 2026): a retail outlet with e-commerce capability, ordering by website and WhatsApp.
     about:
-      'Global Cure RX Pharmacy LLC is a Dubai-based online platform providing easy access to authenticated medicines, wellness vitamins, cosmetics, personal care items, and certified medical or surgical equipment. Physically located in International City, it is a healthcare partner catering to everyday health and professional needs, with delivery across the entire United Arab Emirates.',
-    site: { label: '+971 50 515 2391', href: 'tel:+971505152391' },
+      'Global Cure RX Pharmacy LLC is a retail pharmacy in International City, Dubai, with full e-commerce capability: customers can order online through its website, globalcurerx.com, or on WhatsApp. It offers authenticated medicines, wellness vitamins, cosmetics, personal care items, and certified medical and surgical equipment, meeting everyday health and professional needs with delivery across the United Arab Emirates.',
+    site: { label: 'globalcurerx.com', href: 'https://www.globalcurerx.com' },
+    phone: { label: '+971 50 515 2391', href: 'tel:+971505152391' },
     featTitle: 'Pharmacy services',
     features: [
       {
