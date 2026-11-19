@@ -119,7 +119,7 @@ export const VENTURES: Record<VentureId, Venture> = {
     tagline: 'Championing your recovery, elevating your healthy future: expert home nursing in Dubai.',
     about:
       'CareHub Healthcare LLC understands that medical needs are rarely singular; they require a multi-disciplinary approach that evolves with the patient. We have meticulously designed a “Healthcare Hub” that integrates acute clinical nursing, specialised chronic care, and preventative wellness services under one roof. Every service we provide is delivered by DHA-licensed professionals who adhere to international safety protocols, ensuring that whether you require a simple blood test or complex ventilator support, you receive hospital-grade excellence in the privacy of your home.',
-    site: { label: 'carehubuae.com', href: 'https://carehubuae.com' },
+    site: { label: 'carehubuae.com', href: 'https://www.carehubuae.com' },
     featTitle: 'DHA-licensed home healthcare & nursing',
     features: [
       {

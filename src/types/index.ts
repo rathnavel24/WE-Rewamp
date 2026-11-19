@@ -137,8 +137,6 @@ export interface ServiceColumn {
 export interface ServiceDetail {
   /** One-line statement beside the service name. */
   heading: string;
-  /** Clients named for this service in the content document. */
-  clients?: string[];
   columns: ServiceColumn[];
   /** Set the section on the dark band. */
   dark?: boolean;

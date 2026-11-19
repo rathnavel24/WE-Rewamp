@@ -103,6 +103,15 @@
   line-height: var(--lh-normal);
   color: var(--text-muted);
 }
+/* Each address line on its own row. Where a column is too narrow for a whole line, it breaks only between the
+   comma-separated parts ("Al Karama" never splits), so the address keeps its shape at every width. */
+.line {
+  display: block;
+}
+.part {
+  display: inline-block;
+  max-width: 100%;
+}
 
 .bottom {
   padding-top: var(--space-4);
@@ -168,8 +177,9 @@
   .footer {
     padding: var(--space-8) 0 calc(var(--space-4) + env(safe-area-inset-bottom));
   }
+  /* Phones: one office per row, so each address has the full width rather than half of it. */
   .grid {
-    column-gap: var(--space-4);
+    grid-template-columns: minmax(0, 1fr);
   }
   .brand {
     flex-direction: column;

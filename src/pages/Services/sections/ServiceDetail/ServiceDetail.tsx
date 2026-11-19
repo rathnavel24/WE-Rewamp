@@ -15,7 +15,14 @@ interface ServiceDetailProps {
 /** One service in full: name and statement, its offerings as ruled columns, and the companies behind it. */
 export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
   // Where the offerings already name their companies (healthcare), they aren't named twice.
-  const companies = companiesFor(x.id).filter((c) => !d.columns.some((col) => col.meta?.startsWith(c.name)));
+  // Otherwise they follow the columns, so each company sits under its own platform (WhiteBlue under InsureLiv).
+  const order = (v?: string) => {
+    const i = d.columns.findIndex((col) => col.venture && col.venture === v);
+    return i < 0 ? d.columns.length : i;
+  };
+  const companies = companiesFor(x.id)
+    .filter((c) => !d.columns.some((col) => col.meta?.startsWith(c.name)))
+    .sort((a, b) => order(a.venture) - order(b.venture));
   // On the dark band the stylesheet sets a lighter --tone-ink; an inline value here would override it.
   const vars = { '--tone': x.tone.accent, ...(!d.dark && { '--tone-ink': x.tone.ink }) } as CSSProperties;
   return (
@@ -34,16 +41,6 @@ export function ServiceDetail({ service: x, detail: d }: ServiceDetailProps) {
           <div className={s.intro}>
             <p className={s.heading}>{d.heading}</p>
             <p className={s.summary}>{x.summary}</p>
-            {d.clients && (
-              <p className={s.clients}>
-                <span className={s.clientsLabel}>Clients include</span>
-                {d.clients.map((c) => (
-                  <span key={c} className={s.client}>
-                    {c}
-                  </span>
-                ))}
-              </p>
-            )}
           </div>
         </header>
 

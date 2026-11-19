@@ -41,8 +41,8 @@ export function Hero() {
         </div>
 
         <p data-reveal="up" data-delay="160" className={`t-lead ${s.lead}`}>
-          WalletEdge Global is the parent group of seven companies across the UAE and India, delivering IT &amp; BPO,
-          financial services, consulting and healthcare.
+          WalletEdge Global powers seven specialized companies across the UAE and India in IT &amp; BPO, financial
+          services, consulting, and healthcare.
         </p>
 
         <div data-reveal="up" data-delay="240" className={s.buttons}>

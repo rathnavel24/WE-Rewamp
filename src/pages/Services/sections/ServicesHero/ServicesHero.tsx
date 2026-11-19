@@ -28,7 +28,7 @@ export function ServicesHero() {
           </AppLink>
         ))}
       </nav>
-      <DeliveredBy companies={PARENT_COMPANIES} label="Parent companies" />
+      <DeliveredBy companies={PARENT_COMPANIES} label="Holding Companies" />
     </Section>
   );
 }

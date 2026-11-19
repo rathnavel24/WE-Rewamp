@@ -5,7 +5,7 @@ import { GREEN, ORANGE } from './tones';
 /** The site's official address (from the client's content document). Canonical and share links use it. */
 export const SITE_URL = 'https://walletedgeglobal.com';
 export const SITE_NAME = 'WalletEdge Global';
-export const SITE_TAGLINE = 'Parent Group';
+export const SITE_TAGLINE = 'Holding Company';
 export const LOGO_ALT = 'WalletEdge — IT & BPO | Financial Services | Consulting | Health Care';
 export const CONTACT_EMAIL = 'admin@walletedgeglobal.com';
 
@@ -33,7 +33,7 @@ export const OFFICES: Office[] = [
     badge: 'COIMBATORE',
     icon: 'location_city',
     tone: ORANGE,
-    addressLines: ['1st Floor, 3/365, NGGO Colony Gate', 'MTP Road, Coimbatore 641017'],
+    addressLines: ['1st Floor, 3/365, NGGO Colony Gate', 'MTP Road, Coimbatore, Tamil Nadu, India 641017'],
     phone: { label: '+91 88258 98569', href: 'tel:+918825898569', whatsapp: true }
   }
 ];

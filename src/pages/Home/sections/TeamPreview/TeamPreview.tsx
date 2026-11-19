@@ -11,7 +11,6 @@ export function TeamPreview() {
         kicker="Our team"
         title="Leadership Team"
         layout="split"
-        lead="Our founders and board set the direction of the group, supported by dedicated leaders for each business."
         action={
           <Button to={ROUTES.team} variant="link" icon="arrow_outward">
             Meet the executive team

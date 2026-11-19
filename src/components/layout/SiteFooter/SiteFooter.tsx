@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { AppLink } from '@/components/ui/AppLink';
 import { companyHref, GROUP_COMPANIES } from '@/content/companies';
 import { CORPORATE_OFFICES, INDIA_CORPORATE_OFFICE } from '@/content/site';
@@ -59,9 +60,19 @@ function Office({ office: o }: { office: CorporateOffice }) {
         ))}
       </span>
       <span className={s.address}>
-        {o.addressLines[0]}
-        <br />
-        {o.addressLines[1]}
+        {o.addressLines.map((line) => (
+          <span key={line} className={s.line}>
+            {line.split(', ').map((part, i, parts) => (
+              <Fragment key={part}>
+                {i > 0 && ' '}
+                <span className={s.part}>
+                  {part}
+                  {i < parts.length - 1 && ','}
+                </span>
+              </Fragment>
+            ))}
+          </span>
+        ))}
       </span>
     </address>
   );

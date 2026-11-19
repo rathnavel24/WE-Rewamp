@@ -72,20 +72,6 @@ section:not(:has(.wrap)) + section .wrap {
   line-height: var(--lh-relaxed);
   color: var(--muted);
 }
-.clients {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-2) var(--space-5);
-  padding-top: var(--space-2);
-}
-.clientsLabel {
-  font: var(--fw-medium) var(--fs-label)/1 var(--font-mono);
-  color: var(--muted);
-}
-.client {
-  font: var(--fw-semibold) var(--fs-body-lg)/1.2 var(--font-sans);
-}
 
 /* ---------- Offerings: open columns split by hairlines ---------- */
 .columns {

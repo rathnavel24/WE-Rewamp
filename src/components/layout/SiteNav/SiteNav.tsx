@@ -92,7 +92,7 @@ export function SiteNav() {
                           <span className={s.menuText}>
                             <span className={s.menuName}>{c.name}</span>
                             <span className={s.menuLine}>
-                              {c.parent ? 'Parent company' : SERVICES.find((x) => x.id === c.service)?.title} ·{' '}
+                              {c.parent ? 'Holding company' : SERVICES.find((x) => x.id === c.service)?.title} ·{' '}
                               {COUNTRY_LABELS[c.country]}
                             </span>
                           </span>

@@ -104,10 +104,10 @@ export const SERVICES: Service[] = [
     icon: 'medical_services',
     title: 'Healthcare Services',
     short: 'Healthcare',
-    desc: 'Major stakes in DHA-licensed home healthcare and pharmacy companies in Dubai.',
+    desc: 'DHA-licensed home healthcare and pharmacy services in Dubai, booked online.',
     tags: ['Home healthcare', 'Pharmacy'],
     tone: ORANGE,
-    summary: 'WalletEdge Global owns major stakes in the following DHA-licensed healthcare companies in Dubai.',
+    summary: 'Book a wide range of DHA-licensed healthcare services online, including homecare and pharmacy support.',
     offerings: [
       {
         icon: 'home_health',
@@ -175,20 +175,6 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
   },
   financial: {
     heading: 'Insurance recovery and NRI investment planning',
-    // Client list from the recovery brochure (Nov 2026).
-    clients: [
-      'EMAAR',
-      'LIVA Insurance',
-      'Orient Takaful',
-      'National General Insurance',
-      'Al Wathba Insurance',
-      'Qatar Insurance Company',
-      'Al Ain Ahlia',
-      'Union Insurance',
-      'Sukoon Insurance',
-      'Al Buhaira National Insurance',
-      'RAK Insurance'
-    ],
     columns: [
       {
         title: 'Insurance claims recovery services',
@@ -209,7 +195,7 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
     columns: consulting.offerings.map((o) => ({ title: o.title, points: o.items }))
   },
   healthcare: {
-    heading: 'Major stakes in DHA-licensed healthcare',
+    heading: 'DHA-Licensed Healthcare Service',
     columns: [
       {
         title: 'Home healthcare',
@@ -217,7 +203,8 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         href: ROUTES.venture('carehub'),
         meta: 'CareHub Healthcare LLC · carehubuae.com',
         desc: VENTURES.carehub.about,
-        points: titles(VENTURES.carehub.features)
+        points: titles(VENTURES.carehub.features),
+        site: VENTURES.carehub.site
       },
       {
         title: 'Pharmacy',
