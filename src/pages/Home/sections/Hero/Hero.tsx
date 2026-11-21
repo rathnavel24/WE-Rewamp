@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import { Button, Icon, Section, Stat, Tile } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
+import { PHOTOS } from '@/content/assets';
 import { HERO_GROUP_CHIP, HERO_ORBIT, HERO_SECTORS, HERO_SECTORS_SENTENCE, HERO_STATS } from '@/content/hero';
 import { GREEN } from '@/content/tones';
 import { useCycle } from '@/hooks/useCycle';
@@ -17,7 +18,16 @@ export function Hero() {
   const toneVars = { '--tone': sector.tone.accent, '--tone-soft': sector.tone.soft } as CSSProperties;
 
   return (
-    <Section data-screen-label="Hero" pt="hero" pb="sm" fill className={s.hero} innerClassName={s.layout} gap="none">
+    <Section
+      data-screen-label="Hero"
+      pt="hero"
+      pb="sm"
+      fill
+      photo={PHOTOS.dubaiSkyline}
+      className={s.hero}
+      innerClassName={s.layout}
+      gap="none"
+    >
       <div className={s.gridBg} aria-hidden="true" />
       <div className={s.copy}>
         <h1 data-reveal="up" data-delay="80" className="t-display-1">

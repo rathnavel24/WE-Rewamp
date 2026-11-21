@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
 import { CtaBanner } from '@/components/ui';
+import { PHOTOS, venturePhoto } from '@/content/assets';
 import { ROUTES } from '@/config/routes';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { isVentureId, VENTURE_LIST, VENTURES } from '@/content/ventures';
@@ -39,6 +40,7 @@ function VentureView({ v }: { v: Venture }) {
         title={`Speak with the ${v.name} team`}
         cta="Send an enquiry"
         to={ROUTES.enquire({ venture: v.id })}
+        photo={venturePhoto(v.id)?.banner ?? PHOTOS.glassTowers}
       />
       <MoreVentures ventures={VENTURE_LIST.filter((o) => o.id !== v.id)} />
     </div>

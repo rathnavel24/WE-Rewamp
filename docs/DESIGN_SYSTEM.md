@@ -47,22 +47,35 @@ Every page is built from one set of **tokens** (`src/styles/tokens.css`) and a s
 
 ## Components
 
-| Component       | Purpose                                                                                              | Key props                                                                                                                     |
-| --------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `Section`       | Page band; owns vertical rhythm + container                                                          | `pt`/`pb`: `none · sm · md · hero`, `tone="surface · inverse"`, `gap`, `fill` (landing band fits the first screen on desktop) |
-| `SectionHeader` | Kicker + title + lead + action                                                                       | `size`, `layout="stack \| split"`, `as`, `kicker`, `action`                                                                   |
-| `Grid`          | Responsive auto-column grid                                                                          | `min` (px), `max` (column cap), `gap`, `mode="fit \| fill"`                                                                   |
-| `Swipe`         | A `Grid` on tablet/desktop; on phones a snap-scrolling swipe row with the next card peeking and dots | `label`, `peek` (% width), plus all `Grid` props                                                                              |
-| `Card`          | All boxed content                                                                                    | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive`                                                          |
-| `Button`        | Every CTA                                                                                            | `variant` (primary, accent, secondary, inverse, outline-dark, link), `size`, `icon`, `block`, `to`                            |
-| `Chip`          | Tags, badges, filters, toggles                                                                       | `variant` (7), `size`, `mono`, `icon`, `leading`, `to`, `onToggle`/`selected`                                                 |
-| `Tile`          | Icon in a rounded square                                                                             | `size="xs…xl"`, `tone`, `solid`, `neutral`, `round`                                                                           |
-| `Avatar`        | Initials avatar                                                                                      | `name`, `tone`, `size="md \| xl"`                                                                                             |
-| `Stat`          | Figure + caption, with count-up                                                                      | `value`, `label`, `count`, `suffix`, `variant`, `size`, `ink`                                                                 |
-| `SectionIndex`  | "01 —— Label" kicker                                                                                 | `no`, `label`, `tone`                                                                                                         |
-| `CtaBanner`     | Closing dark CTA strip                                                                               | `title`, `cta`, `to`                                                                                                          |
+| Component       | Purpose                                                                                              | Key props                                                                                                                                                          |
+| --------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Section`       | Page band; owns vertical rhythm + container                                                          | `pt`/`pb`: `none · sm · md · hero`, `tone="surface · inverse"`, `gap`, `fill` (landing band fits the first screen on desktop), `photo` (backdrop photo, see below) |
+| `SectionHeader` | Kicker + title + lead + action                                                                       | `size`, `layout="stack \| split"`, `as`, `kicker`, `action`                                                                                                        |
+| `Grid`          | Responsive auto-column grid                                                                          | `min` (px), `max` (column cap), `gap`, `mode="fit \| fill"`                                                                                                        |
+| `Swipe`         | A `Grid` on tablet/desktop; on phones a snap-scrolling swipe row with the next card peeking and dots | `label`, `peek` (% width), plus all `Grid` props                                                                                                                   |
+| `Card`          | All boxed content                                                                                    | `variant` (8), `padding="sm \| md \| lg \| xl"`, `to`, `interactive`                                                                                               |
+| `Button`        | Every CTA                                                                                            | `variant` (primary, accent, secondary, inverse, outline-dark, link), `size`, `icon`, `block`, `to`                                                                 |
+| `Chip`          | Tags, badges, filters, toggles                                                                       | `variant` (7), `size`, `mono`, `icon`, `leading`, `to`, `onToggle`/`selected`                                                                                      |
+| `Tile`          | Icon in a rounded square                                                                             | `size="xs…xl"`, `tone`, `solid`, `neutral`, `round`                                                                                                                |
+| `Avatar`        | Initials avatar                                                                                      | `name`, `tone`, `size="md \| xl"`                                                                                                                                  |
+| `Stat`          | Figure + caption, with count-up                                                                      | `value`, `label`, `count`, `suffix`, `variant`, `size`, `ink`                                                                                                      |
+| `SectionIndex`  | "01 —— Label" kicker                                                                                 | `no`, `label`, `tone`                                                                                                                                              |
+| `CtaBanner`     | Closing dark CTA strip                                                                               | `title`, `cta`, `to`, `photo` (toned into the green)                                                                                                               |
 
 Import from the barrel: `import { Button, Card, Section } from '@/components/ui';`
+
+### Photography
+
+Photos live in `src/assets/photos` (sources and licences in `SOURCES.md` there) and are exported as `PHOTOS` from
+`src/content/assets.ts`; a venture's own hero/banner photo comes from `venturePhoto(id)`. They are decorative only
+(`alt=""`) and never sit under text:
+
+- `Section photo={…}` — right-hand backdrop for a hero that fades into the canvas towards the copy. Tune it per page
+  with `--photo-height`, `--photo-position`, `--photo-reveal` (where it becomes fully opaque, from the left),
+  `--photo-fade-top`, `--photo-fade-from` / `--photo-fade-to` (bottom fade). Below 1024px it becomes a faint wash.
+- `CtaBanner photo={…}` and the Home contact panel — the photo is blended (`luminosity`) into the brand green.
+- Text that must sit over a photo goes on a frosted panel (`--glass-frost`, `--glass-edge`), as in the venture hero.
+- The page background is `--gradient-canvas`: soft sage sweeps over `--color-canvas`.
 
 ### Card padding ↔ radius
 

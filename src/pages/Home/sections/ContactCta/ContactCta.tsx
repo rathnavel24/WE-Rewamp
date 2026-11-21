@@ -1,5 +1,6 @@
 import { Button, Section } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
+import { PHOTOS } from '@/content/assets';
 import { CONTACT_EMAIL } from '@/content/site';
 import s from './ContactCta.module.css';
 
@@ -7,6 +8,7 @@ export function ContactCta() {
   return (
     <Section data-screen-label="Contact CTA" pt="none">
       <div data-reveal="scale" className={`on-dark ${s.panel}`}>
+        <img src={PHOTOS.glassTowers} alt="" aria-hidden="true" loading="lazy" decoding="async" className={s.photo} />
         <div className={s.glow} aria-hidden="true" />
         <div className={s.layout}>
           <div className={s.copy}>

@@ -5,6 +5,19 @@
   background: var(--gradient-brand);
   padding: clamp(32px, 6vw, 80px);
 }
+/* Photo on the right half, toned into the green and fading out under the copy. */
+.photo {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 64%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  mix-blend-mode: luminosity;
+  mask-image: linear-gradient(to right, transparent, #000 55%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 55%);
+  pointer-events: none;
+}
 .glow {
   position: absolute;
   inset: 0;
@@ -46,6 +59,12 @@
   .panel {
     padding: var(--space-8) var(--space-5) var(--space-5);
     border-radius: var(--radius-xl);
+  }
+  .photo {
+    width: 100%;
+    opacity: 0.28;
+    mask-image: linear-gradient(to bottom, transparent, #000 70%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 70%);
   }
   .layout {
     gap: var(--space-8);

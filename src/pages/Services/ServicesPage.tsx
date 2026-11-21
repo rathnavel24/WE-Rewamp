@@ -1,6 +1,7 @@
 import { CtaBanner } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
+import { PHOTOS } from '@/content/assets';
 import { SERVICES, SERVICE_DETAILS } from '@/content/services';
 import { ServiceDetail, ServicesHero } from './sections';
 
@@ -16,7 +17,12 @@ export function ServicesPage() {
       {SERVICES.map((x) => (
         <ServiceDetail key={x.id} service={x} detail={SERVICE_DETAILS[x.id]} />
       ))}
-      <CtaBanner title="Discuss your requirements with our team" cta="Contact us" to={ROUTES.contact} />
+      <CtaBanner
+        title="Discuss your requirements with our team"
+        cta="Contact us"
+        to={ROUTES.contact}
+        photo={PHOTOS.burjKhalifa}
+      />
     </>
   );
 }

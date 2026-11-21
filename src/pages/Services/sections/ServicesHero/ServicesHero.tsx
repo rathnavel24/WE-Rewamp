@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { AppLink, Icon, Section, SectionHeader } from '@/components/ui';
+import { PHOTOS } from '@/content/assets';
 import { PARENT_COMPANIES } from '@/content/companies';
 import { SERVICES } from '@/content/services';
 import { DeliveredBy } from '@/features/companies';
@@ -7,7 +8,14 @@ import s from './ServicesHero.module.css';
 
 export function ServicesHero() {
   return (
-    <Section data-screen-label="Services hero" pt="hero" pb="sm" gap="md">
+    <Section
+      data-screen-label="Services hero"
+      pt="hero"
+      pb="sm"
+      gap="md"
+      photo={PHOTOS.dubaiWaterfront}
+      className={s.hero}
+    >
       <SectionHeader
         as="h1"
         size="display-1"

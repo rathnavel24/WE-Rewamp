@@ -76,6 +76,16 @@
   flex-direction: column;
   gap: var(--space-5);
 }
+/* Over a backdrop photo the description sits on frosted glass so it stays readable. */
+.onPhoto {
+  padding: var(--space-6);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-xl);
+  background: var(--glass-frost);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  box-shadow: var(--shadow-md);
+}
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -87,6 +97,10 @@
 
 /* ---------- Phones ---------- */
 @media (max-width: 600px) {
+  .onPhoto {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
   .heroGrid {
     gap: var(--space-6);
   }

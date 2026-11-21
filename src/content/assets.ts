@@ -1,6 +1,12 @@
 import type { GroupCompany, VentureId } from '@/types';
 import { createAssetLookup } from '@/lib/assets';
 import walletEdgeLogo from '@/assets/brand/walletedge-logo.png';
+import dubaiSkyline from '@/assets/photos/dubai-skyline.webp';
+import dubaiWaterfront from '@/assets/photos/dubai-waterfront.webp';
+import glassTowers from '@/assets/photos/glass-towers.webp';
+import portCranes from '@/assets/photos/port-cranes.webp';
+import burjKhalifa from '@/assets/photos/burj-khalifa.webp';
+import cargoShip from '@/assets/photos/cargo-ship.webp';
 import { GROUP_COMPANIES } from './companies';
 
 /*
@@ -32,3 +38,19 @@ export const ventureLogo = (id: VentureId): string | undefined => {
   const runBy = GROUP_COMPANIES.find((c) => c.venture === id);
   return logos(id) ?? (runBy ? logos(runBy.name) : undefined);
 };
+
+/** Photography — src/assets/photos. Decorative backdrops for heroes and dark panels (always alt=""). */
+export const PHOTOS = {
+  dubaiSkyline,
+  dubaiWaterfront,
+  glassTowers,
+  portCranes,
+  burjKhalifa,
+  cargoShip
+} as const;
+
+/** A platform's hero backdrop, where its subject has one. */
+const VENTURE_PHOTOS: Partial<Record<VentureId, { hero: string; banner: string }>> = {
+  recovery: { hero: portCranes, banner: cargoShip }
+};
+export const venturePhoto = (id: VentureId) => VENTURE_PHOTOS[id];

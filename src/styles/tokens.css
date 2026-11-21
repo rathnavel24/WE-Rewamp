@@ -62,6 +62,11 @@
   --color-divider: var(--sand-300); /* solid hairlines between list rows */
   --color-inverse: var(--forest-900); /* dark bands & panels */
   --color-inverse-2: var(--stone-900); /* darkest — ink cards */
+  /* Page backdrop: soft sage sweeps over the paper, like light on silk. */
+  --gradient-canvas:
+    radial-gradient(1200px 520px at 100% 0%, var(--glow-white), transparent 70%),
+    radial-gradient(900px 700px at 0% 38%, var(--green-50), transparent 70%),
+    radial-gradient(1100px 800px at 100% 72%, var(--green-50), transparent 68%);
   --gradient-brand: linear-gradient(115deg, var(--green-800), var(--forest-900) 72%); /* call-to-action panels */
 
   /* Brand */
@@ -116,6 +121,8 @@
   /* Glass surfaces (sticky nav) */
   --glass: rgba(255, 255, 255, 0.97);
   --glass-clear: rgba(255, 255, 255, 0);
+  --glass-frost: rgba(255, 255, 255, 0.78); /* text panels over photography */
+  --glass-edge: rgba(255, 255, 255, 0.7);
 
   /* Glows (ambient blobs).
      Light surfaces may take the orange accent glow. Dark surfaces must only use the

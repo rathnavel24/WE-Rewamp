@@ -15,7 +15,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-canvas);
+  background: var(--gradient-canvas), var(--color-canvas);
   color: var(--text-strong);
   font: var(--fw-regular) var(--fs-body)/var(--lh-normal) var(--font-sans);
   -webkit-font-smoothing: antialiased;

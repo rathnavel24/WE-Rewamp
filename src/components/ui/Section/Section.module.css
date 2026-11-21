@@ -66,3 +66,48 @@
 .gap-lg {
   gap: var(--stack-section);
 }
+
+/* Backdrop photo (heroes). It sits on the right and dissolves into the canvas towards the copy and the next
+   band, so text always lands on the page colour, never on the picture. */
+.withPhoto {
+  overflow: hidden;
+}
+.photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(62%, 980px);
+  height: var(--photo-height, 100%);
+  object-fit: cover;
+  object-position: var(--photo-position, center top);
+  pointer-events: none;
+  /* Eased fades (the mid stop softens the edge): in from the copy side, optionally in from the top, and out at the
+     bottom. Pages tune the stops with the --photo-* custom properties. */
+  --photo-mask-x: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.45) calc(var(--photo-reveal, 38%) * 0.6),
+    #000 var(--photo-reveal, 38%)
+  );
+  --photo-mask-y: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--photo-fade-top, 0%),
+    #000 var(--photo-fade-from, 70%),
+    transparent var(--photo-fade-to, 100%)
+  );
+  mask-image: var(--photo-mask-x), var(--photo-mask-y);
+  -webkit-mask-image: var(--photo-mask-x), var(--photo-mask-y);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+/* Below the two-column layout the copy spans the full width: the photo becomes a soft wash in the top corner. */
+@media (max-width: 1023px) {
+  .photo {
+    width: 100%;
+    height: min(100%, 520px);
+    opacity: 0.32;
+    mask-image: linear-gradient(to bottom, #000 30%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  }
+}

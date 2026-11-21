@@ -1,4 +1,6 @@
 .banner {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -9,13 +11,34 @@
   background: var(--gradient-brand);
 }
 .title {
+  position: relative;
   max-width: 620px;
+}
+.banner > :last-child {
+  position: relative;
+}
+/* Photo on the right half, dissolving into the green towards the title. */
+.photo {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 62%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  mix-blend-mode: luminosity;
+  mask-image: linear-gradient(to right, transparent, #000 60%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 60%);
+  pointer-events: none;
 }
 @media (max-width: 600px) {
   .banner {
     padding: var(--space-6) var(--space-5);
     border-radius: var(--radius-lg);
     gap: var(--space-5);
+  }
+  .photo {
+    width: 100%;
+    opacity: 0.3;
   }
   .banner > :last-child {
     width: 100%;

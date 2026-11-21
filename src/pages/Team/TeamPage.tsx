@@ -1,6 +1,7 @@
 import { CtaBanner, Grid, Section, SectionHeader } from '@/components/ui';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { ROUTES } from '@/config/routes';
+import { PHOTOS } from '@/content/assets';
 import { TEAM } from '@/content/team';
 import { PersonCard } from '@/features/team';
 import s from './TeamPage.module.css';
@@ -24,7 +25,13 @@ export function TeamPage() {
         </Grid>
       </Section>
 
-      <CtaBanner title="Contact the leadership team" cta="Contact us" to={ROUTES.contact} pt="none" />
+      <CtaBanner
+        title="Contact the leadership team"
+        cta="Contact us"
+        to={ROUTES.contact}
+        pt="none"
+        photo={PHOTOS.glassTowers}
+      />
     </>
   );
 }

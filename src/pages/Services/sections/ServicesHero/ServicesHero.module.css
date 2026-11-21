@@ -1,3 +1,11 @@
+/* The skyline stays behind the heading and fades out before the lead and the contents strip. */
+.hero {
+  --photo-height: 400px;
+  --photo-position: center 40%;
+  --photo-fade-from: 52%;
+  --photo-fade-to: 84%;
+}
+
 /* Four columns under one strong rule, split by hairlines. */
 .contents {
   display: grid;

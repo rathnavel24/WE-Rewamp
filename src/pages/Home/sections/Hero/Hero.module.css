@@ -1,4 +1,8 @@
+/* The skyline eases in from well behind the copy and fades out under the nav and into the next band. */
 .hero {
+  --photo-reveal: 56%;
+  --photo-fade-top: 26%;
+  --photo-fade-from: 72%;
   overflow: hidden;
   background: radial-gradient(720px circle at 78% 42%, var(--glow-primary), transparent 62%), var(--color-canvas);
 }

@@ -18,6 +18,8 @@ interface SectionProps extends HTMLAttributes<HTMLElement> {
   gap?: 'none' | 'md' | 'lg';
   /** Landing band: on desktop it fills the first screen exactly, with its content centred in it. */
   fill?: boolean;
+  /** Decorative photo behind the content: full-bleed on the right, fading into the canvas towards the copy. */
+  photo?: string;
   children: ReactNode;
   [dataAttr: `data-${string}`]: string | undefined;
 }
@@ -31,6 +33,7 @@ export function Section({
   innerClassName,
   gap = 'lg',
   fill = false,
+  photo,
   className,
   children,
   ...rest
@@ -44,10 +47,12 @@ export function Section({
         fill && s.fill,
         tone === 'inverse' && cx(s.inverse, 'on-dark'),
         tone === 'surface' && s.surface,
+        photo && s.withPhoto,
         className
       )}
       {...rest}
     >
+      {photo && <img src={photo} alt="" aria-hidden="true" decoding="async" className={s.photo} />}
       {contained ? (
         <div className={cx('container', s.inner, s[`gap-${gap}`], innerClassName)}>{children}</div>
       ) : (

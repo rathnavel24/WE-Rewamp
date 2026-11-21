@@ -1,13 +1,15 @@
 import { AppLink, Button, Chip, Icon, Section, Tile } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
-import { ventureLogo } from '@/content/assets';
+import { cx } from '@/lib/cx';
+import { ventureLogo, venturePhoto } from '@/content/assets';
 import { SERVICES, serviceHref } from '@/content/services';
 import type { Venture } from '@/types';
 import s from './VentureHero.module.css';
 
 export function VentureHero({ v }: { v: Venture }) {
+  const photo = venturePhoto(v.id)?.hero;
   return (
-    <Section data-screen-label="Venture hero" pt="hero" pb="sm" gap="md">
+    <Section data-screen-label="Venture hero" pt="hero" pb="sm" gap="md" photo={photo}>
       <nav data-reveal="fade" aria-label="Breadcrumb" className={s.crumbs}>
         <AppLink to={serviceHref(v.service)} className={s.back}>
           <Icon name="arrow_back" size={17} />
@@ -42,7 +44,7 @@ export function VentureHero({ v }: { v: Venture }) {
             {v.tagline}
           </p>
         </div>
-        <div data-reveal="up" data-delay="180" className={s.aboutCol}>
+        <div data-reveal="up" data-delay="180" className={cx(s.aboutCol, photo && s.onPhoto)}>
           <p className="t-body-lg">{v.about}</p>
           <div className={s.actions}>
             <Button to={ROUTES.enquire({ venture: v.id })} icon="arrow_forward" className={s.enquire}>
