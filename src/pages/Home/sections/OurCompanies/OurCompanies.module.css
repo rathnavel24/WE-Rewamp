@@ -20,9 +20,25 @@
   vertical-align: middle;
   text-align: left;
 }
+/* The company column hugs its longest name and the role column takes the rest, so each role sits close to
+   its company (client tracker, WE058). */
 .company {
-  width: 68%;
+  width: 50%;
   font-weight: inherit;
+}
+@media (min-width: 1024px) {
+  .company {
+    width: auto;
+  }
+  .table tbody > tr > .company {
+    padding-right: var(--space-12);
+  }
+  .name {
+    white-space: nowrap;
+  }
+  .role {
+    width: 100%;
+  }
 }
 .companyCell {
   display: flex;
