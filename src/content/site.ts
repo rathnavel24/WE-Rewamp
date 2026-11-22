@@ -24,7 +24,11 @@ export const OFFICES: Office[] = [
     badge: 'HQ',
     icon: 'apartment',
     tone: GREEN,
-    addressLines: ['Wallet Edge Global FZC LLC', 'SPC Freezone, Sharjah'],
+    addressLines: [
+      'Wallet Edge Global FZC LLC',
+      'Breeze Business Center, Al Hamsah Building',
+      'Office 307, 3rd floor, Al Karama, Dubai, UAE'
+    ],
     phone: { label: '+971 50 946 4234', href: 'tel:+971509464234' }
   },
   {

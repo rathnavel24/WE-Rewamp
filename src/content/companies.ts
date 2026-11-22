@@ -12,7 +12,7 @@ export const GROUP_COMPANIES: GroupCompany[] = [
     country: 'UAE',
     role: 'Holding Company',
     parent: true,
-    note: 'SPC Freezone, Sharjah'
+    note: 'Al Karama, Dubai'
   },
   {
     name: 'Wallet Edge Technologies LLC',

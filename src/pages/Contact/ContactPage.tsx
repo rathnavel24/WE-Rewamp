@@ -11,7 +11,7 @@ export function ContactPage() {
   usePageMeta({
     title: 'Contact',
     description:
-      'Contact WalletEdge Global — offices in Sharjah and Dubai, UAE and Coimbatore, India. Send an enquiry and we will connect you with the relevant company in the group.'
+      'Contact WalletEdge Global — offices in Dubai, UAE and Coimbatore, India. Send an enquiry and we will connect you with the relevant company in the group.'
   });
   const [params] = useSearchParams();
   const v = params.get('venture') ?? undefined;

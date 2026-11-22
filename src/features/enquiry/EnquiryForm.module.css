@@ -26,10 +26,15 @@
   margin-bottom: var(--space-3);
   color: var(--text-on-dark-soft);
 }
+/* Five topics laid out 3 + 2 (client tracker, WE056): three auto-width columns, so the second row lines up under the first. */
 .topics {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
   gap: var(--space-2);
+}
+.topics .topic {
+  align-self: stretch;
 }
 .topic {
   padding: 8px 12px;
