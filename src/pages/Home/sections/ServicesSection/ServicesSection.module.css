@@ -13,6 +13,11 @@
   border-bottom: 1px solid var(--border-strong);
 }
 @media (min-width: 1024px) {
+  /* The header's lead and link start on the same line as the offerings below (client tracker, WE057). */
+  .header {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-16);
+  }
   .row {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     /* The service's name and its first offering share a baseline, despite their different sizes. */

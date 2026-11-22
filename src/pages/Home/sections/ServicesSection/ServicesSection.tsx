@@ -16,6 +16,7 @@ export function ServicesSection() {
         kicker="Our services"
         title="A portfolio of services across four sectors"
         layout="split"
+        className={s.header}
         lead="WalletEdge Global brings together IT & BPO, financial services, consulting and healthcare, delivered through its group companies in the UAE and India."
         action={
           <Button to={ROUTES.services} variant="link" icon="arrow_outward">
