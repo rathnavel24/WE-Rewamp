@@ -203,7 +203,11 @@ export const SERVICE_DETAILS: Record<ServiceId, ServiceDetail> = {
         href: ROUTES.venture('carehub'),
         meta: 'CareHub Healthcare LLC · carehubuae.com',
         desc: VENTURES.carehub.about,
-        points: titles(VENTURES.carehub.features),
+        // Private and home nursing share one point (client feedback, 22-Nov-2026).
+        points: [
+          'Private & home nursing',
+          ...titles(VENTURES.carehub.features).filter((t) => t !== 'Private nursing' && t !== 'Home nursing')
+        ],
         site: VENTURES.carehub.site
       },
       {
