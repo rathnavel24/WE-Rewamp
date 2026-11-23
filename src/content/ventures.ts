@@ -215,19 +215,26 @@ export const VENTURES: Record<VentureId, Venture> = {
     caseStudy: {
       kicker: 'Case focus · EMAAR Group',
       title: 'Streamlining the corporate recovery process.',
-      lead: 'EMAAR Group, an ultra-premium developer in Dubai, coordinates large property portfolios where Emaar Community Management (ECM) mandates master property insurance, public liability and fidelity guarantee across its communities. When structural or environmental incidents affect property assets, recovery relies on top-tier regional multi-line insurers to handle complex commercial property claims and asset mitigations. Large-scale property insurance recoveries highlight the extreme complexity of corporate claim settlements — the development gaps the WalletEdge ecosystem aims to target.',
+      // Lead and points are from the downloadable brochure, pages 5 and 7 (client tracker, WE060).
+      lead: 'There are regular incidents of impact damage to the CUSTOMER’s properties at various sites caused by negligent third-party motor vehicles. These types of claims will be pursued directly against the respective Motor Third-Party Insurance Companies by our dedicated, expert officials. The customer normally intimates the claim to WALLET EDGE along with the basic claim documents, and the entire recovery process is then handled completely by us. Our Recovery Agent services include: Intimating the claim to the insurers. Submitting all required documentation. Following up with insurers to obtain their claim reference numbers and secure the appointment of a surveyor. Coordinating between the insurer and the customer for the inspection of the damaged property. Obtaining the approved claim amount, securing the customer’s concurrence, and obtaining the signed Discharge Receipt. Submitting the executed Discharge Receipt to the insurers. Following up with the insurers for final settlement and providing proof of payment to the customer.',
       points: [
         {
-          icon: 'automation',
+          icon: 'shield',
           tone: GREEN,
-          title: 'Automated claims management',
-          desc: 'On WalletEdge’s development roadmap: automated workflows to eliminate common gaps in expectation management between property entities, third-party administrators (TPAs) and the end insurers.'
+          title: 'Expert Legal Support',
+          desc: 'We maintain strong partnerships with reputed legal firms throughout the UAE, ensuring comprehensive legal backing for all recovery operations. Our extensive experience enables us to secure optimal settlement offers on a ‘No Cure No Pay’ basis with minimal incidental expenses.'
         },
         {
-          icon: 'sync_alt',
+          icon: 'balance',
           tone: ORANGE,
-          title: 'Integrated TPA routing',
-          desc: 'Through integration with regional healthcare and property TPA networks, claims routing is designed to sync directly with corporate asset management panels — speeding up verification from months to a few digital cycles.'
+          title: 'Professional Legal Opinions',
+          desc: 'We provide expert legal opinions on insurance contracts, recovery strategies, and complex claim scenarios. Our competitive pricing structure maintains exceptional quality without compromise, allowing insurers to focus on their core business operations.'
+        },
+        {
+          icon: 'handshake',
+          tone: GREEN,
+          title: 'Client-Focused Approach',
+          desc: 'Our comprehensive service model ensures that insurers can concentrate entirely on their primary business activities while we handle the complexities of recovery and subrogation with professional excellence and proven results.'
         }
       ]
     }
