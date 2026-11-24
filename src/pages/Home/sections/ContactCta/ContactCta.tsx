@@ -13,9 +13,7 @@ export function ContactCta() {
         <div className={s.layout}>
           <div className={s.copy}>
             <h2 className="t-display-2">Connect with WalletEdge Global</h2>
-            <p className="t-lead">
-              Speak with our teams in Dubai and Coimbatore about any of our services or group companies.
-            </p>
+            <p className="t-lead">Speak with our UAE &amp; India teams about any of our services or group companies.</p>
           </div>
           <div className={s.actions}>
             <Button to={ROUTES.contact} variant="inverse" size="lg" icon="arrow_forward" block>
